@@ -30,24 +30,24 @@ console_start()
 <!--A[appendix]
 [[appendix-tools]]
 A-->
-# List of Command-Line Tools {-}
+# 명령줄 도구 목록 {-}
 
-This is an overview of all the command-line tools discussed in this book.
-This includes binary executables, interpreted scripts, and Z Shell builtins and keywords.
-For each command-line tool, the following information, when available and appropriate, is provided:
+이것은 이 책에서 논의된 모든 명령줄 도구의 개요입니다.
+여기에는 이진 실행 파일, 해석된 스크립트, Z 셸 내장 명령 및 키워드가 포함됩니다.
+각 명령줄 도구에 대해 사용 가능하고 적절한 경우 다음 정보가 제공됩니다.
 
-- The actual command to type at the command line
-- A description
-- The version used in the book
-- The year that version was released
-- The primary author(s)
-- A website to find more information
-- How to obtain help
-- An example usage
+- 명령줄에 입력할 실제 명령
+- 설명
+- 책에서 사용된 버전
+- 해당 버전이 출시된 연도
+- 기본 작성자
+- 자세한 정보를 찾을 수 있는 웹사이트
+- 도움말을 얻는 방법
+- 사용 예
 
-All command-line tools listed here are included in the Docker image.
-See [Chapter 2](#chapter-2-getting-started) for instructions on how to set it up.
-Please note that citing open source software is not trivial, and that some information may be missing or incorrect.
+여기에 나열된 모든 명령줄 도구는 Docker 이미지에 포함되어 있습니다.
+설정 방법에 대한 지침은 [2장](#chapter-2-getting-started)을 참조하십시오.
+오픈 소스 소프트웨어를 인용하는 것은 간단하지 않으며 일부 정보가 누락되거나 정확하지 않을 수 있습니다.
 
 ```{console, include=FALSE}
 unalias csvlook
@@ -65,16 +65,16 @@ unalias parallel
         stdout.write(f"## {name} {{-}}\n\n")
         stdout.write(f"{tool['description']}.\n`{name}`\n")
         if tool.get("builtin", False):
-            stdout.write(f"is a Z shell builtin.\n")
+            stdout.write(f"은 Z 셸 내장 명령입니다.\n")
         if "version" in tool:
-            stdout.write(f"(version {tool['version']})\n")
+            stdout.write(f"(버전 {tool['version']})\n")
         if "author" in tool:
-            stdout.write(f"by {combine(tool['author'])} ({tool['year']}).\n")
+            stdout.write(f"저자: {combine(tool['author'])} ({tool['year']}).\n")
 
         if "note" in tool:
             stdout.write(f"{tool['note']}.\n")
         if "url" in tool:
-            stdout.write(f"More information: {tool['url']}.\n")
+            stdout.write(f"자세한 정보: {tool['url']}.\n")
 
         stdout.write(f"\n```{{console {name}}}\n")
         stdout.write(f"type {name}\n")

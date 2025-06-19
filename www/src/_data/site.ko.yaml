@@ -1,0 +1,5 @@
+---
+url: "https://datascienceatthecommandline.com"
+name: "명령줄에서의 데이터 과학"
+author: "Jeroen Janssens"
+description: "이 완전히 개정된 가이드는 명령줄의 유연성이 어떻게 더 효율적이고 생산적인 데이터 과학자가 되는 데 도움이 되는지 보여줍니다. 작지만 강력한 명령줄 도구를 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다. 시작하는 데 도움이 되도록 저자 Jeroen Janssens는 Windows, macOS 또는 Linux에서 작업하든 유용한 100개 이상의 Unix 강력 도구가 포함된 Docker 이미지를 제공합니다."

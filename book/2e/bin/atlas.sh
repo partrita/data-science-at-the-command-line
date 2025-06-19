@@ -8,11 +8,11 @@ gsed -E '/  \+$/,/^  \+$/ {
   s/^  //;
 }' |
 gsed -E ':1
-# /^\s*\+\s*$/ {
-#   s/^\s*//
-#   n
-#   s/^\s*//
-#   b1
+# /^\s*\+\s*$/ { # /^\s*\+\s*$/인 경우
+#   s/^\s*// # s/^\s*// 실행
+#   n # n 실행
+#   s/^\s*// # s/^\s*// 실행
+#   b1 # b1 실행
 # }' |
 gsed -E ':1
 /^\+$/ {
@@ -21,7 +21,7 @@ gsed -E ':1
   s/^  //
   b1
 }' |
-# gsed -E 's/<<chapter\-([0-9]+)\-([^>]*)>>/Chapter \1/g' |
+# gsed -E 's/<<chapter\-([0-9]+)\-([^>]*)>>/Chapter \1/g' | # gsed -E 's/<<chapter\-([0-9]+)\-([^>]*)>>/Chapter \1/g' 실행
 gsed -E 's/\x1b\[[0-9;]*m//g' |
 gsed -E 's/`footnote/` footnote/g' |
 gsed -E 's/_`/_++/g' | gsed -E 's/`_/++_/g'

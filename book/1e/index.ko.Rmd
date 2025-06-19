@@ -1,0 +1,76 @@
+---
+title: "명령줄에서의 데이터 과학, 1판"
+author: "Jeroen Janssens"
+date: "`r gsub(' 0', ' ', format(Sys.Date(), '%B %d, %Y'))`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [library.bib, tools.bib]
+biblio-style: apalike
+nocite: |
+  @Schutt2013, @Peek2002, @Heddings2006, @Molinaro2005, @HTTP, @docopt, @Rossant2013, @manpages, @Raymond2003, @Goyvaerts2012, @Dougherty1997, @Tange2011a, @Cortez2009, @commandlinefu, @Cooper2014, @Russell2013, @Warden2011
+link-citations: yes
+description: "이 실습 가이드는 명령줄의 유연성이 어떻게 더 효율적이고 생산적인 데이터 과학자가 되는 데 도움이 되는지 보여줍니다. 작지만 강력한 명령줄 도구를 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다."
+cover-image: "images/cover.png"
+github-repo: "jeroenjanssens/data-science-at-the-command-line"
+---
+
+# 환영합니다 {-}
+
+이것은 2014년 10월 O'Reilly에서 초판으로 출판된 *명령줄에서의 데이터 과학* 웹사이트입니다. 이 실습 가이드는 명령줄의 유연성이 어떻게 더 효율적이고 생산적인 데이터 과학자가 되는 데 도움이 되는지 보여줍니다. 작지만 강력한 명령줄 도구를 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다.
+
+Windows, macOS 또는 Linux 사용자 모두 시작할 수 있도록 저자 [Jeroen Janssens](https://twitter.com/jeroenhjanssens)는 80개 이상의 명령줄 도구가 포함된 [Docker 이미지](https://hub.docker.com/r/datascienceworkshops/data-science-at-the-command-line)를 개발했습니다.
+
+명령줄이 민첩하고 확장 가능하며 확장 가능한 기술인 이유를 알아보십시오. Python이나 R과 같은 도구로 데이터를 처리하는 데 이미 익숙하더라도 명령줄의 강력한 기능을 활용하여 데이터 과학 워크플로를 크게 향상시킬 수 있습니다.
+
+
+```{r out.width='349px', echo=FALSE, out.extra='class="cover"'}
+knitr::include_graphics('images/cover.png', dpi = NA)
+```
+
+
+* 웹사이트, API, 데이터베이스 및 스프레드시트에서 데이터 획득
+* 텍스트, CSV, HTML/XML 및 JSON에 대한 정제 작업 수행
+* 데이터 탐색, 기술 통계 계산 및 시각화 생성
+* 데이터 과학 워크플로 관리
+* 한 줄짜리 코드와 기존 Python 또는 R 코드에서 재사용 가능한 명령줄 도구 만들기
+* 데이터 집약적인 파이프라인 병렬화 및 배포
+* 차원 축소, 클러스터링, 회귀 및 분류 알고리즘으로 데이터 모델링
+
+
+> 각 도구가 하나의 작업을 잘 수행하고 교묘하게 파이프된 단순한 도구라는 Unix 철학은 명령줄에 구현되어 있습니다. Jeroen은 데이터 과학 작업에 이러한 철학을 도입하는 방법을 전문적으로 논의하며, 명령줄이 파일 입출력의 세계일 뿐만 아니라 데이터 조작, 탐색, 심지어 모델링의 세계이기도 함을 보여줍니다.
+>
+> **---Chris H. Wiggins**
+>
+> 컬럼비아 대학교 응용 물리학 및 응용 수학과 부교수 겸 *뉴욕 타임스* 수석 데이터 과학자
+
+> 이 책은 일반적인 데이터 과학 작업을 일관된 워크플로로 통합하는 방법을 설명합니다. 문제를 분석하는 전술뿐만 아니라 솔루션의 조각을 조립하는 전략에 관한 것이기도 합니다.
+>
+> **---John D. Cook**
+>
+> 응용 수학, 통계 및 기술 컴퓨팅 컨설턴트
+
+
+이 콘텐츠가 유용하다고 생각되면 다음 중 하나를 통해 작업을 지원하는 것을 고려해 주십시오.
+
+* [GitHub 스폰서](https://github.com/sponsors/jeroenjanssens/)에서 저자 후원.
+* [Amazon](https://www.amazon.com/Data-Science-Command-Line-Time-Tested/dp/1491947853) 또는 [bol.com](https://www.bol.com/nl/p/data-science-at-the-command-line/9200000031673818)에서 책 구매.
+* [Amazon](https://www.amazon.com/Data-Science-Command-Line-Time-Tested/dp/1491947853) 또는 [Goodreads](https://www.goodreads.com/book/show/22967424-data-science-at-the-command-line)에 리뷰 작성.
+* [Github 저장소](https://github.com/jeroenjanssens/data-science-at-the-command-line) 또는 [Docker 이미지](https://hub.docker.com/u/datascienceworkshops/)에 별표 표시.
+
+이 저작물은 [Creative Commons Attribution-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nd/4.0/)에 따라 사용이 허가되었습니다.
+
+<a href="https://datascienceworkshops.com">
+```{r, out.width = "350px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("images/data-science-workshops.svg")
+```
+</a>
+
+저자가 이 주제와 R 및 Python과 같은 다른 주제에 대한 교육을 제공한다는 것을 알고 계셨습니까? 귀하와 동료들이 Jeroen에게 직접 배우고 싶다면 [Data Science Workshops B.V.](https://www.datascienceworkshops.com)에 자세한 내용을 문의하십시오.
+
+
+```{r include=FALSE}
+# R 패키지에 대한 bib 데이터베이스 자동 생성
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

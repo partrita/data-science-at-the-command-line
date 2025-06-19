@@ -12,13 +12,13 @@ from pandocfilters import toJSONFilter, Plain, Str, RawBlock, RawInline
 
 from ansi2html import Ansi2HTMLConverter
 
-REF_TYPE = {"fig": "Figure",
-            "exm": "Example"}
+REF_TYPE = {"fig": "그림",
+            "exm": "예제"}
 
-ADM_TYPE = {"comment": "NOTE",
-            "note": "NOTE",
-            "caution": "WARNING",
-            "tip": "TIP"}
+ADM_TYPE = {"comment": "참고",
+            "note": "참고",
+            "caution": "경고",
+            "tip": "팁"}
 
 # conv = Ansi2HTMLConverter(inline=True, scheme="github", linkify=False)
 conv = Ansi2HTMLConverter(inline=True, scheme="solarized", linkify=False)
@@ -40,7 +40,7 @@ def pygments(key, value, format, _):
     global CHAPTER_NUM
 
 
-    # Used for figure log
+    # 그림 로그에 사용됨
     if format == "muse":
 
         if key == "Header":
@@ -70,7 +70,7 @@ def pygments(key, value, format, _):
 
     if format == "asciidoc":
 
-        # Fix chapter cross ref
+        # 챕터 교차 참조 수정
         # if key == "Link" and value[2][0].startswith("#chapter"):
         #     return RawInline("asciidoc", f"<<{value[2][0][1:]}>>")
 
@@ -81,7 +81,7 @@ def pygments(key, value, format, _):
         #         stderr.write(f"HEADER: {value}\n\n")
         #         stderr.write(f"HEADER_ID: {chapter_id}\n\n")
 
-        # Only keep <!--A...A---> comments
+        # <!--A...A---> 주석만 유지
         if key == "RawBlock":
             try:
                 if (match := comment_adoc_re.fullmatch(value[1])):
@@ -90,7 +90,7 @@ def pygments(key, value, format, _):
                 pass
 
 
-        # Fix references to figures
+        # 그림 참조 수정
         if (key == "Str") and value.startswith("@ref"):
             # stderr.write(f"{key}\t{value}\n")
             #_, ref_type, ref_id, *rest = re.split("\(|:|\)", value)
@@ -107,14 +107,14 @@ def pygments(key, value, format, _):
             [[ident, classes, keyvals], code] = value
             div_type = classes[0]
 
-            # Fix admonition
+            # 주의 문구 수정
             if div_type.startswith("rmd"):
                 adm_type = div_type[3:]
                 return Plain([Str(f"[{ADM_TYPE[adm_type]}]\n====\n")] +
                              code[0]["c"] +
                              [Str("\n====\n\n")])
 
-            # Fix figures
+            # 그림 수정
             elif div_type == "figure":
                 fig_id = code[2]["c"][0]["c"].split(")")[0][2:]
                 html = code[0]["c"][0]["c"][1]
@@ -146,7 +146,7 @@ def pygments(key, value, format, _):
                 #result = "[subs=callouts]\n++++\n<pre data-type=\"programlisting\" style=\"color: #4f4f4f\">" + html_code + "</pre>\n++++\n\n"
                 # result = "[source,subs=\"+macros\"]\n----\n" + html_code + "\n----\n\n"
 
-                # Turn code callout number into image
+                # 코드 콜아웃 번호를 이미지로 변환
                 # result = callout_code_re.sub(lambda x: f"<img src=\"callouts/{int(x.group(1))}.png\" alt=\"{int(x.group(1))}\">", result)
                 # result = callout_code_re.sub(lambda x: f"<a class=\"co\"><img src=\"callouts/{int(x.group(1))}.png\" /></a>", result)
                 # result = callout_code_re.sub(lambda x: f"<!--{int(x.group(1))}-->", result)
@@ -157,7 +157,7 @@ def pygments(key, value, format, _):
 
     elif format == "html4":
 
-        # Only keep <!--H...H---> comments
+        # <!--H...H---> 주석만 유지
         if key == "RawBlock":
             try:
                 if (match := comment_html_re.fullmatch(value[1])):
@@ -165,13 +165,13 @@ def pygments(key, value, format, _):
             except:
                 pass
 
-        # Turn text callout number into unicode char
+        # 텍스트 콜아웃 번호를 유니코드 문자로 변환
         if (key == "Str") and (match := callout_text_re.fullmatch(value)):
             num = int(match.group(1))
             br = "<br>" if num > 1 else ""
             return RawInline("html", f"{br}<span class=\"callout\">&#{num + 10121};</span>")
 
-        # Insert "Figure" or "Example" in front of internal references
+        # 내부 참조 앞에 "그림" 또는 "예제" 삽입
         if (key == "Str") and value.startswith("@ref"):
             # stderr.write(f"{key}\t{value}\n")
             _, ref_type, ref_id, *_ = re.split("\(|:|\)", value)
@@ -185,7 +185,7 @@ def pygments(key, value, format, _):
                 # stderr.write(f"{key}\t{value}\t{format}\n")
                 result = "<pre>" + conv.convert(code, full=False) + "</pre>"
 
-                # Turn code callout number into unicode char
+                # 코드 콜아웃 번호를 유니코드 문자로 변환
                 result = callout_code_re.sub(lambda x: f"<span class=\"callout\">&#{int(x.group(1))+10121};</span>", result)
             else:
                 result = code

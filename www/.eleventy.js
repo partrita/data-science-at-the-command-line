@@ -121,7 +121,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
   eleventyConfig.setDataDeepMerge(true);
 
-  // human readable date
+  // 사람이 읽을 수 있는 날짜
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
       "LLL d, yyyy"
@@ -137,17 +137,17 @@ module.exports = function(eleventyConfig) {
     yaml.safeLoad(contents)
   );
 
-  // Copy Netlify redirects
+  // Netlify 리디렉션 복사
   eleventyConfig.addPassthroughCopy("./src/_redirects");
   eleventyConfig.addPassthroughCopy({"./src/img/{twitter,og}.png": "."});
 
   eleventyConfig.addPassthroughCopy("./src/static/fonts");
   eleventyConfig.addPassthroughCopy("./src/static/img");
 
-  // Copy book
+  // 책 복사
   eleventyConfig.addPassthroughCopy("./src/2e");
 
-  // Copy favicons to /_site
+  // 파비콘을 /_site로 복사
   eleventyConfig.addPassthroughCopy({"./src/favicons/*.*": "."});
 
 

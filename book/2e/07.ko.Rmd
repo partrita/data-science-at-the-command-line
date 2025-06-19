@@ -1,0 +1,758 @@
+---
+suppress-bibliography: true
+---
+
+```{r console_start, include=FALSE}
+console_start()
+```
+
+```{console setup_history, include=FALSE}
+ export CHAPTER="07"
+ export HISTFILE=/history/history_${CHAPTER}
+ rm -f $HISTFILE
+```
+
+
+# 데이터 탐색 {#chapter-7-exploring-data}
+
+그 모든 힘든 작업 끝에 (이미 깨끗한 데이터가 주변에 있지 않았다면!) 이제 재미있는 시간입니다.
+이제 데이터를 획득하고 정제했으므로 OSEMN 모델의 세 번째 단계인 데이터 탐색을 계속할 수 있습니다.
+
+탐색은 데이터에 익숙해지는 단계입니다.
+데이터에서 가치를 추출하려면 데이터에 익숙해지는 것이 필수적입니다.
+예를 들어 데이터에 어떤 종류의 기능이 있는지 알면 어떤 기능을 더 탐색할 가치가 있고 어떤 기능을 사용하여 궁금한 점에 답할 수 있는지 알 수 있습니다.
+
+데이터 탐색은 세 가지 관점에서 수행할 수 있습니다.
+첫 번째 관점은 데이터와 해당 속성을 검사하는 것입니다.
+여기서 우리는 예를 들어 원시 데이터가 어떻게 생겼는지, 데이터 세트에 데이터 포인트가 몇 개 있는지, 데이터 세트에 어떤 기능이 있는지 알고 싶습니다.
+
+두 번째는 기술 통계를 계산하는 것입니다. 이 관점은 개별 기능에 대해 자세히 알아보는 데 유용합니다.
+출력은 종종 간결하고 텍스트로 되어 있어 명령줄에 인쇄할 수 있습니다.
+
+세 번째 관점은 데이터 시각화를 만드는 것입니다. 이 관점에서 여러 기능이 상호 작용하는 방식에 대한 통찰력을 얻을 수 있습니다. 명령줄에 인쇄할 수 있는 시각화를 만드는 방법을 설명합니다. 그러나 시각화는 그래픽 사용자 인터페이스에 표시하는 데 가장 적합합니다. 데이터 시각화가 기술 통계보다 나은 점은 더 유연하고 훨씬 더 많은 정보를 전달할 수 있다는 것입니다.
+
+## 개요
+
+이 장에서는 다음을 수행하는 방법을 배웁니다.
+
+- 데이터와 해당 속성 검사
+- 기술 통계 계산
+- 명령줄 내부 및 외부에서 데이터 시각화 만들기
+
+이 장은 다음 파일로 시작합니다.
+
+```{console cd}
+cd /data/ch07
+l
+```
+
+이러한 파일을 가져오는 지침은 [2장](#chapter-2-getting-started)에 있습니다.
+다른 모든 파일은 명령줄 도구를 사용하여 다운로드하거나 생성됩니다.
+
+## 데이터 및 해당 속성 검사
+
+이 섹션에서는 데이터 세트와 해당 속성을 검사하는 방법을 보여줍니다. 곧 나올 시각화 및 모델링 기술은 데이터가 직사각형 모양일 것으로 예상하므로 데이터가 CSV 형식이라고 가정합니다. 필요한 경우 [5장](#chapter-5-scrubbing-data)에서 설명한 기술을 사용하여 데이터를 CSV로 변환할 수 있습니다.
+
+간단하게 하기 위해 데이터에 헤더가 있다고 가정합니다.
+첫 번째 하위 섹션에서는 이것이 사실인지 여부를 결정하는 방법을 보여줍니다.
+헤더가 있다는 것을 알게 되면 다음 질문에 계속 답할 수 있습니다.
+
+- 데이터 세트에 데이터 포인트와 기능이 몇 개 있습니까?
+- 원시 데이터는 어떻게 생겼습니까?
+- 데이터 세트에 어떤 종류의 기능이 있습니까?
+- 이러한 기능 중 일부를 범주형으로 처리할 수 있습니까?
+
+
+### 헤더 여부, 여기 있습니다
+
+`head`를 사용하여 처음 몇 줄을 인쇄하여 파일에 헤더가 있는지 확인할 수 있습니다.
+
+```{console head_venture}
+head -n 5 venture.csv
+```
+
+줄이 줄 바꿈되면 `nl`을 사용하여 줄 번호를 추가합니다.
+
+```{console head_nl_venture}
+head -n 3 venture.csv | nl
+```
+
+또는 `trim`을 사용할 수 있습니다.
+
+```{console trim_venture}
+< venture.csv trim 5
+```
+
+이 경우 첫 번째 줄이 대문자 이름만 포함하고 후속 줄에 숫자가 포함되어 있으므로 헤더임이 분명합니다.
+이것은 실제로 매우 주관적인 프로세스이며 첫 번째 줄이 헤더인지 아니면 이미 첫 번째 데이터 포인트인지 결정하는 것은 사용자에게 달려 있습니다.
+데이터 세트에 헤더가 없으면 [5장](#chapter-5-scrubbing-data)에서 설명한 `header` 도구를 사용하여 수정하는 것이 가장 좋습니다.
+
+
+### 모든 데이터 검사
+
+자신의 속도로 원시 데이터를 검사하려면 모든 데이터를 한 번에 인쇄하는 `cat`을 사용하지 않는 것이 좋습니다.
+명령줄에서 대화식으로 데이터를 검사할 수 있는 `less` [@less]를 사용하는 것이 좋습니다.
+`-S` 옵션을 지정하여 긴 줄(*venture.csv*와 같이)이 줄 바꿈되지 않도록 할 수 있습니다.
+
+```{console less}
+less -S venture.csv#! enter=FALSE
+```
+
+```{console less_enter, fullscreen=TRUE}
+Enter Right Left#! literal=FALSE, hold=0.1, wait=0.1
+```
+
+```{console less_exit, include=FALSE}
+q#! enter=FALSE, expect_prompt=TRUE
+```
+
+오른쪽의 보다 큼 기호는 가로로 스크롤할 수 있음을 나타냅니다.
+**`위쪽`** 및 **`아래쪽`**을 눌러 위아래로 스크롤할 수 있습니다.
+**`스페이스바`**를 눌러 전체 화면을 아래로 스크롤합니다.
+가로 스크롤은 **`왼쪽`** 및 **`오른쪽`**을 눌러 수행합니다.
+파일의 시작과 끝으로 이동하려면 각각 **`g`**와 **`G`**를 누릅니다.
+`less`를 종료하려면 **`q`**를 누릅니다.
+매뉴얼 페이지에는 사용 가능한 모든 키 바인딩이 나열되어 있습니다.
+
+`less`의 한 가지 장점은 전체 파일을 메모리에 로드하지 않아 큰 파일을 볼 때도 빠르다는 것입니다.
+
+### 기능 이름 및 데이터 유형
+
+열(또는 기능) 이름은 기능의 의미를 나타낼 수 있습니다.
+이를 위해 다음 `head` 및 `tr` 조합을 사용할 수 있습니다.
+
+```{console head_tr}
+< venture.csv head -n 1 | tr , '\n'
+```
+
+이 기본 명령은 파일이 쉼표로 구분된다고 가정합니다.
+더 강력한 접근 방식은 `csvcut`을 사용하는 것입니다.
+
+```{console csvcut_names}
+csvcut -n venture.csv
+```
+
+열 이름을 인쇄하는 것 이상으로 한 단계 더 나아갈 수 있습니다.
+열 이름 외에도 각 열에 어떤 유형의 값이 포함되어 있는지(예: 문자열, 숫자 값 또는 날짜) 아는 것이 매우 유용합니다.
+다음과 같은 장난감 데이터 세트가 있다고 가정해 보겠습니다.
+
+```{console bat_datatypes}
+bat -A datatypes.csv
+```
+
+`csvlook`은 다음과 같이 해석합니다.
+
+```{console csvlook_datatypes}
+csvlook datatypes.csv
+```
+
+[5장](#chapter-5-scrubbing-data)에서 CSV 데이터에서 직접 SQL 쿼리를 실행하기 위해 `csvsql`을 이미 사용했습니다.
+명령줄 인수가 전달되지 않으면 이 데이터를 실제 데이터베이스에 삽입하는 데 필요한 SQL 문을 생성합니다.
+유추된 열 유형이 무엇인지 검사하기 위해 출력을 사용할 수도 있습니다.
+열에 데이터 유형 뒤에 *NOT NULL* 문자열이 인쇄되어 있으면 해당 열에는 누락된 값이 없습니다.
+
+```{console csvsql_datatypes}
+csvsql datatypes.csv
+```
+
+이 출력은 `csvkit` 제품군의 다른 도구(예: `csvgrep`, `csvsort`, `csvsql`)를 사용할 때 특히 유용합니다.
+*venture.csv*의 경우 열은 다음과 같이 유추됩니다.
+
+```{console csvsql_venture}
+csvsql venture.csv
+```
+
+
+### 고유 식별자, 연속 변수 및 요인
+
+각 기능의 데이터 유형을 아는 것만으로는 충분하지 않습니다.
+각 기능이 무엇을 나타내는지 아는 것도 필수적입니다.
+도메인에 대한 지식이 있으면 매우 유용하지만 데이터 자체를 보고 컨텍스트를 얻을 수도 있습니다.
+
+문자열과 정수 모두 고유 식별자이거나 범주를 나타낼 수 있습니다.
+후자의 경우 시각화에 색상을 할당하는 데 사용할 수 있습니다.
+그러나 정수가 예를 들어 우편 번호를 나타내는 경우 평균을 계산하는 것은 의미가 없습니다.
+
+기능을 고유 식별자 또는 범주형 변수로 처리해야 하는지 확인하려면 특정 열의 고유 값 수를 계산할 수 있습니다.
+
+```{console}
+wc -l tips.csv
+< tips.csv csvcut -c day | header -d | sort | uniq | wc -l
+```
+
+`csvkit`의 일부인 `csvstat` [@csvstat]을 사용하여 각 열의 고유 값 수를 얻을 수 있습니다.
+
+```{console}
+csvstat tips.csv --unique
+csvstat venture.csv --unique
+```
+
+고유 값이 하나뿐인 경우(*OBS_STATUS*와 같이) 해당 열이 아무런 가치를 제공하지 않으므로 삭제할 수 있는 가능성이 있습니다.
+이러한 모든 열을 자동으로 삭제하려면 다음 파이프라인을 사용할 수 있습니다.
+
+```{console discard_columns, callouts=1:7}
+< venture.csv csvcut -C $(
+  csvstat venture.csv --unique |
+  grep ': 1$' |
+  cut -d. -f 1 |
+  tr -d ' ' |
+  paste -sd,
+) | trim
+```
+<1> `-C` 옵션은 위치(또는 이름)가 지정된 열을 선택 취소하며, 이는 명령 대체를 통해 제공됩니다.
+<2> *venture.csv*의 각 열에 대한 고유 값 수를 가져옵니다.
+<3> 고유 값이 하나인 열만 유지합니다.
+<4> 열 위치를 추출합니다.
+<5> 모든 공백을 자릅니다.
+<6> 모든 열 위치를 쉼표로 구분된 한 줄에 넣습니다.
+<7> 처음 10줄만 표시합니다.
+
+그렇긴 하지만 지금은 해당 열을 유지하겠습니다.
+
+일반적으로 고유 값 수가 총 행 수에 비해 적으면 해당 기능은 범주형 기능(*venture.csv*의 경우 *GEO*와 같이)으로 처리될 수 있습니다.
+숫자가 행 수와 같으면 고유 식별자일 수도 있고 숫자 값일 수도 있습니다.
+알아낼 수 있는 방법은 단 하나뿐입니다. 더 깊이 들어가야 합니다.
+
+
+## 기술 통계 계산
+
+### 열 통계
+
+명령줄 도구 `csvstat`은 많은 정보를 제공합니다. 각 기능(열)에 대해 다음을 보여줍니다.
+
+- 데이터 유형
+- 누락된 값(null)이 있는지 여부
+- 고유 값의 수
+- 해당 기능에 적합한 경우 다양한 기술 통계(최소값, 최대값, 합계, 평균, 표준 편차 및 중앙값)
+
+다음과 같이 `csvstat`을 호출합니다.
+
+```{console}
+csvstat venture.csv | trim 32
+```
+
+이것은 많은 출력을 생성하므로 처음 32줄만 표시합니다. 이것을 `less`로 파이프하고 싶을 수 있습니다.
+특정 통계에만 관심이 있는 경우 다음 옵션 중 하나를 사용할 수도 있습니다.
+
+- `--max` (최대값)
+- `--min` (최소값)
+- `--sum` (합계)
+- `--mean` (평균)
+- `--median` (중앙값)
+- `--stdev` (표준 편차)
+- `--nulls` (열에 null이 포함되어 있는지 여부)
+- `--unique` (고유 값)
+- `--freq` (빈번한 값)
+- `--len` (최대 값 길이)
+
+예를 들면 다음과 같습니다.
+
+```{console csvstat_null}
+csvstat venture.csv --freq | trim
+```
+
+정수와 열 이름을 모두 허용하는 `-c` 옵션을 사용하여 기능의 하위 집합을 선택할 수 있습니다.
+
+```{console csvstat_c}
+csvstat venture.csv -c 3,GEO
+```
+
+```{block2, type="rmdtip"}
+`csvsql`과 마찬가지로 `csvstat`은 데이터 유형을 결정하기 위해 휴리스틱을 사용하므로 항상 올바르게 파악하지 못할 수 있습니다.
+이전 하위 섹션에서 설명한 대로 항상 수동 검사를 수행하는 것이 좋습니다.
+또한 유형이 문자열이나 정수일 수 있지만 사용 방법에 대해서는 아무것도 알려주지 않습니다.
+```
+
+좋은 추가 기능으로 `csvstat`은 맨 끝에 데이터 포인트(행) 수를 출력합니다.
+값 내부의 줄 바꿈과 쉼표는 올바르게 처리됩니다.
+마지막 줄만 보려면 `tail`을 사용할 수 있습니다.
+또는 `xsv`를 사용할 수 있으며, 이는 실제 행 수만 반환합니다.
+
+```{console csvstat_count}
+csvstat venture.csv | tail -n 1
+xsv count venture.csv
+```
+
+이 두 옵션은 줄 바꿈 수를 계산하는(따라서 헤더도 계산하는) `wc -l`을 사용하는 것과는 다릅니다.
+
+
+### 셸에서 R 한 줄짜리
+
+이 섹션에서는 명령줄에서 직접 통계 프로그래밍 환경 `R` [@R]을 활용할 수 있도록 하는 `rush` [@rush]라는 명령줄 도구를 소개합니다.
+`rush`가 무엇을 하고 왜 존재하는지 설명하기 전에 `R` 자체에 대해 약간 이야기해 보겠습니다.
+
+`R`은 데이터 과학을 수행하기 위한 매우 강력한 통계 소프트웨어 패키지입니다.
+해석된 프로그래밍 언어이며 광범위한 패키지 모음이 있으며 명령줄과 유사하게 데이터를 가지고 놀 수 있는 자체 REPL을 제공합니다.
+`R`을 시작하면 Unix 명령줄과 분리된 대화형 세션에 있게 됩니다.
+
+*tips.csv*라는 CSV 파일이 있고 팁 비율을 계산하고 결과를 저장하고 싶다고 가정해 보겠습니다.
+`R`에서 이를 수행하려면 먼저 `R`을 실행합니다.
+
+```{console start_r, keep_last_prompt=TRUE, callouts=list(1)}
+R --quiet
+```
+<1> 여기서는 다소 긴 시작 메시지를 표시하지 않기 위해 `--quiet` 옵션을 사용합니다.
+
+그런 다음 다음 코드를 실행합니다.
+
+```{console r_code, keep_last_prompt=TRUE}
+library(tidyverse)                            #<1>
+df <- read_csv("tips.csv")                    #<2>
+df <- mutate(df, percent = tip / bill * 100)  #<3>
+write_csv(df, "percent.csv")                  #<4>
+q("no")                                       #<5>
+```
+<1> 필요한 패키지 로드
+<2> CSV 파일을 읽고 변수에 할당
+<3> 새 열 *percent* 계산
+<4> 결과를 디스크에 저장
+<5> `R` 종료
+
+그런 다음 명령줄에서 저장된 파일 *percent.csv*로 계속 진행할 수 있습니다.
+
+```{console}
+< percent.csv trim 5
+```
+
+특별히 달성하려는 것과 관련된 것은 세 번째 줄뿐이라는 점에 유의하십시오.
+다른 줄은 필요한 상용구입니다.
+간단한 작업을 수행하기 위해 이 상용구를 입력하는 것은 번거롭고 작업 흐름을 방해합니다.
+때로는 데이터에 한두 가지만 수행하고 싶을 수 있습니다.
+`R`의 강력한 기능을 활용하고 명령줄에서 사용할 수 있다면 좋지 않을까요?
+
+이것이 `rush`가 등장하는 이유입니다.
+이전과 동일한 작업을 수행하지만 이제 `rush`를 사용합니다.
+
+```{console rush_tips}
+rm percent.csv
+rush run -t 'mutate(df, percent = tip / bill * 100)' tips.csv > percent.csv
+< percent.csv trim 5
+```
+
+이러한 작은 한 줄짜리는 `rush`가 모든 상용구를 처리하기 때문에 가능합니다.
+이 경우 `run` 하위 명령을 사용하고 있습니다. 다음 섹션에서 데이터 시각화를 빠르게 생성하는 데 사용할 `plot` 하위 명령도 있습니다.
+입력 데이터를 전달하는 경우 기본적으로 `rush`는 헤더가 있고 구분 기호가 쉼표인 CSV 형식이라고 가정합니다.
+또한 열 이름이 작업하기 쉽도록 정리됩니다.
+각각 `--no-header`(또는 `-H`), `--delimiter`(또는 `-d`), `--no-clean-names`(또는 `-C`) 옵션을 사용하여 이러한 기본값을 재정의할 수 있습니다.
+도움말은 `run` 하위 명령에 사용할 수 있는 옵션에 대한 좋은 개요를 제공합니다.
+
+```{console rush_run_help}
+rush run --help
+```
+
+내부적으로 `rush`는 `R` 스크립트를 생성한 다음 실행합니다.
+`--dry-run`(또는 `-n`) 옵션을 지정하여 이 생성된 스크립트를 볼 수 있습니다.
+
+```{console rush_dryrun}
+rush run -n --tidyverse 'mutate(df, percent = tip / bill * 100)' tips.csv
+```
+
+이 생성된 스크립트는 다음을 수행합니다.
+
+- 명령줄에서 `R` 스크립트를 실행하는 데 필요한 쉬뱅(*`#!`*; [4장](#chapter-4-creating-command-line-tools) 참조)을 기록합니다.
+- *tidyverse* 및 *glue* 패키지를 가져옵니다.
+- *tips.csv*를 데이터 프레임으로 로드하고 열 이름을 정리한 다음 변수 *df*에 할당합니다.
+- 지정된 표현식을 실행합니다.
+- 결과를 표준 출력으로 인쇄합니다.
+
+이 생성된 스크립트를 파일로 리디렉션하고 쉬뱅 때문에 새 명령줄 도구로 쉽게 바꿀 수 있습니다.
+
+`rush`의 출력이 반드시 CSV 형식일 필요는 없습니다. 여기서 팁 비율의 평균, 최대 파티 크기, 시간 열의 고유 값, 청구서와 팁 간의 상관 관계를 계산합니다. 마지막으로 전체 열을 추출합니다(처음 10개 값만 표시).
+
+```{console rush_run_more}
+< percent.csv rush run 'mean(df$percent)' -
+< percent.csv rush run 'max(df$size)' -
+< percent.csv rush run 'unique(df$time)' -
+< percent.csv rush run 'cor(df$bill, df$tip)' -
+< percent.csv rush run 'df$tip' - | trim
+```
+
+마지막 대시는 `rush`가 표준 입력에서 읽어야 함을 의미합니다.
+
+따라서 이제 `R`로 데이터 세트에 한두 가지 작업을 수행하려면 한 줄짜리로 지정하고 명령줄에서 계속 작업할 수 있습니다.
+`R`에 대해 이미 가지고 있는 모든 지식을 이제 명령줄에서 사용할 수 있습니다. 다음 섹션에서 보여주듯이 `rush`를 사용하면 정교한 시각화도 만들 수 있습니다.
+
+
+## 시각화 만들기
+
+이 섹션에서는 명령줄에서 데이터 시각화를 만드는 방법을 보여줍니다.
+`rush plot`을 사용하여 막대 차트, 산점도, 상자 그림을 만듭니다.
+그러나 시작하기 전에 먼저 시각화를 표시하는 방법을 설명하겠습니다.
+
+
+### 명령줄에서 이미지 표시
+
+예를 들어 *tips.png* 이미지를 살펴보겠습니다.
+\@ref(fig:plot-demo)를 살펴보십시오. 이는 `rush`와 *tips.csv* 데이터 세트를 사용하여 만든 데이터 시각화입니다.
+(잠시 후 `rush` 구문을 설명하겠습니다.)
+책에 이미지를 삽입하기 위해 `display` 도구를 사용하지만 `display`를 실행하면 작동하지 않는 것을 알 수 있습니다.
+명령줄에서 이미지를 표시하는 것은 실제로 매우 까다롭기 때문입니다.
+
+```{console plot_demo_png, include=FALSE}
+rush plot --x bill --y tip --color size --facets '~day' tips.csv > tips.png
+display tips.png
+```
+```{r plot-demo, echo=FALSE, fig.cap="이 이미지를 직접 표시하는 것은 까다로울 수 있습니다.", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/tips.png")
+```
+
+설정에 따라 이미지를 표시하는 데 사용할 수 있는 다양한 옵션이 있습니다.
+각각 장단점이 있는 네 가지 옵션을 알고 있습니다.
+(1) 텍스트 표현으로,
+(2) 인라인 이미지로,
+(3) 이미지 뷰어를 사용하여,
+(4) 브라우저를 사용하여.
+간단히 살펴보겠습니다.
+
+```{r screenshot-display-ansi-and-inline, echo=FALSE, fig.cap="터미널에서 ASCII 문자와 ANSI 이스케이프 시퀀스를 통해 이미지 표시(위) 및 iTerm2 인라인 이미지 프로토콜을 통해 이미지 표시(아래)", fig.align="center"}
+knitr::include_graphics("images/screenshot_display_ansi_and_inline.png")
+```
+
+옵션 1은 \@ref(fig:screenshot-display-ansi-and-inline)의 위쪽에 표시된 것처럼 터미널 내부에 이미지를 표시하는 것입니다.
+이 출력은 표준 출력이 파일로 리디렉션되지 않을 때 `rush`에서 생성됩니다.
+ASCII 문자와 ANSI 이스케이프 시퀀스를 기반으로 하므로 모든 터미널에서 사용할 수 있습니다.
+이 책을 읽는 방식에 따라 이 코드를 실행할 때 얻는 출력이 \@ref(fig:screenshot-display-ansi-and-inline)의 스크린샷과 일치하거나 일치하지 않을 수 있습니다.
+
+```{console plot_demo_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x bill --y tip --color size --facets '~day' tips.csv
+```
+
+ASCII 문자만 표시되는 경우 이 책을 읽고 있는 매체가 색상을 담당하는 ANSI 이스케이프 시퀀스를 지원하지 않는다는 의미입니다.
+다행히 위 명령을 직접 실행하면 스크린샷과 똑같이 보입니다.
+
+옵션 2는 \@ref(fig:screenshot-display-ansi-and-inline)의 아래쪽에 표시된 것처럼 터미널 내부에 이미지를 표시합니다.
+이것은 macOS에서만 사용할 수 있는 iTerm2 터미널이며 작은 스크립트(제가 `display`라고 명명함)를 통해 [인라인 이미지 프로토콜](https://iterm2.com/documentation-images.html)을 사용합니다.
+이 스크립트는 Docker 이미지에 포함되어 있지 않지만 쉽게 설치할 수 있습니다.
+
+```{console}
+curl -s "https://iterm2.com/utilities/imgcat" > display && chmod u+x display#!enter=FALSE
+C-C#!literal=FALSE
+```
+
+macOS에서 iTerm2를 사용하지 않는 경우 인라인으로 이미지를 표시하는 다른 옵션이 있을 수 있습니다.
+즐겨 사용하는 검색 엔진을 참조하십시오.
+
+```{r screenshot-display-preview-and-browser, echo=FALSE, fig.cap="파일 탐색기와 이미지 뷰어를 통해 외부에서 이미지 표시(왼쪽) 및 웹 서버와 브라우저를 통해 이미지 표시(오른쪽)", fig.align="center"}
+knitr::include_graphics("images/screenshot_display_preview_and_browser.png")
+```
+
+옵션 3은 이미지 뷰어에서 이미지(*tips.csv* 이 예에서는)를 수동으로 여는 것입니다.
+\@ref(fig:screenshot-display-preview-and-browser)은 왼쪽에 macOS의 파일 탐색기(Finder)와 이미지 뷰어(미리보기)를 보여줍니다.
+로컬에서 작업하는 경우 이 옵션은 항상 작동합니다.
+Docker 컨테이너 내부에서 작업하는 경우 `-v` 옵션을 사용하여 로컬 디렉터리를 매핑한 경우에만 OS에서 생성된 이미지에 액세스할 수 있습니다.
+이를 수행하는 방법에 대한 지침은 [2장](#chapter-2-getting-started)을 참조하십시오.
+이 옵션의 장점은 대부분의 이미지 뷰어가 이미지가 변경되면 자동으로 디스플레이를 업데이트하므로 시각화를 미세 조정할 때 빠른 반복이 가능하다는 것입니다.
+
+옵션 4는 브라우저에서 이미지를 여는 것입니다.
+\@ref(fig:screenshot-display-preview-and-browser)의 오른쪽은 *http://localhost:8000/tips.png*를 보여주는 Firefox 스크린샷입니다.
+모든 브라우저에서 작동하지만 이 옵션이 작동하려면 다른 두 가지 전제 조건이 필요합니다.
+첫째, `-p` 옵션을 사용하여 Docker 컨테이너에서 포트(이 예에서는 포트 8000)에 액세스할 수 있도록 해야 합니다.
+(다시 말하지만, 이를 수행하는 방법에 대한 지침은 [2장](#chapter-2-getting-started)을 참조하십시오.)
+둘째, 웹 서버를 시작해야 합니다.
+이를 위해 Docker 컨테이너에는 Python을 사용하여 현재 작업 디렉터리를 제공하는 `servewd` [@servewd]라는 작은 도구가 있습니다.
+
+```{console}
+bat $(which servewd)
+```
+
+디렉터리(예: */data/*)에서 `servewd`를 한 번만 실행하면 백그라운드에서 즐겁게 실행됩니다.
+무언가를 플로팅한 후에는 브라우저에서 *localhost:8000*을 방문하여 해당 디렉터리와 모든 하위 디렉터리의 내용에 액세스할 수 있습니다.
+기본 포트는 8000이지만 `servewd`에 인수로 지정하여 변경할 수 있습니다.
+
+```{console}
+servewd 9999#!enter=FALSE
+C-C#!literal=FALSE
+```
+
+이 포트에 액세스할 수 있는지 확인하십시오.
+`servewd`는 백그라운드에서 실행되므로 다음과 같이 중지해야 합니다.
+
+```{console}
+pkill -f http.server
+```
+
+옵션 4는 원격 시스템에서도 작동할 수 있습니다.
+
+이제 이미지를 표시하는 네 가지 옵션을 다루었으므로 실제로 몇 가지를 만들어 보겠습니다.
+
+
+### 서둘러 플로팅하기
+
+데이터 시각화를 만들 때 엄청나게 많은 옵션이 있습니다.
+개인적으로 저는 R용 시각화 패키지인 `ggplot2`의 열렬한 지지자입니다.
+기본적인 그래픽 문법에는 문서을 거의 참조할 필요 없이 다양한 유형의 아름다운 데이터 시각화를 빠르고 반복적으로 만들 수 있는 일관된 API가 함께 제공됩니다.
+데이터를 탐색할 때 환영할 만한 속성 집합입니다.
+
+우리는 실제로 서두르지 않지만 단일 시각화에 대해 너무 많이 고민하고 싶지도 않습니다.
+또한 가능한 한 명령줄에 머무르고 싶습니다.
+다행히 아직 `rush`가 있으며, 이를 통해 명령줄에서 `ggplot2`를 사용할 수 있습니다.
+\@ref(fig:plot-demo)의 데이터 시각화는 다음과 같이 만들 수 있습니다.
+
+```{console rush_ggplot2}
+rush run --library ggplot2 'ggplot(df, aes(x = bill, y = tip, color = size)) + geom_point() + facet_wrap(~day)' tips.csv > tips.png#!enter=FALSE
+C-C#!literal=FALSE
+```
+
+그러나 눈치채셨겠지만 *tips.png*를 만들기 위해 매우 다른 명령을 사용했습니다.
+
+```{console rush_plot_again}
+rush plot --x bill --y tip --color size --facets '~day' tips.csv > tips.png#!enter=FALSE
+C-C#!literal=FALSE
+```
+
+`ggplot2`의 구문은 특히 제공하는 유연성을 고려할 때 비교적 간결하지만 기본 플롯을 빠르게 만드는 바로 가기가 있습니다.
+이 바로 가기는 `rush`의 `plot` 하위 명령을 통해 사용할 수 있습니다.
+이를 통해 R과 그래픽 문법을 배울 필요 없이 아름다운 기본 플롯을 만들 수 있습니다.
+
+내부적으로 `rush plot`은 `ggplot2` 패키지의 `qplot` 함수를 사용합니다.
+다음은 해당 설명서의 첫 번째 부분입니다.
+
+```{console}
+R -q -e '?ggplot2::qplot' | trim 14
+```
+
+이 조언에 동의합니다. 이 책을 다 읽으면 `ggplot2`를 배우는 것이 좋습니다. 특히 탐색적 데이터 시각화를 의사소통에 적합한 것으로 업그레이드하려는 경우 더욱 그렇습니다.
+지금은 명령줄에 있는 동안 바로 가기를 사용하겠습니다.
+
+\@ref(fig:screenshot-display-ansi-and-inline)에서 이미 보여주었듯이 `rush plot`은 동일한 구문으로 그래픽 시각화(픽셀로 구성)와 텍스트 시각화(ASCII 문자와 ANSI 이스케이프 시퀀스로 구성)를 모두 만들 수 있습니다.
+`rush`가 출력이 다른 명령(예: `display`)으로 파이프되거나 *tips.png*와 같은 파일로 리디렉션되는 것을 감지하면 그래픽 시각화를 생성하고 그렇지 않으면 텍스트 시각화를 생성합니다.
+
+잠시 시간을 내어 `rush plot`의 플로팅 및 저장 옵션을 읽어 보겠습니다.
+
+```{console}
+rush plot --help
+```
+
+가장 중요한 옵션은 *`<name>`*을 인수로 사용하는 플로팅 옵션입니다.
+예를 들어 `--x` 옵션을 사용하면 x축을 따라 *항목*을 배치할 위치를 결정하는 데 사용할 열을 지정할 수 있습니다.
+`--y` 옵션도 마찬가지입니다.
+`--color` 및 `--fill` 옵션은 색칠에 사용할 열을 지정하는 데 사용됩니다.
+`--size` 및 `--alpha` 옵션이 무엇에 관한 것인지 아마 짐작할 수 있을 것입니다.
+다른 일반적인 옵션은 다양한 시각화를 만들 때 섹션 전체에서 설명합니다.
+각 시각화에 대해 먼저 텍스트 표현(ASCII 및 ANSI 문자)을 표시한 다음 시각적 표현(픽셀)을 표시합니다.
+
+
+### 막대 차트 만들기
+
+막대 차트는 범주형 기능의 값 개수를 표시하는 데 특히 유용합니다.
+다음은 팁 데이터 세트의 *time* 기능에 대한 텍스트 시각화입니다.
+
+```{console plot_bar_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x time tips.csv
+```
+
+\@ref(fig:plot-bar-image)는 출력이 파일로 리디렉션될 때 `rush plot`에서 생성되는 그래픽 시각화를 보여줍니다.
+
+```{console plot_bar_png}
+rush plot --x time tips.csv > plot-bar.png
+display plot-bar.png
+```
+```{r plot-bar-image, echo=FALSE, fig.cap="막대 차트", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-bar.png")
+```
+
+이 막대 차트에서 도출할 수 있는 결론은 간단합니다. 점심보다 저녁에 대한 데이터 포인트가 두 배 이상 많습니다.
+
+
+### 히스토그램 만들기
+
+연속 변수의 개수는 히스토그램으로 시각화할 수 있습니다.
+여기서는 *time* 기능을 사용하여 채우기 색상을 설정했습니다.
+결과적으로 `rush plot`은 편리하게 누적 히스토그램을 만듭니다.
+
+```{console plot_histogram_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x tip --fill time tips.csv
+```
+
+\@ref(fig:plot-histogram-image)는 그래픽 시각화를 보여줍니다.
+
+```{block2, type="rmdtip"}
+유용할 수 있는 두 가지 구문 바로 가기를 보여 드리겠습니다.
+두 개의 느낌표(`!!`)는 이전 명령으로 대체됩니다.
+느낌표와 달러 기호(`!$`)는 이전 명령의 마지막 부분(파일 이름 *plot-histogram.png*)으로 대체됩니다.
+보시다시피 업데이트된 명령은 먼저 Z 셸에서 인쇄되므로 정확히 무엇을 실행하는지 알 수 있습니다.
+이 두 가지 바로 가기는 많은 입력을 절약할 수 있지만 기억하기는 쉽지 않습니다.
+```
+
+```{console plot_histogram_png}
+!! > plot-histogram.png
+display !$
+```
+```{r plot-histogram-image, echo=FALSE, fig.cap="히스토그램", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-histogram.png")
+```
+
+이 히스토그램은 대부분의 팁이 약 2.5달러임을 보여줍니다.
+저녁과 점심 두 그룹이 서로 겹쳐 쌓여 있고 절대 개수를 표시하므로 비교하기가 어렵습니다.
+아마도 밀도 플롯이 이에 도움이 될 수 있습니다.
+
+
+### 밀도 플롯 만들기
+
+밀도 플롯은 연속 변수의 분포를 시각화하는 데 유용합니다.
+`rush plot`은 휴리스틱을 사용하여 적절한 기하학적 도형을 결정하지만 `geom` 옵션으로 이를 재정의할 수 있습니다.
+
+```{console plot_density_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x tip --fill time --geom density tips.csv
+```
+
+이 경우 텍스트 표현은 \@ref(fig:plot-density-image)의 시각적 표현과 비교할 때 실제로 한계를 보여줍니다.
+
+```{console plot_density_png}
+rush plot --x tip --fill time --geom density tips.csv > plot-density.png
+display plot-density.png
+```
+```{r plot-density-image, echo=FALSE, fig.cap="밀도 플롯", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-density.png")
+```
+
+
+### 행복한 작은 사고
+
+이미 세 가지 유형의 시각화를 보았습니다.
+`ggplot2`에서는 이러한 유형이 `geom_bar`, `geom_histogram`, `geom_density` 함수에 해당합니다.
+*geom*은 기하학적 도형의 약자이며 실제로 플로팅되는 것을 나타냅니다.
+이 [`ggplot2` 치트 시트](https://ggplot2.tidyverse.org/)는 사용 가능한 기하학적 도형 유형에 대한 좋은 개요를 제공합니다.
+사용할 수 있는 기하학적 도형 유형은 지정하는 열(및 해당 유형)에 따라 다릅니다.
+모든 조합이 의미가 있는 것은 아닙니다.
+예를 들어 이 선 플롯을 살펴보십시오.
+
+```{console plot_accident_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x tip --y bill --color size --size day --geom path tips.csv
+```
+
+이 행복한 작은 사고는 \@ref(fig:plot-accident-image)의 시각적 표현에서 더 명확해집니다.
+
+```{console plot_accident_png}
+rush plot --x tip --y bill --color size --size day --geom path tips.csv > plot-accident.png
+display plot-accident.png
+```
+```{r plot-accident-image, echo=FALSE, fig.cap="행복한 작은 사고", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-accident.png")
+```
+
+*tips.csv*의 행은 독립적인 관찰인 반면 데이터 포인트 사이에 선을 그리는 것은 연결되어 있다고 가정합니다.
+*팁*과 *청구서* 간의 관계를 산점도로 시각화하는 것이 좋습니다.
+
+
+### 산점도 만들기
+
+기하학적 도형이 점인 산점도는 두 개의 연속적인 기능을 지정할 때 기본값입니다.
+
+```{console plot_scatter_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x bill --y tip --color time tips.csv
+```
+
+각 점의 색상은 `--fill` 옵션이 아닌 `--color` 옵션으로 지정됩니다.
+시각적 표현은 \@ref(fig:plot-scatter-image)를 참조하십시오.
+
+```{console plot_scatter_png}
+rush plot --x bill --y tip --color time tips.csv > plot-scatter.png
+display plot-scatter.png
+```
+```{r plot-scatter-image, echo=FALSE, fig.cap="산점도", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-scatter.png")
+```
+
+이 산점도에서 청구서 금액과 팁 사이에 관계가 있다고 결론을 내릴 수 있습니다.
+추세선을 만들어 더 높은 수준에서 이 데이터를 검토하는 것이 유용할 수 있습니다.
+
+
+### 추세선 만들기
+
+기본 기하학적 도형을 *`smooth`*로 재정의하면 추세선을 시각화할 수 있습니다.
+이것들은 더 큰 그림을 보는 데 유용합니다.
+
+```{console plot_trend_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x bill --y tip --color time --geom smooth tips.csv
+```
+
+`rush plot`은 투명도를 처리할 수 없으므로 이 경우 시각적 표현(\@ref(fig:plot-trend-image) 참조)이 훨씬 좋습니다.
+
+```{console plot_trend_png}
+rush plot --x bill --y tip --color time --geom smooth tips.csv > plot-trend.png
+display plot-trend.png
+```
+```{r plot-trend-image, echo=FALSE, fig.cap="추세선", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-trend.png")
+```
+
+추세선과 함께 원래 점을 시각화하려면 `rush run`으로 `ggplot2` 코드를 작성해야 합니다(\@ref(fig:plot-trend-points-image) 참조).
+
+```{console plot_trend_points_png}
+rush run --library ggplot2 'ggplot(df, aes(x = bill, y = tip, color = time)) + geom_point() + geom_smooth()' tips.csv > plot-trend-points.png
+display plot-trend-points.png
+```
+```{r plot-trend-points-image, echo=FALSE, fig.cap="추세선과 원래 점 결합", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-trend-points.png")
+```
+
+
+### 상자 그림 만들기
+
+상자 그림은 하나 이상의 기능에 대해 최소값, 최대값, 표본 중앙값, 1사분위수 및 3사분위수라는 다섯 가지 숫자 요약을 시각화합니다.
+이 경우 `factor()` 함수를 사용하여 *size* 기능을 범주형으로 변환해야 합니다. 그렇지 않으면 *bill* 기능의 모든 값이 함께 묶입니다.
+
+```{console plot_boxplot_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x 'factor(size)' --y bill --geom boxplot tips.csv
+```
+
+텍스트 표현은 그리 나쁘지 않지만 시각적 표현이 훨씬 명확합니다(\@ref(fig:plot-boxplot-image) 참조).
+
+```{console plot_boxplot_png}
+rush plot --x 'factor(size)' --y bill --geom boxplot tips.csv > plot-boxplot.png
+display plot-boxplot.png
+```
+```{r plot-boxplot-image, echo=FALSE, fig.cap="상자 그림", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-boxplot.png")
+```
+
+놀랍지 않게도 이 상자 그림은 평균적으로 파티 규모가 클수록 청구액이 높아진다는 것을 보여줍니다.
+
+### 레이블 추가
+
+기본 레이블은 열 이름(또는 사양)을 기반으로 합니다.
+이전 이미지에서 레이블 *`factor(size)`*는 개선되어야 합니다.
+`--xlab` 및 `--ylab` 옵션을 사용하여 x축과 y축의 레이블을 재정의할 수 있습니다.
+`--title` 옵션을 사용하여 제목을 추가할 수 있습니다.
+다음은 이를 보여주는 바이올린 플롯(상자 그림과 밀도 플롯의 혼합)입니다(\@ref(fig:plot-labels-image)도 참조).
+
+```{console plot_labels_ansi, trailing_spaces=TRUE, remove=c(-2, -1)}
+rush plot --x 'factor(size)' --y bill --geom violin --title '파티 규모별 청구액 분포' --xlab '파티 규모' --ylab '청구액 (USD)' tips.csv
+```
+
+```{console plot_labels_png}
+rush plot --x 'factor(size)' --y bill --geom violin --title '파티 규모별 청구액 분포' --xlab '파티 규모' --ylab '청구액 (USD)' tips.csv > plot-labels.png
+display plot-labels.png
+```
+```{r plot-labels-image, echo=FALSE, fig.cap="제목과 레이블이 있는 바이올린 플롯", fig.align="center", out.width="90%"}
+knitr::include_graphics("images/plot-labels.png")
+```
+
+적절한 레이블과 제목으로 시각화에 주석을 달면 다른 사람(또는 미래의 자신)과 공유할 때 표시되는 내용을 더 쉽게 이해할 수 있으므로 특히 유용합니다.
+
+
+### 기본 플롯을 넘어서
+
+`rush plot`은 데이터를 탐색할 때 기본 플롯을 만드는 데 적합하지만 확실히 한계가 있습니다.
+때로는 여러 기하학적 도형, 좌표 변환, 테마 지정과 같은 더 많은 유연성과 정교한 옵션이 필요합니다.
+이 경우 `rush plot`이 기능을 가져오는 기본 패키지인 R용 `ggplot2` 패키지에 대해 자세히 알아보는 것이 좋습니다.
+R보다 Python을 더 선호하는 경우 Python용 `ggplot2`의 재구현인 [`plotnine` 패키지](https://plotnine.readthedocs.io)가 있습니다.
+
+
+## 요약
+
+이 장에서는 데이터를 탐색하는 다양한 방법을 살펴보았습니다.
+텍스트 및 그래픽 데이터 시각화 모두 장단점이 있습니다.
+그래픽 시각화는 분명히 품질이 훨씬 높지만 명령줄에서 보기에는 까다로울 수 있습니다.
+이것이 텍스트 시각화가 유용한 이유입니다.
+적어도 `rush`는 `R`과 `ggplot2` 덕분에 두 유형 모두를 만드는 일관된 구문을 가지고 있습니다.
+
+다음 장은 다시 한 번 막간 장으로, 명령과 파이프라인의 속도를 높이는 방법을 설명합니다.
+[9장](#chapter-9-modeling-data)에서 데이터 모델링을 시작하기를 기다릴 수 없다면 나중에 해당 장을 읽어도 됩니다.
+
+
+## 추가 탐색을 위해
+
+- 적절한 `ggplot2` 자습서는 안타깝게도 이 책의 범위를 벗어납니다. 데이터 시각화 실력을 향상시키고 싶다면 그래픽 문법의 강력함과 아름다움을 이해하는 데 시간을 투자하는 것이 좋습니다. Hadley Wickham과 Garrett Grolemund의 책 [*R for Data Science*](https://r4ds.had.co.nz/)의 3장과 28장은 훌륭한 자료입니다.
+- 3장과 28장에 대해 말하자면, R보다 Python을 더 선호하는 경우를 대비하여 [Plotnine과 Pandas를 사용하여 해당 장을 Python으로 번역했습니다](https://datascienceworkshops.com/blog/plotnine-grammar-of-graphics-for-python/).

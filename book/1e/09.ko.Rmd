@@ -1,0 +1,742 @@
+# 데이터 모델링 {#chapter-9-modeling-data}
+
+이 장에서는 컴퓨터에서 수행할 수 있는 OSEMN 모델의 네 번째이자 마지막 단계인 데이터 모델링을 수행합니다. 일반적으로 말해서 데이터를 모델링하는 것은 데이터에 대한 추상적이거나 높은 수준의 설명을 만드는 것입니다. 시각화를 만드는 것과 마찬가지로 개별 데이터 포인트에서 한 걸음 물러서는 것과 같습니다.
+
+그러나 한편으로 시각화는 모양, 위치 및 색상으로 특징지어져 우리가 그것을 보고 해석할 수 있습니다. 반면에 모델은 내부적으로 여러 숫자로 특징지어지므로 컴퓨터가 예를 들어 새 데이터 포인트에 대한 예측을 하는 데 사용할 수 있습니다. (모델을 이해하고 성능을 확인하기 위해 여전히 모델을 시각화할 수 있습니다.)
+
+이 장에서는 데이터를 모델링하기 위한 네 가지 일반적인 유형의 알고리즘을 고려합니다.
+
+- 차원 축소.
+- 클러스터링.
+- 회귀.
+- 분류.
+
+이 네 가지 알고리즘은 기계 학습 분야에서 비롯됩니다. 따라서 어휘를 약간 변경할 것입니다. *데이터 세트*라고도 하는 CSV 파일이 있다고 가정해 보겠습니다. 헤더를 제외한 각 행은 *데이터 포인트*로 간주됩니다. 간단하게 하기 위해 숫자 값을 포함하는 각 열은 입력 *기능*이라고 가정합니다. 데이터 포인트에 아이리스 데이터 세트의 *species* 열과 같이 숫자가 아닌 필드도 포함되어 있으면 해당 데이터 포인트의 *레이블*이라고 합니다.
+
+처음 두 가지 유형의 알고리즘(차원 축소 및 클러스터링)은 대부분 비지도 학습이며, 이는 데이터 세트의 기능만을 기반으로 모델을 만듭니다. 마지막 두 가지 유형의 알고리즘(회귀 및 분류)은 정의상 지도 학습 알고리즘이며, 이는 레이블도 모델에 통합합니다.
+
+```{block2, type="rmdcaution"}
+
+이것은 결코 기계 학습에 대한 소개가 아닙니다. 즉, 많은 세부 사항을 간략하게 설명해야 합니다. 데이터에 맹목적으로 적용하기 전에 알고리즘에 익숙해지는 것이 좋습니다.
+```
+
+## 개요
+
+이 장에서는 다음을 수행하는 방법을 배웁니다.
+
+- 데이터 세트의 차원을 줄입니다.
+- 세 가지 클러스터링 알고리즘으로 데이터 포인트 그룹을 식별합니다.
+- 회귀를 사용하여 화이트 와인의 품질을 예측합니다.
+- 예측 API를 통해 와인을 레드 또는 화이트로 분류합니다.
+
+## 와인 좀 더 주세요!
+
+이 장에서는 와인 시음 데이터 세트를 사용합니다. 구체적으로 레드 및 화이트 포르투갈 "Vinho Verde" 와인입니다. 각 데이터 포인트는 와인을 나타내며 11가지 물리화학적 특성으로 구성됩니다. (1) 고정 산도, (2) 휘발성 산도, (3) 구연산, (4) 잔류 설탕, (5) 염화물, (6) 유리 아황산, (7) 총 아황산, (8) 밀도, (9) pH, (10) 황산염, (11) 알코올. 품질 점수도 있습니다. 이 점수는 0(매우 나쁨)에서 10(우수) 사이이며 와인 전문가의 최소 3회 평가 중앙값입니다. 이 데이터 세트에 대한 자세한 내용은 <http://archive.ics.uci.edu/ml/datasets/Wine+Quality>에서 확인할 수 있습니다.
+
+두 가지 데이터 세트가 있습니다. 하나는 화이트 와인용이고 다른 하나는 레드 와인용입니다. 가장 첫 번째 단계는 `curl`을 사용하여 두 데이터 세트를 얻는 것입니다(물론 하루 종일 걸리지 않도록 `parallel`도 사용합니다).
+
+```{bash, eval=FALSE}
+$ cd ~/book/ch09
+$ parallel "curl -sL http://archive.ics.uci.edu/ml/machine-learning-databases"\
+> "/wine-quality/winequality-{}.csv > data/wine-{}.csv" ::: red white
+```
+
+세 개의 콜론은 `parallel`에 데이터를 전달하는 또 다른 방법입니다. `head`를 사용하여 두 데이터 세트를 모두 검사하고 `wc -l`을 사용하여 행 수를 계산해 보겠습니다.
+
+```{bash, eval=FALSE}
+$ head -n 5 wine-{red,white}.csv | fold
+==> wine-red.csv <==
+"고정 산도";"휘발성 산도";"구연산";"잔류 설탕";"염화물";"유리 아황산";"총 아황산";"밀도";"pH";"황산염";"알코올";"품질"
+7.4;0.7;0;1.9;0.076;11;34;0.9978;3.51;0.56;9.4;5
+7.8;0.88;0;2.6;0.098;25;67;0.9968;3.2;0.68;9.8;5
+7.8;0.76;0.04;2.3;0.092;15;54;0.997;3.26;0.65;9.8;5
+11.2;0.28;0.56;1.9;0.075;17;60;0.998;3.16;0.58;9.8;6
+
+==> wine-white.csv <==
+"고정 산도";"휘발성 산도";"구연산";"잔류 설탕";"염화물";"유리 아황산";"총 아황산";"밀도";"pH";"황산염";"알코올";"품질"
+7;0.27;0.36;20.7;0.045;45;170;1.001;3;0.45;8.8;6
+6.3;0.3;0.34;1.6;0.049;14;132;0.994;3.3;0.49;9.5;6
+8.1;0.28;0.4;6.9;0.05;30;97;0.9951;3.26;0.44;10.1;6
+7.2;0.23;0.32;8.5;0.058;47;186;0.9956;3.19;0.4;9.9;6
+$ wc -l wine-{red,white}.csv
+  1600 wine-red.csv
+  4899 wine-white.csv
+  6499 total
+```
+
+언뜻 보기에는 이 데이터가 이미 매우 깨끗해 보입니다. 그래도 대부분의 명령줄 도구가 예상하는 것과 더 일치하도록 이 데이터를 약간 정제해 보겠습니다. 구체적으로 다음을 수행합니다.
+
+- 헤더를 소문자로 변환합니다.
+- 세미콜론을 쉼표로 변환합니다.
+- 공백을 밑줄로 변환합니다.
+- 불필요한 따옴표를 제거합니다.
+
+이러한 모든 작업은 'tr'로 처리할 수 있습니다. 이번에는 예전처럼 for 루프를 사용하여 두 데이터 세트를 모두 처리해 보겠습니다.
+
+```{bash, eval=FALSE}
+for T in red white; do
+< wine-$T.csv tr '[A-Z]; ' '[a-z],_' | tr -d \" > wine-${T}-clean.csv
+done
+```
+
+두 데이터 세트를 결합하여 데이터 세트를 만들어 보겠습니다. `csvstack`을 사용하여 첫 번째 파일의 행에는 "red" 값을, 두 번째 파일의 행에는 "white" 값을 갖는 "type"이라는 열을 추가합니다.
+
+```{bash, eval=FALSE}
+$ HEADER="$(head -n 1 wine-red-clean.csv),type"
+$ csvstack -g red,white -n type wine-{red,white}-clean.csv |
+> csvcut -c $HEADER > wine-both-clean.csv
+```
+
+새 열 *type*이 테이블의 맨 앞에 추가됩니다. 이 장에서 사용할 일부 명령줄 도구는 클래스 레이블이 마지막 열이라고 가정하므로 `csvcut`을 사용하여 열 순서를 재정렬합니다. 13개 열을 모두 입력하는 대신 `csvstack`을 호출하기 전에 원하는 헤더를 변수 *\$HEADER*에 임시로 저장합니다.
+
+이 데이터 세트에 누락된 값이 있는지 확인하는 것이 좋습니다.
+
+```{bash, eval=FALSE}
+$ csvstat wine-both-clean.csv --nulls
+  1. fixed_acidity: False
+  2. volatile_acidity: False
+  3. citric_acid: False
+  4. residual_sugar: False
+  5. chlorides: False
+  6. free_sulfur_dioxide: False
+  7. total_sulfur_dioxide: False
+  8. density: False
+  9. ph: False
+ 10. sulphates: False
+ 11. alcohol: False
+ 12. quality: False
+ 13. type: False
+```
+
+훌륭합니다! 그냥 궁금해서 레드 와인과 화이트 와인 모두 품질 분포가 어떻게 보이는지 살펴보겠습니다.
+
+```{bash, eval=FALSE}
+$ < wine-both-clean.csv Rio -ge 'g+geom_density(aes(quality, '\
+'fill=type), adjust=3, alpha=0.5)' | display
+```
+
+```{r, echo=FALSE, fig.cap="", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-quality-density.png")
+```
+
+밀도 플롯에서 화이트 와인의 품질이 더 높은 값으로 분포되어 있음을 알 수 있습니다. 이것은 화이트 와인이 전반적으로 레드 와인보다 낫다는 것을 의미합니까, 아니면 화이트 와인 전문가가 레드 와인 전문가보다 더 쉽게 높은 점수를 준다는 것을 의미합니까? 그것은 데이터가 우리에게 알려주지 않는 것입니다. 아니면 알코올과 품질 사이에 상관 관계가 있을까요? Rio와 ggplot을 다시 사용하여 알아봅시다.
+
+```{bash, eval=FALSE}
+$ < wine-both-clean.csv Rio -ge 'ggplot(df, aes(x=alcohol, y=quality, '\
+> 'color=type)) + geom_point(position="jitter", alpha=0.2) + '\
+> 'geom_smooth(method="lm")' | display
+```
+
+```{r, echo=FALSE, fig.cap="", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-alcohol-vs-quality.png")
+```
+
+유레카! 흠, 모델링을 좀 더 해볼까요?
+
+## Tapkee를 사용한 차원 축소
+
+차원 축소의 목표는 고차원 데이터 포인트를 저차원 매핑에 매핑하는 것입니다. 과제는 유사한 데이터 포인트를 저차원 매핑에서 가깝게 유지하는 것입니다. 이전 섹션에서 보았듯이 와인 데이터 세트에는 13개의 기능이 포함되어 있습니다. 시각화하기 쉽기 때문에 두 가지 차원을 고수할 것입니다.
+
+차원 축소는 종종 탐색 단계의 일부로 간주됩니다. 플로팅할 기능이 너무 많을 때 유용합니다. 산점도 행렬을 수행할 수 있지만 한 번에 두 가지 기능만 보여줍니다. 다른 기계 학습 알고리즘의 전처리 단계로도 유용합니다.
+
+대부분의 차원 축소 알고리즘은 비지도 학습입니다. 즉, 저차원 매핑을 구성하기 위해 데이터 포인트의 레이블을 사용하지 않습니다.
+
+이 섹션에서는 주성분 분석(PCA) [@Pearson1901]과 t-분포 확률적 이웃 임베딩(t-SNE) [@van2008visualizing]이라는 두 가지 기술을 살펴봅니다.
+
+### Tapkee 소개
+
+Tapkee는 차원 축소를 위한 C++ 템플릿 라이브러리입니다 [@Lisitsyn2013]. 이 라이브러리에는 다음을 포함한 많은 차원 축소 알고리즘 구현이 포함되어 있습니다.
+
+- 로컬 선형 임베딩
+- 아이소맵
+- 다차원 스케일링
+- PCA
+- t-SNE
+
+Tapkee 웹사이트: <http://tapkee.lisitsyn.me/>에는 이러한 알고리즘에 대한 자세한 정보가 포함되어 있습니다. Tapkee는 주로 다른 응용 프로그램에 포함될 수 있는 라이브러리이지만 명령줄 도구도 제공합니다. 이를 사용하여 와인 데이터 세트에 대한 차원 축소를 수행합니다.
+
+### Tapkee 설치
+
+데이터 과학 도구 상자를 실행하고 있지 않으면 Tapkee를 직접 다운로드하여 컴파일해야 합니다. 먼저 `CMake`가 설치되어 있는지 확인하십시오. Ubuntu에서는 다음을 실행하기만 하면 됩니다.
+
+```{bash, eval=FALSE}
+$ sudo apt-get install cmake
+```
+
+다른 운영 체제에 대한 지침은 Tapkee 웹사이트를 참조하십시오. 그런 다음 다음 명령을 실행하여 소스를 다운로드하고 컴파일합니다.
+
+```{bash, eval=FALSE}
+$ curl -sL https://github.com/lisitsyn/tapkee/archive/master.tar.gz > \
+> tapkee-master.tar.gz
+$ tar -xzf tapkee-master.tar.gz
+$ cd tapkee-master
+$ mkdir build && cd build
+$ cmake ..
+$ make
+```
+
+이렇게 하면 `tapkee`라는 바이너리 실행 파일이 생성됩니다.
+
+### 선형 및 비선형 매핑
+
+먼저 표준화를 사용하여 기능을 확장하여 각 기능이 동일하게 중요하도록 합니다. 이는 일반적으로 기계 학습 알고리즘을 적용할 때 더 나은 결과를 가져옵니다.
+
+확장하려면 `cols`와 `Rio`의 조합을 사용합니다.
+
+```{bash, eval=FALSE}
+$ < wine-both.csv cols -C type Rio -f scale > wine-both-scaled.csv
+```
+
+이제 두 가지 차원 축소 기술을 모두 적용하고 `Rio-scatter`를 사용하여 매핑을 시각화합니다.
+
+```{bash, eval=FALSE}
+$ < wine-both-scaled.csv cols -C type body tapkee --method pca |
+> header -r x,y,type | Rio-scatter x y type |
+> tee tapkee-wine-pca.png | display
+```
+
+```{r, echo=FALSE, fig.cap="PCA", fig.align="center"}
+knitr::include_graphics("images/tapkee-wine-pca.png")
+```
+
+```{bash, eval=FALSE}
+$ < wine-both-scaled.csv cols -C type body tapkee --method t-sne |
+> header -r x,y,type | Rio-scatter x y type |
+> tee tapkee-wine-t-sne.png | display
+```
+
+```{r, echo=FALSE, fig.cap="t-SNE", fig.align="center"}
+knitr::include_graphics("images/tapkee-wine-t-sne.png")
+```
+
+이 한 줄짜리에는 단일 GNU 핵심 유틸리티(즉, 고전적인 명령줄 도구)가 없다는 점에 유의하십시오. 이제 그것이 명령줄의 힘입니다!
+
+## Weka를 사용한 클러스터링
+
+이 섹션에서는 와인 데이터 세트를 그룹으로 클러스터링합니다. 차원 축소와 마찬가지로 클러스터링은 일반적으로 비지도 학습입니다. 데이터가 어떻게 구성되어 있는지 이해하는 데 사용할 수 있습니다. 데이터가 클러스터링되면 클러스터 할당에 따라 데이터 포인트를 색칠하여 결과를 시각화할 수 있습니다. 대부분의 알고리즘에서는 데이터를 클러스터링할 그룹 수를 미리 지정합니다. 일부 알고리즘은 적절한 그룹 수를 결정할 수 있습니다.
+
+이 작업에는 와이카토 대학교 기계 학습 그룹에서 유지 관리하는 Weka를 사용합니다 [@Hall2009]. 이미 Weka를 알고 있다면 그래픽 사용자 인터페이스가 있는 소프트웨어로 알고 있을 것입니다. 그러나 보시다시피 Weka는 명령줄에서도 사용할 수 있습니다(일부 수정 사항이 있음). 클러스터링 외에도 Weka는 분류 및 회귀도 수행할 수 있지만 이러한 기계 학습 작업에는 다른 도구를 사용할 것입니다.
+
+### Weka 소개
+
+클러스터링에 더 나은 명령줄 도구가 있는지 물어볼 수 있습니다. 그리고 당신 말이 맞습니다. 이 장에 Weka를 포함시킨 한 가지 이유는 이러한 불완전성을 추가 명령줄 도구를 빌드하여 해결하는 방법을 보여주기 위해서입니다. 명령줄에서 더 많은 시간을 보내고 다른 명령줄 도구를 시도하면 처음에는 매우 유망해 보이지만 예상대로 작동하지 않는 도구를 접할 가능성이 있습니다. 일반적인 불완전성은 명령줄 도구가 표준 입력 또는 표준 출력을 올바르게 처리하지 않는다는 것입니다. 다음 섹션에서는 이러한 불완전성을 지적하고 이를 해결하는 방법을 보여줍니다.
+
+### 명령줄에서 Weka 다루기
+
+Weka는 명령줄에서 호출할 수 있지만 확실히 간단하거나 사용자 친화적이지 않습니다. Weka는 Java로 프로그래밍되어 있으므로 `java`를 실행하고 *weka.jar* 파일의 위치를 지정하고 호출하려는 개별 클래스를 지정해야 합니다. 예를 들어 Weka에는 장난감 데이터 세트를 생성하는 *MexicanHat*이라는 클래스가 있습니다. 이 클래스를 사용하여 10개의 데이터 포인트를 생성하려면 다음을 실행합니다.
+
+```{bash, eval=FALSE}
+$ java -cp ~/bin/weka.jar weka.datagenerators.classifiers.regression.MexicanHat\
+>  -n 10 | fold
+%
+% 명령줄
+%
+% weka.datagenerators.classifiers.regression.MexicanHat -r weka.datagenerators.c
+lassifiers.regression.MexicanHat-S_1_-n_10_-A_1.0_-R_-10..10_-N_0.0_-V_1.0 -S 1
+-n 10 -A 1.0 -R -10..10 -N 0.0 -V 1.0
+%
+@relation weka.datagenerators.classifiers.regression.MexicanHat-S_1_-n_10_-A_1.0
+_-R_-10..10_-N_0.0_-V_1.0
+
+@attribute x numeric
+@attribute y numeric
+
+@data
+
+4.617564,-0.215591
+-1.798384,0.541716
+-5.845703,-0.072474
+-3.345659,-0.060572
+9.355118,0.00744
+-9.877656,-0.044298
+9.274096,0.016186
+8.797308,0.066736
+8.943898,0.051718
+8.741643,0.072209
+```
+
+이 명령의 출력에 대해서는 걱정하지 마십시오. 나중에 설명하겠습니다. 지금은 Weka 사용에 대해 우려하고 있습니다. 여기에 몇 가지 유의해야 할 사항이 있습니다.
+
+- 직관적이지 않은 `java`를 실행해야 합니다.
+- jar 파일에는 2000개 이상의 클래스가 포함되어 있으며 그중 약 300개만 명령줄에서 직접 사용할 수 있습니다. 어떤 것인지 어떻게 알 수 있습니까?
+- 클래스의 전체 네임스페이스를 지정해야 합니다. `weka.datagenerators.classifiers.regression.MexicanHat`. 어떻게 기억해야 합니까?
+
+이것이 Weka를 포기한다는 의미입니까? 물론 아닙니다! Weka에는 유용한 기능이 많이 포함되어 있으므로 다음 세 하위 섹션에서 이러한 문제를 해결할 것입니다.
+
+#### Weka를 위한 향상된 명령줄 도구
+
+다음 조각을 `weka`라는 새 파일로 저장하고 *PATH*의 어딘가에 배치합니다.
+
+```{bash, eval=FALSE}
+#!/usr/bin/env bash
+java -Xmx1024M -cp ${WEKAPATH}/weka.jar "weka.$@"
+```
+
+그런 다음 *.bashrc* 파일에 다음 줄을 추가하여 어디에서나 `weka`를 호출할 수 있도록 합니다.
+
+```{bash, eval=FALSE}
+$ export WEKAPATH=/home/vagrant/repos/weka
+```
+
+이제 다음을 사용하여 이전 예제를 호출할 수 있습니다.
+
+```{bash, eval=FALSE}
+$ weka datagenerators.classifiers.regression.MexicanHat -n 10
+```
+
+#### 사용 가능한 Weka 클래스
+
+언급했듯이 *weka.jar* 파일에는 2000개 이상의 클래스가 포함되어 있습니다. 그중 많은 클래스는 명령줄에서 직접 사용할 수 없습니다. `-h`로 호출하면 도움말 메시지를 제공하는 경우 명령줄에서 사용할 수 있는 클래스로 간주합니다. 예를 들면 다음과 같습니다.
+
+```{bash, eval=FALSE}
+$ weka datagenerators.classifiers.regression.MexicanHat -h
+
+데이터 생성기 옵션:
+
+-h
+        이 도움말을 인쇄합니다.
+-o <파일>
+        출력 파일 이름, 그렇지 않으면 생성된 데이터가
+        stdout으로 인쇄됩니다.
+-r <이름>
+        관계 이름입니다.
+-d
+        디버그 정보를 인쇄할지 여부입니다.
+-S
+        랜덤 함수의 시드입니다(기본값 1).
+-n <숫자>
+        생성할 예제 수입니다(기본값 100).
+-A <숫자>
+        진폭 승수입니다(기본값 1.0).
+-R <숫자>..<숫자>
+        x가 무작위로 그려지는 범위입니다(기본값 -10.0..10.0).
+-N <숫자>
+        노이즈 비율입니다(기본값 0.0).
+-V <숫자>
+        노이즈 분산입니다(기본값 1.0).
+```
+
+이제 사용할 수 있습니다. 예를 들어 이것은 사용할 수 없는 클래스입니다.
+
+```{bash, eval=FALSE}
+$ weka filters.SimpleFilter -h
+java.lang.ClassNotFoundException: -h
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+        at java.lang.Class.forName0(Native Method)
+        at java.lang.Class.forName(Class.java:171)
+        at weka.filters.Filter.main(Filter.java:1344)
+-h
+```
+
+다음 파이프라인은 *weka.jar*의 모든 클래스와 `-h`로 `weka`를 실행하고 표준 출력과 표준 오류를 클래스와 동일한 이름의 파일에 저장합니다.
+
+```{bash, eval=FALSE}
+$ unzip -l $WEKAPATH/weka.jar |
+> sed -rne 's/.*(weka)\/([^g])([^$]*)\.class$/\2\3/p' |
+> tr '/' '.' |
+> parallel --timeout 1 -j4 -v "weka {} -h > {} 2>&1"
+```
+
+이제 749개의 파일이 있습니다. 다음 명령을 사용하여 *Exception* 문자열을 포함하지 않는 모든 파일의 파일 이름을 *weka.classes*에 저장합니다.
+
+```{bash, eval=FALSE}
+$ grep -L 'Exception' * | tee $WEKAPATH/weka.classes
+```
+
+이것은 여전히 332개의 클래스로 줄어듭니다! 다음은 관심 있을 만한 몇 가지 클래스입니다.
+
+- `attributeSelection.PrincipalComponents`
+- `classifiers.bayes.NaiveBayes`
+- `classifiers.evaluation.ConfusionMatrix`
+- `classifiers.functions.SimpleLinearRegression`
+- `classifiers.meta.AdaBoostM1`
+- `classifiers.trees.RandomForest`
+
+- `clusterers.EM`
+- `filters.unsupervised.attribute.Normalize`
+
+보시다시피 `weka`는 다양한 클래스와 기능을 제공합니다.
+
+#### 탭 완성 추가
+
+지금은 여전히 전체 클래스 이름을 직접 입력해야 합니다. *WEKAPATH*를 내보낸 후 *.bashrc* 파일에 다음 조각을 추가하여 소위 탭 완성을 추가할 수 있습니다.
+
+```{bash, eval=FALSE}
+_completeweka() {
+  local curw=${COMP_WORDS[COMP_CWORD]}
+  local wordlist=$(cat $WEKAPATH/weka.classes)
+  COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+  return 0
+}
+complete -o nospace -F _completeweka weka
+```
+
+이 함수는 이전에 생성한 *weka.classes* 파일을 사용합니다. 이제 명령줄에 `weka clu<Tab><Tab><Tab>`을 입력하면 클러스터링과 관련된 모든 클래스 목록이 표시됩니다.
+
+    $ weka clusterers.
+    clusterers.CheckClusterer
+    clusterers.CLOPE
+    clusterers.ClusterEvaluation
+    clusterers.Cobweb
+    clusterers.DBSCAN
+    clusterers.EM
+    clusterers.FarthestFirst
+    clusterers.FilteredClusterer
+    clusterers.forOPTICSAndDBScan.OPTICS_GUI.OPTICS_Visualizer
+    clusterers.HierarchicalClusterer
+    clusterers.MakeDensityBasedClusterer
+    clusterers.OPTICS
+    clusterers.sIB
+    clusterers.SimpleKMeans
+    clusterers.XMeans
+
+명령줄 도구 `weka`를 만들고 탭 완성을 추가하면 Weka를 명령줄에서 사용하기가 좀 더 쉬워집니다.
+
+### CSV와 ARFF 데이터 형식 간 변환
+
+Weka는 ARFF를 파일 형식으로 사용합니다. 이것은 기본적으로 열에 대한 추가 정보가 있는 CSV입니다. CSV와 ARFF 간 변환에는 `csv2arff`(예제 \@ref(exm:csv2arff) 참조)와 `arff2csv`(예제 \@ref(exm:arff2csv) 참조)라는 두 가지 편리한 명령줄 도구를 사용합니다.
+
+```{example csv2arff, name="CSV를 ARFF로 변환"}
+```
+```{bash, eval=FALSE}
+#!/usr/bin/env bash
+weka core.converters.CSVLoader /dev/stdin
+```
+
+```{example arff2csv, name="ARFF를 CSV로 변환"}
+```
+```{bash, eval=FALSE}
+#!/usr/bin/env bash
+weka core.converters.CSVSaver -i /dev/stdin
+```
+
+### 세 가지 클러스터 알고리즘 비교
+
+안타깝게도 Weka를 사용하여 데이터를 클러스터링하려면 이를 도와줄 또 다른 명령줄 도구가 필요합니다. *AddCluster* 클래스는 데이터 포인트를 학습된 클러스터에 할당하는 데 필요합니다. 안타깝게도 이 클래스는 *.arff* 확장자를 가진 파일을 예상하므로 *-i /dev/stdin*을 지정하더라도 표준 입력에서 데이터를 허용하지 않습니다. 이것은 잘못된 설계라고 생각합니다. `weka-cluster`의 소스 코드는 다음과 같습니다.
+
+```{bash, eval=FALSE}
+#!/usr/bin/env bash
+ALGO="$@"
+IN=$(mktemp --tmpdir weka-cluster-XXXXXXXX).arff
+
+finish () {
+        rm -f $IN
+}
+trap finish EXIT
+
+csv2arff > $IN
+weka filters.unsupervised.attribute.AddCluster -W "weka.${ALGO}" -i $IN \
+-o /dev/stdout | arff2csv
+```
+
+이제 EM 클러스터링 알고리즘을 적용하고 할당을 다음과 같이 저장할 수 있습니다.
+
+```{bash, eval=FALSE}
+$ cd data
+$ < wine-both-scaled.csv csvcut -C quality,type |
+> weka-cluster clusterers.EM -N 5 |
+> csvcut -c cluster > data/wine-both-cluster-em.csv
+```
+
+- 확장된 기능을 사용하고 클러스터에 대해 품질 및 유형 기능을 사용하지 마십시오.
+- `weka-cluster`를 사용하여 알고리즘을 적용합니다.
+- 클러스터 할당만 저장합니다.
+
+*SimpleKMeans* 및 *Cobweb* 알고리즘에 대해 동일한 명령을 다시 실행합니다. 이제 클러스터 할당이 있는 세 개의 파일이 있습니다. 클러스터 할당을 시각화하기 위해 t-SNE 매핑을 만들어 보겠습니다.
+
+```{bash, eval=FALSE}
+$ < wine-both-scaled.csv csvcut -C quality,type | body tapkee --method t-sne |
+> header -r x,y > wine-both-xy.csv
+```
+
+다음으로 `paste`를 사용하여 클러스터 할당을 t-SNE 매핑과 결합하고 `Rio-scatter`를 사용하여 산점도를 만듭니다.
+
+```{bash, eval=FALSE}
+$ parallel -j1 "paste -d, wine-both-xy.csv wine-both-cluster-{}.csv | "\
+> "Rio-scatter x y cluster | display" ::: em simplekmeans cobweb
+```
+
+```{r, echo=FALSE, fig.cap="EM", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-cluster-em.png")
+```
+
+```{r, echo=FALSE, fig.cap="SimpleKMeans", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-cluster-simplekmeans.png")
+```
+
+```{r, echo=FALSE, fig.cap="Cobweb", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-cluster-cobweb.png")
+```
+
+물론 Weka를 다루는 데 많은 어려움을 겪었습니다. 언젠가 예상과 다르게 작동하는 명령줄 도구를 만날 수 있으므로 이 연습은 가치가 있었습니다. 이제 이러한 명령줄 도구를 해결하는 방법이 항상 있다는 것을 알게 되었습니다.
+
+## SciKit-Learn Laboratory를 사용한 회귀
+
+이 섹션에서는 물리화학적 특성을 기반으로 화이트 와인의 품질을 예측합니다. 품질은 0에서 10 사이의 숫자이므로 품질 예측을 회귀 작업으로 간주할 수 있습니다. 일반적으로 말해서 훈련 데이터 포인트를 사용하여 세 가지 다른 알고리즘을 사용하여 세 가지 회귀 모델을 훈련합니다.
+
+이를 위해 SciKit-Learn Laboratory(또는 SKLL) 패키지를 사용합니다. 데이터 과학 도구 상자를 사용하지 않는 경우 `pip`를 사용하여 SKLL을 설치할 수 있습니다.
+
+```{bash, eval=FALSE}
+$ pip install skll
+```
+
+Python 2.7을 실행하는 경우 다음 패키지도 설치해야 합니다.
+
+```{bash, eval=FALSE}
+$ pip install configparser futures logutils
+```
+
+### 데이터 준비
+
+SKLL은 훈련 데이터와 테스트 데이터가 별도의 디렉터리에 있는 동일한 파일 이름을 갖도록 예상합니다. 그러나 이 예에서는 교차 유효성 검사를 사용하므로 훈련 데이터 세트만 지정하면 됩니다. 교차 유효성 검사는 전체 데이터 세트를 특정 수의 하위 집합으로 분할하는 기술입니다. 이러한 하위 집합을 폴드라고 합니다. (일반적으로 5개 또는 10개의 폴드가 사용됩니다.)
+
+나중에 데이터 포인트를 쉽게 식별할 수 있도록 각 행에 식별자를 추가해야 합니다(예측은 원래 데이터 세트와 동일한 순서가 아님).
+
+```{bash, eval=FALSE}
+$ mkdir train
+$ wine-white-clean.csv nl -s, -w1 -v0 | sed '1s/0,/id,/' > train/features.csv
+```
+
+### 실험 실행
+
+*predict-quality.cfg*라는 구성 파일을 만듭니다.
+
+```ini
+[General]
+experiment_name = Wine
+task = cross_validate
+
+[Input]
+train_location = train
+featuresets = [["features.csv"]]
+learners = ["LinearRegression","GradientBoostingRegressor","RandomForestRegressor"]
+label_col = quality
+
+[Tuning]
+grid_search = false
+feature_scaling = both
+objective = r2
+
+[Output]
+log = output
+results = output
+predictions = output
+```
+
+*run\_experiment* 명령줄 도구 \[cite:run\_experiment\]를 사용하여 실험을 실행합니다.
+
+```{bash, eval=FALSE}
+$ run_experiment -l evaluate.cfg
+```
+
+`-l` 명령줄 인수는 로컬 모드에서 실행 중임을 나타냅니다. SKLL은 클러스터에서 실험을 실행할 수 있는 가능성도 제공합니다. 실험을 실행하는 데 걸리는 시간은 선택한 알고리즘의 복잡성에 따라 다릅니다.
+
+### 결과 구문 분석
+
+모든 알고리즘이 완료되면 이제 *output* 디렉터리에서 결과를 찾을 수 있습니다.
+
+```{bash, eval=FALSE}
+$ cd output
+$ ls -1
+Wine_features.csv_GradientBoostingRegressor.log
+Wine_features.csv_GradientBoostingRegressor.predictions
+Wine_features.csv_GradientBoostingRegressor.results
+Wine_features.csv_GradientBoostingRegressor.results.json
+Wine_features.csv_LinearRegression.log
+Wine_features.csv_LinearRegression.predictions
+Wine_features.csv_LinearRegression.results
+Wine_features.csv_LinearRegression.results.json
+Wine_features.csv_RandomForestRegressor.log
+Wine_features.csv_RandomForestRegressor.predictions
+Wine_features.csv_RandomForestRegressor.results
+Wine_features.csv_RandomForestRegressor.results.json
+Wine_summary.tsv
+```
+
+SKLL은 각 학습자에 대해 네 개의 파일을 생성합니다. 로그 하나, 결과 두 개, 예측 하나입니다. 또한 SKLL은 각 개별 폴드에 대한 많은 정보가 포함된 요약 파일을 생성합니다(여기에 표시하기에는 너무 많음). 다음 SQL 쿼리를 사용하여 관련 메트릭을 추출할 수 있습니다.
+
+```{bash, eval=FALSE}
+$ < Wine_summary.tsv csvsql --query "SELECT learner_name, pearson FROM stdin "\
+> "WHERE fold = 'average' ORDER BY pearson DESC" | csvlook
+|----------------------------+----------------|
+|  학습자_이름               | 피어슨         |
+|----------------------------+----------------|
+|  RandomForestRegressor     | 0.741860521533 |
+|  GradientBoostingRegressor | 0.661957860603 |
+|  LinearRegression          | 0.524144785555 |
+|----------------------------+----------------|
+```
+
+여기서 관련 열은 피어슨 순위 상관 관계를 나타내는 *pearson*입니다. 이것은 실제 순위(품질 점수)와 예측 순위 간의 상관 관계를 나타내는 -1에서 1 사이의 값입니다. 모든 예측을 데이터 세트에 다시 붙여넣겠습니다.
+
+```{bash, eval=FALSE}
+$ parallel "csvjoin -c id train/features.csv <(< output/Wine_features.csv_{}"\
+> ".predictions | tr '\t' ',') | csvcut -c id,quality,prediction > {}" ::: \
+> RandomForestRegressor GradientBoostingRegressor LinearRegression
+$ csvstack *Regres* -n learner --filenames > predictions.csv
+```
+
+그리고 `Rio`를 사용하여 플롯을 만듭니다.
+
+```{bash, eval=FALSE}
+$ < predictions.csv Rio -ge 'g+geom_point(aes(quality, round(prediction), '\
+> 'color=learner), position="jitter", alpha=0.1) + facet_wrap(~ learner) + '\
+> 'theme(aspect.ratio=1) + xlim(3,9) + ylim(3,9) + guides(colour=FALSE) + '\
+> 'geom_smooth(aes(quality, prediction), method="lm", color="black") + '\
+> 'ylab("prediction")' | display
+```
+
+```{r, echo=FALSE, fig.cap="", fig.align="center"}
+knitr::include_graphics("images/ch09-wine-quality-predictions.png")
+```
+
+## BigML을 사용한 분류
+
+이 네 번째이자 마지막 모델링 섹션에서는 와인을 레드 또는 와인으로 분류합니다. 이를 위해 예측 API를 제공하는 BigML이라는 솔루션을 사용합니다. 즉, 실제 모델링 및 예측은 클라우드에서 이루어지므로 자체 컴퓨터가 제공할 수 있는 것보다 약간 더 많은 성능이 필요한 경우 유용합니다.
+
+예측 API는 비교적 젊지만 앞으로 유망하므로 이 장에 하나를 포함시켰습니다. 예측 API의 다른 공급자로는 Google(<https://developers.google.com/prediction> 참조)과 PredictionIO(<http://prediction.io> 참조)가 있습니다. BigML의 한 가지 장점은 API와 인터페이스하는 편리한 명령줄 도구인 `bigmler` [@bigmler]를 제공한다는 것입니다. 이 책에 제시된 다른 어떤 것과 마찬가지로 이 명령줄을 사용할 수 있지만 내부적으로는 데이터 세트가 BigML 서버로 전송되어 분류를 수행하고 결과를 다시 보냅니다.
+
+### 균형 잡힌 훈련 및 테스트 데이터 세트 만들기
+
+먼저 두 클래스가 동일하게 표현되도록 균형 잡힌 데이터 세트를 만듭니다. 이를 위해 `csvstack` [@csvstack], `shuf` [@shuf], `head`, `csvcut`을 사용합니다.
+
+```{bash, eval=FALSE}
+$ csvstack -n type -g red,white wine-red-clean.csv \
+> <(< wine-white-clean.csv body shuf | head -n 1600) |
+> csvcut -c fixed_acidity,volatile_acidity,citric_acid,\
+> residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,\
+> density,ph,sulphates,alcohol,type > wine-balanced.csv
+```
+
+이 긴 명령은 다음과 같이 나뉩니다.
+
+- `csvstack`은 여러 데이터 세트를 결합하는 데 사용됩니다. 첫 번째 파일 *wine-red-clean.csv*에서 오는 모든 행에 대해 *red* 값을 갖고 두 번째 파일에서 오는 모든 행에 대해 *white* 값을 갖는 새 열 *type*을 만듭니다.
+- 두 번째 파일은 파일 리디렉션을 사용하여 `csvstack`에 전달됩니다. 이렇게 하면 *wine-white-clean.csv*의 임의 순열을 만드는 `shuf`와 헤더와 처음 1559개 행만 선택하는 `head`를 사용하여 임시 파일을 만들 수 있습니다.
+- 마지막으로 기본적으로 `bigmler`는 마지막 열이 레이블이라고 가정하므로 `csvcut`을 사용하여 이 데이터 세트의 열 순서를 재정렬합니다.
+
+`parallel`과 `grep`을 사용하여 클래스당 인스턴스 수를 계산하여 *wine-balanced.csv*가 실제로 균형을 이루는지 확인해 보겠습니다.
+
+```{bash, eval=FALSE}
+$ parallel --tag grep -c {} wine-balanced.csv ::: red white
+red      1599
+white    1599
+```
+
+보시다시피 데이터 세트 *wine-balanced.csv*에는 레드 와인 1599개와 화이트 와인 1599개가 모두 포함되어 있습니다. 다음으로 `split` [@split]을 사용하여 훈련 데이터 세트와 테스트 데이터 세트로 분할합니다.
+
+```{bash, eval=FALSE}
+$ < wine-balanced.csv header > wine-header.csv
+$ tail -n +2 wine-balanced.csv | shuf | split -d -n r/2
+$ parallel --xapply "cat wine-header.csv x0{1} > wine-{2}.csv" \
+> ::: 0 1 ::: train test
+```
+
+이것은 분석할 가치가 있는 또 다른 긴 명령입니다.
+
+- `header`를 사용하여 헤더를 가져와 *wine-header.csv*라는 임시 파일에 저장합니다.
+- `tail`과 `shuf`를 사용하여 레드 와인과 화이트 와인을 섞고 라운드 로빈 배포를 사용하여 *x00*과 *x01*이라는 두 파일로 분할합니다.
+- `cat`을 사용하여 *wine-header.csv*에 저장된 헤더와 *x00*에 저장된 행을 결합하여 *wine-train.csv*로 저장합니다. *x01*과 *wine-test.csv*에 대해서도 마찬가지입니다. `--xapply` 명령줄 인수는 `parallel`에게 두 입력 소스를 동시에 반복하도록 지시합니다.
+
+*wine-train.csv*와 *wine-test.csv* 모두에서 클래스당 인스턴스 수를 다시 확인해 보겠습니다.
+
+```{bash, eval=FALSE}
+$ parallel --tag grep -c {2} wine-{1}.csv ::: train test ::: red white
+train red       821
+train white     778
+test white      821
+test red        778
+```
+
+데이터 세트가 잘 균형을 이루고 있는 것 같습니다. 이제 `bigmler`를 사용하여 예측 API를 호출할 준비가 되었습니다.
+
+### API 호출
+
+```{block2, type="rmdnote"}
+
+BigML 사용자 이름과 API 키는 <https://bigml.com/developers>에서 얻을 수 있습니다. *.bashrc*에서 *BIGML\_USERNAME*과 *BIGML\_API\_KEY* 변수를 적절한 값으로 설정하십시오.
+```
+
+API 호출은 매우 간단하며 각 명령줄 인수의 의미는 이름에서 분명합니다.
+
+```{bash, eval=FALSE}
+$ bigmler --train data/wine-train.csv \
+> --test data/wine-test-blind.csv \
+> --prediction-info full \
+> --prediction-header \
+> --output-dir output \
+> --tag wine \
+> --remote
+```
+
+*wine-test-blind.csv* 파일은 *type* 열(즉, 레이블)이 제거된 *wine-test*일 뿐입니다. 이 호출이 완료되면 *output* 디렉터리에서 결과를 찾을 수 있습니다.
+
+```{bash, eval=FALSE}
+$ tree output
+output
+├── batch_prediction
+├── bigmler_sessions
+├── dataset
+├── dataset_test
+├── models
+├── predictions.csv
+├── source
+└── source_test
+
+0 directories, 8 files
+```
+
+### 결과 검사
+
+가장 관심 있는 파일은 *output/predictions.csv*입니다.
+
+```{bash, eval=FALSE}
+$ csvcut output/predictions.csv -c type | head
+type
+white
+white
+red
+red
+white
+red
+red
+white
+red
+```
+
+이러한 예측된 레이블을 테스트 데이터 세트의 레이블과 비교할 수 있습니다. 오분류 수를 계산해 보겠습니다.
+
+```{bash, eval=FALSE}
+$ paste -d, <(csvcut -c type data/wine-test.csv) \
+> <(csvcut -c type output/predictions.csv) |
+> awk -F, '{ if ($1 != $2) {sum+=1 } } END { print sum }'
+766
+```
+
+- 먼저 *data/wine-test.csv*와 *output/predictions.csv*의 *type* 열을 결합합니다.
+- 그런 다음 `awk`를 사용하여 두 열의 값이 다를 때 개수를 유지합니다.
+
+보시다시피 BigML의 API는 1599개 와인 중 766개를 오분류했습니다. 이것은 좋은 결과는 아니지만 일반적으로 수행하지 않는 데이터 세트에 알고리즘을 맹목적으로 적용했다는 점에 유의하십시오.
+
+### 결론
+
+BigML의 예측 API는 사용하기 쉬운 것으로 입증되었습니다. 이 책에서 설명한 많은 명령줄 도구와 마찬가지로 BigML에 대해서는 겨우 표면만 긁었을 뿐입니다. 완전성을 위해 다음을 언급해야 합니다.
+
+- BigML의 명령줄 도구는 디버깅에 유용한 로컬 계산도 허용합니다.
+- 결과는 BigML의 웹 인터페이스를 사용하여 검사할 수도 있습니다.
+- BigML은 회귀 작업도 수행할 수 있습니다.
+
+BigML 기능의 전체 개요는 <https://bigml.com/developers>를 참조하십시오.
+
+하나의 예측 API만 실험할 수 있었지만 일반적으로 예측 API는 데이터 과학을 수행하는 데 고려할 가치가 있다고 생각합니다.
+
+## 추가 자료
+
+* Cortez, P., A. Cerdeira, F. Almeida, T. Matos, and J. Reis. 2009. “Modeling Wine Preferences by Data Mining from Physicochemical Properties.” <em>Decision Support Systems</em> 47 (4). Elsevier:547–53.
+* Hall, Mark, Eibe Frank, Geoffrey Holmes, Bernhard Pfahringer, Peter Reutemann, and Ian H. Witten. 2009. “The WEKA Data Mining Software: An Update.” <em>SIGKDD Explorations</em> 11 (1). ACM.
+* Pearson, K. 1901. “On Lines and Planes of Closest Fit to Systems of Points in Space.” <em>Philosophical Magazine</em> 2 (11):559–72.
+* Maaten, Laurens van der, and Geoffrey Everest Hinton. 2008. “Visualizing Data Using T-SNE.” <em>Journal of Machine Learning Research</em> 9:2579–2605.
