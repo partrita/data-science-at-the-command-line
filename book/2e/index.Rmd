@@ -1,5 +1,5 @@
 ---
-title: "Data Science at the Command Line, 2e"
+title: "커맨드 라인에서 시작하는 데이터 과학, 2판"
 author: "Jeroen Janssens"
 date: "`r gsub(' 0', ' ', format(Sys.Date(), '%B %d, %Y'))`"
 site: bookdown::bookdown_site
@@ -10,107 +10,105 @@ suppress-bibliography: false
 nocite: |
   @Schutt2013, @Peek2002, @Heddings2006, @Molinaro2005, @HTTP, @docopt, @Rossant2013, @manpages, @Raymond2003, @Goyvaerts2012, @Dougherty1997, @Tange2011a, @Cortez2009, @commandlinefu, @Cooper2014, @Russell2013, @Warden2011
 link-citations: yes
-description: "This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You'll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux."
+description: "이 개정판 가이드는 커맨드 라인의 유연성이 어떻게 여러분을 더 효율적이고 생산적인 데이터 과학자로 만들어 줄 수 있는지 보여줍니다. 작지만 강력한 커맨드 라인 도구들을 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다. 시작을 돕기 위해 저자 Jeroen Janssens는 Windows, macOS, Linux 어디서든 유용한 100개 이상의 유닉스 파워 도구가 포함된 Docker 이미지를 제공합니다."
 cover-image: "images/cover.png"
 github-repo: "jeroenjanssens/data-science-at-the-command-line"
 ---
 
-# Welcome {-}
+# 환영합니다 {-}
 
-<div class="h1" style="margin-top: 1.5rem;">Data Science at the Command Line</div>
+<div class="h1" style="margin-top: 1.5rem;">커맨드 라인에서 시작하는 데이터 과학</div>
 
-<div class="h4">Obtain, Scrub, Explore, and Model Data with Unix Power Tools</div>
+<div class="h4">유닉스 파워 도구로 데이터를 획득, 정제, 탐색 및 모델링하기</div>
 
 <div class="cover-in-text">
 <img class="d-block d-lg-none" src="images/cover-small.png">
 </div>
 
-Welcome to the website of the second edition of *Data Science at the Command Line* by Jeroen Janssens, published by O'Reilly Media in October 2021. This website is free to use. The contents is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/). You can order a physical copy at [Amazon](https://www.amazon.com/Data-Science-Command-Line-Explore-dp-1492087912/dp/1492087912).
+Jeroen Janssens가 집필하고 2021년 10월 O'Reilly Media에서 출판한 *커맨드 라인에서 시작하는 데이터 과학* 2판 웹사이트에 오신 것을 환영합니다. 이 웹사이트는 무료로 이용할 수 있습니다. 콘텐츠는 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/) 라이선스를 따릅니다. 종이책은 [Amazon](https://www.amazon.com/Data-Science-Command-Line-Explore-dp-1492087912/dp/1492087912)에서 주문하실 수 있습니다.
 
-Want to learn from Jeroen in person? Through his company, Data Science Workshops, Jeroen provides in-company training about data science at the command line and related topics such as Python, R, and machine learning. Visit [Data Science Workshops](https://datascienceworkshops.com) for more information.
+Jeroen에게 직접 배우고 싶으신가요? Jeroen은 자신의 회사인 Data Science Workshops를 통해 커맨드 라인 데이터 과학 및 Python, R, 머신러닝과 같은 관련 주제에 대한 사내 교육을 제공합니다. 자세한 정보는 [Data Science Workshops](https://datascienceworkshops.com)를 방문하세요.
 
 ```{block2, type="rmdtip"}
-Jeroen is currently working on a new course [Embrace the Command Line](/#course). If you haven't fully embraced the command line yet, then this course might be for you. The beta cohort is expected to start in Q1 2021. You can learn more about this course and tell Jeroen what you think [here](/#course).
+Jeroen은 현재 새로운 코스 [Embrace the Command Line](/#course)를 준비 중입니다. 아직 커맨드 라인을 완전히 활용하지 못하고 있다면 이 코스가 도움이 될 것입니다. 베타 코호트는 2021년 1분기에 시작될 예정입니다. 이 코스에 대해 더 알아보고 Jeroen에게 의견을 전달하려면 [여기](/#course)를 클릭하세요.
 ```
 
-## Description {-}
+## 책 소개 {-}
 
-This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You'll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux.
+이 개정판 가이드는 커맨드 라인의 유연성이 어떻게 여러분을 더 효율적이고 생산적인 데이터 과학자로 만들어 줄 수 있는지 보여줍니다. 작지만 강력한 커맨드 라인 도구들을 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다. 시작을 돕기 위해 저자 Jeroen Janssens는 Windows, macOS, Linux 어디서든 유용한 100개 이상의 유닉스 파워 도구가 포함된 Docker 이미지를 제공합니다.
 
-You'll quickly discover why the command line is an agile, scalable, and extensible technology. Even if you're comfortable processing data with Python or R, you'll learn how to greatly improve your data science workflow by leveraging the command line's power. This book is ideal for data scientists, analysts, engineers, system administrators, and researchers.
+커맨드 라인이 왜 민첩하고 확장 가능하며 유연한 기술인지 빠르게 깨닫게 될 것입니다. Python이나 R로 데이터를 처리하는 데 익숙하더라도 커맨드 라인의 힘을 활용하여 데이터 과학 워크플로우를 크게 개선하는 방법을 배울 수 있습니다. 이 책은 데이터 과학자, 분석가, 엔지니어, 시스템 관리자 및 연구자에게 이상적입니다.
 
-* Obtain data from websites, APIs, databases, and spreadsheets
-* Perform scrub operations on text, CSV, HTML, XML, and JSON files
-* Explore data, compute descriptive statistics, and create visualizations
-* Manage your data science workflow
-* Create your own tools from one-liners and existing Python or R code
-* Parallelize and distribute data-intensive pipelines
-* Model data with dimensionality reduction, regression, and classification algorithms
-* Leverage the command line from Python, Jupyter, R, RStudio, and Apache Spark
+* 웹사이트, API, 데이터베이스 및 스프레드시트에서 데이터 획득
+* 텍스트, CSV, HTML, XML 및 JSON 파일에 대한 정제(scrub) 작업 수행
+* 데이터 탐색, 기술 통계 계산 및 시각화 생성
+* 데이터 과학 워크플로우 관리
+* 한 줄 명령어(one-liners)와 기존 Python 또는 R 코드로 나만의 도구 만들기
+* 데이터 집약적인 파이프라인의 병렬화 및 분산 처리
+* 차원 축소, 회귀 및 분류 알고리즘으로 데이터 모델링
+* Python, Jupyter, R, RStudio 및 Apache Spark에서 커맨드 라인 활용
 
 ```{block2, type="rmdnote"}
-If you find this book helpful, consider spreading the word! You could, for instance,
-share it on [Twitter](https://twitter.com/intent/tweet?url=https%3A%2F%2Fdatascienceatthecommandline.com&via=jeroenhjanssens&text=Data%20Science%20at%20the%20Command%20Line%2C%20second%20edition),
-write a review on [Amazon](https://www.amazon.com/Data-Science-Command-Line-Explore-dp-1492087912/dp/1492087912), or
-star the [Github repository](https://github.com/jeroenjanssens/data-science-at-the-command-line). Much appreciated!
+이 책이 도움이 되었다면 주변에 널리 알려주세요! 예를 들어,
+[Twitter](https://twitter.com/intent/tweet?url=https%3A%2F%2Fdatascienceatthecommandline.com&via=jeroenhjanssens&text=Data%20Science%20at%20the%20Command%20Line%2C%20second%20edition)에 공유하거나,
+[Amazon](https://www.amazon.com/Data-Science-Command-Line-Explore-dp-1492087912/dp/1492087912)에 리뷰를 남기거나,
+[Github 저장소](https://github.com/jeroenjanssens/data-science-at-the-command-line)에 별을 눌러주세요. 미리 감사드립니다!
 ```
 
 
-## Praise {-}
+## 추천사 {-}
 
 <blockquote>
-    <p>Traditional computer and data science curricula all too often mistake the command line as an obsolete relic instead of teaching it as the modern and vital toolset that it is. Only well into my career did I come to grasp the elegance and power of the command line <span class="keep-together">for easily</span> exploring messy datasets and even creating reproducible data pipelines <span class="keep-together">for work. The</span> first edition of <em>Data Science at the Command Line</em> was one of the <span class="keep-together">most comprehensive and clear</span> references when I was a novice in the art, and now <span class="keep-together">with the second edition,</span> I'm again learning new tools and applications from it.</p>
-    <p data-type="attribution">**Dan Nguyen**, data scientist, former news application developer at ProPublica, and former Lorry I. Lokey Visiting Professor in <span class="keep-together">Professional Journalism at Stanford University</span></p>
+    <p>전통적인 컴퓨터 및 데이터 과학 커리큘럼은 커맨드 라인을 현대적이고 필수적인 도구가 아닌 구시대의 유물로 오해하는 경우가 많습니다. 저는 경력을 쌓고 난 후에야 지저분한 데이터셋을 탐색하고 재현 가능한 데이터 파이프라인을 만드는 데 있어 커맨드 라인의 우아함과 강력함을 깨달았습니다. <em>커맨드 라인에서 시작하는 데이터 과학</em> 1판은 제가 초보였을 때 가장 포괄적이고 명확한 참고서 중 하나였으며, 이제 2판을 통해 다시 새로운 도구와 응용법을 배우고 있습니다.</p>
+    <p data-type="attribution">**Dan Nguyen**, 데이터 과학자, 전 ProPublica 뉴스 앱 개발자, 전 스탠포드 대학교 전문 저널리즘 객원 교수</p>
 </blockquote>
 
 <blockquote>
-<p>The Unix philosophy of simple tools, each doing one job well, then cleverly piped <span class="keep-together">together, is</span> embodied by the command line. Jeroen expertly discusses how to <span class="keep-together">bring that philosophy</span> into your work in data science, illustrating how the <span class="keep-together">command line is not only the</span> world of file input/output, but also the <span class="keep-together">world of data manipulation, exploration, and even modeling.</span></p>
+<p>각자 하나의 일을 잘 수행하는 단순한 도구들을 파이프로 연결하는 유닉스 철학이 커맨드 라인에 담겨 있습니다. Jeroen은 이러한 철학을 데이터 과학 업무에 어떻게 접목시키는지 숙련되게 설명하며, 커맨드 라인이 단순히 파일 입출력의 세계가 아니라 데이터 조작, 탐색, 심지어 모델링의 세계임을 보여줍니다.</p>
 
-<p data-type="attribution">**Chris H. Wiggins**, associate professor in the department of applied physics and applied mathematics at Columbia University, <span class="keep-together">and chief data scientist at <span class="plain">The New York Times</span></span></p>
+<p data-type="attribution">**Chris H. Wiggins**, 컬럼비아 대학교 응용 물리학 및 응용 수학과 부교수, <span class="plain">The New York Times</span> 수석 데이터 과학자</p>
 </blockquote>
 
 <blockquote>
-<p>This book explains how to integrate common data science tasks into a <span class="keep-together">coherent workflow. It’s</span> not just about tactics for breaking down problems, <span class="keep-together">it’s also about strategies for assembling the pieces of the solution.</span></p>
+<p>이 책은 일반적인 데이터 과학 태스크를 일관된 워크플로우로 통합하는 방법을 설명합니다. 단순히 문제를 분해하는 전술뿐만 아니라, 해결책의 조각들을 조립하는 전략에 대해서도 다룹니다.</p>
 
-<p data-type="attribution">**John D. Cook**, consultant in applied mathematics, <span class="keep-together">statistics, and technical computing</span></p>
+<p data-type="attribution">**John D. Cook**, 응용 수학, 통계 및 기술 컴퓨팅 컨설턴트</p>
 </blockquote>
 
 <blockquote class="pagebreak-before">
-    <p>Despite what you may hear, most practical data science is still focused on interesting <span class="keep-together">visualizations and insights</span> derived from flat files. Jeroen's book leans into this <span class="keep-together">reality, and helps</span> reduce complexity for data practitioners by showing how <span class="keep-together">time-tested command-line tools</span> can be repurposed for data science.</p>
-    <p data-type="attribution">**Paige Bailey**, principal product manager <span class="keep-together">code intelligence at Microsoft, GitHub</span></p>
+    <p>많은 이야기들이 들리겠지만, 대부분의 실무 데이터 과학은 여전히 평면 파일(flat files)에서 유도된 흥미로운 시각화와 통찰에 집중되어 있습니다. Jeroen의 책은 이러한 현실을 파고들어, 검증된 커맨드 라인 도구들이 어떻게 데이터 과학용으로 재탄생할 수 있는지 보여줌으로써 데이터 실무자들의 복잡성을 줄여줍니다.</p>
+    <p data-type="attribution">**Paige Bailey**, Microsoft GitHub 코드 인텔리전스 수석 제품 매니저</p>
 </blockquote>
 
 <blockquote>
-    <p>It's amazing how fast so much data work can be performed at the command line <span class="keep-together">before ever pulling</span> the data into R, Python, or a database. Older technologies like <span class="keep-together">sed and awk are still</span> incredibly powerful and versatile. Until I read <em>Data Science <span class="keep-together">at the Command Line</span></em>, I had only heard of these tools but never saw their full power. <span class="keep-together">Thanks to Jeroen,</span> it's like I now have a secret weapon for working with large data.</p>
-    <p data-type="attribution">**Jared Lander**, chief data scientist at Lander Analytics, organizer of the New York Open Statistical Programming Meetup, <span class="keep-together">and author of <span class="plain">R for Everyone</span></span></p>
+    <p>데이터를 R, Python 또는 데이터베이스로 가져오기 전에도 커맨드 라인에서 수많은 데이터 작업을 얼마나 빠르게 수행할 수 있는지 놀랍습니다. sed와 awk 같은 오래된 기술들은 여전히 믿을 수 없을 정도로 강력하고 다재다능합니다. <em>커맨드 라인에서 시작하는 데이터 과학</em>을 읽기 전까지 저는 이 도구들에 대해 들어보기만 했지 그 진정한 위력을 본 적이 없었습니다. Jeroen 덕분에 이제 대용량 데이터를 다루는 비밀 무기를 갖게 된 기분입니다.</p>
+    <p data-type="attribution">**Jared Lander**, Lander Analytics 수석 데이터 과학자, New York Open Statistical Programming Meetup 운영자, <span class="plain">R for Everyone</span> 저자</p>
 </blockquote>
 
 <blockquote>
- <p>The command line is an essential tool in every data scientist's toolbox, <span class="keep-together">and knowing it well</span> makes it easy to translate questions you have of your <span class="keep-together">data to real-time insights. Jeroen</span> not only explains the basic Unix philosophy <span class="keep-together">of how to chain together single-purpose</span> tools to arrive at simple solutions <span class="keep-together">for complex problems, but also</span> introduces new command-line tools <span class="keep-together">for data cleaning, analysis, visualization, and modeling</span>.</p>
- <p data-type="attribution">**Jake Hofman**, senior principal researcher at <span class="keep-together">Microsoft Research,</span> and adjunct assistant professor in the <span class="keep-together">department of applied mathematics at Columbia University</span></p>
+    <p>커맨드 라인은 모든 데이터 과학자의 도구 상자에 있어야 할 필수 도구이며, 이를 잘 활용하면 데이터에 대한 질문을 실시간 통찰로 쉽게 전환할 수 있습니다. Jeroen은 복잡한 문제에 대한 단순한 해결책을 찾기 위해 단일 목적의 도구들을 함께 연결하는 기본 유닉스 철학을 설명할 뿐만 아니라, 데이터 정제, 분석, 시각화 및 모델링을 위한 새로운 커맨드 라인 도구들을 소개합니다.</p>
+    <p data-type="attribution">**Jake Hofman**, Microsoft Research 수석 연구원, 컬럼비아 대학교 응용 수학과 겸임 조교수</p>
 </blockquote>
 
 
-## Dedication {-}
+## 헌사 {-}
 
 <div style="text-align: center;"> 
-*Once again to my wife, Esther. Without her continued encouragement, support,<br/>
-and patience, this second edition would surely have ended up in* /dev/null*.*
+*다시 한번 아내 Esther에게. 당신의 지속적인 격려와 지원, 그리고 인내가 없었다면 이 2판은 분명* /dev/null*로 사라졌을 것입니다.*
 </div>
 
-## About the Author {-}
+## 저자 소개 {-}
 
-**Jeroen Janssens** is an independent data science consultant and instructor. He enjoys visualizing data, implementing machine learning models, and building solutions using Python, R, JavaScript, and Bash. Jeroen manages [Data Science Workshops](https://datascienceworkshops.com), a training and coaching firm that organizes open enrollment workshops, in-company courses, inspiration sessions, hackathons, and meetups. Previously, he was an
-assistant professor at Jheronimus Academy of Data Science and a data scientist at Elsevier in Amsterdam and various startups in New York City. Jeroen holds a PhD in machine learning from Tilburg University and an MSc in artificial intelligence from Maastricht University. He lives with his wife and two kids in Rotterdam, the Netherlands.
-You can find Jeroen on [Twitter](https://twitter.com/jeroenhjanssens), [GitHub](https://github.com/jeroenjanssens), and [LinkedIn](https://www.linkedin.com/in/jeroenjanssens/).
+**Jeroen Janssens**는 독립 데이터 과학 컨설턴트이자 강사입니다. 데이터 시각화, 머신러닝 모델 구현, 그리고 Python, R, JavaScript, Bash를 사용한 솔루션 구축을 즐깁니다. Jeroen은 교육 및 코칭 회사인 [Data Science Workshops](https://datascienceworkshops.com)를 운영하며 공개 워크숍, 사내 교육, 영감 세션, 해커톤 및 미트업을 조직합니다. 이전에는 Jheronimus Academy of Data Science의 조교수였으며, 암스테르담의 Elsevier와 뉴욕의 여러 스타트업에서 데이터 과학자로 근무했습니다. Jeroen은 Tilburg 대학교에서 머신러닝 전공 박사 학위를, Maastricht 대학교에서 인공지능 전공 석사 학위를 취득했습니다. 현재 네덜란드 로테르담에서 아내, 두 아이와 함께 살고 있습니다.
+Twitter([@jeroenhjanssens](https://twitter.com/jeroenhjanssens)), [GitHub](https://github.com/jeroenjanssens), [LinkedIn](https://www.linkedin.com/in/jeroenjanssens/)에서 Jeroen을 만날 수 있습니다.
 
 
-## Colophon {-}
+## 판권 정보 {-}
 
-The animal on the cover of *Data Science at the Command Line* is a wreathed hornbill (*Rhytidoceros undulatus*). Also known as the bar-pouched wreathed hornbill, the species is found in forests in mainland Southeast Asia and in northeastern India and Bhutan. Hornbills are named for the *casques* that form on the upper part of the birds' bills. No single obvious purpose exists for these hollow, keratizined structures, but they may serve as a means of recognition between members of the species, as an amplifier for the birds' calls, or—because males often exhibit larger casques than females of the species—for gender recognition. Wreathed hornbills can be distinguished from plain-pouched hornbills, to whom they are closely related and otherwise similar in appearance, by a dark bar on the lower part of the wreathed hornbills' throats.
+*커맨드 라인에서 시작하는 데이터 과학*의 표지에 있는 동물은 주름목코뿔새(*Rhytidoceros undulatus*)입니다. 동남아시아 본토와 인도 북동부, 부탄의 숲에서 발견되는 이 종은 'bar-pouched wreathed hornbill'로도 알려져 있습니다. 코뿔새(Hornbills)라는 이름은 부리 윗부분에 형성되는 *투구(casques)* 모양 구조물에서 유래되었습니다. 이 속이 빈 각질 구조의 뚜렷한 목적은 밝혀지지 않았지만, 종 구성원 간의 인식 수단, 울음소리 증폭기, 또는 수컷의 투구가 암컷보다 더 크기 때문에 성별 인식 수단으로 쓰일 수 있습니다. 주름목코뿔새는 근연종인 'plain-pouched hornbill'과 외형이 비슷하지만, 목 아래쪽의 어두운 줄무늬로 구분할 수 있습니다.
 
-Wreathed hornbills roost in flocks of up to four hundred but mate in monogamous, lifelong partnerships. With help from the males, females seal themselves up in tree cavities behind dung and mud to lay eggs and brood. Through a slit large enough for his beak alone, the male feeds his mate and their young for up to four months. A diet of animal prey becomes predominantly fruit when females and their young leave the nest. Hornbill couples have been known to return to the same nest for as many as nine years.
+주름목코뿔새는 최대 400마리까지 무리를 지어 잠을 자지만, 짝짓기는 일부일처제로 평생을 함께합니다. 수컷의 도움을 받아 암컷은 배설물과 진흙으로 나무 구멍을 막고 그 안에서 알을 낳고 품습니다. 수컷은 부리가 겨우 들어갈 정도의 틈을 통해 암컷과 새끼에게 최장 4개월 동안 먹이를 나릅니다. 암컷과 새끼가 둥지를 떠나면 육식 위주의 식단은 주로 과일로 바뀝니다. 코뿔새 커플은 같은 둥지를 최장 9년 동안 사용하는 것으로 알려져 있습니다.
 
-Many of the animals on O'Reilly covers are endangered; all of them are important to the world.
+O'Reilly 표지에 등장하는 많은 동물들은 멸종 위기종입니다. 이들 모두는 세상에 중요한 존재들입니다.
 
-The color illustration is by Karen Montgomery, based on a black and white engraving from Braukhaus's *Lexicon*. The cover fonts are Gilroy Semibold and Guardian Sans. The text and heading font is Source Sans Pro and the code font is Fira Mono.
+컬러 일러스트레이션은 Braukhaus의 *Lexicon* 흑백 판화를 기초로 Karen Montgomery가 그렸습니다. 표지 서체는 Gilroy Semibold와 Guardian Sans입니다. 본문 및 제목 서체는 Source Sans Pro이며, 코드 서체는 Fira Mono입니다.

@@ -4,8 +4,8 @@ output_dir: "output"
 link-citations: true
 language:
   ui:
-    chapter_name: "Chapter "
-    edit: "Edit"
+    chapter_name: "제 "
+    edit: "편집"
 view: https://github.com/jeroenjanssens/data-science-at-the-command-line/blob/master/book/2e/%s
 edit: https://github.com/jeroenjanssens/data-science-at-the-command-line/edit/master/book/2e/%s
 new_session: true

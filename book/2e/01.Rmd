@@ -15,169 +15,168 @@ console_start()
 
 <!--A[role="pagenumrestart"]
 A-->
-# Introduction {#chapter-1-introduction}
+# 서론 {#chapter-1-introduction}
 
-This book is about doing data science at the command line.
-My aim is to make you a more efficient and productive data scientist by teaching you how to leverage the power of the command line.
+이 책은 커맨드 라인에서 데이터 과학을 수행하는 것에 관한 책입니다.
+저의 목표는 커맨드 라인의 힘을 활용하는 방법을 가르쳐드림으로써 여러분을 더 효율적이고 생산적인 데이터 과학자로 만드는 것입니다.
 
-Having both the terms *data science* and *command line* in the title requires an explanation.
-How can a technology that is over 50 years old[^1] be of any use to a field that is only a few years young?
+제목에 *데이터 과학*과 *커맨드 라인*이라는 두 용어가 함께 쓰인 것에 대해 설명이 필요할 것 같습니다.
+어떻게 50년도 더 된 기술[^1]이 이제 겨우 몇 년밖에 되지 않은 분야에 도움이 될 수 있을까요?
 
-Today, data scientists can choose from an overwhelming collection of exciting technologies and programming languages.
-Python, R, Julia, and Apache Spark are but a few examples.
-You may already have experience in one or more of these.
-If so, then why should you still care about the command line for doing data science?
-What does the command line have to offer that these other technologies and programming languages do not?
+오늘날 데이터 과학자들은 파이썬, R, Julia, Apache Spark 등 흥미롭고 압도적인 기술과 프로그래밍 언어들 중에서 선택할 수 있습니다.
+여러분은 이미 이들 중 하나 이상에 익숙할지도 모릅니다.
+그렇다면 왜 여전히 데이터 과학을 위해 커맨드 라인에 관심을 가져야 할까요?
+커맨드 라인이 다른 기술이나 프로그래밍 언어들이 제공하지 못하는 무엇을 가지고 있을까요?
 
-These are all valid questions.
-In this first chapter I will answer these questions as follows.
-First, I provide a practical definition of data science that will act as the backbone of this book.
-Second, I'll list five important advantages of the command line.
-By the end of this chapter I hope to have convinced you that the command line is indeed worth learning for doing data science.
+이것들은 모두 타당한 질문입니다.
+이 첫 번째 장에서 저는 다음과 같은 방식으로 그 답을 제시하고자 합니다.
+먼저, 이 책의 근간이 될 데이터 과학의 실무적인 정의를 제공하겠습니다.
+둘째로, 커맨드 라인이 가진 다섯 가지 중요한 장점을 나열하겠습니다.
+이 장을 마칠 때쯤이면 여러분도 데이터 과학을 위해 커맨드 라인을 배울 가치가 충분하다는 점에 동의하시게 될 것입니다.
 
 
-## Data Science is OSEMN
+## 데이터 과학은 OSEMN(Awesome)하다
 
-The field of data science is still in its infancy, and as such, there exist various definitions of what it encompasses.
-Throughout this book I employ a very practical definition by @Mason2010.
-They define data science according to the following five steps: (1) obtaining data, (2) scrubbing data, (3) exploring data, (4) modeling data, and (5) interpreting data.
-Together, these steps form the OSEMN model (which is pronounced as *awesome*).
-This definition serves as the backbone of this book because each step, (except step 5, interpreting data, which I explain below) has its own chapter.
+데이터 과학 분야는 아직 초기 단계에 있으며, 따라서 데이터 과학이 무엇을 포함하는지에 대한 다양한 정의가 존재합니다.
+이 책 전체에 걸쳐 저는 @Mason2010이 제시한 매우 실무적인 정의를 따를 것입니다.
+그들은 데이터 과학을 다음과 같은 다섯 단계로 정의합니다: (1) 데이터 획득(Obtaining), (2) 데이터 정제(Scrubbing), (3) 데이터 탐색(Exploring), (4) 데이터 모델링(Modeling), (5) 데이터 해석(Interpreting).
+이 다섯 단계의 앞글자를 따서 OSEMN 모델이라고 부릅니다(발음은 *awesome*과 같습니다).
+이 정의는 이 책의 뼈대 역할을 하는데, 아래에서 설명할 5단계 '데이터 해석'을 제외한 각 단계가 별도의 장으로 구성되어 있기 때문입니다.
 
-Although the five steps are discussed in a linear and incremental fashion, in practice it is very common to move back and forth between them or to perform multiple steps at the same time.
-\@ref(fig:diagram-osemn) illustrates that doing data science is an iterative and non-linear process.
-For example, once you have modeled your data, and you look at the results, you may decide to go back to the scrubbing step to the adjust the features of the dataset.
+비록 이 다섯 단계가 선형적이고 점진적인 방식으로 논의되지만, 실제로는 각 단계 사이를 오가거나 여러 단계를 동시에 수행하는 것이 매우 일반적입니다.
+\@ref(fig:diagram-osemn)은 데이터 과학을 수행하는 것이 반복적이고 비선형적인 과정임을 보여줍니다.
+예를 들어, 데이터를 모델링하고 결과를 확인한 후, 데이터셋의 특징(features)을 조정하기 위해 정제 단계로 되돌아가기로 결정할 수도 있습니다.
 
-```{r diagram-osemn, echo=FALSE, fig.cap="Doing data science is an iterative and non-linear process", fig.align="center", out.width="90%"}
+```{r diagram-osemn, echo=FALSE, fig.cap="데이터 과학은 반복적이고 비선형적인 과정입니다", fig.align="center", out.width="90%"}
 knitr::include_graphics("images/dscl_0101.png")
 ```
 
-Below I explain what each step entails.
+아래에서는 각 단계가 무엇을 의미하는지 설명하겠습니다.
 
 
-### Obtaining Data
+### 데이터 획득 (Obtaining Data)
 
-Without any data, there is little data science you can do.
-So the first step is obtaining data.
-Unless you are fortunate enough to already possess data, you may need to do one or more of the following:
+데이터 없이는 데이터 과학을 할 수 없습니다.
+따라서 첫 번째 단계는 데이터를 얻는 것입니다.
+이미 데이터를 보유하고 있는 행운아가 아니라면, 다음과 같은 작업 중 하나 이상을 수행해야 할 수도 있습니다.
 
-- Download data from another location (e.g., a webpage or server)
-- Query data from a database or API (e.g., MySQL or Twitter)
-- Extract data from another file (e.g., an HTML file or spreadsheet)
-- Generate data yourself (e.g., reading sensors or taking surveys)
+- 다른 위치(예: 웹페이지나 서버)에서 데이터 다운로드
+- 데이터베이스나 API(예: MySQL이나 Twitter)에서 데이터 쿼리
+- 다른 파일(예: HTML 파일이나 스프레드시트)에서 데이터 추출
+- 데이터 직접 생성(예: 센서 데이터 읽기나 설문 조사 수행)
 
-In [Chapter 3](#chapter-3-obtaining-data), I discuss several methods for obtaining data using the command line.
-The obtained data will most likely be in either plain text, CSV, JSON, HTML, or XML format.
-The next step is to scrub this data.
-
-
-### Scrubbing Data
-
-It is not uncommon that the obtained data has missing values, inconsistencies, errors, weird characters, or uninteresting columns.
-In that case, you have to *scrub*, or clean, the data before you can do anything interesting with it.
-Common scrubbing operations include:
-
-- Filtering lines
-- Extracting certain columns
-- Replacing values
-- Extracting words
-- Handling missing values and duplicates
-- Converting data from one format to another
-
-While we data scientists love to create exciting data visualizations and insightful models (steps 3 and 4), usually much effort goes into obtaining and scrubbing the required data first (steps 1 and 2).
-In *Data Jujitsu*, @Patil2012 states that "80% of the work in any data project is in cleaning the data".
-In [Chapter 5](#chapter-5-scrubbing-data), I demonstrate how the command line can help accomplish such data scrubbing operations.
+[3장](#chapter-3-obtaining-data)에서는 커맨드 라인을 사용하여 데이터를 획득하는 여러 가지 방법을 다룹니다.
+획득한 데이터는 대부분 텍스트, CSV, JSON, HTML, XML 형식 중 하나일 것입니다.
+다음 단계는 이 데이터를 정제하는 것입니다.
 
 
-### Exploring Data
+### 데이터 정제 (Scrubbing Data)
 
-Once you have scrubbed your data, you are ready to explore it.
-This is where it gets interesting because when you're exploring, you will truly get to know your data.
-In [Chapter 7](#chapter-7-exploring-data) I show you how the command line can be used to:
+획득한 데이터에 결측치, 불일치, 오류, 이상한 문자 또는 불필요한 열이 포함되어 있는 경우는 매우 흔합니다.
+이 경우, 데이터로 무언가 흥미로운 작업을 하기 전에 데이터를 *정제(scrub)*하거나 깨끗하게(clean) 만들어야 합니다.
+일반적인 정제 작업은 다음과 같습니다.
 
-- Look at your data
-- Derive statistics from your data
-- Create insightful visualizations
+- 행 필터링
+- 특정 열 추출
+- 값 치환
+- 단어 추출
+- 결측치 및 중복 처리
+- 데이터를 한 형식에서 다른 형식으로 변환
 
-Command-line tools introduced in [Chapter 7](#chapter-7-exploring-data) include: `csvstat` [@csvstat] and `rush` [@rush].
-
-
-### Modeling Data
-
-If you want to explain the data or predict what will happen, you probably want to create a statistical model of your data.
-Techniques to create a model include clustering, classification, regression, and dimensionality reduction.
-The command line is not suitable for programming a new type of model from scratch.
-It is, however, very useful to be able to build a model from the command line.
-In [Chapter 9](#chapter-9-modeling-data) I will introduce several command-line tools that either build a model locally or employ an API to perform the computation in the cloud.
+데이터 과학자로서 우리는 흥미로운 시각화와 통찰력 있는 모델을 만드는 것(3, 4단계)을 좋아하지만, 대개는 필요한 데이터를 먼저 획득하고 정제하는 데(1, 2단계) 훨씬 많은 노력을 들입니다.
+*Data Jujitsu*에서 @Patil2012는 "어떤 데이터 프로젝트에서든 업무의 80%는 데이터를 청소하는 일이다"라고 언급했습니다.
+[5장](#chapter-5-scrubbing-data)에서는 커맨드 라인이 이러한 데이터 정제 작업을 완수하는 데 어떻게 도움이 되는지 보여줍니다.
 
 
-### Interpreting Data
+### 데이터 탐색 (Exploring Data)
 
-The final and perhaps most important step in the OSEMN model is interpreting data.
-This step involves:
+데이터를 정제했다면 이제 탐색할 준비가 되었습니다.
+탐색을 통해 여러분은 데이터를 진정으로 알게 되므로 이 단계부터 흥미진진해집니다.
+[7장](#chapter-7-exploring-data)에서는 커맨드 라인을 사용하여 다음 작업을 수행하는 방법을 보여드립니다.
 
-- Drawing conclusions from your data
-- Evaluating what your results mean
-- Communicating your result
+- 데이터 살펴보기
+- 데이터에서 통계량 도출
+- 통찰력 있는 시각화 생성
 
-To be honest, the computer is of little use here, and the command line does not really come into play at this stage.
-Once you have reached this step, it's up to you.
-This is the only step in the OSEMN model which does not have its own chapter.
-Instead, I refer you to the book *Thinking with Data* by @Shron2014.
+[7장](#chapter-7-exploring-data)에서 소개되는 커맨드 라인 도구에는 `csvstat` [@csvstat]과 `rush` [@rush]가 포함됩니다.
 
 
-## Intermezzo Chapters
+### 데이터 모델링 (Modeling Data)
 
-Besides the chapters that cover the OSEMN steps, there are four intermezzo chapters.
-Each discusses a more general topic concerning data science, and how the command line is employed for that.
-These topics are applicable to any step in the data science process.
-
-In [Chapter 4](#chapter-4-creating-command-line-tools), I discuss how to create reusable tools for the command line.
-These personal tools can come from both long commands that you have typed on the command line, or from existing code that you have written in, say, Python or R.
-Being able to create your own tools allows you to become more efficient and productive.
-
-Because the command line is an interactive environment for doing data science, it can become challenging to keep track of your workflow.
-In [Chapter 6](#chapter-6-project-management-with-make), I demonstrate a command-line tool called `make`, which allows you to define your data science workflow in terms of tasks and the dependencies between them.
-This tool increases the reproducibility of your workflow, not only for you but also for your colleagues and peers.
-
-In [Chapter 8](#chapter-8-parallel-pipelines), I explain how your commands and tools can be sped up by running them in parallel.
-Using a command-line tool called GNU Parallel [@parallel], you can apply command-line tools to very large datasets and run them on multiple cores or even remote machines.
-
-In [Chapter 10](#chapter-10-polyglot-data-science), I discuss how to employ the power of the command line in other environments and programming languages such as R, RStudio, Python, Jupyter Notebooks, and even Apache Spark.
+데이터를 설명하거나 앞으로 일어날 일을 예측하고 싶다면, 데이터에 대한 통계 모델을 만들고 싶을 것입니다.
+모델을 만드는 기법으로는 클러스터링, 분류, 회귀, 차원 축소 등이 있습니다.
+커맨드 라인은 새로운 유형의 모델을 처음부터 프로그래밍하기에는 적합하지 않습니다.
+하지만 커맨드 라인에서 모델을 빌드하는 것은 매우 유용합니다.
+[9장](#chapter-9-modeling-data)에서는 로컬에서 모델을 빌드하거나 API를 활용하여 클라우드에서 연산을 수행하는 여러 커맨드 라인 도구를 소개하겠습니다.
 
 
-## What is the Command Line?
+### 데이터 해석 (Interpreting Data)
 
-Before I discuss *why* you should use the command line for data science, let's take a peek at *what* the command line actually looks like (it may be already familiar to you).
-\@ref(fig:mac-terminal) and \@ref(fig:ubuntu-terminal) show a screenshot of the command line as it appears by default on macOS and Ubuntu, respectively.
-Ubuntu is a particular distribution of GNU/Linux, and it's the one I’ll be using in this book.
+OSEMN 모델의 마지막이자 어쩌면 가장 중요한 단계는 데이터를 해석하는 것입니다.
+이 단계는 다음을 포함합니다.
 
-```{r mac-terminal, echo=FALSE, fig.cap="Command line on macOS", fig.align="center"}
+- 데이터에서 결론 도출
+- 결과의 의미 평가
+- 결과 공유 및 커뮤니케이션
+
+솔직히 말해서, 이 단계에서 컴퓨터의 역할은 거의 없으며 커맨드 라인도 딱히 개입할 여지가 없습니다.
+일단 이 단계에 도달했다면, 그다음은 여러분에게 달려 있습니다.
+이 장은 OSEMN 모델 중 유일하게 별도의 장이 없는 단계입니다.
+대신 @Shron2014의 명저 *Thinking with Data*를 참고하시길 권합니다.
+
+
+## 간주(Intermezzo) 장들
+
+OSEMN 단계들을 다루는 장들 외에도 네 개의 간주(Intermezzo) 장이 있습니다.
+각 장은 데이터 과학에 관한 보다 일반적인 주제와 이를 위해 커맨드 라인이 어떻게 사용되는지를 논의합니다.
+이 주제들은 데이터 과학 프로세스의 어떤 단계에도 적용될 수 있습니다.
+
+[4장](#chapter-4-creating-command-line-tools)에서는 커맨드 라인을 위한 재사용 가능한 도구를 만드는 방법을 다룹니다.
+이런 개인용 도구는 커맨드 라인에 직접 입력했던 긴 명령어나 파이썬, R 등으로 작성했던 기존 코드에서 만들어질 수 있습니다.
+직접 도구를 만들 수 있게 되면 효율성과 생산성이 크게 향상됩니다.
+
+커맨드 라인은 데이터 과학을 위한 대화형 환경이기 때문에 전체 워크플로우를 추적하는 것이 어려울 수 있습니다.
+[6장](#chapter-6-project-management-with-make)에서는 작업과 작업 간의 의존성 관점에서 데이터 과학 워크플로우를 정의할 수 있게 해주는 `make`라는 커맨드 라인 도구를 소개합니다.
+이 도구는 여러분뿐만 아니라 동료들의 워크플로우 재현성(reproducibility)을 높여줍니다.
+
+[8장](#chapter-8-parallel-pipelines)에서는 명령어와 도구들을 병렬로 실행하여 속도를 높이는 방법을 설명합니다.
+GNU Parallel [@parallel]이라는 커맨드 라인 도구를 사용하면, 매우 큰 데이터셋에 도구들을 적용하고 여러 코어 또는 원격 머신에서 실행할 수 있습니다.
+
+[10장](#chapter-10-polyglot-data-science)에서는 R, RStudio, 파이썬, Jupyter Notebook, 심지어 Apache Spark와 같은 다른 환경과 프로그래밍 언어에서 커맨드 라인의 힘을 활용하는 방법을 다룹니다.
+
+
+## 커맨드 라인이란 무엇인가?
+
+데이터 과학을 위해 왜 커맨드 라인을 사용해야 하는지 논의하기 전에, 커맨드 라인이 실제로 어떻게 생겼는지 잠시 살펴보겠습니다(이미 익숙하실 수도 있습니다).
+\@ref(fig:mac-terminal)과 \@ref(fig:ubuntu-terminal)은 각각 macOS와 우분투에서 기본적으로 나타나는 커맨드 라인의 스크린샷입니다.
+우분투는 GNU/리눅스의 특정 배포판이며, 이 책에서 제가 사용할 환경입니다.
+
+```{r mac-terminal, echo=FALSE, fig.cap="macOS의 커맨드 라인", fig.align="center"}
 knitr::include_graphics("images/screenshot_terminal_mac_dst.png")
 ```
 
-```{r ubuntu-terminal, echo=FALSE, fig.cap="Command line on Ubuntu", fig.align="center"}
+```{r ubuntu-terminal, echo=FALSE, fig.cap="우분투의 커맨드 라인", fig.align="center"}
 knitr::include_graphics("images/screenshot_terminal_ubuntu_dst.png")
 ```
 
-The window shown in the two screenshots is called the *terminal*.
-This is the program that enables you to interact with the shell.
-It is the shell that executes the commands I type in.
-In [Chapter 2](#chapter-2-getting-started), I explain these two terms in more detail.
+두 스크린샷에 보이는 창을 *터미널(terminal)*이라고 부릅니다.
+이것은 쉘(shell)과 상호작용할 수 있게 해주는 프로그램입니다.
+그 쉘이 제가 입력한 명령어들을 실행합니다.
+[2장](#chapter-2-getting-started)에서 이 두 용어에 대해 더 자세히 설명하겠습니다.
 
 ```{block2, type="rmdnote"}
-I’m not showing the Microsoft Windows command line (also known as the Command Prompt or PowerShell), because it's fundamentally different and incompatible with the commands presented in this book.
-The good news is that you can install a Docker image on Microsoft Windows so that you’re able to follow along.
-How to install the Docker image is explained in [Chapter 2](#chapter-2-getting-started).
+마이크로소프트 윈도우의 커맨드 라인(명령 프롬프트 또는 PowerShell)은 이 책에서 제시하는 명령어들과 근본적으로 다르고 호환되지 않기 때문에 보여드리지 않습니다.
+다행인 점은 윈도우에 Docker 이미지를 설치하여 내용을 따라올 수 있다는 것입니다.
+Docker 이미지를 설치하는 방법은 [2장](#chapter-2-getting-started)에서 설명합니다.
 ```
 
-Typing commands is a very different way of interacting with your computer than through a *graphical user interface* (GUI).
-If you are mostly used to processing data in, say, Microsoft Excel, then this approach may seem intimidating at first.
-Don’t be afraid.
-Trust me when I say that you’ll get used to working at the command line very quickly.
+명령어를 입력하는 것은 *그래픽 사용자 인터페이스*(GUI)를 통해 컴퓨터와 상호작용하는 것과는 매우 다른 방식입니다.
+주로 마이크로소프트 엑셀 등으로 데이터를 처리하는 데 익숙하다면 이 방식이 처음에는 위협적으로 느껴질 수 있습니다.
+두려워하지 마세요.
+커맨드 라인 작업에 매우 빠르게 익숙해질 것이라는 제 말을 믿으셔도 좋습니다.
 
-In this book, the commands that I type and the output that they generate are displayed as text.
-For example, the contents of the terminal in the two screenshots would look like this:
+이 책에서 제가 입력하는 명령어와 그 결과물은 텍스트로 표시됩니다.
+예를 들어, 두 스크린샷의 터미널 내용은 다음과 같이 보일 것입니다.
 
 ```{console, keep_last_prompt=TRUE}
 whoami
@@ -185,120 +184,119 @@ date
 echo 'The command line is awesome!' | cowsay -f tux
 ```
 
-You’ll also notice that each command is preceded with a dollar sign (**`$`**).
-This is called the prompt.
-The prompt in the two screenshots showed more information, namely the username, the date, and a penguin.
-It’s a convention to show only a dollar sign in examples, because the prompt (1) can change during a session (when you go to a different directory), (2) can be customized by the user (e.g., it can also show the time or the current `git` [@git] branch you’re working on), and (3) is irrelevant for the commands themselves.
+또한 각 명령어 앞에 달러 표시(**`$`**)가 붙어 있는 것을 보실 수 있습니다.
+이를 프롬프트(prompt)라고 부릅니다.
+스크린샷의 프롬프트는 사용자 이름, 날짜, 펭귄 등 더 많은 정보를 보여주었습니다.
+예제에서는 달러 표시만 보여주는 것이 관례인데, 그 이유는 프롬프트가 (1) 세션 중에 변경될 수 있고(디렉터리를 이동할 때), (2) 사용자가 커스터마이징할 수 있으며(예: 시간이나 현재 작업 중인 `git` [@git] 브랜치를 표시할 수도 있음), (3) 명령어 자체와는 무관하기 때문입니다.
 
-In the next chapter I’ll explain much more about essential command-line concepts.
-Now it’s time to first explain *why* you should learn to use the command line for doing data science.
-
-
-## Why Data Science at the Command Line?
-
-The command line has many great advantages that can really make you a more efficient and productive data scientist.
-Roughly grouping the advantages, the command line is: agile, augmenting, scalable, extensible, and ubiquitous.
-I elaborate on each advantage below.
+다음 장에서는 필수적인 커맨드 라인 개념들에 대해 훨씬 더 많이 설명하겠습니다.
+이제 왜 데이터 과학을 위해 커맨드 라인을 배워야 하는지 먼저 알아볼 차례입니다.
 
 
-### The Command Line is Agile
+## 왜 커맨드 라인에서 데이터 과학을 하는가?
 
-The first advantage of the command line is that it allows you to be agile.
-Data science has a very interactive and exploratory nature, and the environment that you work in needs to allow for that.
-The command line achieves this by two means.
-
-First, the command line provides a so-called *read-eval-print-loop* (REPL).
-This means that you type in command, press **`Enter`**, and the command is evaluated immediately.
-A REPL is often much more convenient for doing data science than the edit-compile-run-debug cycle associated with scripts, large programs, and, say, Hadoop jobs.
-Your commands are executed immediately, may be stopped at will, and can be changed quickly.
-This short iteration cycle really allows you to play with your data.
-
-Second, the command line is very close to the file system.
-Because data is the main ingredient for doing data science, it is important to be able to work easily with the files that contain your dataset.
-The command line offers many convenient tools for this.
+커맨드 라인은 여러분을 더 효율적이고 생산적인 데이터 과학자로 만들어 줄 수 있는 수많은 장점을 가지고 있습니다.
+그 장점들을 크게 묶어보자면 커맨드 라인은 기민하고(agile), 보완적이며(augmenting), 확장 가능하고(scalable), 유연하며(extensible), 어디에나 존재(ubiquitous)합니다.
+각 장점에 대해 아래에서 자세히 설명하겠습니다.
 
 
-### The Command Line is Augmenting
+### 커맨드 라인은 기민하다 (Agile)
 
-The command line integrates well with other technologies.
-Whatever technology your data science workflow currently includes (whether it's R, Python, or Excel), please know that I'm not suggesting you abandon that workflow.
-Instead, consider the command line as an augmenting technology that amplifies the technologies you’re currently employing.
-It can do so in three ways.
+커맨드 라인의 첫 번째 장점은 기민하게 움직일 수 있게 해준다는 점입니다.
+데이터 과학은 매우 대화형이고 탐색적인 성격을 띠고 있으며, 여러분의 작업 환경도 이를 허용해야 합니다.
+커맨드 라인은 두 가지 수단을 통해 이를 달성합니다.
 
-First, the command line can act as a glue between many different data science tools.
-One way to glue tools is by connecting the output from the first tool to the input of the second tool.
-In [Chapter 2](#chapter-2-getting-started) I explain how this works.
+첫째, 커맨드 라인은 소위 *반복적 실행 환경*(REPL: read-eval-print-loop)을 제공합니다.
+이는 명령어를 입력하고 **`Enter`**를 누르면 명령이 즉시 평가된다는 의미입니다.
+REPL은 스크립트, 대형 프로그램, Hadoop 작업 등에 수반되는 '편집-컴파일-실행-디버그' 주기보다 데이터 과학을 수행하기에 훨씬 편리한 경우가 많습니다.
+명령어는 즉시 실행되고, 마음대로 중단할 수 있으며, 빠르게 수정할 수 있습니다.
+이러한 짧은 반복 주기는 데이터를 마음껏 다루어 볼 수 있게 해줍니다.
 
-Second, you can often delegate tasks to the command line from your own environment.
-For example, Python, R, and Apache Spark allow you to run command-line tools and capture their output.
-I demonstrate this with examples in [Chapter 10](#chapter-10-polyglot-data-science).
-
-
-Third, you can convert your code (e.g., a Python or R script) into a reusable command-line tool.
-That way, it doesn't matter anymore in what language it's written.
-Now, it can be used from the command line directly or from any environment that integrates with the command line as mentioned in the previous paragraph.
-I explain how to this in [Chapter 4](#chapter-4-creating-command-line-tools).
-
-In the end, every technology has its strengths and weaknesses, so it’s good to know several and use whichever is most appropriate for the task at hand.
-Sometimes that means using R, sometimes the command line, and sometimes even pen and paper.
-By the end of this book you’ll have a solid understanding of when you should use the command line, and when you’re better off continuing with your favorite programming language or statistical computing environment.
+둘째, 커맨드 라인은 파일 시스템과 매우 밀접해 있습니다.
+데이터가 데이터 과학의 주재료인 만큼, 데이터셋이 포함된 파일들을 쉽게 다룰 수 있는 것은 매우 중요합니다.
+커맨드 라인은 이를 위한 수많은 편리한 도구들을 제공합니다.
 
 
-### The Command Line is Scalable
+### 커맨드 라인은 보완적이다 (Augmenting)
 
-As I've said before, working on the command line is very different from using a GUI.
-On the command line you do things by typing, whereas with a GUI, you do things by pointing and clicking with a mouse.
+커맨드 라인은 다른 기술들과 잘 통합됩니다.
+여러분의 데이터 과학 워크플로우가 현재 어떤 기술(R, 파이썬, 엑셀 등)을 포함하고 있든, 제가 그 워크플로우를 버리라고 제안하는 것이 아님을 알아주셨으면 합니다.
+대신 커맨드 라인을 여러분이 현재 사용하는 기술들을 증폭시켜 주는 보완적인 기술로 생각해보세요.
+이는 세 가지 방식으로 이루어질 수 있습니다.
 
-Everything that you type manually on the command line can also be automated through scripts and tools.
-This makes it very easy to re-run your commands in case you made a mistake, when the input data has changed, or because your colleague wants to perform the same analysis.
-Moreover, your commands can be run at specific intervals, on a remote server, and in parallel on many chunks of data (more on that in [Chapter 8](#chapter-8-parallel-pipelines)).
+첫째, 커맨드 라인은 서로 다른 많은 데이터 과학 도구들 사이의 접착제 역할을 할 수 있습니다.
+도구들을 연결하는 한 가지 방법은 첫 번째 도구의 출력을 두 번째 도구의 입력으로 연결하는 것입니다.
+[2장](#chapter-2-getting-started)에서 이것이 어떻게 작동하는지 설명합니다.
 
-Because the command line is automatable, it becomes scalable and repeatable.
-It's not straightforward to automate pointing and clicking, which makes a GUI a less suitable environment for doing scalable and repeatable data science.
+둘째, 여러분의 작업 환경 내에서 작업의 일부를 커맨드 라인에 위임할 수 있습니다.
+예를 들어 파이썬, R, Apache Spark에서는 커맨드 라인 도구를 실행하고 그 결과를 캡처할 수 있습니다.
+[10장](#chapter-10-polyglot-data-science)에서 예제와 함께 이를 보여드립니다.
 
+셋째, 여러분의 코드(예: 파이썬이나 R 스크립트)를 재사용 가능한 커맨드 라인 도구로 변환할 수 있습니다.
+그렇게 되면 그 도구가 어떤 언어로 작성되었는지는 더 이상 중요하지 않게 됩니다.
+이제 커맨드 라인에서 직접 사용하거나, 앞서 언급한 대로 커맨드 라인과 통합되는 어떤 환경에서도 해당 도구를 사용할 수 있습니다.
+[4장](#chapter-4-creating-command-line-tools)에서 그 방법을 설명합니다.
 
-### The Command Line is Extensible
-
-The command line itself was invented over 50 years ago.
-Its core functionality has largely remained unchanged, but its *tools*, which are the workhorses of the command-line, are being developed on a daily basis.
-
-The command line itself is language-agnostic.
-This allows the command-line tools to be written in many different programming languages.
-The open source community is producing many free and high-quality command-line tools that we can use for data science.
-
-These command-line tools can work together, which makes the command line very flexible.
-You can also create your own tools, allowing you to extending the effective functionality of the command line.
-
-
-### The Command Line is Ubiquitous
-
-Because the command line comes with any Unix-like operating system, including Ubuntu Linux and macOS, it can be found in many places.
-Plus, 100% of the top 500 supercomputers are running Linux.[^2]
-So, if you ever get your hands on one of those supercomputers (or if you ever find yourself in Jurassic Park with the doorlocks not working), you better know your way around the command line!
-
-But Linux not only runs on supercomputers.
-It also runs on servers, laptops, and embedded systems.
-These days, many companies offer cloud computing, where you can easily launch new machines on the fly.
-If you ever log in to such a machine (or a server in general), it's almost certain that you’ll arrive at the command line.
-
-It's also important to note that the command line isn't just a hype.
-This technology has been around for more than five decades, and I'm convinced that it's here to stay for another five.
-Learning how to use the command line (for data science and in general) is therefore a worthwhile investment.
+결국 모든 기술에는 강점과 약점이 있으므로, 여러 가지를 알고 상황에 가장 적합한 것을 골라 쓰는 것이 좋습니다.
+때로는 그것이 R일 수도 있고, 때로는 커맨드 라인일 수도 있으며, 때로는 펜과 종이일 수도 있습니다.
+이 책을 마칠 때쯤이면 여러분은 언제 커맨드 라인을 사용해야 할지, 그리고 언제 즐겨 쓰는 프로그래밍 언어나 통계 컴퓨팅 환경을 계속 사용하는 것이 나을지에 대해 확고한 이해를 갖게 될 것입니다.
 
 
-## Summary
+### 커맨드 라인은 확장 가능하다 (Scalable)
 
-In this chapter I have introduced you to OSEMN model for doing the data science, which I use as a guide throughout the book.
-I have provided some background about the Unix command line and hopefully convinced you that it's a suitable environment for doing data science.
-In the next chapter I'm going to show you how to get started by installing the datasets and tools and explaining the fundamental concepts.
+앞서 말씀드렸듯이 커맨드 라인에서 작업하는 것은 GUI를 사용하는 것과 매우 다릅니다.
+커맨드 라인에서는 타이핑을 통해 무언가를 하는 반면, GUI에서는 마우스로 가리키고 클릭함으로써 작업을 수행합니다.
+
+커맨드 라인에서 수동으로 입력하는 모든 것은 스크립트와 도구를 통해 자동화될 수 있습니다.
+덕분에 실수를 했거나, 입력 데이터가 바뀌었거나, 동료가 같은 분석을 수행하고 싶어 할 때 명령어를 다시 실행하기가 매우 쉬워집니다.
+게다가 명령어는 특정 간격으로, 원격 서버에서, 그리고 데이터의 수많은 조각에 대해 병렬로 실행될 수 있습니다([8장](#chapter-8-parallel-pipelines)에서 더 자세히 다룹니다).
+
+커맨드 라인은 자동화가 가능하기 때문에 확장성과 반복성을 갖게 됩니다.
+가리키고 클릭하는 동작을 자동화하는 것은 쉽지 않으며, 이 때문에 GUI는 확장 가능하고 반복적인 데이터 과학을 하기에 덜 적합한 환경입니다.
 
 
-## For Further Exploration
+### 커맨드 라인은 유연하다 (Extensible)
 
-- The book *UNIX: A History and a Memoir* by Brian W. Kernighan tells the story of Unix, explaining what it is, how it was developed, and why it matters.
-- In 2018 I gave a presentation titled *50 Reasons to Learn the Shell for Doing Data Science* at Strata London. You can [read the slides](https://datascienceatthecommandline.com/resources/50-reasons.pdf) if you need even more convincing.
-- The short but sweet book *Thinking with Data* by Max Shron focuses on the *why* instead of the *how* and provides a framework for defining your data science project that will help you ask the right questions and solve the right problems.
+커맨드 라인 자체는 50년도 더 전에 발명되었습니다.
+핵심 기능은 대체로 변하지 않았지만, 커맨드 라인의 핵심 일꾼들인 *도구들*은 매일같이 개발되고 있습니다.
 
-[^1]: The development of the UNIX operating system started back in 1969. It featured a command line since the beginning. The important concept of pipes, which I will discuss in [Section 2.3](#essential-concepts), was added in 1973.
+커맨드 라인 그 자체는 언어에 종속되지 않습니다(language-agnostic).
+덕분에 커맨드 라인 도구들은 수많은 서로 다른 프로그래밍 언어로 작성될 수 있습니다.
+오픈 소스 커뮤니티는 우리가 데이터 과학을 위해 사용할 수 있는 수많은 무료 고품질 커맨드 라인 도구들을 내놓고 있습니다.
 
-[^2]: See [TOP500](https://top500.org/statistics/details/osfam/1/) which keeps track of how many super computers run Linux.
+이러한 커맨드 라인 도구들은 서로 협력할 수 있으며, 이는 커맨드 라인을 매우 유연하게 만듭니다.
+또한 여러분만의 도구를 만들 수도 있어 커맨드 라인의 실질적인 기능을 확장할 수 있습니다.
+
+
+### 커맨드 라인은 어디에나 존재한다 (Ubiquitous)
+
+커맨드 라인은 우분투 리눅스와 macOS를 포함한 모든 유닉스 계열 운영체제에 포함되어 있어 많은 곳에서 찾아볼 수 있습니다.
+게다가 전 세계 상위 500대 슈퍼컴퓨터의 100%가 리눅스를 사용하고 있습니다.[^2]
+따라서 혹시라도 그런 슈퍼컴퓨터 중 하나를 만져볼 기회가 생긴다면(혹은 쥬라기 공원에서 문 잠금 장치가 작동하지 않는 상황에 처한다면), 커맨드 라인 사용법을 잘 알고 있는 편이 좋을 것입니다!
+
+하지만 리눅스는 슈퍼컴퓨터에서만 돌아가는 것이 아닙니다.
+서버, 노트북, 그리고 임베디드 시스템에서도 돌아갑니다.
+요즘 많은 기업들이 클라우드 컴퓨팅을 제공하며, 즉석에서 새로운 머신을 쉽게 실행할 수 있습니다.
+그런 머신(또는 일반적인 서버)에 접속하게 된다면, 거의 확실하게 커맨드 라인을 마주하게 될 것입니다.
+
+또한 커맨드 라인이 단순히 일시적인 유행이 아니라는 점에 주목하는 것도 중요합니다.
+이 기술은 50년 넘게 존재해 왔으며, 앞으로 50년 동안도 계속될 것이라고 확신합니다.
+따라서 (데이터 과학을 위해서든 일반적인 용도를 위해서든) 커맨드 라인 사용법을 배우는 것은 투자할 만한 가치가 있는 일입니다.
+
+
+## 요약
+
+이 장에서는 책 전체의 가이드로 사용할 데이터 과학을 위한 OSEMN 모델을 소개했습니다.
+유닉스 커맨드 라인에 대한 몇 가지 배경 지식을 제공했으며, 커맨드 라인이 데이터 과학을 수행하기에 적합한 환경임을 납득해 주셨기를 바랍니다.
+다음 장에서는 데이터셋과 도구들을 설치하고 기본적인 개념들을 설명하며 본격적으로 시작해보겠습니다.
+
+
+## 더 읽을거리
+
+- 브라이언 커니핸(Brian W. Kernighan)의 저서 *UNIX: A History and a Memoir*는 유닉스가 무엇인지, 어떻게 개발되었는지, 그리고 왜 중요한지에 대한 이야기를 들려줍니다.
+- 2018년 런던 Strata에서 저는 *50 Reasons to Learn the Shell for Doing Data Science*라는 제목으로 발표했습니다. 더 많은 설득이 필요하다면 [슬라이드](https://datascienceatthecommandline.com/resources/50-reasons.pdf)를 읽어보세요.
+- Max Shron의 짧지만 알찬 책 *Thinking with Data*는 '어떻게'보다 '왜'에 집중하여, 올바른 질문을 던지고 올바른 문제를 해결하는 데 도움이 될 데이터 과학 프로젝트 정의를 위한 프레임워크를 제공합니다.
+
+[^1]: 유닉스 운영체제의 개발은 1969년에 시작되었습니다. 시작부터 커맨드 라인을 갖추고 있었습니다. [2.3절](#essential-concepts)에서 다룰 파이프(pipes)라는 중요한 개념은 1973년에 추가되었습니다.
+
+[^2]: 얼마나 많은 슈퍼컴퓨터가 리눅스를 실행하는지 추적하는 [TOP500](https://top500.org/statistics/details/osfam/1/)을 참고하세요.

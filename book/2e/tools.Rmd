@@ -22,24 +22,24 @@ rm pup.zip
 <!--A[appendix]
 [[appendix-tools]]
 A-->
-# List of Command-Line Tools {-}
+# 커맨드 라인 도구 목록 {-}
 
-This is an overview of all the command-line tools discussed in this book.
-This includes binary executables, interpreted scripts, and Z Shell builtins and keywords.
-For each command-line tool, the following information, when available and appropriate, is provided:
+이 장은 이 책에서 논의된 모든 커맨드 라인 도구들에 대한 개요입니다.
+여기에는 바이너리 실행 파일, 인터프리터 스크립트, 그리고 Z Shell 빌트인(builtins) 및 키워드가 포함됩니다.
+각 커맨드 라인 도구에 대해 가능한 경우 그리고 적절한 경우 다음과 같은 정보가 제공됩니다.
 
-- The actual command to type at the command line
-- A description
-- The version used in the book
-- The year that version was released
-- The primary author(s)
-- A website to find more information
-- How to obtain help
-- An example usage
+- 커맨드 라인에 입력할 실제 명령어
+- 설명
+- 책에서 사용된 버전
+- 해당 버전이 출시된 연도
+- 주요 저자
+- 더 많은 정보를 찾을 수 있는 웹사이트
+- 도움말을 얻는 방법
+- 사용 예시
 
-All command-line tools listed here are included in the Docker image.
-See [Chapter 2](#chapter-2-getting-started) for instructions on how to set it up.
-Please note that citing open source software is not trivial, and that some information may be missing or incorrect.
+여기에 나열된 모든 커맨드 라인 도구는 Docker 이미지에 포함되어 있습니다.
+설정 방법은 [2장](#chapter-2-getting-started)을 참조하십시오.
+오픈 소스 소프트웨어를 인용하는 것은 간단하지 않으며, 일부 정보가 누락되었거나 정확하지 않을 수 있음에 유의하십시오.
 
 ```{console, include=FALSE}
 unalias csvlook
@@ -49,9 +49,8 @@ unalias parallel
 
 ## alias {-}
 
-Define or display aliases.
-`alias`
-is a Z shell builtin.
+별칭을 정의하거나 표시합니다.
+`alias`는 Z shell 빌트인입니다.
 
 ```{console alias}
 type alias
@@ -64,11 +63,9 @@ alias python=python3
 
 ## awk {-}
 
-Pattern scanning and text processing language.
-`awk`
-(version 1.3.4)
-by Mike D. Brennan and Thomas E. Dickey (2019).
-More information: https://invisible-island.net/mawk.
+패턴 스캐닝 및 텍스트 처리 언어입니다.
+`awk` (버전 1.3.4), Mike D. Brennan 및 Thomas E. Dickey 제작 (2019).
+더 많은 정보: https://invisible-island.net/mawk.
 
 ```{console awk}
 type awk
@@ -80,11 +77,9 @@ seq 5 | awk '{sum+=$1} END {print sum}'
 
 ## aws {-}
 
-Unified tool to manage AWS services.
-`aws`
-(version 2.1.32)
-by Amazon Web Services (2021).
-More information: https://aws.amazon.com/cli.
+AWS 서비스를 관리하기 위한 통합 도구입니다.
+`aws` (버전 2.1.32), Amazon Web Services 제작 (2021).
+더 많은 정보: https://aws.amazon.com/cli.
 
 ```{console aws}
 type aws
@@ -95,11 +90,9 @@ C-C#!literal=FALSE
 
 ## bash {-}
 
-GNU Bourne-Again SHell.
-`bash`
-(version 5.0.17)
-by Brian Fox and Chet Ramey (2019).
-More information: https://www.gnu.org/software/bash.
+GNU Bourne-Again SHell입니다.
+`bash` (버전 5.0.17), Brian Fox 및 Chet Ramey 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/bash.
 
 ```{console bash}
 type bash
@@ -110,11 +103,9 @@ C-C#!literal=FALSE
 
 ## bat {-}
 
-A cat clone with syntax highlighting and Git integration.
-`bat`
-(version 0.18.0)
-by David Peter (2021).
-More information: https://github.com/sharkdp/bat.
+구문 강조 및 Git 연동 기능이 있는 cat 클론입니다.
+`bat` (버전 0.18.0), David Peter 제작 (2021).
+더 많은 정보: https://github.com/sharkdp/bat.
 
 ```{console bat}
 type bat
@@ -125,11 +116,9 @@ C-C#!literal=FALSE
 
 ## bc {-}
 
-An arbitrary precision calculator language.
-`bc`
-(version 1.07.1)
-by Philip A. Nelson (2017).
-More information: https://www.gnu.org/software/bc.
+임의 정밀도 계산기 언어입니다.
+`bc` (버전 1.07.1), Philip A. Nelson 제작 (2017).
+더 많은 정보: https://www.gnu.org/software/bc.
 
 ```{console bc}
 type bc
@@ -141,11 +130,9 @@ bc -l <<< 'e(1)'
 
 ## body {-}
 
-Apply command to all but the first line.
-`body`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+첫 번째 줄을 제외한 모든 줄에 명령을 적용합니다.
+`body` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console body}
 type body
@@ -155,11 +142,9 @@ seq 10 | header -a 'values' | body shuf
 
 ## cat {-}
 
-Concatenate files and print on the standard output.
-`cat`
-(version 8.30)
-by Torbjorn Granlund and Richard M. Stallman (2018).
-More information: https://www.gnu.org/software/coreutils.
+파일들을 연결하여 표준 출력으로 인쇄합니다.
+`cat` (버전 8.30), Torbjorn Granlund 및 Richard M. Stallman 제작 (2018).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console cat}
 type cat
@@ -172,9 +157,8 @@ C-C#!literal=FALSE
 
 ## cd {-}
 
-Change the shell working directory.
-`cd`
-is a Z shell builtin.
+쉘 작업 디렉토리를 변경합니다.
+`cd`는 Z shell 빌트인입니다.
 
 ```{console cd}
 type cd
@@ -190,12 +174,10 @@ cd /data/ch01
 
 ## chmod {-}
 
-Change file mode bits.
-`chmod`
-(version 8.30)
-by David MacKenzie and Jim Meyering (2018).
-I use `chmod` in [Chapter 4](#chapter-4-creating-command-line-tools) to make a tool executable.
-More information: https://www.gnu.org/software/coreutils.
+파일 모드 비트를 변경합니다.
+`chmod` (버전 8.30), David MacKenzie 및 Jim Meyering 제작 (2018).
+저는 [4장](#chapter-4-creating-command-line-tools)에서 도구를 실행 가능하게 만들기 위해 `chmod`를 사용했습니다.
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console chmod}
 type chmod
@@ -208,11 +190,9 @@ C-C#!literal=FALSE
 
 ## cols {-}
 
-Apply command to subset of columns.
-`cols`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+일부 열에 명령을 적용합니다.
+`cols` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console cols}
 type cols
@@ -221,11 +201,9 @@ type cols
 
 ## column {-}
 
-Columnate lists.
-`column`
-(version 2.36.1)
-by Karel Zak (2021).
-More information: https://www.kernel.org/pub/linux/utils/util-linux.
+목록을 여러 열로 나열합니다.
+`column` (버전 2.36.1), Karel Zak 제작 (2021).
+더 많은 정보: https://www.kernel.org/pub/linux/utils/util-linux.
 
 ```{console column}
 type column
@@ -234,11 +212,9 @@ type column
 
 ## cowsay {-}
 
-Configurable speaking cow.
-`cowsay`
-(version 3.0.3)
-by Tony Monroe (1999).
-More information: https://github.com/tnalpgge/rank-amateur-cowsay.
+말하는 소를 출력합니다. (설정 가능)
+`cowsay` (버전 3.0.3), Tony Monroe 제작 (1999).
+더 많은 정보: https://github.com/tnalpgge/rank-amateur-cowsay.
 
 ```{console cowsay}
 type cowsay
@@ -250,11 +226,9 @@ echo 'The command line is awesome!' | cowsay
 
 ## cp {-}
 
-Copy files and directories.
-`cp`
-(version 8.30)
-by Torbjorn Granlund, David MacKenzie, and Jim Meyering (2018).
-More information: https://www.gnu.org/software/coreutils.
+파일 및 디렉토리를 복사합니다.
+`cp` (버전 8.30), Torbjorn Granlund, David MacKenzie 및 Jim Meyering 제작 (2018).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console cp}
 type cp
@@ -267,11 +241,9 @@ C-C#!literal=FALSE
 
 ## csv2vw {-}
 
-Convert CSV to Vowpal Wabbit format.
-`csv2vw`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+CSV를 Vowpal Wabbit 형식으로 변환합니다.
+`csv2vw` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console csv2vw}
 type csv2vw
@@ -280,11 +252,9 @@ type csv2vw
 
 ## csvcut {-}
 
-Filter and truncate CSV files.
-`csvcut`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+CSV 파일을 필터링하고 자릅니다.
+`csvcut` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvcut}
 type csvcut
@@ -296,11 +266,9 @@ csvcut -c bill,tip /data/ch05/tips.csv | trim
 
 ## csvgrep {-}
 
-Search CSV files.
-`csvgrep`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+CSV 파일을 검색합니다.
+`csvgrep` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvgrep}
 type csvgrep
@@ -311,11 +279,9 @@ C-C#!literal=FALSE
 
 ## csvjoin {-}
 
-Execute a SQL-like join to merge CSV files on a specified column or columns.
-`csvjoin`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+지정된 열을 기준으로 CSV 파일을 병합합니다. (SQL 스타일 조인)
+`csvjoin` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvjoin}
 type csvjoin
@@ -326,11 +292,9 @@ C-C#!literal=FALSE
 
 ## csvlook {-}
 
-Render a CSV file in the console as a Markdown-compatible, fixed-width table.
-`csvlook`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+콘솔에서 CSV 파일을 Markdown 호환 고정폭 표로 렌더링합니다.
+`csvlook` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvlook}
 type csvlook
@@ -342,11 +306,9 @@ csvlook /data/ch05/tips.csv
 
 ## csvquote {-}
 
-Enable common unix utlities to work correctly with CSV data.
-`csvquote`
-(version 0.1)
-by Dan Brown (2018).
-More information: https://github.com/dbro/csvquote.
+일반 유닉스 유틸리티가 CSV 데이터와 올바르게 작동하도록 설정합니다.
+`csvquote` (버전 0.1), Dan Brown 제작 (2018).
+더 많은 정보: https://github.com/dbro/csvquote.
 
 ```{console csvquote}
 type csvquote
@@ -355,11 +317,9 @@ type csvquote
 
 ## csvsort {-}
 
-Sort CSV files.
-`csvsort`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+CSV 파일을 정렬합니다.
+`csvsort` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvsort}
 type csvsort
@@ -370,11 +330,9 @@ C-C#!literal=FALSE
 
 ## csvsql {-}
 
-Execute SQL statements on CSV files.
-`csvsql`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+CSV 파일에 대해 SQL 문을 실행합니다.
+`csvsql` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvsql}
 type csvsql
@@ -385,11 +343,9 @@ C-C#!literal=FALSE
 
 ## csvstack {-}
 
-Stack up the rows from multiple CSV files.
-`csvstack`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+여러 CSV 파일의 행을 쌓아 올립니다.
+`csvstack` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvstack}
 type csvstack
@@ -400,11 +356,9 @@ C-C#!literal=FALSE
 
 ## csvstat {-}
 
-Print descriptive statistics for each column in a CSV file.
-`csvstat`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+CSV 파일의 각 열에 대한 기술 통계를 인쇄합니다.
+`csvstat` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console csvstat}
 type csvstat
@@ -415,11 +369,9 @@ C-C#!literal=FALSE
 
 ## curl {-}
 
-Transfer a URL.
-`curl`
-(version 7.68.0)
-by Daniel Stenberg (2016).
-More information: https://curl.haxx.se.
+URL을 전송합니다.
+`curl` (버전 7.68.0), Daniel Stenberg 제작 (2016).
+더 많은 정보: https://curl.haxx.se.
 
 ```{console curl}
 type curl
@@ -430,11 +382,9 @@ C-C#!literal=FALSE
 
 ## cut {-}
 
-Remove sections from each line of files.
-`cut`
-(version 8.30)
-by David M. Ihnat, David MacKenzie, and Jim Meyering (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일의 각 줄에서 섹션을 제거합니다.
+`cut` (버전 8.30), David M. Ihnat, David MacKenzie 및 Jim Meyering 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console cut}
 type cut
@@ -445,11 +395,9 @@ C-C#!literal=FALSE
 
 ## display {-}
 
-Displays an image or image sequence on any X server.
-`display`
-(version 6.9.10-23)
-by ImageMagick Studio LLC (2019).
-More information: https://imagemagick.org.
+X 서버에 이미지 또는 이미지 시퀀스를 표시합니다.
+`display` (버전 6.9.10-23), ImageMagick Studio LLC 제작 (2019).
+더 많은 정보: https://imagemagick.org.
 
 ```{console display}
 type display
@@ -458,11 +406,9 @@ type display
 
 ## dseq {-}
 
-Generate sequence of dates.
-`dseq`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+날짜 시퀀스를 생성합니다.
+`dseq` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console dseq}
 type dseq
@@ -472,12 +418,10 @@ dseq 3
 
 ## echo {-}
 
-Display a line of text.
-`echo`
-(version 8.30)
-by Brian Fox and Chet Ramey (2019).
-Useful for using literal text as standard input to the next tool.
-More information: https://www.gnu.org/software/coreutils.
+텍스트 한 줄을 표시합니다.
+`echo` (버전 8.30), Brian Fox 및 Chet Ramey 제작 (2019).
+리터럴 텍스트를 다음 도구의 표준 입력으로 사용하는 데 유용합니다.
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console echo}
 type echo
@@ -490,11 +434,9 @@ echo -n Hippopotomonstrosesquippedaliophobia | wc -c
 
 ## env {-}
 
-Run a program in a modified environment.
-`env`
-(version 8.30)
-by Richard Mlynarik, David MacKenzie, and Assaf Gordon (2018).
-More information: https://www.gnu.org/software/coreutils.
+수정된 환경에서 프로그램을 실행합니다.
+`env` (버전 8.30), Richard Mlynarik, David MacKenzie 및 Assaf Gordon 제작 (2018).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console env}
 type env
@@ -505,9 +447,8 @@ C-C#!literal=FALSE
 
 ## export {-}
 
-Set export attribute for shell variables. Useful for making shell variables available to other command-line tools..
-`export`
-is a Z shell builtin.
+쉘 변수에 대해 내보내기(export) 속성을 설정합니다. 쉘 변수를 다른 커맨드 라인 도구에서 사용할 수 있게 만드는 데 유용합니다.
+`export`는 Z shell 빌트인입니다.
 
 ```{console export}
 type export
@@ -519,10 +460,9 @@ export PATH="$PATH:$HOME/bin"
 
 ## fc {-}
 
-Control the interactive history mechanism.
-`fc`
-is a Z shell builtin.
-I use `fc` in [Chapter 4](#chapter-4-creating-command-line-tools) to edit the command in `nano`.
+대화형 기록 메커니즘을 제어합니다.
+`fc`는 Z shell 빌트인입니다.
+저는 [4장](#chapter-4-creating-command-line-tools)에서 명령어를 `nano`에서 편집하기 위해 `fc`를 사용했습니다.
 
 ```{console fc}
 type fc
@@ -533,11 +473,9 @@ C-C#!literal=FALSE
 
 ## find {-}
 
-Search for files in a directory hierarchy.
-`find`
-(version 4.7.0)
-by Eric B. Decker, James Youngman, and Kevin Dalley (2019).
-More information: https://www.gnu.org/software/findutils.
+디렉토리 계층 구조에서 파일을 검색합니다.
+`find` (버전 4.7.0), Eric B. Decker, James Youngman 및 Kevin Dalley 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/findutils.
 
 ```{console find}
 type find
@@ -549,11 +487,9 @@ find /data -type f -name '*.csv' -size -3
 
 ## fold {-}
 
-Wrap each input line to fit in specified width.
-`fold`
-(version 8.30)
-by David MacKenzie (2020).
-More information: https://www.gnu.org/software/coreutils.
+지정된 너비에 맞춰 각 입력 줄을 감쌉니다(wrap).
+`fold` (버전 8.30), David MacKenzie 제작 (2020).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console fold}
 type fold
@@ -564,10 +500,9 @@ C-C#!literal=FALSE
 
 ## for {-}
 
-Execute commands for each member in a list.
-`for`
-is a Z shell builtin.
-In [Chapter 8](#chapter-8-parallel-pipelines), I discuss the advantages of using `parallel` instead of `for`.
+목록의 각 멤버에 대해 명령을 실행합니다.
+`for`는 Z shell 빌트인입니다.
+[8장](#chapter-8-parallel-pipelines)에서 저는 `for` 대신 `parallel`을 사용할 때의 이점에 대해 논의합니다.
 
 ```{console for}
 type for
@@ -579,11 +514,9 @@ for i in {A..C} "It's easy as" {1..3}; do echo $i; done
 
 ## fx {-}
 
-Interactive JSON viewer.
-`fx`
-(version 20.0.2)
-by Anton Medvedev (2020).
-More information: https://github.com/antonmedv/fx.
+대화형 JSON 뷰어입니다.
+`fx` (버전 20.0.2), Anton Medvedev 제작 (2020).
+더 많은 정보: https://github.com/antonmedv/fx.
 
 ```{console fx}
 type fx
@@ -595,11 +528,9 @@ echo '[1,2,3]' | fx 'this.map(x => x * 2)'
 
 ## git {-}
 
-The stupid content tracker.
-`git`
-(version 2.25.1)
-by Linus Torvalds and Junio C. Hamano (2021).
-More information: https://git-scm.com.
+분산 버전 관리 시스템입니다.
+`git` (버전 2.25.1), Linus Torvalds 및 Junio C. Hamano 제작 (2021).
+더 많은 정보: https://git-scm.com.
 
 ```{console git}
 type git
@@ -610,11 +541,9 @@ C-C#!literal=FALSE
 
 ## grep {-}
 
-Print lines that match patterns.
-`grep`
-(version 3.4)
-by Jim Meyering (2019).
-More information: https://www.gnu.org/software/grep.
+패턴과 일치하는 줄을 출력합니다.
+`grep` (버전 3.4), Jim Meyering 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/grep.
 
 ```{console grep}
 type grep
@@ -626,11 +555,9 @@ seq 100 | grep 3 | wc -l
 
 ## gron {-}
 
-Make JSON greppable.
-`gron`
-(version 0.6.1)
-by Tom Hudson (2021).
-More information: https://github.com/TomNomNom/gron.
+JSON을 검색(grep) 가능하게 만듭니다.
+`gron` (버전 0.6.1), Tom Hudson 제작 (2021).
+더 많은 정보: https://github.com/TomNomNom/gron.
 
 ```{console gron}
 type gron
@@ -641,11 +568,9 @@ C-C#!literal=FALSE
 
 ## head {-}
 
-Output the first part of files.
-`head`
-(version 8.30)
-by David MacKenzie and Jim Meyering (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일의 앞부분을 출력합니다.
+`head` (버전 8.30), David MacKenzie 및 Jim Meyering 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console head}
 type head
@@ -657,11 +582,9 @@ seq 100 | head -n 5
 
 ## header {-}
 
-Add, replace, and delete header lines.
-`header`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+헤더 라인을 추가, 교체 및 삭제합니다.
+`header` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console header}
 type header
@@ -670,11 +593,9 @@ type header
 
 ## history {-}
 
-GNU History Library.
-`history`
-(version 8.1)
-by Brian Fox and Chet Ramey (2020).
-More information: https://www.gnu.org/software/bash.
+GNU History 라이브러리입니다.
+`history` (버전 8.1), Brian Fox 및 Chet Ramey 제작 (2020).
+더 많은 정보: https://www.gnu.org/software/bash.
 
 ```{console history}
 type history
@@ -683,11 +604,9 @@ type history
 
 ## hostname {-}
 
-Show or set the system's host name.
-`hostname`
-(version 3.23)
-by Peter Tobias, Bernd Eckenfels, and Michael Meskes (2021).
-More information: https://sourceforge.net/projects/net-tools/.
+시스템의 호스트 이름을 표시하거나 설정합니다.
+`hostname` (버전 3.23), Peter Tobias, Bernd Eckenfels 및 Michael Meskes 제작 (2021).
+더 많은 정보: https://sourceforge.net/projects/net-tools/.
 
 ```{console hostname}
 type hostname
@@ -700,11 +619,9 @@ hostname -i
 
 ## in2csv {-}
 
-Convert common, but less awesome, tabular data formats to CSV.
-`in2csv`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+일반적이지만 덜 멋진 테이블 데이터 형식을 CSV로 변환합니다.
+`in2csv` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console in2csv}
 type in2csv
@@ -715,11 +632,9 @@ C-C#!literal=FALSE
 
 ## jq {-}
 
-Command-line JSON processor.
-`jq`
-(version 1.6)
-by Stephen Dolan (2021).
-More information: https://stedolan.github.com/jq.
+커맨드 라인용 JSON 프로세서입니다.
+`jq` (버전 1.6), Stephen Dolan 제작 (2021).
+더 많은 정보: https://stedolan.github.com/jq.
 
 ```{console jq}
 type jq
@@ -730,11 +645,9 @@ C-C#!literal=FALSE
 
 ## json2csv {-}
 
-Convert JSON to CSV.
-`json2csv`
-(version 1.2.1)
-by Jehiah Czebotar (2019).
-More information: https://github.com/jehiah/json2csv.
+JSON을 CSV로 변환합니다.
+`json2csv` (버전 1.2.1), Jehiah Czebotar 제작 (2019).
+더 많은 정보: https://github.com/jehiah/json2csv.
 
 ```{console json2csv}
 type json2csv
@@ -745,9 +658,8 @@ C-C#!literal=FALSE
 
 ## l {-}
 
-List directory contents in long format with directories grouped before files, human readable file sizes,  and access permissions.
-`l`
-by Unknown (1999).
+디렉토리 내용을 긴 형식(long format)으로 나열합니다. 디렉토리는 파일보다 먼저 그룹화되고, 파일 크기는 읽기 쉬운 단위로 표시되며, 접근 권한도 포함됩니다.
+`l` 제작자 미상 (1999).
 
 ```{console l}
 type l
@@ -759,11 +671,9 @@ l
 
 ## less {-}
 
-opposite of more.
-`less`
-(version 551)
-by Mark Nudelman (2019).
-More information: https://www.greenwoodsoftware.com/less.
+more의 반대입니다. (파일 내용을 페이지 단위로 보여주는 유틸리티)
+`less` (버전 551), Mark Nudelman 제작 (2019).
+더 많은 정보: https://www.greenwoodsoftware.com/less.
 
 ```{console less}
 type less
@@ -776,11 +686,9 @@ C-C#!literal=FALSE
 
 ## ls {-}
 
-List directory contents.
-`ls`
-(version 8.30)
-by Richard M. Stallman and David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+디렉토리 내용을 나열합니다.
+`ls` (버전 8.30), Richard M. Stallman 및 David MacKenzie 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console ls}
 type ls
@@ -792,11 +700,9 @@ ls /data
 
 ## make {-}
 
-A Program for Maintaining Computer Programs.
-`make`
-(version 4.3)
-by Stuart I. Feldman (2020).
-More information: https://www.gnu.org/software/make.
+컴퓨터 프로그램을 유지 관리하기 위한 프로그램입니다.
+`make` (버전 4.3), Stuart I. Feldman 제작 (2020).
+더 많은 정보: https://www.gnu.org/software/make.
 
 ```{console make}
 type make
@@ -809,11 +715,9 @@ C-C#!literal=FALSE
 
 ## man {-}
 
-An interface to the system reference manuals.
-`man`
-(version 2.9.1)
-by John W. Eaton and Colin Watson (2020).
-More information: https://nongnu.org/man-db.
+시스템 참조 매뉴얼에 대한 인터페이스입니다. (도움말 시스템)
+`man` (버전 2.9.1), John W. Eaton 및 Colin Watson 제작 (2020).
+더 많은 정보: https://nongnu.org/man-db.
 
 ```{console man}
 type man
@@ -825,11 +729,9 @@ man excel
 
 ## mkdir {-}
 
-Make directories.
-`mkdir`
-(version 8.30)
-by David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+디렉토리를 생성합니다.
+`mkdir` (버전 8.30), David MacKenzie 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console mkdir}
 type mkdir
@@ -842,11 +744,9 @@ C-C#!literal=FALSE
 
 ## mv {-}
 
-Move (rename) files.
-`mv`
-(version 8.30)
-by Mike Parker, David MacKenzie, and Jim Meyering (2020).
-More information: https://www.gnu.org/software/coreutils.
+파일을 이동하거나 이름을 변경합니다.
+`mv` (버전 8.30), Mike Parker, David MacKenzie 및 Jim Meyering 제작 (2020).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console mv}
 type mv
@@ -859,11 +759,9 @@ C-C#!literal=FALSE
 
 ## nano {-}
 
-Nano's ANOther editor, inspired by Pico.
-`nano`
-(version 5.4)
-by Benno Schulenberg, David Lawrence Ramsey, Jordi Mallach, Chris Allegretta, Robert Siemborski, and Adam Rogoyski (2020).
-More information: https://nano-editor.org.
+Pico에서 영감을 받은 Nano's ANOther 에디터입니다.
+`nano` (버전 5.4), Benno Schulenberg 외 다수 제작 (2020).
+더 많은 정보: https://nano-editor.org.
 
 ```{console nano}
 type nano
@@ -872,11 +770,9 @@ type nano
 
 ## nl {-}
 
-Number lines of files.
-`nl`
-(version 8.30)
-by Scott Bartram and David MacKenzie (2020).
-More information: https://www.gnu.org/software/coreutils.
+파일의 줄에 번호를 매깁니다.
+`nl` (버전 8.30), Scott Bartram 및 David MacKenzie 제작 (2020).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console nl}
 type nl
@@ -888,11 +784,9 @@ nl /data/ch05/alice.txt | head
 
 ## parallel {-}
 
-Build and execute shell command lines from standard input in parallel.
-`parallel`
-(version 20161222)
-by Ole Tange (2016).
-More information: https://www.gnu.org/software/parallel.
+동일 노드 또는 원격 노드에서 병렬로 작업을 빌드하고 실행합니다.
+`parallel` (버전 20161222), Ole Tange 제작 (2016).
+더 많은 정보: https://www.gnu.org/software/parallel.
 
 ```{console parallel}
 type parallel
@@ -904,11 +798,9 @@ seq 3 | parallel "echo Processing file {}.csv"
 
 ## paste {-}
 
-Merge lines of files.
-`paste`
-(version 8.30)
-by David M. Ihnat and David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일의 줄을 병합합니다.
+`paste` (버전 8.30), David M. Ihnat 및 David MacKenzie 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console paste}
 type paste
@@ -921,10 +813,9 @@ seq 5 | paste -sd+
 
 ## pbc {-}
 
-Parallel bc.
-`pbc`
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+병렬 bc(병렬 계산기)입니다.
+`pbc` Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console pbc}
 type pbc
@@ -934,11 +825,9 @@ seq 3 | pbc '{1}^2'
 
 ## pip {-}
 
-A tool for installing and managing Python packages.
-`pip`
-(version 20.0.2)
-by PyPA (2020).
-More information: https://pip.pypa.io.
+Python 패키지를 설치하고 관리하기 위한 도구입니다.
+`pip` (버전 20.0.2), PyPA 제작 (2020).
+더 많은 정보: https://pip.pypa.io.
 
 ```{console pip}
 type pip
@@ -952,11 +841,9 @@ pip freeze | grep sci
 
 ## pup {-}
 
-Parsing HTML at the command line.
-`pup`
-(version 0.4.0)
-by Eric Chiang (2016).
-More information: https://github.com/EricChiang/pup.
+커맨드 라인에서 HTML을 파싱합니다.
+`pup` (버전 0.4.0), Eric Chiang 제작 (2016).
+더 많은 정보: https://github.com/EricChiang/pup.
 
 ```{console pup}
 type pup
@@ -967,11 +854,9 @@ C-C#!literal=FALSE
 
 ## pwd {-}
 
-Print name of working directory.
-`pwd`
-(version 8.30)
-by Jim Meyering (2019).
-More information: https://www.gnu.org/software/coreutils.
+작업 디렉토리의 이름을 인쇄합니다.
+`pwd` (버전 8.30), Jim Meyering 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console pwd}
 type pwd
@@ -984,11 +869,9 @@ pwd
 
 ## python {-}
 
-An interpreted, interactive, object-oriented programming language.
-`python`
-(version 3.8.5)
-by The Python Software Foundation (2021).
-More information: https://www.python.org.
+인터프리터 방식의 대화형 객체 지향 프로그래밍 언어입니다.
+`python` (버전 3.8.5), The Python Software Foundation 제작 (2021).
+더 많은 정보: https://www.python.org.
 
 ```{console python}
 type python
@@ -999,11 +882,9 @@ C-C#!literal=FALSE
 
 ## R {-}
 
-A Language and Environment for Statistical Computing.
-`R`
-(version 4.0.4)
-by The R Foundation for Statistical Computing (2021).
-More information: https://www.r-project.org.
+통계 컴퓨팅을 위한 언어 및 환경입니다.
+`R` (버전 4.0.4), The R Foundation for Statistical Computing 제작 (2021).
+더 많은 정보: https://www.r-project.org.
 
 ```{console R}
 type R
@@ -1014,11 +895,9 @@ C-C#!literal=FALSE
 
 ## rev {-}
 
-Reverse lines characterwise.
-`rev`
-(version 2.36.1)
-by Karel Zak (2021).
-More information: https://www.kernel.org/pub/linux/utils/util-linux.
+각 줄의 문자 순서를 반대로 바꿉니다.
+`rev` (버전 2.36.1), Karel Zak 제작 (2021).
+더 많은 정보: https://www.kernel.org/pub/linux/utils/util-linux.
 
 ```{console rev}
 type rev
@@ -1029,11 +908,9 @@ echo 'Ça va?' | rev | cut -c 2- | rev
 
 ## rm {-}
 
-Remove files or directories.
-`rm`
-(version 8.30)
-by Paul Rubin, David MacKenzie, Richard M. Stallman, and Jim Meyering (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일이나 디렉토리를 제거합니다.
+`rm` (버전 8.30), Paul Rubin 외 다수 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console rm}
 type rm
@@ -1046,11 +923,9 @@ C-C#!literal=FALSE
 
 ## rush {-}
 
-R One-Liners from the Shell.
-`rush`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/rush.
+쉘에서 실행하는 R 한 줄짜리 명령어 도구입니다.
+`rush` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/rush.
 
 ```{console rush}
 type rush
@@ -1063,11 +938,9 @@ rush run --tidyverse 'filter(starwars, species == "Human") %>% select(name)'
 
 ## sample {-}
 
-Filter lines from standard input according to some probability, with a given delay, and for a certain duration.
-`sample`
-(version 0.2.4)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/sample.
+특정 확률, 지정된 지연 시간 또는 특정 지속 시간 동안 표준 입력의 줄을 필터링합니다.
+`sample` (버전 0.2.4), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/sample.
 
 ```{console sample}
 type sample
@@ -1079,11 +952,9 @@ seq 1000 | sample -r 0.01 | trim 5
 
 ## scp {-}
 
-OpenSSH secure file copy.
-`scp`
-(version 1:8.2p1-4ubuntu0.2)
-by Timo Rinne and Tatu Ylonen (2019).
-More information: https://www.openssh.com.
+OpenSSH 보안 파일 복사 도구입니다.
+`scp` (버전 1:8.2p1-4ubuntu0.2), Timo Rinne 및 Tatu Ylonen 제작 (2019).
+더 많은 정보: https://www.openssh.com.
 
 ```{console scp}
 type scp
@@ -1094,11 +965,9 @@ C-C#!literal=FALSE
 
 ## sed {-}
 
-Stream editor for filtering and transforming text.
-`sed`
-(version 4.7)
-by Jay Fenlason, Tom Lord, Ken Pizzini, and Paolo Bonzini (2018).
-More information: https://www.gnu.org/software/sed.
+텍스트를 필터링하고 변환하기 위한 스트림 에디터입니다.
+`sed` (버전 4.7), Jay Fenlason 외 다수 제작 (2018).
+더 많은 정보: https://www.gnu.org/software/sed.
 
 ```{console sed}
 type sed
@@ -1109,11 +978,9 @@ C-C#!literal=FALSE
 
 ## seq {-}
 
-Print a sequence of numbers.
-`seq`
-(version 8.30)
-by Ulrich Drepper (2019).
-More information: https://www.gnu.org/software/coreutils.
+숫자 시퀀스를 인쇄합니다.
+`seq` (버전 8.30), Ulrich Drepper 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console seq}
 type seq
@@ -1126,11 +993,9 @@ seq 10 5 20
 
 ## servewd {-}
 
-Serve the current working directory using a simple HTTP server.
-`servewd`
-(version 0.1)
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+간단한 HTTP 서버를 사용하여 현재 작업 디렉토리를 서비스합니다.
+`servewd` (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console servewd}
 type servewd
@@ -1143,11 +1008,9 @@ C-C#!literal=FALSE
 
 ## shuf {-}
 
-Generate random permutations.
-`shuf`
-(version 8.30)
-by Paul Eggert (2019).
-More information: https://www.gnu.org/software/coreutils.
+무작위 순열을 생성합니다.
+`shuf` (버전 8.30), Paul Eggert 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console shuf}
 type shuf
@@ -1160,12 +1023,10 @@ shuf -i 1-100 | trim 5
 
 ## skll {-}
 
-SciKit-Learn Laboratory.
-`skll`
-(version 2.5.0)
-by Educational Testing Service (2021).
-The actual tool is `run_experiment`. I use the alias `skll` because I find that easier to remember.
-More information: https://skll.readthedocs.org.
+SciKit-Learn Laboratory입니다.
+`skll` (버전 2.5.0), Educational Testing Service 제작 (2021).
+실제 도구는 `run_experiment`입니다. 저는 기억하기 더 쉽기 때문에 별칭 `skll`을 사용합니다.
+더 많은 정보: https://skll.readthedocs.org.
 
 ```{console skll}
 type skll
@@ -1176,11 +1037,9 @@ C-C#!literal=FALSE
 
 ## sort {-}
 
-Sort lines of text files.
-`sort`
-(version 8.30)
-by Mike Haertel and Paul Eggert (2019).
-More information: https://www.gnu.org/software/coreutils.
+텍스트 파일의 줄을 정렬합니다.
+`sort` (버전 8.30), Mike Haertel 및 Paul Eggert 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console sort}
 type sort
@@ -1192,11 +1051,9 @@ echo '3\n7\n1\n3' | sort
 
 ## split {-}
 
-Split a file into pieces.
-`split`
-(version 8.30)
-by Torbjorn Granlund and Richard M. Stallman (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일을 여러 조각으로 나눕니다.
+`split` (버전 8.30), Torbjorn Granlund 및 Richard M. Stallman 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console split}
 type split
@@ -1207,12 +1064,10 @@ C-C#!literal=FALSE
 
 ## sponge {-}
 
-Soak up standard input and write to a file.
-`sponge`
-(version 0.65)
-by Colin Watson and Tollef Fog Heen (2021).
-Useful if you want to read from and write to the same file in a single pipeline.
-More information: https://joeyh.name/code/moreutils.
+표준 입력을 흡수하여 파일에 씁니다.
+`sponge` (버전 0.65), Colin Watson 및 Tollef Fog Heen 제작 (2021).
+단일 파이프라인에서 동일한 파일을 읽고 쓰고 싶을 때 유용합니다.
+더 많은 정보: https://joeyh.name/code/moreutils.
 
 ```{console sponge}
 type sponge
@@ -1221,11 +1076,9 @@ type sponge
 
 ## sql2csv {-}
 
-Execute an SQL query on a database and output the result to a CSV file.
-`sql2csv`
-(version 1.0.5)
-by Christopher Groskopf (2020).
-More information: https://csvkit.rtfd.org.
+데이터베이스에서 SQL 쿼리를 실행하고 결과를 CSV 파일로 출력합니다.
+`sql2csv` (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: https://csvkit.rtfd.org.
 
 ```{console sql2csv}
 type sql2csv
@@ -1236,11 +1089,9 @@ C-C#!literal=FALSE
 
 ## ssh {-}
 
-OpenSSH remote login client.
-`ssh`
-(version 1:8.2p1-4ubuntu0.2)
-by Tatu Ylonen, Aaron Campbell, Bob Beck, Markus Friedl, Niels Provos, Theo Raadt, Dug Song, and Markus Friedl (2020).
-More information: https://www.openssh.com.
+OpenSSH 원격 로그인 클라이언트입니다.
+`ssh` (버전 1:8.2p1-4ubuntu0.2), Tatu Ylonen 외 다수 제작 (2020).
+더 많은 정보: https://www.openssh.com.
 
 ```{console ssh}
 type ssh
@@ -1251,11 +1102,9 @@ C-C#!literal=FALSE
 
 ## sudo {-}
 
-Execute a command as another user.
-`sudo`
-(version 1.8.31)
-by Todd C. Miller (2019).
-More information: https://www.sudo.ws.
+다른 사용자로 명령을 실행합니다.
+`sudo` (버전 1.8.31), Todd C. Miller 제작 (2019).
+더 많은 정보: https://www.sudo.ws.
 
 ```{console sudo}
 type sudo
@@ -1266,11 +1115,9 @@ C-C#!literal=FALSE
 
 ## tail {-}
 
-Output the last part of files.
-`tail`
-(version 8.30)
-by Paul Rubin, David MacKenzie, Ian Lance Taylor, and Jim Meyering (2019).
-More information: https://www.gnu.org/software/coreutils.
+파일의 마지막 부분을 출력합니다.
+`tail` (버전 8.30), Paul Rubin 외 다수 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console tail}
 type tail
@@ -1281,11 +1128,9 @@ C-C#!literal=FALSE
 
 ## tapkee {-}
 
-An efficient dimension reduction library.
-`tapkee`
-(version 1.2)
-by Sergey Lisitsyn, Christian Widmer, and Fernando J. Iglesias Garcia (2013).
-More information: http://tapkee.lisitsyn.me.
+효율적인 차원 축소 라이브러리입니다.
+`tapkee` (버전 1.2), Sergey Lisitsyn 외 다수 제작 (2013).
+더 많은 정보: http://tapkee.lisitsyn.me.
 
 ```{console tapkee}
 type tapkee
@@ -1296,11 +1141,9 @@ C-C#!literal=FALSE
 
 ## tar {-}
 
-An archiving utility.
-`tar`
-(version 1.30)
-by John Gilmore and Jay Fenlason (2014).
-More information: https://www.gnu.org/software/tar.
+아카이빙 유틸리티입니다.
+`tar` (버전 1.30), John Gilmore 및 Jay Fenlason 제작 (2014).
+더 많은 정보: https://www.gnu.org/software/tar.
 
 ```{console tar}
 type tar
@@ -1311,11 +1154,9 @@ C-C#!literal=FALSE
 
 ## tee {-}
 
-Read from standard input and write to standard output and files.
-`tee`
-(version 8.30)
-by Mike Parker, Richard M. Stallman, and David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+표준 입력에서 읽어 표준 출력과 파일에 씁니다.
+`tee` (버전 8.30), Mike Parker 외 다수 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console tee}
 type tee
@@ -1326,11 +1167,9 @@ C-C#!literal=FALSE
 
 ## telnet {-}
 
-User interface to the TELNET protocol.
-`telnet`
-(version 0.17)
-by Mats Erik Andersson, Andreas Henriksson, and Christoph Biedl (1999).
-More information: http://www.hcs.harvard.edu/~dholland/computers/netkit.html.
+TELNET 프로토콜에 대한 사용자 인터페이스입니다.
+`telnet` (버전 0.17), Mats Erik Andersson 외 다수 제작 (1999).
+더 많은 정보: http://www.hcs.harvard.edu/~dholland/computers/netkit.html.
 
 ```{console telnet}
 type telnet
@@ -1339,11 +1178,9 @@ type telnet
 
 ## tldr {-}
 
-Collaborative cheatsheets for console commands.
-`tldr`
-(version 3.3.7)
-by Owen Voke (2021).
-More information: https://tldr.sh.
+콘솔 명령에 대한 협업 치트 시트입니다.
+`tldr` (버전 3.3.7), Owen Voke 제작 (2021).
+더 많은 정보: https://tldr.sh.
 
 ```{console tldr}
 type tldr
@@ -1355,11 +1192,9 @@ tldr tar | trim
 
 ## tr {-}
 
-Translate or delete characters.
-`tr`
-(version 8.30)
-by Jim Meyering (2018).
-More information: https://www.gnu.org/software/coreutils.
+문자를 변환하거나 삭제합니다.
+`tr` (버전 8.30), Jim Meyering 제작 (2018).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console tr}
 type tr
@@ -1370,11 +1205,9 @@ C-C#!literal=FALSE
 
 ## tree {-}
 
-List contents of directories in a tree-like format.
-`tree`
-(version 1.8.0)
-by Steve Baker (2018).
-More information: https://launchpad.net/ubuntu/+source/tree.
+디렉토리 내용을 트리 형식으로 나열합니다.
+`tree` (버전 1.8.0), Steve Baker 제작 (2018).
+더 많은 정보: https://launchpad.net/ubuntu/+source/tree.
 
 ```{console tree}
 type tree
@@ -1386,10 +1219,9 @@ tree / | trim
 
 ## trim {-}
 
-Trim output to a given height and width.
-`trim`
-by Jeroen Janssens (2021).
-More information: https://github.com/jeroenjanssens/dsutils.
+출력을 지정된 높이와 너비로 자릅니다.
+`trim` Jeroen Janssens 제작 (2021).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console trim}
 type trim
@@ -1399,11 +1231,9 @@ echo {a..z}-{0..9} | fold | trim 5 60
 
 ## ts {-}
 
-Timestamp input.
-`ts`
-(version 0.65)
-by Joey Hess (2021).
-More information: https://joeyh.name/code/moreutils.
+입력에 타임스탬프를 추가합니다.
+`ts` (버전 0.65), Joey Hess 제작 (2021).
+더 많은 정보: https://joeyh.name/code/moreutils.
 
 ```{console ts}
 type ts
@@ -1413,9 +1243,8 @@ echo seq 5 | sample -d 500 | ts
 
 ## type {-}
 
-Show the type and location of a command-line tool.
-`type`
-is a Z shell builtin.
+커맨드 라인 도구의 유형과 위치를 표시합니다.
+`type`은 Z shell 빌트인입니다.
 
 ```{console type}
 type type
@@ -1426,11 +1255,9 @@ C-C#!literal=FALSE
 
 ## uniq {-}
 
-Report or omit repeated lines.
-`uniq`
-(version 8.30)
-by Richard M. Stallman and David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+중복된 줄을 보고하거나 누락시킵니다.
+`uniq` (버전 8.30), Richard M. Stallman 및 David MacKenzie 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console uniq}
 type uniq
@@ -1441,11 +1268,9 @@ C-C#!literal=FALSE
 
 ## unpack {-}
 
-Extract common file formats.
-`unpack`
-(version 0.1)
-by Patrick Brisbin (2013).
-More information: https://github.com/jeroenjanssens/dsutils.
+일반적인 파일 형식의 압축을 해제합니다.
+`unpack` (버전 0.1), Patrick Brisbin 제작 (2013).
+더 많은 정보: https://github.com/jeroenjanssens/dsutils.
 
 ```{console unpack}
 type unpack
@@ -1454,11 +1279,9 @@ type unpack
 
 ## unrar {-}
 
-Extract files from rar archives.
-`unrar`
-(version 0.0.1)
-by Ben Asselstine, Christian Scheurer, and Johannes Winkelmann (2014).
-More information: http://home.gna.org/unrar.
+rar 아카이브에서 파일을 추출합니다.
+`unrar` (버전 0.0.1), Ben Asselstine 외 다수 제작 (2014).
+더 많은 정보: http://home.gna.org/unrar.
 
 ```{console unrar}
 type unrar
@@ -1469,11 +1292,9 @@ C-C#!literal=FALSE
 
 ## unzip {-}
 
-List, test and extract compressed files in a ZIP archive.
-`unzip`
-(version 6.0)
-by Samuel H. Smith, Ed Gordon, Christian Spieler, Onno Linden, Mike White, Kai Uwe Rommel, Steven M. Schweda, Paul Kienitz, Chris Herborth, Jonathan Hudson, Sergio Monesi, Harald Denker, John Bush, Hunter Goatley, Steve Salisbury, Steve Miller, and Dave Smith (2009).
-More information: http://www.info-zip.org/pub/infozip.
+ZIP 아카이브의 압축 파일을 나열, 테스트 및 추출합니다.
+`unzip` (버전 6.0), Samuel H. Smith 외 다수 제작 (2009).
+더 많은 정보: http://www.info-zip.org/pub/infozip.
 
 ```{console unzip}
 type unzip
@@ -1484,11 +1305,9 @@ C-C#!literal=FALSE
 
 ## vw {-}
 
-Fast machine learning library for online learning.
-`vw`
-(version 8.10.1)
-by John Langford (2021).
-More information: https://vowpalwabbit.org.
+온라인 학습을 위한 빠른 머신러닝 라이브러리입니다.
+`vw` (버전 8.10.1), John Langford 제작 (2021).
+더 많은 정보: https://vowpalwabbit.org.
 
 ```{console vw}
 type vw
@@ -1499,11 +1318,9 @@ C-C#!literal=FALSE
 
 ## wc {-}
 
-Print newline, word, and byte counts for each file.
-`wc`
-(version 8.30)
-by Paul Rubin and David MacKenzie (2019).
-More information: https://www.gnu.org/software/coreutils.
+각 파일의 줄 바꿈, 단어 및 바이트 수를 인쇄합니다.
+`wc` (버전 8.30), Paul Rubin 및 David MacKenzie 제작 (2019).
+더 많은 정보: https://www.gnu.org/software/coreutils.
 
 ```{console wc}
 type wc
@@ -1514,11 +1331,9 @@ C-C#!literal=FALSE
 
 ## which {-}
 
-Locate a command.
-`which`
-(version 0.1)
-by Unknown (2016).
-More information: .
+명령어의 위치를 찾습니다.
+`which` (버전 0.1) 제작자 미상 (2016).
+더 많은 정보: .
 
 ```{console which}
 type which
@@ -1529,11 +1344,9 @@ C-C#!literal=FALSE
 
 ## xml2json {-}
 
-Convert an XML input to a JSON output, using xml-mapping.
-`xml2json`
-(version 0.0.3)
-by François Parmentier (2016).
-More information: https://github.com/parmentf/xml2json.
+xml-mapping을 사용하여 XML 입력을 JSON 출력으로 변환합니다.
+`xml2json` (버전 0.0.3), François Parmentier 제작 (2016).
+더 많은 정보: https://github.com/parmentf/xml2json.
 
 ```{console xml2json}
 type xml2json
@@ -1542,11 +1355,9 @@ type xml2json
 
 ## xmlstarlet {-}
 
-Command line XML/XSLT toolkit.
-`xmlstarlet`
-(version 1.6.1)
-by Dagobert Michelsen, Noam Postavsky, and Mikhail Grushinskiy (2019).
-More information: https://sourceforge.net/projects/xmlstar.
+커맨드 라인용 XML/XSLT 툴킷입니다.
+`xmlstarlet` (버전 1.6.1), Dagobert Michelsen 외 다수 제작 (2019).
+더 많은 정보: https://sourceforge.net/projects/xmlstar.
 
 ```{console xmlstarlet}
 type xmlstarlet
@@ -1557,11 +1368,9 @@ C-C#!literal=FALSE
 
 ## xsv {-}
 
-A fast CSV command line toolkit written in Rust.
-`xsv`
-(version 0.13.0)
-by Andrew Gallant (2018).
-More information: https://github.com/BurntSushi/xsv.
+Rust로 작성된 빠른 CSV 커맨드 라인 툴킷입니다.
+`xsv` (버전 0.13.0), Andrew Gallant 제작 (2018).
+더 많은 정보: https://github.com/BurntSushi/xsv.
 
 ```{console xsv}
 type xsv
@@ -1572,11 +1381,9 @@ C-C#!literal=FALSE
 
 ## zcat {-}
 
-Decompress and concatenate files to standard output.
-`zcat`
-(version 1.10)
-by Paul Eggert (2021).
-More information: https://www.nongnu.org/zutils/zutils.html.
+파일의 압축을 해제하여 표준 출력으로 연결합니다.
+`zcat` (버전 1.10), Paul Eggert 제작 (2021).
+더 많은 정보: https://www.nongnu.org/zutils/zutils.html.
 
 ```{console zcat}
 type zcat
@@ -1587,11 +1394,9 @@ C-C#!literal=FALSE
 
 ## zsh {-}
 
-The Z shell.
-`zsh`
-(version 5.8)
-by Paul Falstad and Peter Stephenson (2020).
-More information: https://www.zsh.org.
+Z 쉘입니다.
+`zsh` (버전 5.8), Paul Falstad 및 Peter Stephenson 제작 (2020).
+더 많은 정보: https://www.zsh.org.
 
 ```{console zsh}
 type zsh
