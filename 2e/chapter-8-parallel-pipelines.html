@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>장8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
+<title>8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
 <meta name="author" content="Jeroen Janssens">
 <meta name="description" content="이전 장들에서 우리는 전체 작업을 한 번에 처리하는 명령어와 파이프라인을 다루었습니다. 하지만 실제로는 동일한 명령어 또는 파이프라인을 여러 번 실행해야 하는 작업에 직면하게 될 수도 있습니다. 예를 들어 다음과 같은 상황입니다. 수백 개의 웹 페이지 스크래핑하기 수십 개의 API를 호출하고 그 출력을 변환하기 다양한 매개변수 값에 대해...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="장8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta property="og:title" content="8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://datascienceatthecommandline.com/chapter-8-parallel-pipelines.html">
 <meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
 <meta property="og:description" content="이전 장들에서 우리는 전체 작업을 한 번에 처리하는 명령어와 파이프라인을 다루었습니다. 하지만 실제로는 동일한 명령어 또는 파이프라인을 여러 번 실행해야 하는 작업에 직면하게 될 수도 있습니다. 예를 들어 다음과 같은 상황입니다. 수백 개의 웹 페이지 스크래핑하기 수십 개의 API를 호출하고 그 출력을 변환하기 다양한 매개변수 값에 대해...">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="장8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta name="twitter:title" content="8 병렬 파이프라인 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta name="twitter:description" content="이전 장들에서 우리는 전체 작업을 한 번에 처리하는 명령어와 파이프라인을 다루었습니다. 하지만 실제로는 동일한 명령어 또는 파이프라인을 여러 번 실행해야 하는 작업에 직면하게 될 수도 있습니다. 예를 들어 다음과 같은 상황입니다. 수백 개의 웹 페이지 스크래핑하기 수십 개의 API를 호출하고 그 출력을 변환하기 다양한 매개변수 값에 대해...">
 <meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -86,7 +86,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter-8-parallel-pipelines" class="section level1" number="8">
 <h1>
-<span class="header-section-number">장8</span> 병렬 파이프라인<a class="anchor" aria-label="anchor" href="#chapter-8-parallel-pipelines"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8</span> 병렬 파이프라인<a class="anchor" aria-label="anchor" href="#chapter-8-parallel-pipelines"><i class="fas fa-link"></i></a>
 </h1>
 <!-- #TODO: SHOULD: Dicuss progress bar -->
 <p>이전 장들에서 우리는 전체 작업을 한 번에 처리하는 명령어와 파이프라인을 다루었습니다.

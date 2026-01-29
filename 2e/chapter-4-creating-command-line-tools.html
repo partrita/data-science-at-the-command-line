@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>장4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
+<title>4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
 <meta name="author" content="Jeroen Janssens">
 <meta name="description" content="이 책 전반에 걸쳐 기본적으로 한 줄로 작성되는 많은 명령어와 파이프라인을 소개해 드릴 것입니다. 이들은 원라이너(one-liner) 또는 파이프라인으로 알려져 있습니다. 단 한 줄의 명령어만으로 복잡한 작업을 수행할 수 있다는 점이 커맨드 라인을 강력하게 만드는 대목입니다. 이는 전통적인 프로그램을 작성하고 사용하는 것과는 매우 다른 경험입니다....">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="장4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta property="og:title" content="4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://datascienceatthecommandline.com/chapter-4-creating-command-line-tools.html">
 <meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
 <meta property="og:description" content="이 책 전반에 걸쳐 기본적으로 한 줄로 작성되는 많은 명령어와 파이프라인을 소개해 드릴 것입니다. 이들은 원라이너(one-liner) 또는 파이프라인으로 알려져 있습니다. 단 한 줄의 명령어만으로 복잡한 작업을 수행할 수 있다는 점이 커맨드 라인을 강력하게 만드는 대목입니다. 이는 전통적인 프로그램을 작성하고 사용하는 것과는 매우 다른 경험입니다....">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="장4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta name="twitter:title" content="4 커맨드 라인 도구 만들기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta name="twitter:description" content="이 책 전반에 걸쳐 기본적으로 한 줄로 작성되는 많은 명령어와 파이프라인을 소개해 드릴 것입니다. 이들은 원라이너(one-liner) 또는 파이프라인으로 알려져 있습니다. 단 한 줄의 명령어만으로 복잡한 작업을 수행할 수 있다는 점이 커맨드 라인을 강력하게 만드는 대목입니다. 이는 전통적인 프로그램을 작성하고 사용하는 것과는 매우 다른 경험입니다....">
 <meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -86,7 +86,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter-4-creating-command-line-tools" class="section level1" number="4">
 <h1>
-<span class="header-section-number">장4</span> 커맨드 라인 도구 만들기<a class="anchor" aria-label="anchor" href="#chapter-4-creating-command-line-tools"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4</span> 커맨드 라인 도구 만들기<a class="anchor" aria-label="anchor" href="#chapter-4-creating-command-line-tools"><i class="fas fa-link"></i></a>
 </h1>
 <p>이 책 전반에 걸쳐 기본적으로 한 줄로 작성되는 많은 명령어와 파이프라인을 소개해 드릴 것입니다.
 이들은 원라이너(one-liner) 또는 파이프라인으로 알려져 있습니다.
