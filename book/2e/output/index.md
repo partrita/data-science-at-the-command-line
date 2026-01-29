@@ -1,7 +1,7 @@
 ---
 title: "커맨드 라인에서 시작하는 데이터 과학, 2판"
 author: "Jeroen Janssens"
-date: "January 29, 2026"
+date: "1월 29, 2026"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [library.bib, tools.bib]

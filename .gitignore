@@ -19,3 +19,6 @@ package-lock.json
 
 .ipynb_checkpoints/
 __pycache__/
+# pixi environments
+.pixi/*
+!.pixi/config.toml

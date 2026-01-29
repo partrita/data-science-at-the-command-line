@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>제 1 서론 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
 <meta name="author" content="Jeroen Janssens">
@@ -22,7 +21,7 @@
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Fira%20Mono:wght@400;600&amp;display=swap" rel="stylesheet">
 <script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -92,7 +91,7 @@
 <p>이 책은 커맨드 라인에서 데이터 과학을 수행하는 것에 관한 책입니다.
 저의 목표는 커맨드 라인의 힘을 활용하는 방법을 가르쳐드림으로써 여러분을 더 효율적이고 생산적인 데이터 과학자로 만드는 것입니다.</p>
 <p>제목에 <em>데이터 과학</em>과 <em>커맨드 라인</em>이라는 두 용어가 함께 쓰인 것에 대해 설명이 필요할 것 같습니다.
-어떻게 50년도 더 된 기술<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;유닉스 운영체제의 개발은 1969년에 시작되었습니다. 시작부터 커맨드 라인을 갖추고 있었습니다. &lt;a href="chapter-2-getting-started.html#essential-concepts"&gt;2.3절&lt;/a&gt;에서 다룰 파이프(pipes)라는 중요한 개념은 1973년에 추가되었습니다.&lt;/p&gt;'><sup>2</sup></a>이 이제 겨우 몇 년밖에 되지 않은 분야에 도움이 될 수 있을까요?</p>
+어떻게 50년도 더 된 기술<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;유닉스 운영체제의 개발은 1969년에 시작되었습니다. 시작부터 커맨드 라인을 갖추고 있었습니다. &lt;a href=&quot;chapter-2-getting-started.html#essential-concepts&quot;&gt;2.3절&lt;/a&gt;에서 다룰 파이프(pipes)라는 중요한 개념은 1973년에 추가되었습니다.&lt;/p&gt;"><sup>2</sup></a>이 이제 겨우 몇 년밖에 되지 않은 분야에 도움이 될 수 있을까요?</p>
 <p>오늘날 데이터 과학자들은 파이썬, R, Julia, Apache Spark 등 흥미롭고 압도적인 기술과 프로그래밍 언어들 중에서 선택할 수 있습니다.
 여러분은 이미 이들 중 하나 이상에 익숙할지도 모릅니다.
 그렇다면 왜 여전히 데이터 과학을 위해 커맨드 라인에 관심을 가져야 할까요?
@@ -107,7 +106,7 @@
 <span class="header-section-number">1.1</span> 데이터 과학은 OSEMN(Awesome)하다<a class="anchor" aria-label="anchor" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B3%BC%ED%95%99%EC%9D%80-osemnawesome%ED%95%98%EB%8B%A4"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터 과학 분야는 아직 초기 단계에 있으며, 따라서 데이터 과학이 무엇을 포함하는지에 대한 다양한 정의가 존재합니다.
-이 책 전체에 걸쳐 저는<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="citeproc-not-found" data-reference-id="Mason2010이"&gt;&lt;strong&gt;???&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;'><sup>3</sup></a></span> 제시한 매우 실무적인 정의를 따를 것입니다.
+이 책 전체에 걸쳐 저는<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;strong&gt;Mason2010이?&lt;/strong&gt;&lt;/p&gt;"><sup>3</sup></a></span> 제시한 매우 실무적인 정의를 따를 것입니다.
 그들은 데이터 과학을 다음과 같은 다섯 단계로 정의합니다: (1) 데이터 획득(Obtaining), (2) 데이터 정제(Scrubbing), (3) 데이터 탐색(Exploring), (4) 데이터 모델링(Modeling), (5) 데이터 해석(Interpreting).
 이 다섯 단계의 앞글자를 따서 OSEMN 모델이라고 부릅니다(발음은 <em>awesome</em>과 같습니다).
 이 정의는 이 책의 뼈대 역할을 하는데, 아래에서 설명할 5단계 ’데이터 해석’을 제외한 각 단계가 별도의 장으로 구성되어 있기 때문입니다.</p>
@@ -148,7 +147,7 @@ Figure <a href="#fig:diagram-osemn"><strong>??</strong></a>은 데이터 과학�
 <li>데이터를 한 형식에서 다른 형식으로 변환</li>
 </ul>
 <p>데이터 과학자로서 우리는 흥미로운 시각화와 통찰력 있는 모델을 만드는 것(3, 4단계)을 좋아하지만, 대개는 필요한 데이터를 먼저 획득하고 정제하는 데(1, 2단계) 훨씬 많은 노력을 들입니다.
-<em>Data Jujitsu</em>에서<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="citeproc-not-found" data-reference-id="Patil2012는"&gt;&lt;strong&gt;???&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;'><sup>4</sup></a></span> “어떤 데이터 프로젝트에서든 업무의 80%는 데이터를 청소하는 일이다”라고 언급했습니다.
+<em>Data Jujitsu</em>에서<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;strong&gt;Patil2012는?&lt;/strong&gt;&lt;/p&gt;"><sup>4</sup></a></span> “어떤 데이터 프로젝트에서든 업무의 80%는 데이터를 청소하는 일이다”라고 언급했습니다.
 <a href="chapter-5-scrubbing-data.html#chapter-5-scrubbing-data">5장</a>에서는 커맨드 라인이 이러한 데이터 정제 작업을 완수하는 데 어떻게 도움이 되는지 보여줍니다.</p>
 </div>
 <div id="데이터-탐색-exploring-data" class="section level3" number="1.1.3">
@@ -163,7 +162,7 @@ Figure <a href="#fig:diagram-osemn"><strong>??</strong></a>은 데이터 과학�
 <li>데이터에서 통계량 도출</li>
 <li>통찰력 있는 시각화 생성</li>
 </ul>
-<p><a href="chapter-7-exploring-data.html#chapter-7-exploring-data">7장</a>에서 소개되는 커맨드 라인 도구에는 <code>csvstat</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Christopher Groskopf, &lt;em&gt;csvstat – Print Descriptive Statistics for Each Column in a CSV File&lt;/em&gt;, version 1.0.5, 2020, &lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>5</sup></a></span>과 <code>rush</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jeroen Janssens, &lt;em&gt;rush – R One-Liners from the Shell&lt;/em&gt;, version 0.1, 2021, &lt;a href="https://github.com/jeroenjanssens/rush" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/rush&lt;/a&gt;.&lt;/p&gt;'><sup>6</sup></a></span>가 포함됩니다.</p>
+<p><a href="chapter-7-exploring-data.html#chapter-7-exploring-data">7장</a>에서 소개되는 커맨드 라인 도구에는 <code>csvstat</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Christopher Groskopf, &lt;span&gt;“&lt;span class=&quot;nocase&quot;&gt;csvstat&lt;/span&gt; – Print Descriptive Statistics for Each Column in a &lt;span&gt;CSV&lt;/span&gt; File,”&lt;/span&gt; 2020, &lt;a href=&quot;https://csvkit.rtfd.org&quot;&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;"><sup>5</sup></a></span>과 <code>rush</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Jeroen Janssens, &lt;span&gt;“&lt;span class=&quot;nocase&quot;&gt;rush&lt;/span&gt; – &lt;span&gt;R&lt;/span&gt; One-Liners from the Shell,”&lt;/span&gt; 2021, &lt;a href=&quot;https://github.com/jeroenjanssens/rush&quot;&gt;https://github.com/jeroenjanssens/rush&lt;/a&gt;.&lt;/p&gt;"><sup>6</sup></a></span>가 포함됩니다.</p>
 </div>
 <div id="데이터-모델링-modeling-data" class="section level3" number="1.1.4">
 <h3>
@@ -189,7 +188,7 @@ Figure <a href="#fig:diagram-osemn"><strong>??</strong></a>은 데이터 과학�
 <p>솔직히 말해서, 이 단계에서 컴퓨터의 역할은 거의 없으며 커맨드 라인도 딱히 개입할 여지가 없습니다.
 일단 이 단계에 도달했다면, 그다음은 여러분에게 달려 있습니다.
 이 장은 OSEMN 모델 중 유일하게 별도의 장이 없는 단계입니다.
-대신<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="citeproc-not-found" data-reference-id="Shron2014의"&gt;&lt;strong&gt;???&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;'><sup>7</sup></a></span> 명저 <em>Thinking with Data</em>를 참고하시길 권합니다.</p>
+대신<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;strong&gt;Shron2014의?&lt;/strong&gt;&lt;/p&gt;"><sup>7</sup></a></span> 명저 <em>Thinking with Data</em>를 참고하시길 권합니다.</p>
 </div>
 </div>
 <div id="간주intermezzo-장들" class="section level2" number="1.2">
@@ -206,7 +205,7 @@ Figure <a href="#fig:diagram-osemn"><strong>??</strong></a>은 데이터 과학�
 <a href="chapter-6-project-management-with-make.html#chapter-6-project-management-with-make">6장</a>에서는 작업과 작업 간의 의존성 관점에서 데이터 과학 워크플로우를 정의할 수 있게 해주는 <code>make</code>라는 커맨드 라인 도구를 소개합니다.
 이 도구는 여러분뿐만 아니라 동료들의 워크플로우 재현성(reproducibility)을 높여줍니다.</p>
 <p><a href="chapter-8-parallel-pipelines.html#chapter-8-parallel-pipelines">8장</a>에서는 명령어와 도구들을 병렬로 실행하여 속도를 높이는 방법을 설명합니다.
-GNU Parallel<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Ole Tange, &lt;em&gt;parallel – Build and Execute Shell Command Lines from Standard Input in Parallel&lt;/em&gt;, version 20161222, 2016, &lt;a href="https://www.gnu.org/software/parallel" role="doc-biblioref"&gt;https://www.gnu.org/software/parallel&lt;/a&gt;.&lt;/p&gt;'><sup>8</sup></a></span>이라는 커맨드 라인 도구를 사용하면, 매우 큰 데이터셋에 도구들을 적용하고 여러 코어 또는 원격 머신에서 실행할 수 있습니다.</p>
+GNU Parallel<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Ole Tange, &lt;span&gt;“&lt;span class=&quot;nocase&quot;&gt;parallel&lt;/span&gt; – Build and Execute Shell Command Lines from Standard Input in Parallel,”&lt;/span&gt; 2016, &lt;a href=&quot;https://www.gnu.org/software/parallel&quot;&gt;https://www.gnu.org/software/parallel&lt;/a&gt;.&lt;/p&gt;"><sup>8</sup></a></span>이라는 커맨드 라인 도구를 사용하면, 매우 큰 데이터셋에 도구들을 적용하고 여러 코어 또는 원격 머신에서 실행할 수 있습니다.</p>
 <p><a href="chapter-10-polyglot-data-science.html#chapter-10-polyglot-data-science">10장</a>에서는 R, RStudio, 파이썬, Jupyter Notebook, 심지어 Apache Spark와 같은 다른 환경과 프로그래밍 언어에서 커맨드 라인의 힘을 활용하는 방법을 다룹니다.</p>
 </div>
 <div id="커맨드-라인이란-무엇인가" class="section level2" number="1.3">
@@ -238,7 +237,7 @@ echo 'The command line is awesome!' | cowsay -f tux</pre>
 <p>또한 각 명령어 앞에 달러 표시(<strong><code>$</code></strong>)가 붙어 있는 것을 보실 수 있습니다.
 이를 프롬프트(prompt)라고 부릅니다.
 스크린샷의 프롬프트는 사용자 이름, 날짜, 펭귄 등 더 많은 정보를 보여주었습니다.
-예제에서는 달러 표시만 보여주는 것이 관례인데, 그 이유는 프롬프트가 (1) 세션 중에 변경될 수 있고(디렉터리를 이동할 때), (2) 사용자가 커스터마이징할 수 있으며(예: 시간이나 현재 작업 중인 <code>git</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Linus Torvalds and Junio C. Hamano, &lt;em&gt;git – the Stupid Content Tracker&lt;/em&gt;, version 2.25.1, 2021, &lt;a href="https://git-scm.com" role="doc-biblioref"&gt;https://git-scm.com&lt;/a&gt;.&lt;/p&gt;'><sup>9</sup></a></span> 브랜치를 표시할 수도 있음), (3) 명령어 자체와는 무관하기 때문입니다.</p>
+예제에서는 달러 표시만 보여주는 것이 관례인데, 그 이유는 프롬프트가 (1) 세션 중에 변경될 수 있고(디렉터리를 이동할 때), (2) 사용자가 커스터마이징할 수 있으며(예: 시간이나 현재 작업 중인 <code>git</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Linus Torvalds and Junio C. Hamano, &lt;span&gt;“&lt;span class=&quot;nocase&quot;&gt;git&lt;/span&gt; – the Stupid Content Tracker,”&lt;/span&gt; 2021, &lt;a href=&quot;https://git-scm.com&quot;&gt;https://git-scm.com&lt;/a&gt;.&lt;/p&gt;"><sup>9</sup></a></span> 브랜치를 표시할 수도 있음), (3) 명령어 자체와는 무관하기 때문입니다.</p>
 <p>다음 장에서는 필수적인 커맨드 라인 개념들에 대해 훨씬 더 많이 설명하겠습니다.
 이제 왜 데이터 과학을 위해 커맨드 라인을 배워야 하는지 먼저 알아볼 차례입니다.</p>
 </div>
@@ -316,7 +315,7 @@ REPL은 스크립트, 대형 프로그램, Hadoop 작업 등에 수반되는 ‘
 <span class="header-section-number">1.4.5</span> 커맨드 라인은 어디에나 존재한다 (Ubiquitous)<a class="anchor" aria-label="anchor" href="#%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8%EC%9D%80-%EC%96%B4%EB%94%94%EC%97%90%EB%82%98-%EC%A1%B4%EC%9E%AC%ED%95%9C%EB%8B%A4-ubiquitous"><i class="fas fa-link"></i></a>
 </h3>
 <p>커맨드 라인은 우분투 리눅스와 macOS를 포함한 모든 유닉스 계열 운영체제에 포함되어 있어 많은 곳에서 찾아볼 수 있습니다.
-게다가 전 세계 상위 500대 슈퍼컴퓨터의 100%가 리눅스를 사용하고 있습니다.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;얼마나 많은 슈퍼컴퓨터가 리눅스를 실행하는지 추적하는 &lt;a href="https://top500.org/statistics/details/osfam/1/"&gt;TOP500&lt;/a&gt;을 참고하세요.&lt;/p&gt;'><sup>10</sup></a>
+게다가 전 세계 상위 500대 슈퍼컴퓨터의 100%가 리눅스를 사용하고 있습니다.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;얼마나 많은 슈퍼컴퓨터가 리눅스를 실행하는지 추적하는 &lt;a href=&quot;https://top500.org/statistics/details/osfam/1/&quot;&gt;TOP500&lt;/a&gt;을 참고하세요.&lt;/p&gt;"><sup>10</sup></a>
 따라서 혹시라도 그런 슈퍼컴퓨터 중 하나를 만져볼 기회가 생긴다면(혹은 쥬라기 공원에서 문 잠금 장치가 작동하지 않는 상황에 처한다면), 커맨드 라인 사용법을 잘 알고 있는 편이 좋을 것입니다!</p>
 <p>하지만 리눅스는 슈퍼컴퓨터에서만 돌아가는 것이 아닙니다.
 서버, 노트북, 그리고 임베디드 시스템에서도 돌아갑니다.
@@ -394,7 +393,7 @@ REPL은 스크립트, 대형 프로그램, Hadoop 작업 등에 수반되는 ‘
     <div class="row">
       <div class="d-none d-lg-block col-lg-2 sidebar"></div>
       <div class="col-sm-12 col-md-9 col-lg-7 mt-3" style="max-width: 45rem;">
-        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on January 29, 2026. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on 1월 29, 2026. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
       </div>
       <div class="col-md-3 col-lg-3 d-none d-md-block sidebar"></div>
     </div>
