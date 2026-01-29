@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>제 2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
+<title>장2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
 <meta name="author" content="Jeroen Janssens">
 <meta name="description" content="이 장에서는 커맨드 라인에서 데이터 과학을 수행하기 위한 모든 전제 조건이 갖춰졌는지 확인할 것입니다. 전제 조건은 세 부분으로 나뉩니다. (1) 이 책에서 사용하는 것과 동일한 데이터셋 확보, (2) 이 책 전체에서 사용하는 모든 커맨드 라인 도구가 포함된 적절한 환경 구축, (3) 커맨드 라인을 사용할 때 작용하는 필수적인 개념들에 대한...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="제 2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta property="og:title" content="장2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://datascienceatthecommandline.com/chapter-2-getting-started.html">
 <meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
 <meta property="og:description" content="이 장에서는 커맨드 라인에서 데이터 과학을 수행하기 위한 모든 전제 조건이 갖춰졌는지 확인할 것입니다. 전제 조건은 세 부분으로 나뉩니다. (1) 이 책에서 사용하는 것과 동일한 데이터셋 확보, (2) 이 책 전체에서 사용하는 모든 커맨드 라인 도구가 포함된 적절한 환경 구축, (3) 커맨드 라인을 사용할 때 작용하는 필수적인 개념들에 대한...">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="제 2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta name="twitter:title" content="장2 시작하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta name="twitter:description" content="이 장에서는 커맨드 라인에서 데이터 과학을 수행하기 위한 모든 전제 조건이 갖춰졌는지 확인할 것입니다. 전제 조건은 세 부분으로 나뉩니다. (1) 이 책에서 사용하는 것과 동일한 데이터셋 확보, (2) 이 책 전체에서 사용하는 모든 커맨드 라인 도구가 포함된 적절한 환경 구축, (3) 커맨드 라인을 사용할 때 작용하는 필수적인 개념들에 대한...">
 <meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,20 +43,20 @@
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-2 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-2 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">본문으로 건너뛰기</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <img id="cover" class="d-none d-lg-block" src="images/cover-small.png"><h1 class="d-lg-none">
         <a href="index.html" title="">커맨드 라인에서 시작하는 데이터 과학, 2판</a>
       </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">목차 보기</span></button>
     </div>
 
     <div id="main-nav" class="collapse-lg">
       <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input id="search" class="form-control" type="search" placeholder="검색" aria-label="Search">
 </form>
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+      <nav aria-label="Table of contents"><h2>목차</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">환영합니다</a></li>
 <li><a class="" href="%EC%B6%94%EC%B2%9C%EC%9D%98-%EA%B8%80.html">추천의 글</a></li>
@@ -76,7 +76,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/jeroenjanssens/data-science-at-the-command-line">View book repository <i class=""></i></a></p>
+          <p><a id="book-repo" href="https://github.com/partrita/data-science-at-the-command-line">책 저장소 보기 <i class=""></i></a></p>
         </div>
 
         <div>
@@ -86,7 +86,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter-2-getting-started" class="section level1" number="2">
 <h1>
-<span class="header-section-number">제 2</span> 시작하기<a class="anchor" aria-label="anchor" href="#chapter-2-getting-started"><i class="fas fa-link"></i></a>
+<span class="header-section-number">장2</span> 시작하기<a class="anchor" aria-label="anchor" href="#chapter-2-getting-started"><i class="fas fa-link"></i></a>
 </h1>
 <p>이 장에서는 커맨드 라인에서 데이터 과학을 수행하기 위한 모든 전제 조건이 갖춰졌는지 확인할 것입니다.
 전제 조건은 세 부분으로 나뉩니다. (1) 이 책에서 사용하는 것과 동일한 데이터셋 확보, (2) 이 책 전체에서 사용하는 모든 커맨드 라인 도구가 포함된 적절한 환경 구축, (3) 커맨드 라인을 사용할 때 작용하는 필수적인 개념들에 대한 이해입니다.</p>
@@ -534,7 +534,7 @@ csvlook /data/ch07/tips.csv</pre>
 <div class="prev"><a href="chapter-1-introduction.html"><span class="header-section-number">1</span> 서론</a></div>
 <div class="next"><a href="chapter-3-obtaining-data.html"><span class="header-section-number">3</span> 데이터 획득하기</a></div>
 </div></main><div class="col-md-3 col-lg-3 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>이 페이지의 내용</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#chapter-2-getting-started"><span class="header-section-number">2</span> 시작하기</a></li>
 <li><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%95%EB%B3%B4%ED%95%98%EA%B8%B0"><span class="header-section-number">2.1</span> 데이터 확보하기</a></li>
@@ -557,8 +557,8 @@ csvlook /data/ch07/tips.csv</pre>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/jeroenjanssens/data-science-at-the-command-line/blob/master/book/2e/02.Rmd">View source <i class=""></i></a></li>
-          <li><a id="book-edit" href="https://github.com/jeroenjanssens/data-science-at-the-command-line/edit/master/book/2e/02.Rmd">Edit this page <i class=""></i></a></li>
+<li><a id="book-source" href="https://github.com/partrita/data-science-at-the-command-line/blob/master/book/2e/02.Rmd">소스 보기 <i class=""></i></a></li>
+          <li><a id="book-edit" href="https://github.com/partrita/data-science-at-the-command-line/edit/master/book/2e/02.Rmd">이 페이지 편집 <i class=""></i></a></li>
         </ul>
 </div>
     </nav>
@@ -571,7 +571,7 @@ csvlook /data/ch07/tips.csv</pre>
     <div class="row">
       <div class="d-none d-lg-block col-lg-2 sidebar"></div>
       <div class="col-sm-12 col-md-9 col-lg-7 mt-3" style="max-width: 45rem;">
-        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on January 29, 2026. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> 저자 <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. 최종 업데이트: January 29, 2026. 이 책은 <a class="text-light" href="https://bookdown.org">bookdown</a> R 패키지로 제작되었습니다.</p>
       </div>
       <div class="col-md-3 col-lg-3 d-none d-md-block sidebar"></div>
     </div>
