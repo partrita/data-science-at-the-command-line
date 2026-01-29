@@ -1,0 +1,34 @@
+Package: knitractive
+Title: A knitr engine to simulate interactive sessions
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Jeroen", "Janssens", email = "jeroen@jeroenjanssens.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5878-8924"))
+    )                  
+Description: This package provides a knitr engine that allows you to simulate
+    interactive sessions (e.g., Python console, Bash shell) across multiple
+    code chunks. 
+Depends: R (>= 3.4.0), R6
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/jeroenjanssens/knitractive
+BugReports: https://github.com/jeroenjanssens/knitractive/issues
+Imports: tmuxr
+RoxygenNote: 7.3.1
+Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace",
+        "collate"))
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: knitractive
+RemoteUsername: jeroenjanssens
+RemoteRef: HEAD
+RemoteSha: 391660f1e56606ba6e51be0ca62bb2c453934c3e
+GithubRepo: knitractive
+GithubUsername: jeroenjanssens
+GithubRef: HEAD
+GithubSHA1: 391660f1e56606ba6e51be0ca62bb2c453934c3e
+NeedsCompilation: no
+Packaged: 2026-01-29 01:14:09 UTC; dst
+Author: Jeroen Janssens [aut, cre] (<https://orcid.org/0000-0002-5878-8924>)
+Maintainer: Jeroen Janssens <jeroen@jeroenjanssens.com>
+Built: R 4.0.4; ; 2026-01-29 01:14:09 UTC; unix

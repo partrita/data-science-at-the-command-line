@@ -1,0 +1,22 @@
+cmd                     Command composition
+cursor                  Get cursor position on screen
+ends_with_prompt        Does the output end with a prompt?
+exit                    End a rexpect session
+expect_prompt           Expect prompt
+expect_silence          Expect silence
+has_prompt              Does session have a prompt?
+length.rexpect_session
+                        Number of lines
+prompt                  Prompt of an rexpect session
+prompts                 Commonly used prompts
+read_all                Read all output
+read_last_line          Read last line
+read_output             Read a portion of all output
+read_screen             Read screen
+send_backspace          Send Backspace
+send_control_c          Send Control-C
+send_enter              Send Enter
+send_lines              Send literal text
+send_script             Send script
+spawn                   Spawn a new rexpect session
+wait                    Wait

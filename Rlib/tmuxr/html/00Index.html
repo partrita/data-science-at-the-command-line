@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Manage 'tmux' Sessions, Windows, and Panes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Manage 'tmux' Sessions, Windows, and Panes
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;tmuxr&rsquo; version 0.2.5</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="attach_pane.html">attach_pane</a></td>
+<td>Attach to an existing tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="attach_session.html">attach_session</a></td>
+<td>Attach to an existing tmux session</td></tr>
+<tr><td style="width: 25%;"><a href="attach_window.html">attach_window</a></td>
+<td>Attach to an existing tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="capture_pane.html">capture_pane</a></td>
+<td>Capture the contents of a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="clock_mode.html">clock_mode</a></td>
+<td>Display a large clock</td></tr>
+<tr><td style="width: 25%;"><a href="display_message.html">display_message</a></td>
+<td>Display a message</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">height</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">height&lt;-</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="id.html">id</a></td>
+<td>Identifier of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="index.html">index</a></td>
+<td>Index of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="is_active.html">is_active</a></td>
+<td>Is tmux object active?</td></tr>
+<tr><td style="width: 25%;"><a href="is_installed.html">is_installed</a></td>
+<td>Is tmux installed correctly?</td></tr>
+<tr><td style="width: 25%;"><a href="is_running.html">is_running</a></td>
+<td>Is the tmux server running?</td></tr>
+<tr><td style="width: 25%;"><a href="kill_pane.html">kill_pane</a></td>
+<td>Kill a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="kill_server.html">kill_server</a></td>
+<td>Kill the tmux server</td></tr>
+<tr><td style="width: 25%;"><a href="kill_session.html">kill_session</a></td>
+<td>Kill a tmux session</td></tr>
+<tr><td style="width: 25%;"><a href="kill_window.html">kill_window</a></td>
+<td>Kill a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout&lt;-</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_even</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_even_horizontal</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_even_vertical</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_main_horizontal</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_main_vertical</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_next</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_previous</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_rotate</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_tiled</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">layout_undo</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="list_panes.html">list_panes</a></td>
+<td>List tmux panes</td></tr>
+<tr><td style="width: 25%;"><a href="list_sessions.html">list_sessions</a></td>
+<td>List tmux sessions</td></tr>
+<tr><td style="width: 25%;"><a href="list_windows.html">list_windows</a></td>
+<td>List tmux windows</td></tr>
+<tr><td style="width: 25%;"><a href="object_name.html">name</a></td>
+<td>Name of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="object_name.html">name&lt;-</a></td>
+<td>Name of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="new_pane.html">new_pane</a></td>
+<td>Create a new tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="new_session.html">new_session</a></td>
+<td>Create a new tmux session</td></tr>
+<tr><td style="width: 25%;"><a href="new_window.html">new_window</a></td>
+<td>Create a new tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="object_name.html">object_name</a></td>
+<td>Name of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">object_size</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="pipe_pane.html">pipe_pane</a></td>
+<td>Pipe contents of a tmux pane to a shell command</td></tr>
+<tr><td style="width: 25%;"><a href="prop.html">prop</a></td>
+<td>Properties of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="rename_session.html">rename_session</a></td>
+<td>Rename a tmux session</td></tr>
+<tr><td style="width: 25%;"><a href="rename_window.html">rename_window</a></td>
+<td>Rename a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="resize_pane.html">resize_pane</a></td>
+<td>Resize a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="resize_window.html">resize_window</a></td>
+<td>Resize a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_active</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_bottom</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_bottom_left</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_bottom_right</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_down_of</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_last</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_left</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_left_of</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_next</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_previous</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_right</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_right_of</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_top</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_top_left</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_top_right</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_pane.html">select_pane_up_of</a></td>
+<td>Select a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_active</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_end</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_last</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_next</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_previous</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="select_window.html">select_window_start</a></td>
+<td>Select a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="send_keys.html">send_keys</a></td>
+<td>Send keys to a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="send_prefix.html">send_prefix</a></td>
+<td>Send prefix to a tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">set_height</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="layout.html">set_layout</a></td>
+<td>Change layout of a tmux window</td></tr>
+<tr><td style="width: 25%;"><a href="object_name.html">set_name</a></td>
+<td>Name of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="set_option.html">set_option</a></td>
+<td>Set option</td></tr>
+<tr><td style="width: 25%;"><a href="style.html">set_style</a></td>
+<td>Style of a tmux window or pane</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">set_width</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="new_pane.html">split_window</a></td>
+<td>Create a new tmux pane</td></tr>
+<tr><td style="width: 25%;"><a href="start_server.html">start_server</a></td>
+<td>Start the tmux server</td></tr>
+<tr><td style="width: 25%;"><a href="style_convert.html">strfstyle</a></td>
+<td>Format and parse style strings</td></tr>
+<tr><td style="width: 25%;"><a href="style_convert.html">strpstyle</a></td>
+<td>Format and parse style strings</td></tr>
+<tr><td style="width: 25%;"><a href="style.html">style</a></td>
+<td>Style of a tmux window or pane</td></tr>
+<tr><td style="width: 25%;"><a href="style.html">style&lt;-</a></td>
+<td>Style of a tmux window or pane</td></tr>
+<tr><td style="width: 25%;"><a href="style_convert.html">style_convert</a></td>
+<td>Format and parse style strings</td></tr>
+<tr><td style="width: 25%;"><a href="swap_pane.html">swap_pane</a></td>
+<td>Swap two tmux windows or panes</td></tr>
+<tr><td style="width: 25%;"><a href="swap_pane.html">swap_window</a></td>
+<td>Swap two tmux windows or panes</td></tr>
+<tr><td style="width: 25%;"><a href="tmux_command.html">tmux_command</a></td>
+<td>Execute a tmux command</td></tr>
+<tr><td style="width: 25%;"><a href="tmux_version.html">tmux_version</a></td>
+<td>Get tmux version</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">width</a></td>
+<td>Width and height of a tmux object</td></tr>
+<tr><td style="width: 25%;"><a href="object_size.html">width&lt;-</a></td>
+<td>Width and height of a tmux object</td></tr>
+</table>
+</body></html>

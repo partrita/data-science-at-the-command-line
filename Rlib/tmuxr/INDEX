@@ -1,0 +1,41 @@
+attach_pane             Attach to an existing tmux pane
+attach_session          Attach to an existing tmux session
+attach_window           Attach to an existing tmux window
+capture_pane            Capture the contents of a tmux pane
+clock_mode              Display a large clock
+display_message         Display a message
+id                      Identifier of a tmux object
+index                   Index of a tmux object
+is_active               Is tmux object active?
+is_installed            Is tmux installed correctly?
+is_running              Is the tmux server running?
+kill_pane               Kill a tmux pane
+kill_server             Kill the tmux server
+kill_session            Kill a tmux session
+kill_window             Kill a tmux window
+layout                  Change layout of a tmux window
+list_panes              List tmux panes
+list_sessions           List tmux sessions
+list_windows            List tmux windows
+new_pane                Create a new tmux pane
+new_session             Create a new tmux session
+new_window              Create a new tmux window
+object_name             Name of a tmux object
+object_size             Width and height of a tmux object
+pipe_pane               Pipe contents of a tmux pane to a shell command
+prop                    Properties of a tmux object
+rename_session          Rename a tmux session
+rename_window           Rename a tmux window
+resize_pane             Resize a tmux pane
+resize_window           Resize a tmux window
+select_pane             Select a tmux pane
+select_window           Select a tmux window
+send_keys               Send keys to a tmux pane
+send_prefix             Send prefix to a tmux pane
+set_option              Set option
+start_server            Start the tmux server
+style                   Style of a tmux window or pane
+style_convert           Format and parse style strings
+swap_pane               Swap two tmux windows or panes
+tmux_command            Execute a tmux command
+tmux_version            Get tmux version

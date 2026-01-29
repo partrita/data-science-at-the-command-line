@@ -4,25 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Scrubbing Data | Data Science at the Command Line, 2e</title>
+<title>제 5 데이터 정제하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
 <meta name="author" content="Jeroen Janssens">
-<meta name="description" content="Two chapters ago, in the first step of the OSEMN model for data science, we looked at obtaining data from a variety of sources. This chapter is all about the second step: scrubbing data. You see,...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Scrubbing Data | Data Science at the Command Line, 2e">
+<meta name="description" content="두 장 전, 데이터 과학을 위한 OSEMN 모델의 첫 번째 단계에서 우리는 다양한 소스로부터 데이터를 획득(obtaining)하는 방법을 살펴보았습니다. 이번 장은 두 번째 단계인 데이터를 정제(scrubbing)하는 것에 관한 모든 내용을 다룹니다. 데이터를 얻자마자 즉시 탐색(exploring)하거나 모델링(modeling)을 계속할 수 있는...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="제 5 데이터 정제하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://datascienceatthecommandline.com/chapter-5-scrubbing-data.html">
 <meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
-<meta property="og:description" content="Two chapters ago, in the first step of the OSEMN model for data science, we looked at obtaining data from a variety of sources. This chapter is all about the second step: scrubbing data. You see,...">
+<meta property="og:description" content="두 장 전, 데이터 과학을 위한 OSEMN 모델의 첫 번째 단계에서 우리는 다양한 소스로부터 데이터를 획득(obtaining)하는 방법을 살펴보았습니다. 이번 장은 두 번째 단계인 데이터를 정제(scrubbing)하는 것에 관한 모든 내용을 다룹니다. 데이터를 얻자마자 즉시 탐색(exploring)하거나 모델링(modeling)을 계속할 수 있는...">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chapter 5 Scrubbing Data | Data Science at the Command Line, 2e">
-<meta name="twitter:description" content="Two chapters ago, in the first step of the OSEMN model for data science, we looked at obtaining data from a variety of sources. This chapter is all about the second step: scrubbing data. You see,...">
+<meta name="twitter:title" content="제 5 데이터 정제하기 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta name="twitter:description" content="두 장 전, 데이터 과학을 위한 OSEMN 모델의 첫 번째 단계에서 우리는 다양한 소스로부터 데이터를 획득(obtaining)하는 방법을 살펴보았습니다. 이번 장은 두 번째 단계인 데이터를 정제(scrubbing)하는 것에 관한 모든 내용을 다룹니다. 데이터를 얻자마자 즉시 탐색(exploring)하거나 모델링(modeling)을 계속할 수 있는...">
 <meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Source%20Sans%20Pro-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Fira%20Mono:wght@400;600&amp;display=swap" rel="stylesheet">
-<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -48,7 +48,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <img id="cover" class="d-none d-lg-block" src="images/cover-small.png"><h1 class="d-lg-none">
-        <a href="index.html" title="">Data Science at the Command Line, 2e</a>
+        <a href="index.html" title="">커맨드 라인에서 시작하는 데이터 과학, 2판</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -59,21 +59,21 @@
 </form>
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Welcome</a></li>
-<li><a class="" href="foreword.html">Foreword</a></li>
-<li><a class="" href="preface.html">Preface</a></li>
-<li><a class="" href="chapter-1-introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
-<li><a class="" href="chapter-2-getting-started.html"><span class="header-section-number">2</span> Getting Started</a></li>
-<li><a class="" href="chapter-3-obtaining-data.html"><span class="header-section-number">3</span> Obtaining Data</a></li>
-<li><a class="" href="chapter-4-creating-command-line-tools.html"><span class="header-section-number">4</span> Creating Command-line Tools</a></li>
-<li><a class="active" href="chapter-5-scrubbing-data.html"><span class="header-section-number">5</span> Scrubbing Data</a></li>
-<li><a class="" href="chapter-6-project-management-with-make.html"><span class="header-section-number">6</span> Project Management with Make</a></li>
-<li><a class="" href="chapter-7-exploring-data.html"><span class="header-section-number">7</span> Exploring Data</a></li>
-<li><a class="" href="chapter-8-parallel-pipelines.html"><span class="header-section-number">8</span> Parallel Pipelines</a></li>
-<li><a class="" href="chapter-9-modeling-data.html"><span class="header-section-number">9</span> Modeling Data</a></li>
-<li><a class="" href="chapter-10-polyglot-data-science.html"><span class="header-section-number">10</span> Polyglot Data Science</a></li>
-<li><a class="" href="chapter-11-conclusion.html"><span class="header-section-number">11</span> Conclusion</a></li>
-<li><a class="" href="list-of-command-line-tools.html">List of Command-Line Tools</a></li>
+<li><a class="" href="index.html">환영합니다</a></li>
+<li><a class="" href="%EC%B6%94%EC%B2%9C%EC%9D%98-%EA%B8%80.html">추천의 글</a></li>
+<li><a class="" href="%EC%84%9C%EB%AC%B8.html">서문</a></li>
+<li><a class="" href="chapter-1-introduction.html"><span class="header-section-number">1</span> 서론</a></li>
+<li><a class="" href="chapter-2-getting-started.html"><span class="header-section-number">2</span> 시작하기</a></li>
+<li><a class="" href="chapter-3-obtaining-data.html"><span class="header-section-number">3</span> 데이터 획득하기</a></li>
+<li><a class="" href="chapter-4-creating-command-line-tools.html"><span class="header-section-number">4</span> 커맨드 라인 도구 만들기</a></li>
+<li><a class="active" href="chapter-5-scrubbing-data.html"><span class="header-section-number">5</span> 데이터 정제하기</a></li>
+<li><a class="" href="chapter-6-project-management-with-make.html"><span class="header-section-number">6</span> Make으로 프로젝트 관리하기</a></li>
+<li><a class="" href="chapter-7-exploring-data.html"><span class="header-section-number">7</span> 데이터 탐색하기</a></li>
+<li><a class="" href="chapter-8-parallel-pipelines.html"><span class="header-section-number">8</span> 병렬 파이프라인</a></li>
+<li><a class="" href="chapter-9-modeling-data.html"><span class="header-section-number">9</span> 데이터 모델링</a></li>
+<li><a class="" href="chapter-10-polyglot-data-science.html"><span class="header-section-number">10</span> 다국어 데이터 과학</a></li>
+<li><a class="" href="chapter-11-conclusion.html"><span class="header-section-number">11</span> 결론</a></li>
+<li><a class="" href="%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%8F%84%EA%B5%AC-%EB%AA%A9%EB%A1%9D.html">커맨드 라인 도구 목록</a></li>
 </ul>
 
         <div class="book-extra">
@@ -87,513 +87,274 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter-5-scrubbing-data" class="section level1" number="5">
 <h1>
-<span class="header-section-number">5</span> Scrubbing Data<a class="anchor" aria-label="anchor" href="#chapter-5-scrubbing-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">제 5</span> 데이터 정제하기<a class="anchor" aria-label="anchor" href="#chapter-5-scrubbing-data"><i class="fas fa-link"></i></a>
 </h1>
-<p>Two chapters ago, in the first step of the OSEMN model for data science, we looked at <em>obtaining</em> data from a variety of sources.
-This chapter is all about the second step: <em>scrubbing</em> data.
-You see, it’s quite rare that you can immediately continue with <em>exploring</em> or even <em>modeling</em> the data.
-There’s a plethora of reasons why your data first needs some cleaning, or scrubbing.</p>
-<p>For starters, the data might not be in the desired format.
-For example, you may have obtained some JSON data from an API, but you need it to be in CSV format to create a visualization.
-Other common formats include plain text, HTML, and XML.
-Most command-line tools only work with one or two formats, so it’s important that you’re able to convert data from one format to another.</p>
-<p>Once the data is in the desired format, there could still be issues like missing values, inconsistencies, weird characters, or unnecessary parts.
-You can fix these by applying filters, replacing values, and combining multiple files.
-The command line is especially well-suited for these kind of transformations, because there are many specialized tools available, most of which can handle large amounts of data.
-In this chapter I’ll discuss classic tools such as <code>grep</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-grep" role="doc-biblioref"&gt;Meyering, &lt;em&gt;&lt;span class="nocase"&gt;grep&lt;/span&gt; – Print Lines That Match Patterns&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>60</sup></a></span> and <code>awk</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-awk" role="doc-biblioref"&gt;Mike D. Brennan and Thomas E. Dickey, &lt;em&gt;&lt;span class="nocase"&gt;awk&lt;/span&gt; – Pattern Scanning and Text Processing Language&lt;/em&gt;, version 1.3.4, 2019, &lt;/a&gt;&lt;a href="https://invisible-island.net/mawk" role="doc-biblioref"&gt;https://invisible-island.net/mawk&lt;/a&gt;.&lt;/p&gt;'><sup>61</sup></a></span>, and newer tools such as <code>jq</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-jq" role="doc-biblioref"&gt;Dolan, &lt;em&gt;&lt;span class="nocase"&gt;jq&lt;/span&gt; – Command-Line &lt;span&gt;JSON&lt;/span&gt; Processor&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>62</sup></a></span> and <code>pup</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-pup" role="doc-biblioref"&gt;Chiang, &lt;em&gt;&lt;span class="nocase"&gt;pup&lt;/span&gt; – Parsing HTML at the Command Line&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>63</sup></a></span>.</p>
-<p>Sometimes you can use the same command-line tool to perform several operations or multiple tools to perform the same operation.
-This chapter is more structured like a cookbook, where the focus is on the problems or recipes, rather than diving deeply into the command-line tools themselves.</p>
-<div id="overview-2" class="section level2" number="5.1">
+<p>두 장 전, 데이터 과학을 위한 OSEMN 모델의 첫 번째 단계에서 우리는 다양한 소스로부터 데이터를 <em>획득(obtaining)</em>하는 방법을 살펴보았습니다.
+이번 장은 두 번째 단계인 데이터를 <em>정제(scrubbing)</em>하는 것에 관한 모든 내용을 다룹니다.
+데이터를 얻자마자 즉시 <em>탐색(exploring)</em>하거나 <em>모델링(modeling)</em>을 계속할 수 있는 경우는 매우 드뭅니다.
+데이터에 먼저 약간의 청소, 즉 정제가 필요한 이유는 수없이 많습니다.</p>
+<p>우선, 데이터가 원하는 형식이 아닐 수 있습니다.
+예를 들어, API에서 JSON 데이터를 얻었지만 시각화를 만들기 위해 CSV 형식이 필요할 수 있습니다.
+다른 일반적인 형식으로는 일반 텍스트(plain text), HTML, XML 등이 있습니다.
+대부분의 커맨드 라인 도구는 한두 가지 형식만 지원하므로, 데이터를 한 형식에서 다른 형식으로 변환할 수 있는 능력을 갖추는 것이 중요합니다.</p>
+<p>데이터가 원하는 형식이 되었더라도 결측치(missing values), 불일치(inconsistencies), 이상한 문자, 또는 불필요한 부분과 같은 문제가 여전히 남아 있을 수 있습니다.
+필터를 적용하고, 값을 바꾸고, 여러 파일을 결합함으로써 이를 해결할 수 있습니다.
+커맨드 라인은 이러한 종류의 변환에 특히 잘 어울립니다. 사용 가능한 전문 도구가 많고, 그중 대부분은 대량의 데이터를 처리할 수 있기 때문입니다.
+이 장에서는 <code>grep</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Meyering, &lt;em&gt;grep – Print Lines That Match Patterns&lt;/em&gt;.&lt;/p&gt;"><sup>61</sup></a></span>과 <code>awk</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Mike D. Brennan and Thomas E. Dickey, &lt;em&gt;awk – Pattern Scanning and Text Processing Language&lt;/em&gt;, version 1.3.4, 2019, &lt;a href="https://invisible-island.net/mawk" role="doc-biblioref"&gt;https://invisible-island.net/mawk&lt;/a&gt;.&lt;/p&gt;'><sup>62</sup></a></span> 같은 고전적인 도구부터 <code>jq</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Dolan, &lt;em&gt;jq – Command-Line JSON Processor&lt;/em&gt;.&lt;/p&gt;"><sup>63</sup></a></span>와 <code>pup</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Chiang, &lt;em&gt;pup – Parsing Html at the Command Line&lt;/em&gt;.&lt;/p&gt;"><sup>64</sup></a></span> 같은 최신 도구까지 다룰 것입니다.</p>
+<p>가끔은 동일한 커맨드 라인 도구를 사용하여 여러 작업을 수행하거나, 여러 도구가 사용하여 동일한 작업을 수행할 수도 있습니다.
+이 장은 커맨드 라인 도구 자체를 깊게 파고들기보다는 문제나 레시피(recipe)에 초점을 맞춘 요리책(cookbook)과 같은 구조로 되어 있습니다.</p>
+<div id="개요-2" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">5.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> 개요<a class="anchor" aria-label="anchor" href="#%EA%B0%9C%EC%9A%94-2"><i class="fas fa-link"></i></a>
 </h2>
 <!-- #TODO: SHOULD: Review the list below once the chapter is complete -->
-<p>In this chapter, you’ll learn how to:</p>
+<p>이 장에서 여러분은 다음 내용을 배우게 됩니다.</p>
 <ul>
-<li>Convert data from one format to another</li>
-<li>Apply SQL queries directly to CSV</li>
-<li>Filter lines</li>
-<li>Extract and replace values</li>
-<li>Split, merge, and extract columns</li>
-<li>Combine multiple files</li>
+<li>데이터를 한 형식에서 다른 형식으로 변환하기</li>
+<li>CSV에 직접 SQL 쿼리 적용하기</li>
+<li>행(line) 필터링하기</li>
+<li>값 추출 및 교체하기</li>
+<li>열(column) 분할, 병합, 추출하기</li>
+<li>여러 파일 결합하기</li>
 </ul>
-<p>This chapter starts with the following files:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">cd</span> <span style="text-decoration: underline">/data/ch05</span>
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">l</span>
-total 200K
--rw-r--r-- 1 dst dst 164K Dec 14 11:47 alice.txt
--rw-r--r-- 1 dst dst 4.5K Dec 14 11:47 iris.csv
--rw-r--r-- 1 dst dst  179 Dec 14 11:47 irismeta.csv
--rw-r--r-- 1 dst dst  160 Dec 14 11:47 names-comma.csv
--rw-r--r-- 1 dst dst  129 Dec 14 11:47 names.csv
--rw-r--r-- 1 dst dst 7.8K Dec 14 11:47 tips.csv
--rw-r--r-- 1 dst dst 5.1K Dec 14 11:47 users.json</pre>
-<p>The instructions to get these files are in <a href="chapter-2-getting-started.html#chapter-2-getting-started">Chapter 2</a>.
-Any other files are either downloaded or generated using command-line tools.</p>
-<p>Before I dive into the actual transformations, I’d like to demonstrate their ubiquity when working at the command line.</p>
+<p>이 장은 다음 파일들로 시작합니다.</p>
+<pre>cd /data/ch05
+l</pre>
+<p>이 파일들을 얻는 방법은 <a href="chapter-2-getting-started.html#chapter-2-getting-started">2장</a>에 설명되어 있습니다.
+그 외의 파일들은 커맨드 라인 도구를 사용하여 다운로드하거나 생성한 것들입니다.</p>
+<p>실제 변환 작업을 살펴보기 전에, 커맨드 라인에서 작업할 때 이러한 변환이 얼마나 도처에 널려 있는지 보여드리고 싶습니다.</p>
 </div>
-<div id="transformations-transformations-everywhere" class="section level2" number="5.2">
+<div id="변환-어디에나-있는-변환들" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">5.2</span> Transformations, Transformations Everywhere<a class="anchor" aria-label="anchor" href="#transformations-transformations-everywhere"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> 변환, 어디에나 있는 변환들<a class="anchor" aria-label="anchor" href="#%EB%B3%80%ED%99%98-%EC%96%B4%EB%94%94%EC%97%90%EB%82%98-%EC%9E%88%EB%8A%94-%EB%B3%80%ED%99%98%EB%93%A4"><i class="fas fa-link"></i></a>
 </h2>
-<p>In <a href="chapter-1-introduction.html#chapter-1-introduction">Chapter 1</a> I mentioned that, in practice, the steps of the OSEMN model will rarely be followed linearly.
-In this vein, although scrubbing is the second step of the OSEMN model, I want you to know that it’s not <em>just</em> the obtained data that needs scrubbing.
-The transformations that you’ll learn in this chapter can be useful at any part of your pipeline and at any step of the OSEMN model.
-Generally, if one command line tool generates output that can be used immediately by the next tool, you can chain the two tools together by using the pipe operator (<code>|</code>).
-Otherwise, a transformation needs to be applied to the data first by inserting an intermediate tool into the pipeline.</p>
-<p>Let me walk you through an example to make this more concrete.
-Imagine that you have obtained the first 100 items of a <em>fizzbuzz</em> sequence (cf. <a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">Chapter 4</a>) and that you’d like to visualize how often the words <em>fizz</em>, <em>buzz</em>, and <em>fizzbuzz</em> appear using a bar chart.
-Don’t worry if this example uses tools that you might not be familiar with yet, they’ll all be covered in more detail later.</p>
-<p>First you obtain the data by generating the sequence and write it to <em>fb.seq</em>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 100 |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">/data/ch04/fizzbuzz.py</span> | <span class="callout">➊</span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">tee</span> fb.seq | <span style="color: #5f8700">trim</span>
-1
-2
-fizz
-4
-buzz
-fizz
-7
-8
-fizz
-buzz
-… with 90 more lines</pre>
-<p><span class="callout">➊</span> The custom tool <code>fizzbuzz.py</code> comes from <a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">Chapter 4</a>.</p>
-<p>Then you use <code>grep</code> to keep the lines that match the pattern <em>fizz</em> or <em>buzz</em> and count how often each word appears using <code>sort</code> and <code>uniq</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-uniq" role="doc-biblioref"&gt;Stallman and MacKenzie, &lt;em&gt;&lt;span class="nocase"&gt;uniq&lt;/span&gt; – Report or Omit Repeated Lines&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>64</sup></a></span>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">grep</span> -E <span style="color: #af8700">"fizz|buzz"</span> <span style="text-decoration: underline">fb.seq</span> | <span style="font-weight: bold"></span><span style="font-weight: bold; color: #262626"><span class="callout">➊</span></span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sort</span> | <span style="color: #5f8700">uniq</span> -c | <span style="color: #5f8700">sort</span> -nr <span style="color: #af8700">&gt;</span> fb.cnt <span style="font-weight: bold"></span><span style="font-weight: bold; color: #262626"><span class="callout">➋</span></span>
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">bat</span> -A <span style="text-decoration: underline">fb.cnt</span>
-───────┬────────────────────────────────────────────────────────────────────────
-       │ File: <span style="font-weight: bold">fb.cnt</span>
-───────┼────────────────────────────────────────────────────────────────────────
-   1   │ <span style="color: #00afaf">·····</span>27<span style="color: #00afaf">·</span>fizz<span style="color: #af005f">␊</span>
-   2   │ <span style="color: #00afaf">·····</span>14<span style="color: #00afaf">·</span>buzz<span style="color: #af005f">␊</span>
-   3   │ <span style="color: #00afaf">······</span>6<span style="color: #00afaf">·</span>fizzbuzz<span style="color: #af005f">␊</span>
-───────┴────────────────────────────────────────────────────────────────────────</pre>
-<p><span class="callout">➊</span> This regular expression also matches <em>fizzbuzz</em>.
-<br><span class="callout">➋</span> Using <code>sort</code> and <code>uniq</code> this way is a common way to count lines and sort them in descending order. It’s the <code>-c</code> option that adds the counts.</p>
-<p>Note that <code>sort</code> is used twice: first because <code>uniq</code> assumes its input data to be sorted and second to sort the counts numerically.
-In a way, this is an intermediate transformation, albeit a subtle one.</p>
-<p>The next step would be to visualize the counts using <code>rush</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-rush" role="doc-biblioref"&gt;Janssens, &lt;em&gt;&lt;span class="nocase"&gt;rush&lt;/span&gt; – &lt;span&gt;R&lt;/span&gt; One-Liners from the Shell&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>65</sup></a></span>.
-However, since <code>rush</code> expects the input data to be in CSV format, this requires a less subtle transformation first.
-<code>awk</code> can add a header, flip the two fields, and insert commas in a single incantation:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">fb.cnt</span> <span style="color: #5f8700">awk</span> <span style="color: #af8700">'BEGIN { print "value,count" } { print $2","$1 }'</span> <span style="color: #af8700">&gt;</span> fb.csv
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">bat</span> <span style="text-decoration: underline">fb.csv</span>
-───────┬────────────────────────────────────────────────────────────────────────
-       │ File: <span style="font-weight: bold">fb.csv</span>
-───────┼────────────────────────────────────────────────────────────────────────
-   1   │ <span style="color: #af005f">value,count
-</span>   2   │ <span style="color: #af005f">fizz,</span><span style="color: #af8700">27</span>
-   3   │ <span style="color: #af005f">buzz,</span><span style="color: #af8700">14</span>
-   4   │ <span style="color: #af005f">fizzbuzz,</span><span style="color: #af8700">6</span>
-───────┴────────────────────────────────────────────────────────────────────────
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">csvlook</span> <span style="text-decoration: underline">fb.csv</span>
-│ value    │ count │
-├──────────┼───────┤
-│ fizz     │    27 │
-│ buzz     │    14 │
-│ fizzbuzz │     6 │</pre>
-<p>Now you’re ready to use <code>rush</code> to create a bar chart.
-See Figure <a href="chapter-5-scrubbing-data.html#fig:fb-image">5.1</a> for the result.
-(I’ll cover this syntax of <code>rush</code> in detail in <a href="chapter-7-exploring-data.html#chapter-7-exploring-data">Chapter 7</a>.)</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">rush</span> plot -x value -y count --geom col --height 2 <span style="text-decoration: underline">fb.csv</span> <span style="color: #af8700">&gt;</span> fb.png
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">display</span> <span style="text-decoration: underline">fb.png</span></pre>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fb-image"></span>
-<img src="images/fb.png" alt="Counting fizz, buzz, and fizzbuzz" width="90%"><p class="caption">
-Figure 5.1: Counting fizz, buzz, and fizzbuzz
-</p>
+<p><a href="chapter-1-introduction.html#chapter-1-introduction">1장</a>에서 실제 데이터 과학의 OSEMN 모델 단계들이 선형적으로만 따라가지는 않는다고 언급했습니다.
+이러한 맥락에서, 정제(scrubbing)가 OSEMN 모델의 두 번째 단계이긴 하지만, 단지 획득한 데이터만이 정제가 필요한 것은 아니라는 점을 알아두셨으면 합니다.
+이 장에서 배울 변환 기술들은 파이프라인의 어느 부분에서든, 그리고 OSEMN 모델의 어느 단계에서든 유용할 수 있습니다.
+일반적으로 한 커맨드 라인 도구가 다음 도구에서 즉시 사용 가능한 출력을 생성한다면, 파이프 연산자(<code>|</code>)를 사용하여 두 도구를 연결할 수 있습니다.
+그렇지 않다면, 파이프라인 중간에 변환 도구를 삽입하여 데이터에 변환을 먼저 적용해야 합니다.</p>
+<p>이를 더 구체적으로 만들기 위해 예시를 하나 들어보겠습니다.
+여러분에게 <em>fizzbuzz</em> 시퀀스의 처음 100개 항목이 있고(<a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">4장</a> 참조), <em>fizz</em>, <em>buzz</em>, <em>fizzbuzz</em>라는 단어가 얼마나 자주 나타나는지 막대 그래프로 시각화하고 싶다고 가정해 봅시다.
+아직 익숙하지 않은 도구가 사용되더라도 걱정하지 마세요. 나중에 모두 자세히 다룰 것입니다.</p>
+<p>먼저 시퀀스를 생성하여 데이터를 얻고 이를 <em>fb.seq</em>에 씁니다.</p>
+<pre>seq 100 |
+/data/ch04/fizzbuzz.py |
+tee fb.seq | trim</pre>
+<p><span class="callout">➊</span> 사용자 정의 도구인 <code>fizzbuzz.py</code>는 <a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">4장</a>에서 가져온 것입니다.</p>
+<p>그런 다음 <code>grep</code>을 사용하여 <em>fizz</em> 또는 <em>buzz</em> 패턴과 일치하는 행만 남기고, <code>sort</code>와 <code>uniq</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Stallman and MacKenzie, &lt;em&gt;uniq – Report or Omit Repeated Lines&lt;/em&gt;.&lt;/p&gt;"><sup>65</sup></a></span>를 사용하여 각 단어의 빈도를 셉니다.</p>
+<pre>grep -E "fizz|buzz" fb.seq | <span class="callout">➊</span>
+sort | uniq -c | sort -nr &gt; fb.cnt <span class="callout">➋</span>
+bat -A fb.cnt</pre>
+<p><span class="callout">➊</span> 이 정규 표현식은 <em>fizzbuzz</em>와도 일치합니다.
+<br><span class="callout">➋</span> <code>sort</code>와 <code>uniq</code>를 이런 식으로 사용하는 것은 행의 개수를 세고 내림차순으로 정렬하는 일반적인 방법입니다. 개수를 추가하는 것은 <code>-c</code> 옵션입니다.</p>
+<p><code>sort</code>가 두 번 사용된 점에 주목하세요. 첫 번째는 <code>uniq</code>가 정렬된 데이터를 입력으로 기대하기 때문이고, 두 번째는 개수를 숫자순으로 정렬하기 위함입니다.
+어떤 의미에서 이는 미묘하긴 하지만 중간 변환 과정입니다.</p>
+<p>다음 단계는 <code>rush</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Janssens, &lt;em&gt;rush – R One-Liners from the Shell&lt;/em&gt;.&lt;/p&gt;"><sup>66</sup></a></span>를 사용하여 빈도를 시각화하는 것입니다.
+하지만 <code>rush</code>는 입력 데이터가 CSV 형식일 것으로 예상하므로, 그전에 명확한 변환 과정이 필요합니다.
+<code>awk</code>를 사용하면 헤더를 추가하고 두 필드의 순서를 바꾸고 쉼표를 삽입하는 작업을 한 번에 수행할 수 있습니다.</p>
+<pre>&lt; fb.cnt awk 'BEGIN { print "value,count" } { print $2","$1 }' &gt; fb.csv
+bat fb.csv
+csvlook fb.csv</pre>
+<p>이제 <code>rush</code>를 사용하여 막대 그래프를 만들 준비가 되었습니다.
+결과는 Figure <a href="#fig:fb-image"><strong>??</strong></a>를 확인하세요.
+(<code>rush</code>의 이 구문은 <a href="chapter-7-exploring-data.html#chapter-7-exploring-data">7장</a>에서 자세히 다룰 것입니다.)</p>
+<pre>rush plot -x value -y count --geom col --height 2 fb.csv &gt; fb.png
+display fb.png</pre>
+<p>이 예제는 약간 인위적이긴 하지만 커맨드 라인에서 작업할 때 흔히 나타나는 패턴을 보여줍니다.
+데이터를 획득하거나 시각화하거나 모델을 학습시키는 등의 핵심 도구들은 파이프라인으로 연결되기 위해 중간 변환을 필요로 하는 경우가 많습니다.
+그런 의미에서 파이프라인을 작성하는 것은 핵심 조각들이 서로 맞물리기 위해 도우미 조각들을 필요로 하는 퍼즐을 맞추는 것과 같습니다.</p>
+<p>이제 데이터 정제의 중요성을 확인했으니, 실제 변환 기술들에 대해 배울 준비가 되었습니다.</p>
 </div>
-<p>Although this example is a bit contrived, it reveals a pattern that is common when working at the command line.
-The key tools, such as the ones that obtain data, create a visualization, or train a model, often require intermediate transformations in order to be chained into a pipeline.
-In that sense, writing a pipeline is like solving a puzzle, where the key pieces often require helper pieces to fit.</p>
-<p>Now that you’ve seen the importance of scrubbing data, you’re ready to learn about some actual transformations.</p>
-</div>
-<div id="plain-text" class="section level2" number="5.3">
+<div id="일반-텍스트-plain-text" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">5.3</span> Plain Text<a class="anchor" aria-label="anchor" href="#plain-text"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> 일반 텍스트 (Plain Text)<a class="anchor" aria-label="anchor" href="#%EC%9D%BC%EB%B0%98-%ED%85%8D%EC%8A%A4%ED%8A%B8-plain-text"><i class="fas fa-link"></i></a>
 </h2>
-<p>Formally speaking, <em>plain text</em> refers to a sequence of human-readable characters and optionally, some specific types of control characters such as tabs and newlines<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-plaintext" role="doc-biblioref"&gt;The Linux Information Project, &lt;span&gt;“Plain Text Definition,”&lt;/span&gt; 2007, &lt;/a&gt;&lt;a href="http://www.linfo.org/plain_text.html" role="doc-biblioref"&gt;http://www.linfo.org/plain_text.html&lt;/a&gt;.&lt;/p&gt;'><sup>66</sup></a></span>.
-Examples are logs, e-books, emails, and source code.
-Plain text has many benefits over binary data<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-pragmaticprogrammer" role="doc-biblioref"&gt;Andrew Hunt and David Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt; (Addison-Wesley, 1999)&lt;/a&gt;.&lt;/p&gt;'><sup>67</sup></a></span>, including:</p>
+<p>엄밀히 말하면, <em>일반 텍스트</em>는 사람이 읽을 수 있는 문자들의 시퀀스와 선택적으로 탭이나 줄바꿈 같은 특정 유형의 제어 문자들을 의미합니다<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The Linux Information Project, “Plain Text Definition,” 2007, &lt;a href="http://www.linfo.org/plain_text.html" role="doc-biblioref"&gt;http://www.linfo.org/plain_text.html&lt;/a&gt;.&lt;/p&gt;'><sup>67</sup></a></span>.
+로그, 전자책, 이메일, 소스 코드 등이 그 예입니다.
+일반 텍스트는 바이너리 데이터에 비해 다음과 같은 많은 이점을 가집니다<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Andrew Hunt and David Thomas, &lt;em&gt;The Pragmatic Programmer&lt;/em&gt; (Addison-Wesley, 1999).&lt;/p&gt;"><sup>68</sup></a></span>.</p>
 <ul>
-<li>It can be opened, edited, and saved using any text editor</li>
-<li>It’s self-describing and independent of the application that created it</li>
-<li>It will outlive other forms of data, because no additional knowledge or applications are required to process it</li>
+<li>어떤 텍스트 에디터로도 열고 수정하고 저장할 수 있습니다.</li>
+<li>자기 기술적(self-describing)이며 이를 생성한 애플리케이션으로부터 독립적입니다.</li>
+<li>데이터를 처리하는 데 추가적인 지식이나 애플리케이션이 필요하지 않으므로 다른 데이터 형식보다 더 오래 살아남을 것입니다.</li>
 </ul>
-<p>But most importantly, the Unix philosophy considers plain text to be the universal interface between command-line tools<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-raymond2003art" role="doc-biblioref"&gt;Raymond, &lt;em&gt;The Art of Unix Programming&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>68</sup></a></span>.
-Meaning, most tools accept plain text as input and produce plain text as output.</p>
-<p>That’s reason enough for me to start with plain text.
-The other formats that I discuss in this chapter, CSV, JSON, XML, and HTML are indeed also plain text.
-For now, I assume that the plain text has no clear tabular structure (like CSV does) or nested structure (like JSON, XML, and HTML do).
-Later in this chapter, I’ll introduce some tools that are specifically designed for working with these formats.</p>
+<p>하지만 가장 중요한 점은, 유닉스 철학이 일반 텍스트를 커맨드 라인 도구 간의 보편적인 인터페이스로 간주한다는 점입니다<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Raymond, &lt;em&gt;The Art of Unix Programming&lt;/em&gt;.&lt;/p&gt;"><sup>69</sup></a></span>.
+즉, 대부분의 도구는 일반 텍스트를 입력으로 받고 일반 텍스트를 출력으로 내보냅니다.</p>
+<p>이것만으로도 제가 일반 텍스트부터 시작할 이유는 충분합니다.
+이 장에서 다룰 다른 형식들인 CSV, JSON, XML, HTML 또한 사실 일반 텍스트입니다.
+우선은 일반 텍스트가 (CSV처럼) 명확한 표 구조나 (JSON, XML, HTML처럼) 중첩된 구조를 가지고 있지 않다고 가정하겠습니다.
+이 장의 뒷부분에서 이러한 형식들을 다루기 위해 특별히 설계된 도구들을 소개하겠습니다.</p>
 <!-- #TODO: SHOULD: What to do with this part? -->
 <!-- Although the tools in this section can also be applied to these other formats (because they're still text), -->
 <!-- keep in mind that the tools treat the data as plain text, and don't interpret the tabular or nested structure. -->
 <!-- Sometimes you can get away with this,  -->
-<div id="filtering-lines" class="section level3" number="5.3.1">
+<div id="행-필터링하기" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">5.3.1</span> Filtering Lines<a class="anchor" aria-label="anchor" href="#filtering-lines"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> 행 필터링하기<a class="anchor" aria-label="anchor" href="#%ED%96%89-%ED%95%84%ED%84%B0%EB%A7%81%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
-<p>The first scrubbing operation is filtering lines.
-This means that from the input data, each line will be evaluated whether it will be kept or discarded.</p>
-<div id="based-on-location" class="section level4" number="5.3.1.1">
+<p>첫 번째 정제 작업은 행을 필터링하는 것입니다.
+이는 입력 데이터에서 각 행을 유지할지 버릴지 평가하는 것을 의미합니다.</p>
+<div id="위치에-기반한-필터링" class="section level4" number="5.3.1.1">
 <h4>
-<span class="header-section-number">5.3.1.1</span> Based on Location<a class="anchor" aria-label="anchor" href="#based-on-location"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1.1</span> 위치에 기반한 필터링<a class="anchor" aria-label="anchor" href="#%EC%9C%84%EC%B9%98%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%ED%95%84%ED%84%B0%EB%A7%81"><i class="fas fa-link"></i></a>
 </h4>
-<p>The most straightforward way to filter lines is based on their location.
-This may be useful when you want to inspect, say, the top 10 lines of a file, or when you extract a specific row from the output of another command-line tool.
-To illustrate how to filter based on location, let’s create a dummy file that contains 10 lines:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> -f <span style="color: #af8700">"Line %g"</span> 10 | <span style="color: #5f8700">tee</span> lines
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
-Line 7
-Line 8
-Line 9
-Line 10</pre>
-<p>You can print the first 3 lines using either <code>head</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-head" role="doc-biblioref"&gt;MacKenzie and Meyering, &lt;em&gt;&lt;span class="nocase"&gt;head&lt;/span&gt; – Output the First Part of Files&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>69</sup></a></span>, <code>sed</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-sed" role="doc-biblioref"&gt;Jay Fenlason et al., &lt;em&gt;&lt;span class="nocase"&gt;sed&lt;/span&gt; – Stream Editor for Filtering and Transforming Text&lt;/em&gt;, version 4.7, 2018, &lt;/a&gt;&lt;a href="https://www.gnu.org/software/sed" role="doc-biblioref"&gt;https://www.gnu.org/software/sed&lt;/a&gt;.&lt;/p&gt;'><sup>70</sup></a></span>, or <code>awk</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">head</span> -n 3
-Line 1
-Line 2
-Line 3
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'1,3p'</span>
-Line 1
-Line 2
-Line 3
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">awk</span> <span style="color: #af8700">'NR &lt;= 3'</span> <span class="callout">➊</span>
-Line 1
-Line 2
-Line 3</pre>
-<p><span class="callout">➊</span> In <code>awk</code>, <em>NR</em> refers to the total number of input records seen so far.</p>
-<p>Similarly, you can print the last 3 lines using <code>tail</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-tail" role="doc-biblioref"&gt;Paul Rubin et al., &lt;em&gt;&lt;span class="nocase"&gt;tail&lt;/span&gt; – Output the Last Part of Files&lt;/em&gt;, version 8.30, 2019, &lt;/a&gt;&lt;a href="https://www.gnu.org/software/coreutils" role="doc-biblioref"&gt;https://www.gnu.org/software/coreutils&lt;/a&gt;.&lt;/p&gt;'><sup>71</sup></a></span>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">tail</span> -n 3
-Line 8
-Line 9
-Line 10</pre>
-<p>You can also you use <code>sed</code> and <code>awk</code> for this, but <code>tail</code> is much faster.
-Removing the first 3 lines goes as follows:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">tail</span> -n +4
-Line 4
-Line 5
-Line 6
-Line 7
-Line 8
-Line 9
-Line 10
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> <span style="color: #af8700">'1,3d'
-</span>Line 4
-Line 5
-Line 6
-Line 7
-Line 8
-Line 9
-Line 10
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'1,3!p'</span>
-Line 4
-Line 5
-Line 6
-Line 7
-Line 8
-Line 9
-Line 10</pre>
-<p>Notice that with <code>tail</code> you have to specify the number of lines plus one.
-Think of it as the line from which you want to start printing.
-Removing the last 3 lines can be done with <code>head</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">head</span> -n -3
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
-Line 7</pre>
-<p>You can print specific lines using a either <code>sed</code>, <code>awk</code>, or a combination of <code>head</code> and <code>tail</code>.
-Here I print lines 4, 5, and 6:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'4,6p'</span>
-Line 4
-Line 5
-Line 6
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">awk</span> <span style="color: #af8700">'(NR&gt;=4) &amp;&amp; (NR&lt;=6)'</span>
-Line 4
-Line 5
-Line 6
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">head</span> -n 6 | <span style="color: #5f8700">tail</span> -n 3
-Line 4
-Line 5
-Line 6</pre>
-<p>You can print odd lines with <code>sed</code> by specifying a start and a step, or with <code>awk</code> by using the modulo operator:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'1~2p'</span>
-Line 1
-Line 3
-Line 5
-Line 7
-Line 9
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">awk</span> <span style="color: #af8700">'NR%2'
-</span>Line 1
-Line 3
-Line 5
-Line 7
-Line 9</pre>
-<p>Printing even lines works in a similar manner:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'0~2p'</span>
-Line 2
-Line 4
-Line 6
-Line 8
-Line 10
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">lines</span> <span style="color: #5f8700">awk</span> <span style="color: #af8700">'(NR+1)%2'</span>
-Line 2
-Line 4
-Line 6
-Line 8
-Line 10</pre>
+<p>행을 필터링하는 가장 간단한 방법은 위치에 기반하는 것입니다.
+이는 파일의 첫 10행을 검사하고 싶거나, 다른 커맨드 라인 도구의 출력에서 특정 행을 추출하고 싶을 때 유용할 수 있습니다.
+위치 기반 필터링을 설명하기 위해 10개의 행을 가진 더미 파일을 만들어 봅시다.</p>
+<pre>seq -f "Line %g" 10 | tee lines</pre>
+<p><code>head</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;MacKenzie and Meyering, &lt;em&gt;head – Output the First Part of Files&lt;/em&gt;.&lt;/p&gt;"><sup>70</sup></a></span>, <code>sed</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jay Fenlason et al., &lt;em&gt;sed – Stream Editor for Filtering and Transforming Text&lt;/em&gt;, version 4.7, 2018, &lt;a href="https://www.gnu.org/software/sed" role="doc-biblioref"&gt;https://www.gnu.org/software/sed&lt;/a&gt;.&lt;/p&gt;'><sup>71</sup></a></span>, 또는 <code>awk</code>를 사용하여 처음 3행을 인쇄할 수 있습니다.</p>
+<pre>&lt; lines head -n 3
+&lt; lines sed -n '1,3p'
+&lt; lines awk 'NR &lt;= 3'</pre>
+<p><span class="callout">➊</span> <code>awk</code>에서 <em>NR</em>은 지금까지 확인한 총 입력 레코드 수를 나타냅니다.</p>
+<p>마찬가지로 <code>tail</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Paul Rubin et al., &lt;em&gt;tail – Output the Last Part of Files&lt;/em&gt;, version 8.30, 2019, &lt;a href="https://www.gnu.org/software/coreutils" role="doc-biblioref"&gt;https://www.gnu.org/software/coreutils&lt;/a&gt;.&lt;/p&gt;'><sup>72</sup></a></span>을 사용하여 마지막 3행을 인쇄할 수 있습니다.</p>
+<pre>&lt; lines tail -n 3</pre>
+<p>이 작업에도 <code>sed</code>나 <code>awk</code>를 사용할 수 있지만 <code>tail</code>이 훨씬 빠릅니다.
+처음 3행을 제거하는 방법은 다음과 같습니다.</p>
+<pre>&lt; lines tail -n +4
+&lt; lines sed '1,3d'
+&lt; lines sed -n '1,3!p'</pre>
+<p><code>tail</code>에서는 출력하고 싶은 행 번호에 1을 더해서 지정해야 한다는 점에 유의하세요.
+인쇄를 시작하고 싶은 행이라고 생각하면 됩니다.
+<code>head</code>를 사용하여 마지막 3행을 지울 수도 있습니다.</p>
+<pre>&lt; lines head -n -3</pre>
+<p><code>sed</code>, <code>awk</code>, 또는 <code>head</code>와 <code>tail</code>의 조합을 사용하여 특정 행들을 인쇄할 수 있습니다.
+여기서는 4, 5, 6행을 인쇄합니다.</p>
+<pre>&lt; lines sed -n '4,6p'
+&lt; lines awk '(NR&gt;=4) &amp;&amp; (NR&lt;=6)'
+&lt; lines head -n 6 | tail -n 3</pre>
+<p><code>sed</code>에서 시작 지점과 단계를 지정하거나 <code>awk</code>에서 머듈로(modulo) 연산자를 사용하여 홀수 행만 인쇄할 수 있습니다.</p>
+<pre>&lt; lines sed -n '1~2p'
+&lt; lines awk 'NR%2'</pre>
+<p>짝수 행 인쇄도 비슷한 방식으로 작동합니다.</p>
+<pre>&lt; lines sed -n '0~2p'
+&lt; lines awk '(NR+1)%2'</pre>
 <!-- #TODO: SHOULD: Mention somewhere in the book that Linux doesn't care about file extensions -->
 
 <div class="rmdnote">
-Many of these examples start with the smaller-than sign (<code>&lt;</code>) followed by the filename.
-I do this because this allows me to read the pipeline from left to right.
-Please know that this is my own preference.
-You can also use <code>cat</code> to pipe the contents of a file.
-Also, many command-line tools also accept the filename as an argument.
+이 예제들의 상당수는 작음 기호(<code>&lt;</code>) 뒤에 파일 이름을 붙여서 시작합니다.
+이렇게 하면 파이프라인을 왼쪽에서 오른쪽으로 읽을 수 있기 때문입니다.
+이는 제 개인적인 선호임을 알아두세요.
+파일의 내용을 파이프로 넘기기 위해 <code>cat</code>을 사용할 수도 있습니다.
+또한, 많은 커맨드 라인 도구는 파일 이름을 인자로 직접 받기도 합니다.
 </div>
 </div>
-<div id="based-on-a-pattern" class="section level4" number="5.3.1.2">
+<div id="패턴에-기반한-필터링" class="section level4" number="5.3.1.2">
 <h4>
-<span class="header-section-number">5.3.1.2</span> Based on a Pattern<a class="anchor" aria-label="anchor" href="#based-on-a-pattern"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1.2</span> 패턴에 기반한 필터링<a class="anchor" aria-label="anchor" href="#%ED%8C%A8%ED%84%B4%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%ED%95%84%ED%84%B0%EB%A7%81"><i class="fas fa-link"></i></a>
 </h4>
-<p>Sometimes you want to keep or discard lines based on their contents.
-With <code>grep</code>, the canonical command-line tool for filtering lines, you can print every line that matches a certain pattern or regular expression.
-For example, to extract all the chapter headings from <em>Alice’s Adventures in Wonderland</em>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">grep</span> -i chapter <span class="callout">➊</span>
-CHAPTER I. Down the Rabbit-Hole
-CHAPTER II. The Pool of Tears
-CHAPTER III. A Caucus-Race and a Long Tale
-CHAPTER IV. The Rabbit Sends in a Little Bill
-CHAPTER V. Advice from a Caterpillar
-CHAPTER VI. Pig and Pepper
-CHAPTER VII. A Mad Tea-Party
-CHAPTER VIII. The Queen's Croquet-Ground
-CHAPTER IX. The Mock Turtle's Story
-CHAPTER X. The Lobster Quadrille
-CHAPTER XI. Who Stole the Tarts?
-CHAPTER XII. Alice's Evidence</pre>
-<p><span class="callout">➊</span> The <code>-i</code> options specifies that the matching should be case-insensitive.</p>
-<p>You can also specify a regular expression.
-For example, if you only wanted to print the headings that start with <em>The</em>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">grep</span> -E <span style="color: #af8700">'^CHAPTER (.*)\. The'</span>
-CHAPTER II. The Pool of Tears
-CHAPTER IV. The Rabbit Sends in a Little Bill
-CHAPTER VIII. The Queen's Croquet-Ground
-CHAPTER IX. The Mock Turtle's Story
-CHAPTER X. The Lobster Quadrille</pre>
-<p>Note that you have to specify the <code>-E</code> option in order to enable regular expressions.
-Otherwise, <code>grep</code> interprets the pattern as a literal string which most likely results in no matches at all:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">grep</span> <span style="color: #af8700">'^CHAPTER (.*)\. The'</span></pre>
-<p>With the <code>-v</code> option you invert the matches, so that <code>grep</code> prints the lines which <em>don’t</em> match the pattern.
-The regular expression below matches lines that contain white space, only.
-So with the inverse, and using <code>wc -l</code>, you can count the number of non-empty lines:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">grep</span> -Ev <span style="color: #af8700">'^\s$'</span> | <span style="color: #5f8700">wc</span> -l
-2790</pre>
+<p>가끔은 내용에 따라 행을 유지하거나 버리고 싶을 때가 있습니다.
+행을 필터링하는 표준적인 커맨드 라인 도구인 <code>grep</code>을 사용하면 특정 패턴이나 정규 표현식과 일치하는 모든 행을 인쇄할 수 있습니다.
+예를 들어, <em>이상한 나라의 앨리스</em>에서 모든 장(chapter)의 제목을 추출해 보겠습니다.</p>
+<pre>&lt; alice.txt grep -i chapter</pre>
+<p><span class="callout">➊</span> <code>-i</code> 옵션은 대소문자를 구분하지 않고 매칭하도록 지정합니다.</p>
+<p>정규 표현식을 지정할 수도 있습니다.
+예를 들어, <em>The</em>로 시작하는 제목만 인쇄하고 싶다면 다음과 같이 합니다.</p>
+<pre>&lt; alice.txt grep -E '^CHAPTER (.*)\. The'</pre>
+<p>정규 표현션을 활성화하려면 <code>-E</code> 옵션을 지정해야 한다는 점에 유의하세요.
+그렇지 않으면 <code>grep</code>은 패턴을 리터럴 문자열로 해석하여 검색 결과가 나오지 않을 가능성이 큽니다.</p>
+<pre>&lt; alice.txt grep '^CHAPTER (.*)\. The'</pre>
+<p><code>-v</code> 옵션을 사용하면 일치 항목을 반전시켜서 패턴과 일치하지 <em>않는</em> 행들을 인쇄합니다.
+아래의 정규 표현식은 공백 문자만 포함된 행과 일치합니다.
+따라서 이를 반전 시키고 <code>wc -l</code>을 사용하면 비어있지 않은 행의 개수를 셀 수 있습니다.</p>
+<pre>&lt; alice.txt grep -Ev '^\s$' | wc -l</pre>
 </div>
-<div id="based-on-randomness" class="section level4" number="5.3.1.3">
+<div id="무작위성에-기반한-필터링" class="section level4" number="5.3.1.3">
 <h4>
-<span class="header-section-number">5.3.1.3</span> Based on Randomness<a class="anchor" aria-label="anchor" href="#based-on-randomness"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1.3</span> 무작위성에 기반한 필터링<a class="anchor" aria-label="anchor" href="#%EB%AC%B4%EC%9E%91%EC%9C%84%EC%84%B1%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%ED%95%84%ED%84%B0%EB%A7%81"><i class="fas fa-link"></i></a>
 </h4>
-<p>When you’re in the process of formulating your data pipeline and you have a lot of data, then debugging your pipeline can be cumbersome.
-In that case, generating a smaller sample from the data might be useful.
-This is where <code>sample</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-sample" role="doc-biblioref"&gt;Jeroen Janssens, &lt;em&gt;&lt;span class="nocase"&gt;sample&lt;/span&gt; – Filter Lines from Standard Input According to Some Probability, with a Given Delay, and for a Certain Duration&lt;/em&gt;, version 0.2.4, 2021, &lt;/a&gt;&lt;a href="https://github.com/jeroenjanssens/sample" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/sample&lt;/a&gt;.&lt;/p&gt;'><sup>72</sup></a></span> comes in handy.
-The main purpose of <code>sample</code> is to get a subset of the data by outputting only a certain percentage of the input on a line-by-line basis.</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> -f <span style="color: #af8700">"Line %g"</span> 1000 | <span style="color: #5f8700">sample</span> -r 1%
-Line 45
-Line 223
-Line 355
-Line 369
-Line 438
-Line 807
-Line 813</pre>
-<p>Here, every input line has a one percent chance of being printed.
-This percentage can also be specified as a fraction (namely <code>1/100</code>) or as a probability (namely <code>0.01</code>).</p>
-<p><code>sample</code> has two other purposes, which can be useful when you’re debugging your pipeline.
-First, it’s possible to add some delay to the output.
-This comes in handy when the input is a constant stream (for example, the Wikipedia stream we saw in <a href="chapter-3-obtaining-data.html#chapter-3-obtaining-data">Chapter 3</a>), and the data comes in too fast to see what’s going on.
-Secondly, you can put a timer on <code>sample</code>, so that you don’t have to kill the ongoing process manually.
-For example, to add a 1 second delay between each line being printed and to only run for 5 seconds, you would type:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> -f <span style="color: #af8700">"Line %g"</span> 1000 | <span style="color: #5f8700">sample</span> -r 1% -d 1000 -s 5 | <span style="color: #5f8700">ts</span> <span class="callout">➊</span>
-Dec 14 11:48:10 Line 58
-Dec 14 11:48:11 Line 60
-Dec 14 11:48:12 Line 230
-Dec 14 11:48:13 Line 250
-Dec 14 11:48:14 Line 785
-Dec 14 11:48:15 Line 786</pre>
-<p><span class="callout">➊</span> The tool <code>ts</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-ts" role="doc-biblioref"&gt;Joey Hess, &lt;em&gt;&lt;span class="nocase"&gt;ts&lt;/span&gt; – Timestamp Input&lt;/em&gt;, version 0.65, 2021, &lt;/a&gt;&lt;a href="https://joeyh.name/code/moreutils" role="doc-biblioref"&gt;https://joeyh.name/code/moreutils&lt;/a&gt;.&lt;/p&gt;'><sup>73</sup></a></span> adds a timestamp in front of each line.</p>
-<p>In order to prevent unnecessary computation, try to put <code>sample</code> as early as possible in your pipeline.
-In fact, this argument holds for any command-line tool that reduces data, like <code>head</code> and <code>tail</code>.
-Once you’re confident your pipeline works, you take it out of the pipeline.</p>
+<p>데이터 파이프라인을 구성하는 과정에서 데이터 양이 아주 많다면 파이프라인을 디버깅하는 것이 번거로울 수 있습니다.
+그럴 때 데이터에서 더 작은 샘플을 생성하는 것이 유용할 수 있습니다.
+이때 <code>sample</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jeroen Janssens, &lt;em&gt;sample – Filter Lines from Standard Input According to Some Probability, with a Given Delay, and for a Certain Duration&lt;/em&gt;, version 0.2.4, 2021, &lt;a href="https://github.com/jeroenjanssens/sample" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/sample&lt;/a&gt;.&lt;/p&gt;'><sup>73</sup></a></span>이 요긴하게 쓰입니다.
+<code>sample</code>의 주요 목적은 입력 데이터에서 각 행마다 일정 비율만큼만 출력하여 데이터의 부분 집합을 얻는 것입니다.</p>
+<pre>seq -f "Line %g" 1000 | sample -r 1%</pre>
+<p>여기서는 모든 입력 행이 인쇄될 확률이 1%입니다.
+이 백분율은 분수(예: <code>1/100</code>)나 확률(예: <code>0.01</code>)로도 지정할 수 있습니다.</p>
+<p><code>sample</code>은 파이프라인을 디버깅할 때 유용한 두 가지 다른 용도가 있습니다.
+첫째, 출력에 약간의 지연을 추가할 수 있습니다.
+이는 입력이 지속적인 스트림일 때(예: <a href="chapter-3-obtaining-data.html#chapter-3-obtaining-data">3장</a>에서 본 위키피디아 스트림), 데이터가 너무 빨리 들어와서 무슨 일이 일어나고 있는지 확인하기 어려울 때 유용합니다.
+둘째, <code>sample</code>에 타이머를 설정하여 진행 중인 프로세스를 수동으로 종료할 필요가 없게 할 수 있습니다.
+예를 들어, 각 행이 인쇄될 때 1초의 지연을 추가하고 5초 동안만 실행하려면 다음과 같이 입력합니다.</p>
+<pre>seq -f "Line %g" 1000 | sample -r 1% -d 1000 -s 5 | ts</pre>
+<p><span class="callout">➊</span> <code>ts</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Joey Hess, &lt;em&gt;ts – Timestamp Input&lt;/em&gt;, version 0.65, 2021, &lt;a href="https://joeyh.name/code/moreutils" role="doc-biblioref"&gt;https://joeyh.name/code/moreutils&lt;/a&gt;.&lt;/p&gt;'><sup>74</sup></a></span> 도구는 각 행의 맨 앞에 타임스탬프를 추가합니다.</p>
+<p>불필요한 계산을 방지하기 위해 파이프라인에서 가능한 한 앞부분에 <code>sample</code>을 배치하도록 하세요.
+사실 이 논리는 <code>head</code>나 <code>tail</code>처럼 데이터를 줄여주는 모든 커맨드 라인 도구에 적용됩니다.
+파이프라인이 제대로 작동한다는 확신이 들면 파이프라인에서 이를 제거하면 됩니다.</p>
 </div>
 </div>
-<div id="extracting-values" class="section level3" number="5.3.2">
+<div id="값-추출하기" class="section level3" number="5.3.2">
 <h3>
-<span class="header-section-number">5.3.2</span> Extracting Values<a class="anchor" aria-label="anchor" href="#extracting-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2</span> 값 추출하기<a class="anchor" aria-label="anchor" href="#%EA%B0%92-%EC%B6%94%EC%B6%9C%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
-<p>To extract the actual chapter headings from our example earlier, you can take a simple approach by piping the output of <code>grep</code> to <code>cut</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">grep</span> -i chapter <span style="text-decoration: underline">alice.txt</span> | <span style="color: #5f8700">cut</span> -d <span style="color: #af8700">' '</span> -f 3-
-Down the Rabbit-Hole
-The Pool of Tears
-A Caucus-Race and a Long Tale
-The Rabbit Sends in a Little Bill
-Advice from a Caterpillar
-Pig and Pepper
-A Mad Tea-Party
-The Queen's Croquet-Ground
-The Mock Turtle's Story
-The Lobster Quadrille
-Who Stole the Tarts?
-Alice's Evidence</pre>
-<p>Here, each line that’s passed to <code>cut</code> is being split on spaces into fields, and then the third field to the last field is being printed.
-The total number of fields can be different per input line.
-With <code>sed</code> you can accomplish the same task in a much more complex manner:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">sed</span> -rn <span style="color: #af8700">'s/^CHAPTER ([IVXLCDM]{1,})\. (.*)$/\2/p'</span> <span style="text-decoration: underline">alice.txt</span> | <span style="color: #5f8700">trim</span> 3
-Down the Rabbit-Hole
-The Pool of Tears
-A Caucus-Race and a Long Tale
-… with 9 more lines</pre>
-<p>(Since the output is the same it’s trimmed to three lines.) This approach uses a regular expression and a back reference.
-Here, <code>sed</code> also takes over the work done by <code>grep</code>.
-I only recommend using such a complicated approach when a simpler one would not work.
-For example, if <em>chapter</em> was ever part of the text itself and not just used to indicate the start of a new chapter.
-Of course there are many levels of complexity which would have worked around this, but this is to illustrate an extremely strict approach.
-In practice, the challenge is to come up with a pipeline that strikes a good balance between complexity and flexibility.</p>
-<p>It’s worth noting that <code>cut</code> can also split on characters positions.
-This is useful for when you want to extract (or remove) the same set of characters per input line:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">grep</span> -i chapter <span style="text-decoration: underline">alice.txt</span> | <span style="color: #5f8700">cut</span> -c 9-
-I. Down the Rabbit-Hole
-II. The Pool of Tears
-III. A Caucus-Race and a Long Tale
-IV. The Rabbit Sends in a Little Bill
-V. Advice from a Caterpillar
-VI. Pig and Pepper
-VII. A Mad Tea-Party
-VIII. The Queen's Croquet-Ground
-IX. The Mock Turtle's Story
-X. The Lobster Quadrille
-XI. Who Stole the Tarts?
-XII. Alice's Evidence</pre>
-<p><code>grep</code> has a great feature that outputs every match onto a separate line using the <code>-o</code> option:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">grep</span> -oE <span style="color: #af8700">'\w{2,}'</span> | <span style="color: #5f8700">trim</span>
-Project
-Gutenberg
-Alice
-Adventures
-in
-Wonderland
-by
-Lewis
-Carroll
-This
-… with 28615 more lines</pre>
-<p>But what if you wanted to create a dataset of all the words that start with an <em>a</em> and end with an <em>e</em>?
-Well, of course there’s a pipeline for that too:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">alice.txt</span> <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[:upper:]'</span> <span style="color: #af8700">'[:lower:]'</span> | <span class="callout">➊</span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">grep</span> -oE <span style="color: #af8700">'\w{2,}'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">grep</span> -E <span style="color: #af8700">'^a.*e$'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sort</span> | <span style="color: #5f8700">uniq</span> | <span style="color: #5f8700">sort</span> -nr | <span style="color: #5f8700">trim</span>
-available
-ate
-assistance
-askance
-arise
-argue
-are
-archive
-applicable
-apple
-… with 25 more lines</pre>
-<p><span class="callout">➊</span> Here I use <code>tr</code> to make the text lowercase. We’ll have a closer look at <code>tr</code> in the next section.</p>
-<p>The two <code>grep</code> commands might have been combined into one, but in this case I decided it would be easier to reuse and adapt the previous pipeline.
-There’s no shame in being pragmatic in order to get the job done!</p>
+<p>앞의 예제에서 실제 장 제목을 추출하려면, <code>grep</code>의 출력을 <code>cut</code>으로 파이핑하는 간단한 접근 방식을 사용할 수 있습니다.</p>
+<pre>grep -i chapter alice.txt | cut -d ' ' -f 3-</pre>
+<p>여기서 <code>cut</code>으로 전달된 각 행은 공백을 기준으로 필드(field)로 나뉘고, 세 번째 필드부터 마지막 필드까지 인쇄됩니다.
+필드의 총 개수는 입력 행마다 다를 수 있습니다.
+<code>sed</code>를 사용하면 훨씬 더 복잡한 방식으로 동일한 작업을 수행할 수 있습니다.</p>
+<pre>sed -rn 's/^CHAPTER ([IVXLCDM]{1,})\. (.*)$/\2/p' alice.txt | trim 3</pre>
+<p>(출력이 동일하므로 3행으로 잘랐습니다.) 이 방식은 정규 표현식과 후방 참조(back reference)를 사용합니다.
+여기서 <code>sed</code>는 <code>grep</code>이 하던 작업까지 도맡았습니다.
+더 간단한 방법으로는 해결되지 않을 정도로 복잡한 상황에서만 이 방식을 사용하는 것을 권장합니다.
+예를 들어, <em>chapter</em>라는 단어가 단순히 새 장의 시작을 알리는 용도뿐만 아니라 텍스트 자체의 일부로 쓰인 경우가 있을 때 그렇습니다.
+물론 이를 해결할 수 있는 다양한 수준의 복잡한 방법이 있겠지만, 여기서는 매우 엄격한 접근 방식을 예로 보여 드린 것입니다.
+실제로 중요한 과제는 복잡성과 유연성 사이에서 균형을 잘 잡는 파이프라인을 고안하는 것입니다.</p>
+<p><code>cut</code>은 문자 위치를 기준으로도 나눌 수 있다는 점을 언급할 가치가 있습니다.
+이는 입력 행마다 동일한 위치의 문자 집합을 추출(또는 제거)하고 싶을 때 유용합니다.</p>
+<pre>grep -i chapter alice.txt | cut -c 9-</pre>
+<p><code>grep</code>은 <code>-o</code> 옵션을 사용하여 모든 일치 항목을 별도의 행으로 출력하는 훌륭한 기능을 가지고 있습니다.</p>
+<pre>&lt; alice.txt grep -oE '\w{2,}' | trim</pre>
+<p>그렇다면 <em>a</em>로 시작하고 <em>e</em>로 끝나는 모든 단어의 데이터셋을 만들고 싶다면 어떻게 해야 할까요?
+당연히 이를 위한 파이프라인도 있습니다.</p>
+<pre>&lt; alice.txt tr '[:upper:]' '[:lower:]' |
+grep -oE '\w{2,}' |
+grep -E '^a.*e$' |
+sort | uniq | sort -nr | trim</pre>
+<p><span class="callout">➊</span> 여기서 텍스트를 소문자로 만들기 위해 <code>tr</code>을 사용합니다. 다음 절에서 <code>tr</code>을 더 자세히 살펴보겠습니다.</p>
+<p>두 개의 <code>grep</code> 명령어를 하나로 합칠 수도 있었겠지만, 이 경우에는 이전 파이프라인을 재사용하고 조정하는 것이 더 쉽다고 판단했습니다.
+일을 완수하기 위해 실용적인 태도를 취하는 것은 전혀 부끄러운 일이 아닙니다!</p>
 </div>
-<div id="replacing-and-deleting-values" class="section level3" number="5.3.3">
+<div id="값-교체-및-삭제하기" class="section level3" number="5.3.3">
 <h3>
-<span class="header-section-number">5.3.3</span> Replacing and Deleting Values<a class="anchor" aria-label="anchor" href="#replacing-and-deleting-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.3</span> 값 교체 및 삭제하기<a class="anchor" aria-label="anchor" href="#%EA%B0%92-%EA%B5%90%EC%B2%B4-%EB%B0%8F-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can use the command-line tool <code>tr</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-tr" role="doc-biblioref"&gt;Meyering, &lt;em&gt;&lt;span class="nocase"&gt;tr&lt;/span&gt; – Translate or Delete Characters&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>74</sup></a></span>, which stands for <em>translate</em>, to replace or delete individual characters.
-For example, spaces can be replaced by underscores as follows:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">' '</span> <span style="color: #af8700">'_'</span>
-hello_world!</pre>
-<p>If more than one character needs to be replaced, then you can combine that:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">' !'</span> <span style="color: #af8700">'_?'</span>
-hello_world?</pre>
-<p><code>tr</code> can also be used to delete individual characters by specifying the argument <code>-d</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> -d <span style="color: #af8700">' !'</span>
-helloworld
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> -d -c <span style="color: #af8700">'[a-z]'
-</span>helloworld<span style="font-weight: bold; font-style: italic">%</span></pre>
-<p>In this case, these two commands accomplish the same thing.
-The second command, however, uses two additional features:
-It specifies a <em>range</em> of characters (all lowercase letters) using the square brackets and the dash (<code>[-]</code>), and the <code>-c</code> option indicates that complement of that should be used.
-In other words, this command only keeps lowercase letters.
-You can even use <code>tr</code> to convert text to uppercase:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[a-z]'</span> <span style="color: #af8700">'[A-Z]'</span>
-HELLO WORLD!
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[:lower:]'</span> <span style="color: #af8700">'[:upper:]'</span>
-HELLO WORLD!</pre>
-<p>However, if you need to translate non-ASCII characters, then <code>tr</code> may not work because it operates on single-byte characters only. In those cases you should use <code>sed</code> instead:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hello world!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[a-z]'</span> <span style="color: #af8700">'[A-Z]'</span>
-HELLO WORLD!
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hallo wêreld!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[a-z]'</span> <span style="color: #af8700">'[A-Z]'</span>
-HALLO WêRELD!
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hallo wêreld!'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[:lower:]'</span> <span style="color: #af8700">'[:upper:]'</span>
-HALLO WêRELD!
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'hallo wêreld!'</span> | <span style="color: #5f8700">sed</span> <span style="color: #af8700">'s/[[:lower:]]*/\U&amp;/g'</span>
-HALLO WÊRELD!
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'helló világ'</span> | <span style="color: #5f8700">tr</span> <span style="color: #af8700">'[:lower:]'</span> <span style="color: #af8700">'[:upper:]'</span>
-HELLó VILáG
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'helló világ'</span> | <span style="color: #5f8700">sed</span> <span style="color: #af8700">'s/[[:lower:]]*/\U&amp;/g'</span>
-HELLÓ VILÁG</pre>
+<p><em>반전(translate)</em>의 약자인 커맨드 라인 도구 <code>tr</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Meyering, &lt;em&gt;tr – Translate or Delete Characters&lt;/em&gt;.&lt;/p&gt;"><sup>75</sup></a></span>을 사용하여 개별 문자를 교체하거나 삭제할 수 있습니다.
+예를 들어, 공백을 다음과 같이 언더스코어로 바꿀 수 있습니다.</p>
+<pre>echo 'hello world!' | tr ' ' '_'</pre>
+<p>둘 이상의 문자를 교체해야 한다면 다음과 같이 조합할 수 있습니다.</p>
+<pre>echo 'hello world!' | tr ' !' '_?'</pre>
+<p><code>tr</code>에 <code>-d</code> 인자를 지정하여 개별 문자를 삭제할 수도 있습니다.</p>
+<pre>echo 'hello world!' | tr -d ' !'
+echo 'hello world!' | tr -d -c '[a-z]'</pre>
+<p>이 경우 위 두 명령어는 동일한 결과를 냅니다.
+하지만 두 번째 명령어는 두 가지 추가 기능을 사용합니다.
+대괄호와 하이픈(<code>[-]</code>)을 사용하여 문자 <em>범위</em>(모든 소문자)를 지정했고, <code>-c</code> 옵션은 그에 대한 보집합(complement)을 사용함을 나타냅니다.
+즉, 이 명령어는 소문자만 남깁니다.
+<code>tr</code>을 사용하여 텍스트를 대문자로 변환할 수도 있습니다.</p>
+<pre>echo 'hello world!' | tr '[a-z]' '[A-Z]'
+echo 'hello world!' | tr '[:lower:]' '[:upper:]'</pre>
+<p>하지만 ASCII가 아닌 문자를 번역해야 한다면 <code>tr</code>이 작동하지 않을 수 있습니다. <code>tr</code>은 단일 바이트 문자에서만 작동하기 때문입니다. 그런 경우에는 대신 <code>sed</code>를 사용해야 합니다.</p>
+<pre>echo 'hello world!' | tr '[a-z]' '[A-Z]'
+echo 'hallo wêreld!' | tr '[a-z]' '[A-Z]'
+echo 'hallo wêreld!' | tr '[:lower:]' '[:upper:]'
+echo 'hallo wêreld!' | sed 's/[[:lower:]]*/\U&amp;/g'
+echo 'helló világ' | tr '[:lower:]' '[:upper:]'
+echo 'helló világ' | sed 's/[[:lower:]]*/\U&amp;/g'</pre>
 <!-- #TODO: SHOULD: Give a proper intro about sed -->
-<p>If you need to operate on more than individual characters, then you may find <code>sed</code> useful.
-You’ve already seen an example of <code>sed</code> with extracting the chapter headings from <em>alice.txt</em>.
-Extracting, deleting, and replacing is actually all the same operation in <code>sed</code>.
-You just specify different regular expressions.
-For example, to change a word, remove repeated spaces, and remove leading spaces:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">' hello     world!'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'s/hello/bye/'</span> | <span class="callout">➊</span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'s/\s+/ /g'</span> | <span class="callout">➋</span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'s/\s+//'</span> <span class="callout">➌</span>
-bye world!</pre>
-<p><span class="callout">➊</span> Replace <em>hello</em> with <em>bye</em>.
-<br><span class="callout">➋</span> Replace any whitespace with one space. The flag <code>g</code> stands for global, meaning that the same substitution can be applied more than once on the same line.
-<br><span class="callout">➌</span> This only removes leading spaces because I didn’t specify the flag <code>g</code> here.</p>
-<p>Again, just as with the <code>grep</code> example earlier, these three <code>sed</code> commands can be combined into one:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">' hello     world!'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'s/hello/bye/;s/\s+/ /g;s/\s+//'</span>
-bye world!</pre>
-<p>But tell me, what do you find easier to read?</p>
+<p>개별 문자 이상의 것을 조작해야 한다면 <code>sed</code>가 유용하다는 사실을 알게 될 것입니다.
+이미 <em>alice.txt</em>에서 장 제목을 추출하는 <code>sed</code> 예제를 보셨습니다.
+추출, 삭제, 교체는 사실 <code>sed</code>에서 모두 동일한 작업입니다.
+단지 서로 다른 정규 표현식을 지정할 뿐입니다.
+예를 들어, 단어를 바꾸거나 반복된 공백을 제거하고 앞부분의 공백을 제거하려면 다음과 같이 합니다.</p>
+<pre>echo ' hello     world!' |
+sed -re 's/hello/bye/' |
+sed -re 's/\s+/ /g' |
+sed -re 's/\s+//'</pre>
+<p><span class="callout">➊</span> <em>hello</em>를 <em>bye</em>로 바꿉니다.
+<br><span class="callout">➋</span> 임의의 공백을 하나의 공백으로 바꿉니다. 플래그 <code>g</code>는 글로벌(global)의 약자로, 동일한 행에서 동일한 치환을 여러 번 적용할 수 있음을 의미합니다.
+<br><span class="callout">➌</span> 여기서는 <code>g</code> 플래그를 지정하지 않았으므로 맨 앞의 공백만 제거합니다.</p>
+<p>이전의 <code>grep</code> 예제와 마찬가지로, 이 세 개의 <code>sed</code> 명령어는 하나로 합쳐질 수 있습니다.</p>
+<pre>echo ' hello     world!' |
+sed -re 's/hello/bye/;s/\s+/ /g;s/\s+//'</pre>
+<p>글쎄요, 여러분은 어느 쪽이 읽기 더 편하신가요?</p>
 </div>
 </div>
 <div id="csv" class="section level2" number="5.4">
@@ -621,306 +382,153 @@ bye world!</pre>
 <!-- If you build an API, use JSON -->
 <!-- If you -->
 <!-- You rarely have to covert CSV to anything else when you're doing data analysis. -->
-<div id="bodies-and-headers-and-columns-oh-my" class="section level3" number="5.4.1">
+<div id="본문bodies과-헤더headers와-열columns" class="section level3" number="5.4.1">
 <h3>
-<span class="header-section-number">5.4.1</span> Bodies and Headers and Columns, Oh My!<a class="anchor" aria-label="anchor" href="#bodies-and-headers-and-columns-oh-my"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1</span> 본문(Bodies)과 헤더(Headers)와 열(Columns)<a class="anchor" aria-label="anchor" href="#%EB%B3%B8%EB%AC%B8bodies%EA%B3%BC-%ED%97%A4%EB%8D%94headers%EC%99%80-%EC%97%B4columns"><i class="fas fa-link"></i></a>
 </h3>
-<p>The command-line tools that I’ve used to scrub plain text, such as <code>tr</code> and <code>grep</code>, cannot always be applied to CSV.
-The reason is that these command-line tools have no notion of headers, bodies, and columns.
-What if you want to filter lines using <code>grep</code> but always include the header in the output?
-Or what if you only want to uppercase the values of a specific column using <code>tr</code> and leave the other columns untouched?</p>
-<p>There are multi-step workarounds for this, but they are very cumbersome.
-I have something better.
-In order to leverage ordinary command-line tools for CSV, I’d like to introduce you to three command-line tools, aptly named: <code>body</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-body" role="doc-biblioref"&gt;Jeroen Janssens, &lt;em&gt;&lt;span class="nocase"&gt;body&lt;/span&gt; – Apply Command to All but the First Line&lt;/em&gt;, version 0.1, 2021, &lt;/a&gt;&lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>75</sup></a></span>, <code>header</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-header" role="doc-biblioref"&gt;Jeroen Janssens, &lt;em&gt;&lt;span class="nocase"&gt;header&lt;/span&gt; – Add, Replace, and Delete Header Lines&lt;/em&gt;, version 0.1, 2021, &lt;/a&gt;&lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>76</sup></a></span>, and <code>cols</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-cols" role="doc-biblioref"&gt;Jeroen Janssens, &lt;em&gt;&lt;span class="nocase"&gt;cols&lt;/span&gt; – Apply Command to Subset of Columns&lt;/em&gt;, version 0.1, 2021, &lt;/a&gt;&lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>77</sup></a></span>.</p>
-<p>Let’s start with the first command-line tool, <code>body</code>.
-With <code>body</code> you can apply any command-line tool to the body of a CSV file, that is, everything excluding the header.
-For example:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> -e <span style="color: #af8700">"value\n7\n2\n5\n3"</span> | <span style="color: #5f8700">body</span> sort -n
-value
-2
-3
-5
-7</pre>
-<p>It assumes that the header of the CSV file only spans one row.
-It works like this:</p>
+<p>일반 텍스트를 정제하기 위해 사용했던 <code>tr</code>이나 <code>grep</code> 같은 커맨드 라인 도구가 CSV에 항상 적용될 수 있는 것은 아닙니다.
+그 이유는 이러한 커맨드 라인 도구들이 헤더, 본문, 열에 대한 개념이 없기 때문입니다.
+만약 <code>grep</code>을 사용하여 행을 필터링하면서 항상 출력에 헤더를 포함하고 싶다면 어떻게 해야 할까요?
+혹은 <code>tr</code>을 사용하여 다른 열은 건드리지 않고 특정 열의 값만 대문자로 바꾸고 싶다면 어떻게 해야 할까요?</p>
+<p>이를 위한 여러 단계의 우회 방법이 있긴 하지만 매우 번거롭습니다.
+더 좋은 방법이 있습니다.
+일반적인 커맨드 라인 도구를 CSV에 활용하기 위해 <code>body</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jeroen Janssens, &lt;em&gt;body – Apply Command to All but the First Line&lt;/em&gt;, version 0.1, 2021, &lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>76</sup></a></span>, <code>header</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jeroen Janssens, &lt;em&gt;header – Add, Replace, and Delete Header Lines&lt;/em&gt;, version 0.1, 2021, &lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>77</sup></a></span>, <code>cols</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jeroen Janssens, &lt;em&gt;cols – Apply Command to Subset of Columns&lt;/em&gt;, version 0.1, 2021, &lt;a href="https://github.com/jeroenjanssens/dsutils" role="doc-biblioref"&gt;https://github.com/jeroenjanssens/dsutils&lt;/a&gt;.&lt;/p&gt;'><sup>78</sup></a></span>라는 이름의 세 가지 도구를 소개하겠습니다.</p>
+<p>첫 번째 도구인 <code>body</code>부터 시작해 보겠습니다.
+<code>body</code>를 사용하면 CSV 파일의 헤더를 제외한 나머지 부분, 즉 본문에 임의의 커맨드 라인 도구를 적용할 수 있습니다.
+예를 들어 다음과 같습니다.</p>
+<pre>echo -e "value\n7\n2\n5\n3" | body sort -n</pre>
+<p>이 도구는 CSV 파일의 헤더가 한 줄이라고 가정합니다.
+작동 방식은 다음과 같습니다.</p>
 <ul>
-<li>Take one line from standard in and store it as a variable named <em>$header</em>.</li>
-<li>Print out the header.</li>
-<li>Execute all the command-line arguments passed to <code>body</code> on the remaining data in standard in.</li>
+<li>표준 입력에서 한 줄을 가져와 <em>$header</em>라는 변수에 저장합니다.</li>
+<li>헤더를 출력합니다.</li>
+<li>표준 입력에 남은 데이터에 대해 <code>body</code>에 전달된 모든 커맨드 라인 인자를 실행합니다.</li>
 </ul>
-<p>Here’s another example.
-Imagine that you want to count the lines of the following CSV file:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a count
-count
-1
-2
-3
-4
-5</pre>
-<p>With <code>wc -l</code>, you can count the number of all lines:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a count | <span style="color: #5f8700">wc</span> -l
-6</pre>
-<p>If you only want to consider the lines in the body (so everything except the header), you add <code>body</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a count | <span style="color: #5f8700">body</span> wc -l
-count
-5</pre>
-<p>Note that the header is not used and is also printed again in the output.</p>
-<p>The second command-line tool, <code>header</code> allows you to manipulate the header of a CSV file.
-If no arguments are provided, the header of the CSV file is printed:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">header</span>
-bill,tip,sex,smoker,day,time,size</pre>
-<p>This is the same as <code>head -n 1</code>.
-If the header spans more than one row, which is not recommended, you can specify <code>-n 2</code>.
-You can also add a header to a CSV file:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a count
-count
-1
-2
-3
-4
-5</pre>
-<p>This is equivalent to <code>echo "count" | cat - &lt;(seq 5)</code>.
-Deleting a header is done with the <code>-d</code> option:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">iris.csv</span> <span style="color: #5f8700">header</span> -d | <span style="color: #5f8700">trim</span>
-5.1,3.5,1.4,0.2,Iris-setosa
-4.9,3.0,1.4,0.2,Iris-setosa
-4.7,3.2,1.3,0.2,Iris-setosa
-4.6,3.1,1.5,0.2,Iris-setosa
-5.0,3.6,1.4,0.2,Iris-setosa
-5.4,3.9,1.7,0.4,Iris-setosa
-4.6,3.4,1.4,0.3,Iris-setosa
-5.0,3.4,1.5,0.2,Iris-setosa
-4.4,2.9,1.4,0.2,Iris-setosa
-4.9,3.1,1.5,0.1,Iris-setosa
-… with 140 more lines</pre>
-<p>This is similar to <code>tail -n +2</code>, but it’s a bit easier to remember.
-Replacing a header, which is basically first deleting a header and then adding one if you look at the above source code, is accomplished by specifying the <code>-r</code> option. Here, we combine it with <code>body</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a line | <span style="color: #5f8700">body</span> wc -l | <span style="color: #5f8700">header</span> -r count
-count
-5</pre>
-<p>And last but not least, you can apply a command to just the header, similar to what the <code>body</code> command-line tool does to the body.
-For example:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a line | <span style="color: #5f8700">header</span> -e <span style="color: #af8700">"tr '[a-z]' '[A-Z]'"</span>
-LINE
-1
-2
-3
-4
-5</pre>
-<p>The third command-line tool is called <code>cols</code>, which allows you to apply a certain command to only a subset of the columns.
-For example, if you wanted to uppercase the values in the day column in the tips data set (without affecting the other columns and the header), you would use <code>cols</code> in combination with <code>body</code>, as follows:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">cols</span> -c day body <span style="color: #af8700">"tr '[a-z]' '[A-Z]'"</span> | <span style="color: #5f8700">head</span> -n 5 | <span style="color: #5f8700">csvlook</span>
-│        day │  bill │  tip │ sex    │ smoker │ time   │ size │
-├────────────┼───────┼──────┼────────┼────────┼────────┼──────┤
-│ 0001-01-07 │ 16.99 │ 1.01 │ Female │  False │ Dinner │    2 │
-│ 0001-01-07 │ 10.34 │ 1.66 │ Male   │  False │ Dinner │    3 │
-│ 0001-01-07 │ 21.01 │ 3.50 │ Male   │  False │ Dinner │    3 │
-│ 0001-01-07 │ 23.68 │ 3.31 │ Male   │  False │ Dinner │    2 │</pre>
-<p>Please note that passing multiple command-line tools and arguments as command to <code>header -e</code>, <code>body</code>, and <code>cols</code> can lead to tricky quoting citations.
-If you ever run in such problems, it’s best to create a separate command-line tool for this and pass that as command.</p>
-<p>In conclusion, while it is generally preferable to use command-line tools which are specifically made for CSV data, <code>body</code>, <code>header</code>, and <code>cols</code> also allow you to apply the classic command-line tools to CSV files if needed.</p>
+<p>또 다른 예입니다.
+다음 CSV 파일의 행 개수를 세고 싶다고 가정해 봅시다.</p>
+<pre>seq 5 | header -a count</pre>
+<p><code>wc -l</code>을 사용하면 모든 행의 개수를 셀 수 있습니다.</p>
+<pre>seq 5 | header -a count | wc -l</pre>
+<p>본문의 행만 고려하고 싶다면(즉, 헤더를 제외한 모든 것), <code>body</code>를 추가합니다.</p>
+<pre>seq 5 | header -a count | body wc -l</pre>
+<p>헤더는 계산에 포함되지 않으며 출력에 다시 인쇄됩니다.</p>
+<p>두 번째 도구인 <code>header</code>를 사용하면 CSV 파일의 헤더를 조작할 수 있습니다.
+인자를 제공하지 않으면 CSV 파일의 헤더가 인쇄됩니다.</p>
+<pre>&lt; tips.csv header</pre>
+<p>이는 <code>head -n 1</code>과 같습니다.
+헤더가 두 줄 이상인 경우(권장되지는 않음) <code>-n 2</code>를 지정할 수 있습니다.
+CSV 파일에 헤더를 추가할 수도 있습니다.</p>
+<pre>seq 5 | header -a count</pre>
+<p>이는 <code>echo "count" | cat - &lt;(seq 5)</code>와 동일합니다.
+헤더 삭제는 <code>-d</code> 옵션으로 수행합니다.</p>
+<pre>&lt; iris.csv header -d | trim</pre>
+<p>이는 <code>tail -n +2</code>와 비슷하지만 기억하기 조금 더 쉽습니다.
+헤더 교체는 <code>-r</code> 옵션으로 수행합니다. 이는 내부적으로 헤더를 먼저 삭제한 다음 추가하는 방식입니다. 여기서는 <code>body</code>와 결합해 보겠습니다.</p>
+<pre>seq 5 | header -a line | body wc -l | header -r count</pre>
+<p>마지막으로, <code>body</code> 도구가 본문에 하는 것처럼 헤더에만 명령을 적용할 수 있습니다.
+예를 들어 다음과 같습니다.</p>
+<pre>seq 5 | header -a line | header -e "tr '[a-z]' '[A-Z]'"</pre>
+<p>세 번째 도구는 <code>cols</code>로, 특정 열의 부분 집합에만 명령을 적용할 수 있게 해줍니다.
+예를 들어, tips 데이터셋에서 다른 열과 헤더는 건드리지 않고 day 열의 값만 대문자로 바꾸고 싶다면 다음과 같이 <code>cols</code>와 <code>body</code>를 조합하여 사용합니다.</p>
+<pre>&lt; tips.csv cols -c day body "tr '[a-z]' '[A-Z]'" | head -n 5 | csvlook</pre>
+<p><code>header -e</code>, <code>body</code>, <code>cols</code>에 여러 커맨드 라인 도구와 인자를 명령어로 전달할 때 따옴표 처리가 까다로울 수 있다는 점에 유의하세요.
+이런 문제가 발생하면 별도의 커맨드 라인 도구를 만들어서 그 명령어를 전달하는 것이 가장 좋습니다.</p>
+<p>결론적으로, CSV 데이터를 위해 특별히 제작된 커맨드 라인 도구를 사용하는 것이 일반적으로 바람직하지만, <code>body</code>, <code>header</code>, <code>cols</code>를 사용하면 필요한 경우 고전적인 커맨드 라인 도구들을 CSV 파일에도 적용할 수 있습니다.</p>
 </div>
-<div id="performing-sql-queries-on-csv" class="section level3" number="5.4.2">
+<div id="csv에서-sql-쿼리-수행하기" class="section level3" number="5.4.2">
 <h3>
-<span class="header-section-number">5.4.2</span> Performing SQL Queries on CSV<a class="anchor" aria-label="anchor" href="#performing-sql-queries-on-csv"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.2</span> CSV에서 SQL 쿼리 수행하기<a class="anchor" aria-label="anchor" href="#csv%EC%97%90%EC%84%9C-sql-%EC%BF%BC%EB%A6%AC-%EC%88%98%ED%96%89%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
-<p>In case the command-line tools mentioned in this chapter do not provide enough flexibility, then there is another approach to scrub your data from the command line.
-The tool <code>csvsql</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-csvsql" role="doc-biblioref"&gt;Christopher Groskopf, &lt;em&gt;&lt;span class="nocase"&gt;csvsql&lt;/span&gt; – Execute &lt;span&gt;SQL&lt;/span&gt; Statements on &lt;span&gt;CSV&lt;/span&gt; Files&lt;/em&gt;, version 1.0.5, 2020, &lt;/a&gt;&lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>78</sup></a></span> allows you to execute SQL queries directly on CSV files.
-SQL is a powerful language to define operations for scrubbing data; it’s a very different way than using individual command-line tools.</p>
+<p>만약 이번 장에서 언급된 커맨드 라인 도구들이 충분한 유연성을 제공하지 못한다면, 커맨드 라인에서 데이터를 정제하는 또 다른 접근 방식이 있습니다.
+<code>csvsql</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Christopher Groskopf, &lt;em&gt;csvsql – Execute SQL Statements on CSV Files&lt;/em&gt;, version 1.0.5, 2020, &lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>79</sup></a></span> 도구는 CSV 파일에서 직접 SQL 쿼리를 실행할 수 있게 해줍니다.
+SQL은 데이터 정제 작업을 정의하는 강력한 언어이며, 개별 커맨드 라인 도구를 사용하는 것과는 매우 다른 방식입니다.</p>
 
 <div class="rmdnote">
-If your data originally comes from a relational database, then, if possible, try to execute SQL queries on that database and subsequently extract the data as CSV. As I discussed in <a href="chapter-3-obtaining-data.html#chapter-3-obtaining-data">Chapter 3</a>, you can use the command-line tool <code>sql2csv</code> for this. When you first export data from the database to a CSV file, and then apply SQL, it is not only slower, but there is also a possibility that the column types are not correctly inferred from the CSV data.
+만약 데이터가 원래 관계형 데이터베이스에서 온 것이라면, 가능하면 그 데이터베이스에서 SQL 쿼리를 실행한 다음 결과를 CSV로 추출하는 것이 좋습니다. <a href="chapter-3-obtaining-data.html#chapter-3-obtaining-data">3장</a>에서 논의했듯이 이를 위해 <code>sql2csv</code> 도구를 사용할 수 있습니다. 데이터베이스에서 CSV 파일로 먼저 내보낸 다음 다시 SQL을 적용하는 것은 속도가 느릴 뿐만 아니라, CSV 데이터로부터 열 유형(column types)이 올바르게 유추되지 않을 가능성도 있기 때문입니다.
 </div>
-<p>In the scrubbing tasks below, I’ll include several solutions that involve <code>csvsql</code>. A basic command is this:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a val | <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">"SELECT SUM(val) AS sum FROM stdin"</span>
-sum
-15.0</pre>
-<p>If you pass standard input to <code>csvsql</code>, then the table is named <em>stdin</em>.
-The types of the column are automatically inferred from the data.
-As you’ll see later, in the combining CSV files section, you can also specify multiple CSV files.
+<p>아래의 정제 작업들에는 <code>csvsql</code>을 포함한 몇 가지 솔루션을 소개하겠습니다. 기본적인 명령어는 다음과 같습니다.</p>
+<pre>seq 5 | header -a val | csvsql --query "SELECT SUM(val) AS sum FROM stdin"</pre>
+<p>표준 입력을 <code>csvsql</code>로 전달하면 테이블 이름은 <em>stdin</em>이 됩니다.
+열의 유형은 데이터로부터 자동으로 유추됩니다.
+나중에 CSV 파일 결합 섹션에서 보겠지만, 여러 개의 CSV 파일을 지정할 수도 있습니다.
 <!-- #TODO: MUST: Reference SQLite -->
-Please keep in mind that <code>csvsql</code> employs SQLite dialect of SQL, which has some subtle differences with respect to the SQL standard.
-While SQL is generally more verbose than the other solutions, it is also much more flexible.
-If you already know how to tackle a scrubbing problem with SQL, then why not use it when you’re at the command line?</p>
+<code>csvsql</code>은 SQL 표준과 약간의 차이가 있는 SQLite 방식을 사용한다는 점을 유념하세요.
+SQL은 일반적으로 다른 솔루션보다 장황하긴 하지만 훨씬 더 유연합니다.
+만약 이미 SQL로 정제 문제를 해결하는 방법을 알고 있다면 커맨드 라인에서도 이를 사용하지 않을 이유가 없습니다.</p>
 </div>
-<div id="extracting-and-reordering-columns" class="section level3" number="5.4.3">
+<div id="열-추출-및-재정렬하기" class="section level3" number="5.4.3">
 <h3>
-<span class="header-section-number">5.4.3</span> Extracting and Reordering Columns<a class="anchor" aria-label="anchor" href="#extracting-and-reordering-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.3</span> 열 추출 및 재정렬하기<a class="anchor" aria-label="anchor" href="#%EC%97%B4-%EC%B6%94%EC%B6%9C-%EB%B0%8F-%EC%9E%AC%EC%A0%95%EB%A0%AC%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
 <!-- #TODO: MUST: Replace csvcut with xsv select -->
-<p>Columns can be extracted and reordered using the command-line tool: <code>csvcut</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-csvcut" role="doc-biblioref"&gt;Christopher Groskopf, &lt;em&gt;&lt;span class="nocase"&gt;csvcut&lt;/span&gt; – Filter and Truncate &lt;span&gt;CSV&lt;/span&gt; Files&lt;/em&gt;, version 1.0.5, 2020, &lt;/a&gt;&lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>79</sup></a></span>.
-For example, to keep only the columns in the Iris data set that contain numerical values <em>and</em> reorder the middle two columns:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">iris.csv</span> <span style="color: #5f8700">csvcut</span> -c sepal_length,petal_length,sepal_width,petal_width | <span style="color: #5f8700">csvlo
-ok</span>
-│ sepal_length │ petal_length │ sepal_width │ petal_width │
-├──────────────┼──────────────┼─────────────┼─────────────┤
-│          5.1 │          1.4 │         3.5 │         0.2 │
-│          4.9 │          1.4 │         3.0 │         0.2 │
-│          4.7 │          1.3 │         3.2 │         0.2 │
-│          4.6 │          1.5 │         3.1 │         0.2 │
-│          5.0 │          1.4 │         3.6 │         0.2 │
-│          5.4 │          1.7 │         3.9 │         0.4 │
-│          4.6 │          1.4 │         3.4 │         0.3 │
-│          5.0 │          1.5 │         3.4 │         0.2 │
-… with 142 more lines</pre>
-<p>Alternatively, you can also specify the columns you want to leave out with the <code>-C</code> option, which stands for <em>complement</em>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">iris.csv</span> <span style="color: #5f8700">csvcut</span> -C species | <span style="color: #5f8700">csvlook
-</span>│ sepal_length │ sepal_width │ petal_length │ petal_width │
-├──────────────┼─────────────┼──────────────┼─────────────┤
-│          5.1 │         3.5 │          1.4 │         0.2 │
-│          4.9 │         3.0 │          1.4 │         0.2 │
-│          4.7 │         3.2 │          1.3 │         0.2 │
-│          4.6 │         3.1 │          1.5 │         0.2 │
-│          5.0 │         3.6 │          1.4 │         0.2 │
-│          5.4 │         3.9 │          1.7 │         0.4 │
-│          4.6 │         3.4 │          1.4 │         0.3 │
-│          5.0 │         3.4 │          1.5 │         0.2 │
-… with 142 more lines</pre>
-<p>Here, the included columns are kept in the same order.
-Instead of the column names, you can also specify the indices of the columns, which start at 1.
-This allows you to, for example, select only the odd columns (should you ever need it!):</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'a,b,c,d,e,f,g,h,i\n1,2,3,4,5,6,7,8,9'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">csvcut</span> -c <span style="color: #af005f">$(</span><span style="color: #5f8700">seq</span> 1 2 9 | <span style="color: #5f8700">paste</span> -sd,<span style="color: #af005f">)</span>
-a,c,e,g,i
-1,3,5,7,9</pre>
-<p>If you’re certain that there are no comma’s in any of the values, then you can also use <code>cut</code> to extract columns.
-Be aware that <code>cut</code> does not reorder columns, as is demonstrated with the following command:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">echo</span> <span style="color: #af8700">'a,b,c,d,e,f,g,h,i\n1,2,3,4,5,6,7,8,9'</span> | <span style="color: #5f8700">cut</span> -d, -f 5,1,3
-a,c,e
-1,3,5</pre>
-<p>As you can see, it does not matter in which order you specify the columns with the <code>-f</code> option; with <code>cut</code> they will always appear in the original order.
-For completeness, let’s also take a look at the SQL approach for extracting and reordering the numerical columns of the Iris data set:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">iris.csv</span> <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">"SELECT sepal_length, petal_length, "</span>\
-<span style="font-weight: bold">&gt;</span> <span style="color: #af8700">"sepal_width, petal_width FROM stdi</span>n<span style="color: #5f8700">" | </span>head <span style="color: #5f8700">-n 5 | </span>csvlook
-│ sepal_length │ petal_length │ sepal_width │ petal_width │
-├──────────────┼──────────────┼─────────────┼─────────────┤
-│          5.1 │          1.4 │         3.5 │         0.2 │
-│          4.9 │          1.4 │         3.0 │         0.2 │
-│          4.7 │          1.3 │         3.2 │         0.2 │
-│          4.6 │          1.5 │         3.1 │         0.2 │</pre>
+<p><code>csvcut</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Christopher Groskopf, &lt;em&gt;csvcut – Filter and Truncate CSV Files&lt;/em&gt;, version 1.0.5, 2020, &lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>80</sup></a></span> 도구를 사용하여 열을 추출하고 재정렬할 수 있습니다.
+예를 들어, Iris 데이터셋에서 숫자 값이 포함된 열만 남기고 가운데 두 열의 순서를 바꾸려면 다음과 같이 합니다.</p>
+<pre>&lt; iris.csv csvcut -c sepal_length,petal_length,sepal_width,petal_width | csvlook</pre>
+<p>또는 <code>-C</code>(complement) 옵션을 사용하여 제외할 열을 지정할 수도 있습니다.</p>
+<pre>&lt; iris.csv csvcut -C species | csvlook</pre>
+<p>이 경우 포함된 열들은 원래 순서를 유지합니다.
+열 이름 대신 1부터 시작하는 열 인덱스를 지정할 수도 있습니다.
+예를 들어, 홀수 번째 열만 선택하는 것도 가능합니다.</p>
+<pre>echo 'a,b,c,d,e,f,g,h,i\n1,2,3,4,5,6,7,8,9' |
+csvcut -c $(seq 1 2 9 | paste -sd,)</pre>
+<p>만약 어떤 값에도 쉼표가 포함되어 있지 않다는 확신이 있다면 <code>cut</code>을 사용하여 열을 추출할 수도 있습니다.
+하지만 <code>cut</code>은 다음 명령어에서 볼 수 있듯이 열의 순서를 바꾸지 못한다는 점에 주의하세요.</p>
+<pre>echo 'a,b,c,d,e,f,g,h,i\n1,2,3,4,5,6,7,8,9' | cut -d, -f 5,1,3</pre>
+<p>보시다시피 <code>-f</code> 옵션으로 열을 어떤 순서로 지정하든 상관없습니다. <code>cut</code>을 사용하면 항상 원래 순서대로 나타납니다.
+완전성을 위해, Iris 데이터셋의 숫자 열을 추출하고 재정렬하는 SQL 방식도 살펴보겠습니다.</p>
+<pre>&lt; iris.csv csvsql --query "SELECT sepal_length, petal_length, "\
+"sepal_width, petal_width FROM stdin" | head -n 5 | csvlook</pre>
 </div>
-<div id="filtering-rows" class="section level3" number="5.4.4">
+<div id="행-필터링하기-1" class="section level3" number="5.4.4">
 <h3>
-<span class="header-section-number">5.4.4</span> Filtering Rows<a class="anchor" aria-label="anchor" href="#filtering-rows"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.4</span> 행 필터링하기<a class="anchor" aria-label="anchor" href="#%ED%96%89-%ED%95%84%ED%84%B0%EB%A7%81%ED%95%98%EA%B8%B0-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>The difference between filtering rows in a CSV file as opposed to filtering lines in a plain text file is that you may want to base this filtering on values in a certain column, only.
-Filtering on location is essentially the same, but you have to take into account that the first line of a CSV file is usually the header.
-Remember that you can always use the <code>body</code> command-line tool if you want to keep the header:</p>
+<p>CSV 파일에서 행(rows)을 필터링하는 것이 일반 텍스트 파일에서 행(lines)을 필터링하는 것과 다른 점은, 특정 열의 값에만 기반하여 필터링하고 싶을 수 있다는 것입니다.
+위치 기반 필터링은 기본적으로 동일하지만, CSV 파일의 첫 번째 행이 대개 헤더라는 점을 고려해야 합니다.
+헤더를 유지하고 싶다면 항상 <code>body</code> 도구를 사용할 수 있다는 점을 기억하세요.</p>
 <!-- #TODO: #MUST use xsv slice and xsv search -->
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'3,5p'</span>
-3
-4
-5
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">seq</span> 5 | <span style="color: #5f8700">header</span> -a count | <span style="color: #5f8700">body</span> sed -n <span style="color: #af8700">'3,5p'</span>
-count
-3
-4
-5</pre>
-<p>When it comes down to filtering on a certain pattern within a certain column, you can use either <code>csvgrep</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-csvgrep" role="doc-biblioref"&gt;Christopher Groskopf, &lt;em&gt;&lt;span class="nocase"&gt;csvgrep&lt;/span&gt; – Search &lt;span&gt;CSV&lt;/span&gt; Files&lt;/em&gt;, version 1.0.5, 2020, &lt;/a&gt;&lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>80</sup></a></span>, <code>awk</code>, or, of course, <code>csvsql</code>.
-For example, to exclude all the bills of which the party size was smaller than 5:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvgrep</span> -c size -i -r <span style="color: #af8700">"[1-4]"</span> <span style="text-decoration: underline">tips.csv
-</span>bill,tip,sex,smoker,day,time,size
-29.8,4.2,Female,No,Thur,Lunch,6
-34.3,6.7,Male,No,Thur,Lunch,6
-41.19,5.0,Male,No,Thur,Lunch,5
-27.05,5.0,Female,No,Thur,Lunch,6
-29.85,5.14,Female,No,Sun,Dinner,5
-48.17,5.0,Male,No,Sun,Dinner,6
-20.69,5.0,Male,No,Sun,Dinner,5
-30.46,2.0,Male,Yes,Sun,Dinner,5
-28.15,3.0,Male,Yes,Sat,Dinner,5</pre>
-<p>Both <code>awk</code> and <code>csvsql</code> can also do numerical comparisons.
-For example, to get all the bills above 40 USD on a Saturday or a Sunday:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">awk</span> -F, <span style="color: #af8700">'NR==1 || ($1 &gt; 40.0) &amp;&amp; ($5 ~ /^S/)'</span>
-bill,tip,sex,smoker,day,time,size
-48.27,6.73,Male,No,Sat,Dinner,4
-44.3,2.5,Female,Yes,Sat,Dinner,3
-48.17,5.0,Male,No,Sun,Dinner,6
-50.81,10.0,Male,Yes,Sat,Dinner,3
-45.35,3.5,Male,Yes,Sun,Dinner,3
-40.55,3.0,Male,Yes,Sun,Dinner,2
-48.33,9.0,Male,No,Sat,Dinner,4</pre>
-<p>The <code>csvsql</code> solution is more verbose but it’s also more robust as it uses the names of the columns instead of their indexes:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">"SELECT * FROM tips WHERE bill &gt; 40 AND day LIKE 'S%'"</span> <span style="text-decoration: underline">tips.csv
-</span>
-bill,tip,sex,smoker,day,time,size
-48.27,6.73,Male,0,Sat,Dinner,4.0
-44.3,2.5,Female,1,Sat,Dinner,3.0
-48.17,5.0,Male,0,Sun,Dinner,6.0
-50.81,10.0,Male,1,Sat,Dinner,3.0
-45.35,3.5,Male,1,Sun,Dinner,3.0
-40.55,3.0,Male,1,Sun,Dinner,2.0
-48.33,9.0,Male,0,Sat,Dinner,4.0</pre>
-<p>Note that the flexibility of the <em>WHERE</em> clause in an SQL query cannot be easily matched with other command-line tools, because SQL can operate on dates and sets, and form complex combinations of clauses.</p>
+<pre>seq 5 | sed -n '3,5p'
+seq 5 | header -a count | body sed -n '3,5p'</pre>
+<p>특정 열 내의 특정 패턴에 따라 필터링하려는 경우 <code>csvgrep</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Christopher Groskopf, &lt;em&gt;csvgrep – Search CSV Files&lt;/em&gt;, version 1.0.5, 2020, &lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>81</sup></a></span>, <code>awk</code>, 또는 <code>csvsql</code>을 사용할 수 있습니다.
+예를 들어, 일행의 수(party size)가 5명 미만인 모든 영수증을 제외하려면 다음과 같이 합니다.</p>
+<pre>csvgrep -c size -i -r "[1-4]" tips.csv</pre>
+<p><code>awk</code>와 <code>csvsql</code>은 숫자 비교도 수행할 수 있습니다.
+예를 들어, 토요일이나 일요일에 40달러가 넘는 모든 영수증을 가져오려면 다음과 같이 합니다.</p>
+<pre>&lt; tips.csv awk -F, 'NR==1 || ($1 &gt; 40.0) &amp;&amp; ($5 ~ /^S/)'</pre>
+<p><code>csvsql</code> 솔루션은 더 장황하지만 인덱스 대신 열 이름을 사용하므로 더 견고합니다.</p>
+<pre>csvsql --query "SELECT * FROM tips WHERE bill &gt; 40 AND day LIKE 'S%'" tips.csv</pre>
+<p>SQL의 <em>WHERE</em> 절은 날짜나 집합에 대해 작동할 수 있고 복잡한 절의 조합을 형성할 수 있기 때문에, 그 유연성은 다른 커맨드 라인 도구들이 쉽게 따라가기 어렵습니다.</p>
 </div>
-<div id="merging-columns" class="section level3" number="5.4.5">
+<div id="열-병합하기" class="section level3" number="5.4.5">
 <h3>
-<span class="header-section-number">5.4.5</span> Merging Columns<a class="anchor" aria-label="anchor" href="#merging-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.5</span> 열 병합하기<a class="anchor" aria-label="anchor" href="#%EC%97%B4-%EB%B3%91%ED%95%A9%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h3>
-<p>Merging columns is useful for when the values of interest are spread over multiple columns.
-This may happen with dates (where year, month, and day could be separate columns) or names (where the first name and last name are separate columns).
-Let’s consider the second situation.</p>
+<p>열 병합은 관심 있는 값이 여러 열에 분산되어 있을 때 유용합니다.
+날짜(연, 월, 일이 별도의 열인 경우)나 이름(이름과 성이 별도의 열인 경우)에서 이런 일이 발생할 수 있습니다.
+두 번째 상황을 살펴보겠습니다.</p>
 <!-- #TODO: Must use composers.csv -->
-<p>The input CSV is a list of composers.
-Imagine that your task is to combine the first name and the last name into a full name.
-I’ll present four different approaches for this task: <code>sed</code>, <code>awk</code>, <code>cols</code> + <code>tr</code>, and <code>csvsql</code>.
-Let’s have a look at the input CSV:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvlook</span> -I <span style="text-decoration: underline">names.csv</span>
-│ id │ last_name │ first_name │ born │
-├────┼───────────┼────────────┼──────┤
-│ 1  │ Williams  │ John       │ 1932 │
-│ 2  │ Elfman    │ Danny      │ 1953 │
-│ 3  │ Horner    │ James      │ 1953 │
-│ 4  │ Shore     │ Howard     │ 1946 │
-│ 5  │ Zimmer    │ Hans       │ 1957 │</pre>
-<p>The first approach, <code>sed</code>, uses two statements.
-The first is to replace the header and the second is a regular expression with back references applied to the second row onwards:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names.csv</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'1s/.*/id,full_name,born/g;2,$s/(.*),(.*),(.*),(.*)/\1,\3
-\2,\4/g'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">csvlook</span> -I
-│ id │ full_name     │ born │
-├────┼───────────────┼──────┤
-│ 1  │ John Williams │ 1932 │
-│ 2  │ Danny Elfman  │ 1953 │
-│ 3  │ James Horner  │ 1953 │
-│ 4  │ Howard Shore  │ 1946 │
-│ 5  │ Hans Zimmer   │ 1957 │</pre>
-<p>The <code>awk</code> approach looks as follows:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names.csv</span> <span style="color: #5f8700">awk</span> -F, <span style="color: #af8700">'BEGIN{OFS=","; print "id,full_name,born"} {if(NR &gt; 1) {pr
-int $1,$3" "$2,$4}}'</span> |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">csvlook</span> -I
-│ id │ full_name     │ born │
-├────┼───────────────┼──────┤
-│ 1  │ John Williams │ 1932 │
-│ 2  │ Danny Elfman  │ 1953 │
-│ 3  │ James Horner  │ 1953 │
-│ 4  │ Howard Shore  │ 1946 │
-│ 5  │ Hans Zimmer   │ 1957 │</pre>
-<p>The <code>cols</code> approach in combination with <code>tr</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names.csv</span> <span style="font-weight: bold"></span><span style="font-weight: bold; color: #d70000">|</span>
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">cols</span> -c first_name,last_name tr \",\" \" \" |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">header</span> -r full_name,id,born |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">csvcut</span> -c id,full_name,born |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">csvlook</span> -I
-│ id │ full_name     │ born │
-├────┼───────────────┼──────┤
-│ 1  │ John Williams │ 1932 │
-│ 2  │ Danny Elfman  │ 1953 │
-│ 3  │ James Horner  │ 1953 │
-│ 4  │ Howard Shore  │ 1946 │
-│ 5  │ Hans Zimmer   │ 1957 │</pre>
-<p>Please note that <code>csvsql</code> employ SQLite as the database to execute the query and that <code>||</code> stands for concatenation:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names.csv</span> <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">"SELECT id, first_name || ' ' || last_name "</span>\
-<span style="font-weight: bold">&gt;</span> <span style="color: #af8700">"AS full_name, born FROM stdi</span>n<span style="color: #5f8700">" | csv</span>look -I
-│ id  │ full_name     │ born   │
-├─────┼───────────────┼────────┤
-│ 1.0 │ John Williams │ 1932.0 │
-│ 2.0 │ Danny Elfman  │ 1953.0 │
-│ 3.0 │ James Horner  │ 1953.0 │
-│ 4.0 │ Howard Shore  │ 1946.0 │
-│ 5.0 │ Hans Zimmer   │ 1957.0 │</pre>
-<p>What if <em>last_name</em> would contain a comma? Let’s have a look at the raw input CSV for clarity sake:</p>
+<p>입력 CSV는 작곡가 목록입니다.
+여러분의 과제는 이름(first name)과 성(last name)을 합쳐서 전체 이름(full name)을 만드는 것이라고 가정해 봅시다.
+이 과제를 해결하기 위해 <code>sed</code>, <code>awk</code>, <code>cols</code> + <code>tr</code>, <code>csvsql</code>의 네 가지 접근 방식을 제시하겠습니다.
+먼저 입력 CSV를 살펴보겠습니다.</p>
+<pre>csvlook -I names.csv</pre>
+<p>첫 번째 방식인 <code>sed</code>는 두 개의 문(statement)을 사용합니다.
+첫 번째는 헤더를 교체하는 것이고, 두 번째는 두 번째 행부터 적용되는 후방 참조를 포함한 정규 표현식입니다.</p>
+<pre>&lt; names.csv sed -re '1s/.*/id,full_name,born/g;2,$s/(.*),(.*),(.*),(.*)/\1,\3 \2,\4/g' |
+csvlook -I</pre>
+<p><code>awk</code> 접근 방식은 다음과 같습니다.</p>
+<pre>&lt; names.csv awk -F, 'BEGIN{OFS=","; print "id,full_name,born"} {if(NR &gt; 1) {print $1,$3" "$2,$4}}' |
+csvlook -I</pre>
+<p><code>tr</code>과 결합한 <code>cols</code> 방식입니다.</p>
+<pre>&lt; names.csv |
+cols -c first_name,last_name tr \",\" \" \" |
+header -r full_name,id,born |
+csvcut -c id,full_name,born |
+csvlook -I</pre>
+<p><code>csvsql</code>은 쿼리를 실행하기 위해 SQLite 데이터베이스를 사용하며, <code>||</code>는 문자열 연결(concatenation)을 의미한다는 점에 유의하세요.</p>
+<pre>&lt; names.csv csvsql --query "SELECT id, first_name || ' ' || last_name "\
+"AS full_name, born FROM stdin" | csvlook -I</pre>
+<p>만약 <em>last_name</em>에 쉼표가 포함되어 있다면 어떻게 될까요? 명확성을 위해 가공되지 않은 입력 CSV를 살펴보겠습니다.</p>
 <!-- Ludwig van Beethoven enters the party -->
 <!-- ```{console} -->
 <!-- echo 'Ludwig,"Beethoven, van",1770,"Bonn,\nGermany"' >> composers.csv -->
@@ -928,65 +536,17 @@ int $1,$3" "$2,$4}}'</span> |
 <!-- bat -A composers.csv -->
 <!-- //# cat composers.csv | csvquote | tr -d $'\x1f'   # comma (unit separator in unicode) -->
 <!-- //# cat composers.csv | csvquote | tr $'\x1e' ' '  # new line (record separator in unicode) -->
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">cat</span> <span style="text-decoration: underline">names-comma.csv</span>
-id,last_name,first_name,born
-1,Williams,John,1932
-2,Elfman,Danny,1953
-3,Horner,James,1953
-4,Shore,Howard,1946
-5,Zimmer,Hans,1957
-6,"Beethoven, van",Ludwig,1770</pre>
-<p>Well, it appears that the first three approaches fail; all in different ways. Only <code>csvsql</code> is able to combine first_name and full_name:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names-comma.csv</span> <span style="color: #5f8700">sed</span> -re <span style="color: #af8700">'1s/.*/id,full_name,born/g;2,$s/(.*),(.*),(.*),(.*)/
-\1,\3 \2,\4/g'</span> | <span style="color: #5f8700">tail</span> -n 1
-6,"Beethoven,Ludwig  van",1770</pre>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names-comma.csv</span> <span style="color: #5f8700">awk</span> -F, <span style="color: #af8700">'BEGIN{OFS=","; print "id,full_name,born"} {if(NR &gt;
-1) {print $1,$3" "$2,$4}}'</span> | <span style="color: #5f8700">tail</span> -n 1
-6, van" "Beethoven,Ludwig</pre>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names-comma.csv</span> <span style="font-weight: bold"></span><span style="font-weight: bold; color: #d70000">|</span> <span style="color: #5f8700">cols</span> -c first_name,last_name tr \",\" \" \" |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">header</span> -r full_name,id,born | <span style="color: #5f8700">csvcut</span> -c id,full_name,born | <span style="color: #5f8700">tail</span> -n 1
-6,"Ludwig ""Beethoven  van""",1770</pre>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names-comma.csv</span> <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">"SELECT id, first_name || ' ' || last_name AS
- full_name, born FROM stdin"</span> | <span style="color: #5f8700">tail</span> -n 1
-6.0,"Ludwig Beethoven, van",1770.0</pre>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">names-comma.csv</span> <span style="color: #5f8700">rush</span> run -t <span style="color: #af8700">'unite(df, full_name, first_name, last_name, sep
- = " ")'</span> - | <span style="color: #5f8700">tail</span> -n 1
-6,"Ludwig Beethoven, van",1770</pre>
-<p>Wait a minute! What’s that last command? Is that R? Well, as a matter of fact, it is.
-It’s R code evaluated through a command-line tool called <code>rush</code>. All that I can say at this moment, is that also this approach succeeds at merging the two columns.
-I’ll discuss this nifty command-line tool later.</p>
-</div>
-<div id="combining-multiple-csv-files" class="section level3" number="5.4.6">
-<h3>
-<span class="header-section-number">5.4.6</span> Combining Multiple CSV Files<a class="anchor" aria-label="anchor" href="#combining-multiple-csv-files"><i class="fas fa-link"></i></a>
-</h3>
-<!-- #### Concatenate Vertically -->
-<!-- Vertical concatenation may be necessary in cases where you have, for example, a data set which is generated on a daily basis, or where each data set represents a different, say, market or product. -->
-<!-- Let’s simulate the former by splitting up *scientists.csv*, so that we have something to combine again. -->
-<!-- <\!-- #TODO: use xsv split -\-> -->
-<!-- <\!-- #TODO mention that this could also be useful for parallel processing (Chapter 8) -\-> -->
-<!-- <\!-- #TODO: use xsv cat instead of csvstack -\-> -->
-<!-- ```{console} -->
-<!--  < scientists.xml xml2json | jq -r '.Root.data.record[] | [.field[0]."$t", .field[2]."$t", .field[3]."$t"] | @csv' | header -a "country,year,value" > scientists.csv -->
-<!-- xsv split -s 2000 science scientists.csv -->
-<!-- wc -l science/* -->
-<!-- csvlook science/12000.csv -->
-<!-- ``` -->
-<!-- You could just concatenate the files using `cat` and removing the headers of all but the first file using as follows: -->
-<!-- A more robust solution to combine multiple CSV files is to use `xsv`: -->
-<!-- Out of order -->
-<!-- ```{console} -->
-<!-- xsv cat rows science/*.csv | tail -->
-<!-- ``` -->
-<!-- Note that the rows have -->
-<!-- Back in order -->
-<!-- ```{console} -->
-<!-- echo $(ls -v science/*.csv) -->
-<!-- xsv cat rows $(ls -v science/*.csv) | tail -->
-<!-- ``` -->
-<!-- ```{console} -->
-<!-- awk 'NR==1 {H=$0; print} $0!=H' 2021-01-0*.csv | trim -->
-<!-- ``` -->
+<pre>cat names-comma.csv</pre>
+<p>글쎄요, 처음 세 가지 방식은 모두 각기 다른 이유로 실패하는 것 같군요. 오직 <code>csvsql</code>만이 first_name과 full_name을 제대로 결합할 수 있습니다.</p>
+<pre>&lt; names-comma.csv sed -re '1s/.*/id,full_name,born/g;2,$s/(.*),(.*),(.*),(.*)/\1,\3 \2,\4/g' | tail -n 1</pre>
+<pre>&lt; names-comma.csv awk -F, 'BEGIN{OFS=","; print "id,full_name,born"} {if(NR &gt; 1) {print $1,$3" "$2,$4}}' | tail -n 1</pre>
+<pre>&lt; names-comma.csv | cols -c first_name,last_name tr \",\" \" \" |
+header -r full_name,id,born | csvcut -c id,full_name,born | tail -n 1</pre>
+<pre>&lt; names-comma.csv csvsql --query "SELECT id, first_name || ' ' || last_name AS full_name, born FROM stdin" | tail -n 1</pre>
+<pre>&lt; names-comma.csv rush run -t 'unite(df, full_name, first_name, last_name, sep = " ")' - | tail -n 1</pre>
+<p>잠깐만요! 저 마지막 명령어는 무엇인가요? R인가요? 사실 그렇습니다.
+<code>rush</code>라는 커맨드 라인 도구를 통해 실행된 R 코드입니다. 지금 말씀드릴 수 있는 것은 이 방식 또한 두 개의 열을 병합하는 데 성공했다는 점입니다.
+이 멋진 도구에 대해서는 나중에 다시 다루겠습니다.</p>
 <!-- ```{console} -->
 <!-- shuf -ri 0-9999 -n 24 | nl -v0 -w1 -s, | header -a hour,value > 2021-01-01.csv -->
 <!-- shuf -ri 0-9999 -n 24 | nl -v0 -w1 -s, | header -a hour,value > 2021-01-02.csv -->
@@ -999,276 +559,141 @@ I’ll discuss this nifty command-line tool later.</p>
 <!-- ```{console} -->
 <!-- awk 'NR==1 {H=$0; print "date,"$0} $0!=H {print FILENAME","$0}' 2021-01-0*.csv | csvlook -->
 <!-- ``` -->
-<div id="concatenate-horizontally" class="section level4" number="5.4.6.1">
+<div id="가로로-결합하기" class="section level4" number="5.4.5.1">
 <h4>
-<span class="header-section-number">5.4.6.1</span> Concatenate Horizontally<a class="anchor" aria-label="anchor" href="#concatenate-horizontally"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.5.1</span> 가로로 결합하기<a class="anchor" aria-label="anchor" href="#%EA%B0%80%EB%A1%9C%EB%A1%9C-%EA%B2%B0%ED%95%A9%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h4>
-<p>Let’s say you have three CSV files that want to put side by side. We use <code>tee</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-tee" role="doc-biblioref"&gt;Mike Parker, Richard M. Stallman, and David MacKenzie, &lt;em&gt;&lt;span class="nocase"&gt;tee&lt;/span&gt; – Read from Standard Input and Write to Standard Output and Files&lt;/em&gt;, version 8.30, 2019, &lt;/a&gt;&lt;a href="https://www.gnu.org/software/coreutils" role="doc-biblioref"&gt;https://www.gnu.org/software/coreutils&lt;/a&gt;.&lt;/p&gt;'><sup>81</sup></a></span> to save the result of <code>csvcut</code> in the middle of the pipeline:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">csvcut</span> -c bill,tip | <span style="color: #5f8700">tee</span> bills.csv | <span style="color: #5f8700">head</span> -n 3 | <span style="color: #5f8700">csvlook</span>
-│  bill │  tip │
-├───────┼──────┤
-│ 16.99 │ 1.01 │
-│ 10.34 │ 1.66 │
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">csvcut</span> -c day,time | <span style="color: #5f8700">tee</span> datetime.csv |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">head</span> -n 3 | <span style="color: #5f8700">csvlook</span> -I
-│ day │ time   │
-├─────┼────────┤
-│ Sun │ Dinner │
-│ Sun │ Dinner │
- 
-<span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">tips.csv</span> <span style="color: #5f8700">csvcut</span> -c sex,smoker,size | <span style="color: #5f8700">tee</span> customers.csv |
-<span style="font-weight: bold">&gt;</span> <span style="color: #5f8700">head</span> -n 3 | <span style="color: #5f8700">csvlook</span>
-│ sex    │ smoker │ size │
-├────────┼────────┼──────┤
-│ Female │  False │    2 │
-│ Male   │  False │    3 │</pre>
-<p>Assuming that the rows line up, you can <code>paste</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-paste" role="doc-biblioref"&gt;Ihnat and MacKenzie, &lt;em&gt;&lt;span class="nocase"&gt;paste&lt;/span&gt; – Merge Lines of Files&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>82</sup></a></span> the files together:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">paste</span> -d, {bills,customers,datetime}.csv | <span style="color: #5f8700">head</span> -n 3 | <span style="color: #5f8700">csvlook</span> -I
-│ bill  │ tip  │ sex    │ smoker │ size │ day │ time   │
-├───────┼──────┼────────┼────────┼──────┼─────┼────────┤
-│ 16.99 │ 1.01 │ Female │ No     │ 2    │ Sun │ Dinner │
-│ 10.34 │ 1.66 │ Male   │ No     │ 3    │ Sun │ Dinner │</pre>
-<p>Here, the command-line argument <code>-d</code> instructs <code>paste</code> to use a comma as the delimiter.</p>
+<p>나란히 붙이고 싶은 세 개의 CSV 파일이 있다고 가정해 봅시다. 파이프라인 중간에 <code>csvcut</code>의 결과를 저장하기 위해 <code>tee</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Mike Parker, Richard M. Stallman, and David MacKenzie, &lt;em&gt;tee – Read from Standard Input and Write to Standard Output and Files&lt;/em&gt;, version 8.30, 2019, &lt;a href="https://www.gnu.org/software/coreutils" role="doc-biblioref"&gt;https://www.gnu.org/software/coreutils&lt;/a&gt;.&lt;/p&gt;'><sup>82</sup></a></span>를 사용합니다.</p>
+<pre>&lt; tips.csv csvcut -c bill,tip | tee bills.csv | head -n 3 | csvlook
+&lt; tips.csv csvcut -c day,time | tee datetime.csv |
+head -n 3 | csvlook -I
+&lt; tips.csv csvcut -c sex,smoker,size | tee customers.csv |
+head -n 3 | csvlook</pre>
+<p>행들이 서로 일치한다고 가정하면, <code>paste</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Ihnat and MacKenzie, &lt;em&gt;paste – Merge Lines of Files&lt;/em&gt;.&lt;/p&gt;"><sup>83</sup></a></span>를 사용하여 파일들을 하나로 합칠 수 있습니다.</p>
+<pre>paste -d, {bills,customers,datetime}.csv | head -n 3 | csvlook -I</pre>
+<p>여기서 커맨드 라인 인자 <code>-d</code>는 <code>paste</code>가 구분자로 쉼표를 사용하도록 지시합니다.</p>
 </div>
-<div id="joining" class="section level4" number="5.4.6.2">
+<div id="결합joining" class="section level4" number="5.4.5.2">
 <h4>
-<span class="header-section-number">5.4.6.2</span> Joining<a class="anchor" aria-label="anchor" href="#joining"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.5.2</span> 결합(Joining)<a class="anchor" aria-label="anchor" href="#%EA%B2%B0%ED%95%A9joining"><i class="fas fa-link"></i></a>
 </h4>
-<p>Sometimes data cannot be combined by vertical or horizontal concatenation.
-In some cases, especially in relational databases, the data is spread over multiple tables (or files) in order to minimize redundancy.
-Imagine you wanted to extend the Iris data set with more information about the three types of Iris flowers, namely the USDA identifier.
-It so happens that I have a separate CSV file with these identifiers:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvlook</span> <span style="text-decoration: underline">irismeta.csv</span>
-│ species         │ wikipedia_url                                │ usda_id │
-├─────────────────┼──────────────────────────────────────────────┼─────────┤
-│ Iris-versicolor │ http://en.wikipedia.org/wiki/Iris_versicolor │ IRVE2   │
-│ Iris-virginica  │ http://en.wikipedia.org/wiki/Iris_virginica  │ IRVI    │
-│ Iris-setosa     │                                              │ IRSE    │</pre>
-<p>What this data set and the Iris data set have in common is the <em>species</em> column.
-You can use <code>csvjoin</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-csvjoin" role="doc-biblioref"&gt;Christopher Groskopf, &lt;em&gt;&lt;span class="nocase"&gt;csvjoin&lt;/span&gt; – Execute a &lt;span&gt;SQL&lt;/span&gt;-Like Join to Merge &lt;span&gt;CSV&lt;/span&gt; Files on a Specified Column or Columns&lt;/em&gt;, version 1.0.5, 2020, &lt;/a&gt;&lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>83</sup></a></span> to join the two data sets:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvjoin</span> -c species <span style="text-decoration: underline">iris.csv</span> <span style="text-decoration: underline">irismeta.csv</span> | <span style="color: #5f8700">csvcut</span> -c sepal_length,sepal_width,
-species,usda_id | <span style="color: #5f8700">sed</span> -n <span style="color: #af8700">'1p;49,54p'</span> | <span style="color: #5f8700">csvlook</span>
-│ sepal_length │ sepal_width │ species         │ usda_id │
-├──────────────┼─────────────┼─────────────────┼─────────┤
-│          4.6 │         3.2 │ Iris-setosa     │ IRSE    │
-│          5.3 │         3.7 │ Iris-setosa     │ IRSE    │
-│          5.0 │         3.3 │ Iris-setosa     │ IRSE    │
-│          7.0 │         3.2 │ Iris-versicolor │ IRVE2   │
-│          6.4 │         3.2 │ Iris-versicolor │ IRVE2   │
-│          6.9 │         3.1 │ Iris-versicolor │ IRVE2   │</pre>
-<p>Of course you can also use the SQL approach using <code>csvsql</code>, which is, as per usual, a bit longer (but potentially much more flexible):</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvsql</span> --query <span style="color: #af8700">'SELECT i.sepal_length, i.sepal_width, i.species, m.usda_id FRO
-M iris i JOIN irismeta m ON (i.species = m.species)'</span> <span style="text-decoration: underline">iris.csv</span> <span style="text-decoration: underline">irismeta.csv</span> | <span style="color: #5f8700">sed
-</span> -n <span style="color: #af8700">'1p;49,54p'</span> | <span style="color: #5f8700">csvlook</span>
-│ sepal_length │ sepal_width │ species         │ usda_id │
-├──────────────┼─────────────┼─────────────────┼─────────┤
-│          4.6 │         3.2 │ Iris-setosa     │ IRSE    │
-│          5.3 │         3.7 │ Iris-setosa     │ IRSE    │
-│          5.0 │         3.3 │ Iris-setosa     │ IRSE    │
-│          7.0 │         3.2 │ Iris-versicolor │ IRVE2   │
-│          6.4 │         3.2 │ Iris-versicolor │ IRVE2   │
-│          6.9 │         3.1 │ Iris-versicolor │ IRVE2   │</pre>
-<!-- ## JSON -->
-<!-- ## XML -->
-<!-- ## HTML -->
+<p>가끔은 데이터를 세로로나 가로로 단순히 이어 붙이는 것만으로는 합칠 수 없습니다.
+특히 관계형 데이터베이스의 경우, 중복을 최소화하기 위해 데이터가 여러 테이블(또는 파일)에 분산되어 있는 경우가 있습니다.
+Iris 데이터셋에 세 가지 붓꽃 종류에 대한 더 많은 정보(예: USDA 식별자)를 추가하여 확장하고 싶다고 가정해 봅시다.
+마침 이러한 식별자가 포함된 별도의 CSV 파일이 있습니다.</p>
+<pre>csvlook irismeta.csv</pre>
+<p>이 데이터셋과 Iris 데이터셋의 공통점은 <em>species</em> 열입니다.
+<code>csvjoin</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Christopher Groskopf, &lt;em&gt;csvjoin – Execute a SQL-Like Join to Merge CSV Files on a Specified Column or Columns&lt;/em&gt;, version 1.0.5, 2020, &lt;a href="https://csvkit.rtfd.org" role="doc-biblioref"&gt;https://csvkit.rtfd.org&lt;/a&gt;.&lt;/p&gt;'><sup>84</sup></a></span>을 사용하여 두 데이터셋을 결합할 수 있습니다.</p>
+<pre>csvjoin -c species iris.csv irismeta.csv | csvcut -c sepal_length,sepal_width,species,usda_id | sed -n '1p;49,54p' | csvlook</pre>
+<p>물론 <code>csvsql</code>을 사용하여 SQL 방식으로 접근할 수도 있습니다. 평소와 같이 조금 더 길지만, 잠재적으로 훨씬 더 유연합니다.</p>
+<pre>csvsql --query 'SELECT i.sepal_length, i.sepal_width, i.species, m.usda_id FROM iris i JOIN irismeta m ON (i.species = m.species)' iris.csv irismeta.csv | sed -n '1p;49,54p' | csvlook</pre>
 </div>
 </div>
 </div>
-<div id="working-with-xmlhtml-and-json" class="section level2" number="5.5">
+<div id="xmlhtml-및-json-작업하기" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">5.5</span> Working with XML/HTML and JSON<a class="anchor" aria-label="anchor" href="#working-with-xmlhtml-and-json"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> XML/HTML 및 JSON 작업하기<a class="anchor" aria-label="anchor" href="#xmlhtml-%EB%B0%8F-json-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this section I’m going to demonstrate a couple of command-line tools that can convert data from one format to another.
-There are two reasons to convert data.</p>
-<p>First, oftentimes, the data needs to be in tabular form, just like a database table or a spreadsheet, because many visualization and machine learning algorithms depend on it.
-CSV is inherently in tabular form, but JSON and HTML/XML data can have a deeply nested structure.</p>
-<p>Second, many command-line tools, especially the classic ones such as <code>cut</code> and <code>grep</code>, operate on plain text.
-This is because text is regarded as a universal interface between command-line tools.
-Moreover, the other formats are younger. Each of these formats can be treated as plain text, allowing us to apply such command-line tools to the other formats as well.</p>
-<p>Sometimes you can get away with applying the classic tools to structured data.
-For example, by treating the JSON data below as plain text, you can change the attribute <em>gender</em> to <em>sex</em> using <code>sed</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">sed</span> -e <span style="color: #af8700">'s/"gender":/"sex":/g'</span> <span style="text-decoration: underline">users.json</span> | <span style="color: #5f8700">jq</span> | <span style="color: #5f8700">trim</span>
-{
-  "results": [
-    {
-      "sex": "male",
-      "name": {
-        "title": "mr",
-        "first": "leevi",
-        "last": "kivisto"
-      },
-      "location": {
-… with 260 more lines</pre>
-<p>Like many other command-line tools, <code>sed</code> does not make use of the structure of the data.
-Better to either use a tool that makes use of the structure of the data (such as <code>jq</code> which I discuss below), or first convert the data to a tabular format such as CSV and then apply the appropriate command-line tool.</p>
-<p>I’m going to demonstrate converting XML/HTML and JSON to CSV through a real-world use case.
-The command-line tools that I’ll be using here are: <code>curl</code>, <code>pup</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-pup" role="doc-biblioref"&gt;Chiang, &lt;em&gt;&lt;span class="nocase"&gt;pup&lt;/span&gt; – Parsing HTML at the Command Line&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;'><sup>84</sup></a></span>, <code>xml2json</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-xml2json" role="doc-biblioref"&gt;François Parmentier, &lt;em&gt;&lt;span class="nocase"&gt;xml2json&lt;/span&gt; – Convert an &lt;span&gt;XML&lt;/span&gt; Input to a &lt;span&gt;JSON&lt;/span&gt; Output, Using &lt;span class="nocase"&gt;xml-mapping&lt;/span&gt;&lt;/em&gt;, version 0.0.3, 2016, &lt;/a&gt;&lt;a href="https://github.com/parmentf/xml2json" role="doc-biblioref"&gt;https://github.com/parmentf/xml2json&lt;/a&gt;.&lt;/p&gt;'><sup>85</sup></a></span>, <code>jq</code> and <code>json2csv</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="#ref-json2csv" role="doc-biblioref"&gt;Jehiah Czebotar, &lt;em&gt;&lt;span class="nocase"&gt;json2csv&lt;/span&gt; – Convert &lt;span&gt;JSON&lt;/span&gt; to &lt;span&gt;CSV&lt;/span&gt;&lt;/em&gt;, version 1.2.1, 2019, &lt;/a&gt;&lt;a href="https://github.com/jehiah/json2csv" role="doc-biblioref"&gt;https://github.com/jehiah/json2csv&lt;/a&gt;.&lt;/p&gt;'><sup>86</sup></a></span>.</p>
-<p>Wikpedia holds a wealth of information. Much of this information is ordered in tables, which can be regarded as data sets.
-For example, <a href="http://en.wikipedia.org/wiki/List_of_countries_and_territories_by_border/area_ratio">this page</a> contains a list of countries and territories together with their border length, their area, and the ratio between the two.</p>
-<p>Let’s imagine that you’re interested in analyzing this data. In this section, I’ll walk you through all the necessary steps and their corresponding commands. I won’t go into every little detail, so it could be that you won’t understand everything right away. Don’t worry, I’re confident that you’ll get the gist of it. Remember that the purpose of this section is to demonstrate the command line. All tools and concepts used in this section (and more) will be explained in the subsequent chapters.</p>
-<p>The data set that you’re interested in, is embedded in HTML.
-Your goal is to end up with a representation of this data set that you can work with.
-The very first step is to download the HTML using <code>curl</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">curl</span> -sL <span style="color: #af8700">'http://en.wikipedia.org/wiki/List_of_countries_and_territories_by_bo
-rder/area_ratio'</span> <span style="color: #af8700">&gt;</span> wiki.html</pre>
-<p>The HTML is saved to a file named <em>wiki.html</em>.
-Let’s see how the first 10 lines look like:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">wiki.html</span> <span style="color: #5f8700">trim</span>
-&lt;!DOCTYPE html&gt;
-&lt;html class="client-nojs" lang="en" dir="ltr"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"/&gt;
-&lt;title&gt;List of countries and territories by border/area ratio - Wikipedia&lt;/titl…
-&lt;script&gt;document.documentElement.className="client-js";RLCONF={"wgBreakFrames":…
-"Lists of countries by geography","Lists by area","Border-related lists"],"wgPa…
-"wgGENewcomerTasksGuidanceEnabled":true,"wgGEAskQuestionEnabled":false,"wgGELin…
-"ext.cx.eventlogging.campaigns","ext.centralNotice.geoIP","ext.centralNotice.st…
-&lt;script&gt;(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@…
-… with 3070 more lines</pre>
-<p>That seems to be in order.
-Image that you’ve been able to determine that the root HTML element that we’re interested in is a <em>&lt;table&gt;</em> with the class <em>wikitable</em>.
-This allows you to look at the part that you’re interest in using <code>grep</code> (the <code>-A</code> option specifies the number of lines you want to print after the matching line):</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">grep</span> wikitable -A 21 <span style="text-decoration: underline">wiki.html</span>
-&lt;table class="wikitable sortable"&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;th&gt;Rank&lt;/th&gt;
-&lt;th&gt;Country or territory&lt;/th&gt;
-&lt;th&gt;Total length of land borders (km)&lt;/th&gt;
-&lt;th&gt;Total surface area (km&lt;sup&gt;2&lt;/sup&gt;)&lt;/th&gt;
-&lt;th&gt;Border/area ratio (km/km&lt;sup&gt;2&lt;/sup&gt;)
-&lt;/th&gt;&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1
-&lt;/td&gt;
-&lt;td&gt;Vatican City
-&lt;/td&gt;
-&lt;td&gt;3.2
-&lt;/td&gt;
-&lt;td&gt;0.44
-&lt;/td&gt;
-&lt;td&gt;7.2727273
-&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2
-&lt;/td&gt;</pre>
-<p>You now actually see the countries and their values.
-The next step is to extract the necessary elements from the HTML file.
-For this you can use <code>pup</code>:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">wiki.html</span> <span style="color: #5f8700">pup</span> <span style="color: #af8700">'table.wikitable tbody'</span> | <span style="color: #5f8700">tee</span> table.html | <span style="color: #5f8700">trim</span>
-&lt;tbody&gt;
- &lt;tr&gt;
-  &lt;th&gt;
-   Rank
-  &lt;/th&gt;
-  &lt;th&gt;
-   Country or territory
-  &lt;/th&gt;
-  &lt;th&gt;
-   Total length of land borders (km)
-… with 4199 more lines</pre>
-<p>The expression passed to <code>pup</code> is a CSS-selector.
-The syntax is usually used to style web pages, but you can also use it to select certain elements from HTML.
-In this case, you want to select the <em>tbody</em> of the <em>table</em> which has the <em>wikitable</em> class.
-Up next is <code>xml2json</code>, which converts XML (and HTML) to JSON.</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">table.html</span> <span style="color: #5f8700">xml2json</span> <span style="color: #af8700">&gt;</span> table.json
- 
-<span style="font-weight: bold">$</span> <span style="color: #5f8700">jq</span> <span style="text-decoration: underline">.</span> <span style="text-decoration: underline">table.json</span> | <span style="color: #5f8700">trim</span> 20
-{
-  "tbody": {
-    "tr": [
-      {
-        "th": [
-          {
-            "$t": "Rank"
-          },
-          {
-            "$t": "Country or territory"
-          },
-          {
-            "$t": "Total length of land borders (km)"
-          },
-          {
-            "$t": [
-              "Total surface area (km",
-              ")"
-            ],
-            "sup": {
-… with 4691 more lines</pre>
-<p>The reason I convert the HTML to JSON is because there is a very powerful tool called <code>jq</code> that operates on JSON data.
-The following command extracts certain parts of the JSON data and reshapes it into a form that we can work with:</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #af8700">&lt;</span> <span style="text-decoration: underline">table.json</span> <span style="color: #5f8700">jq</span> -r <span style="color: #af8700">'.tbody.tr[1:][] | [.td[]["$t"]] | @csv'</span> | <span style="color: #5f8700">header</span> -a rank,c
-ountry,border,surface,ratio <span style="color: #af8700">&gt;</span> countries.csv</pre>
-<p>The data is now in a form that you can work with.
-Those were quite a few steps to get from a Wikipedia page to a CSV data set.
-However, when you combine all of the above commands into one, you will see that it’s actually really concise and expressive.</p>
-<pre><span style="font-weight: bold">$</span> <span style="color: #5f8700">csvlook</span> --max-column-width 28 <span style="text-decoration: underline">countries.csv</span>
-│ rank │ country                      │    border │       surface │  ratio │
-├──────┼──────────────────────────────┼───────────┼───────────────┼────────┤
-│    1 │ Vatican City                 │      3.20 │          0.44 │ 7.273… │
-│    2 │ Monaco                       │      4.40 │          2.00 │ 2.200… │
-│    3 │ San Marino                   │     39.00 │         61.00 │ 0.639… │
-│    4 │ Liechtenstein                │     76.00 │        160.00 │ 0.465… │
-│    5 │ Sint Maarten  (Netherlands)  │     10.20 │         34.00 │ 0.300… │
-│    6 │ Andorra                      │    120.30 │        468.00 │ 0.257… │
-│    7 │ Gibraltar  (United Kingdom)  │      1.20 │          6.00 │ 0.200… │
-│    8 │ Saint Martin (France)        │     10.20 │         54.00 │ 0.189… │
-… with 238 more lines</pre>
-<p>That concludes the demonstration of conversion XML/HTML to JSON to CSV.
-While <code>jq</code> can perform many more operations, and while there exist specialized tools to work with XML data, in my experience, converting the data to CSV format as quickly as possible tends to work well.
-This way you can spend more time becoming proficient at generic command-line tools, rather than very specific tools.</p>
+<p>이 섹션에서는 데이터를 한 형식에서 다른 형식으로 변환할 수 있는 몇 가지 커맨드 라인 도구를 시연하겠습니다.
+데이터를 변환하는 데에는 두 가지 이유가 있습니다.</p>
+<p>첫째, 많은 시각화 및 머신러닝 알고리즘이 표 형식의 데이터를 요구하기 때문에, 데이터를 데이터베이스 테이블이나 스프레드시트와 같은 표 형태로 만들어야 하는 경우가 많습니다.
+CSV는 본래 표 형식이지만, JSON과 HTML/XML 데이터는 깊게 중첩된 구조를 가질 수 있습니다.</p>
+<p>둘째, <code>cut</code>이나 <code>grep</code> 같은 고전적인 커맨드 라인 도구들은 대부분 일반 텍스트를 대상으로 작동합니다.
+텍스트는 커맨드 라인 도구 간의 보편적인 인터페이스로 간주되기 때문입니다.
+게다가 다른 형식들은 비교적 나중에 등장했습니다. 이러한 각 형식을 일반 텍스트로 취급하면 고전적인 커맨드 라인 도구들을 다른 형식에도 적용할 수 있습니다.</p>
+<p>가끔은 구조화된 데이터에 고전적인 도구들을 적용하여 문제를 해결할 수 있습니다.
+예를 들어, 아래의 JSON 데이터를 일반 텍스트로 취급하여 <code>sed</code>를 사용해 <em>gender</em> 속성을 <em>sex</em>로 바꿀 수 있습니다.</p>
+<pre>sed -e 's/"gender":/"sex":/g' users.json | jq | trim</pre>
+<p>다른 많은 커맨드 라인 도구와 마찬가지로 <code>sed</code>는 데이터의 구조를 활용하지 않습니다.
+구조를 활용하는 도구(아래에서 설명할 <code>jq</code> 등)를 사용하거나, 데이터를 먼저 CSV와 같은 표 형식으로 변환한 다음 적절한 커맨드 라인 도구를 적용하는 것이 더 좋습니다.</p>
+<p>실제 사용 사례를 통해 XML/HTML 및 JSON을 CSV로 변환하는 과정을 보여드리겠습니다.
+여기서 사용할 커맨드 라인 도구는 <code>curl</code>, <code>pup</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Chiang, &lt;em&gt;pup – Parsing Html at the Command Line&lt;/em&gt;.&lt;/p&gt;"><sup>85</sup></a></span>, <code>xml2json</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;François Parmentier, &lt;em&gt;xml2json – Convert an XML Input to a JSON Output, Using xml-mapping&lt;/em&gt;, version 0.0.3, 2016, &lt;a href="https://github.com/parmentf/xml2json" role="doc-biblioref"&gt;https://github.com/parmentf/xml2json&lt;/a&gt;.&lt;/p&gt;'><sup>86</sup></a></span>, <code>jq</code>, <code>json2csv</code><span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Jehiah Czebotar, &lt;em&gt;json2csv – Convert JSON to CSV&lt;/em&gt;, version 1.2.1, 2019, &lt;a href="https://github.com/jehiah/json2csv" role="doc-biblioref"&gt;https://github.com/jehiah/json2csv&lt;/a&gt;.&lt;/p&gt;'><sup>87</sup></a></span>입니다.</p>
+<p>위키피디아에는 방대한 정보가 담겨 있습니다. 이 정보의 상당 부분은 표(table)로 정리되어 있으며, 이는 데이터셋으로 간주될 수 있습니다.
+예를 들어, <a href="http://en.wikipedia.org/wiki/List_of_countries_and_territories_by_border/area_ratio">이 페이지</a>에는 국가 및 영토 목록과 함께 국경 길이, 면적, 그리고 그 둘 사이의 비율이 포함되어 있습니다.</p>
+<p>이 데이터를 분석하는 데 관심이 있다고 가정해 봅시다. 이 섹션에서는 필요한 모든 단계와 그에 해당하는 명령어를 안내해 드리겠습니다. 세세한 부분까지 모두 설명하지는 않으므로 모든 것을 즉시 이해하지 못할 수도 있습니다. 걱정하지 마세요. 핵심 내용은 파악하실 수 있을 것입니다. 이 섹션의 목적은 커맨드 라인의 활용 능력을 보여주는 것임을 기억하세요. 이 섹션에서 사용된 모든 도구와 개념(그 이상)은 이후 장에서 설명될 것입니다.</p>
+<p>관심 있는 데이터셋은 HTML에 포함되어 있습니다.
+여러분의 목표는 작업하기 편한 형태의 데이터셋 표현을 얻는 것입니다.
+가장 먼저 할 일은 <code>curl</code>을 사용하여 HTML을 다운로드하는 것입니다.</p>
+<pre>curl -sL 'http://en.wikipedia.org/wiki/List_of_countries_and_territories_by_border/area_ratio' &gt; wiki.html</pre>
+<p>HTML은 <em>wiki.html</em>이라는 파일로 저장됩니다.
+처음 10행이 어떻게 생겼는지 확인해 봅시다.</p>
+<pre>&lt; wiki.html trim</pre>
+<p>제대로 된 것 같습니다.
+관심 있는 루트 HTML 요소가 <em>wikitable</em> 클래스를 가진 <em>&lt;table&gt;</em>이라는 것을 알아냈다고 가정해 봅시다.
+그러면 <code>grep</code>을 사용하여 관심 있는 부분을 살펴볼 수 있습니다(<code>-A</code> 옵션은 일치하는 행 이후에 인쇄할 행의 수를 지정합니다).</p>
+<pre>grep wikitable -A 21 wiki.html</pre>
+<p>이제 실제 국가들과 그 값들이 보입니다.
+다음 단계는 HTML 파일에서 필요한 요소를 추출하는 것입니다.
+이를 위해 <code>pup</code>을 사용할 수 있습니다.</p>
+<pre>&lt; wiki.html pup 'table.wikitable tbody' | tee table.html | trim</pre>
+<p><code>pup</code>에 전달된 표현식은 CSS 선택자(selector)입니다.
+이 구문은 보통 웹 페이지의 스타일을 지정하는 데 사용되지만, HTML에서 특정 요소를 선택하는 데에도 사용할 수 있습니다.
+이 경우 <em>wikitable</em> 클래스를 가진 <em>table</em>의 <em>tbody</em>를 선택하려고 합니다.
+그다음은 XML(및 HTML)을 JSON으로 변환하는 <code>xml2json</code>입니다.</p>
+<pre>&lt; table.html xml2json &gt; table.json
+jq . table.json | trim 20</pre>
+<p>HTML을 JSON으로 변환하는 이유는 JSON 데이터를 처리하는 매우 강력한 도구인 <code>jq</code>가 있기 때문입니다.
+다음 명령어는 JSON 데이터의 특정 부분을 추출하고 우리가 작업할 수 있는 형태로 재구성합니다.</p>
+<pre>&lt; table.json jq -r '.tbody.tr[1:][] | [.td[]["$t"]] | @csv' | header -a rank,country,border,surface,ratio &gt; countries.csv</pre>
+<p>이제 데이터가 작업하기 편한 형태가 되었습니다.
+위키피디아 페이지에서 CSV 데이터셋을 얻기까지 꽤 많은 단계를 거쳤습니다.
+하지만 위의 모든 명령어를 하나로 합치면 실제로는 매우 간결하고 표현력이 풍부하다는 것을 알 수 있습니다.</p>
+<pre>csvlook --max-column-width 28 countries.csv</pre>
+<p>이로써 XML/HTML에서 JSON을 거쳐 CSV로 변환하는 시연을 마칩니다.
+<code>jq</code>는 훨씬 더 많은 작업을 수행할 수 있고 XML 데이터를 다루는 전문 도구들도 존재하지만, 제 경험상 가능한 한 빨리 데이터를 CSV 형식으로 변환하는 것이 잘 작동하는 경향이 있습니다.
+이렇게 하면 특정 도구보다는 범용적인 커맨드 라인 도구에 능숙해지는 데 더 많은 시간을 할애할 수 있습니다.</p>
 </div>
-<div id="summary-4" class="section level2" number="5.6">
+<div id="요약-4" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">5.6</span> Summary<a class="anchor" aria-label="anchor" href="#summary-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> 요약<a class="anchor" aria-label="anchor" href="#%EC%9A%94%EC%95%BD-4"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this chapter we’ve looked at cleaning, or scrubbing, data.
-As you’ve seen there is no single tool that can magically get rid of all the messiness of data; you’ll often need to combine multiple different tools to get the desired result.
-Keep in mind that classic command-line tools such as <code>cut</code> and <code>sort</code> can’t interpret structured data.
-Luckily, there are tools that convert one data format, such as JSON and XML, into another data format, such as CSV.
-In the next chapter, which is again an intermezzo chapter, I’m going to show you how you can manage your project using <code>make</code>.
-You’re free to skip this chapter if you can’t wait to start exploring and visualizing your data in <a href="chapter-7-exploring-data.html#chapter-7-exploring-data">Chapter 7</a>.</p>
+<p>이 장에서는 데이터를 청소하거나 정제하는 과정을 살펴보았습니다.
+보셨듯이 데이터의 모든 지저분함을 마법처럼 없애주는 단일 도구는 없습니다. 원하는 결과를 얻기 위해 여러 가지 서로 다른 도구들을 결합해야 하는 경우가 많습니다.
+<code>cut</code>이나 <code>sort</code> 같은 고전적인 커맨드 라인 도구들은 구조화된 데이터를 해석할 수 없다는 점을 기억하세요.
+다행히 JSON이나 XML 같은 데이터 형식을 CSV 같은 다른 데이터 형식으로 변환해 주는 도구들이 있습니다.
+다음 장은 다시 한 번 막간을 이용한 장으로, <code>make</code>를 사용하여 프로젝트를 관리하는 방법을 보여드리겠습니다.
+<a href="chapter-7-exploring-data.html#chapter-7-exploring-data">7장</a>에서 데이터 탐색과 시각화를 시작하는 것이 너무 기다려진다면 이 장은 건너뛰어도 좋습니다.</p>
 </div>
-<div id="for-further-exploration-4" class="section level2" number="5.7">
+<div id="더-읽어보기" class="section level2" number="5.7">
 <h2>
-<span class="header-section-number">5.7</span> For Further Exploration<a class="anchor" aria-label="anchor" href="#for-further-exploration-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7</span> 더 읽어보기<a class="anchor" aria-label="anchor" href="#%EB%8D%94-%EC%9D%BD%EC%96%B4%EB%B3%B4%EA%B8%B0"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>I wish I could’ve explained more about <code>awk</code>. It’s such a powerful tool and programming language. I highly recommend that you take the time to learn it. Two good resources are the book <em>sed &amp; awk</em> by Doherty and Robbins and the online <a href="https://www.gnu.org/software/gawk/manual/gawk.html">GNU Awk User’s Guide</a>.</li>
-<li>In this chapter I have used regular expressions in a couple of places. A tutorial about them is unfortunately beyond the scope of this book. Because regular expressions can be used in many different tools, I recommend that you learn about them. A good book is <em>Regular Expressions Cookbook</em> by Jan Goyvaerts and Steven Levithan.</li>
+<li>
+<code>awk</code>에 대해 더 많이 설명할 수 있었다면 좋았을 것입니다. <code>awk</code>는 매우 강력한 도구이자 프로그래밍 언어입니다. 시간을 내어 배워보시길 강력히 추천합니다. 좋은 자료로는 Doherty와 Robbins가 쓴 <em>sed &amp; awk</em> 책과 온라인 <a href="https://www.gnu.org/software/gawk/manual/gawk.html">GNU Awk User’s Guide</a>가 있습니다.</li>
+<li>이 장의 몇 군데에서 정규 표현식을 사용했습니다. 아쉽게도 정규 표현식에 대한 튜토리얼은 이 책의 범위를 벗어납니다. 정규 표현식은 많은 서로 다른 도구에서 사용될 수 있으므로 배워두시는 것을 추천합니다. 좋은 책으로는 Jan Goyvaerts와 Steven Levithan이 쓴 <em>Regular Expressions Cookbook</em>이 있습니다.</li>
 </ul>
 </div>
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="chapter-4-creating-command-line-tools.html"><span class="header-section-number">4</span> Creating Command-line Tools</a></div>
-<div class="next"><a href="chapter-6-project-management-with-make.html"><span class="header-section-number">6</span> Project Management with Make</a></div>
+<div class="prev"><a href="chapter-4-creating-command-line-tools.html"><span class="header-section-number">4</span> 커맨드 라인 도구 만들기</a></div>
+<div class="next"><a href="chapter-6-project-management-with-make.html"><span class="header-section-number">6</span> Make으로 프로젝트 관리하기</a></div>
 </div></main><div class="col-md-3 col-lg-3 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chapter-5-scrubbing-data"><span class="header-section-number">5</span> Scrubbing Data</a></li>
-<li><a class="nav-link" href="#overview-2"><span class="header-section-number">5.1</span> Overview</a></li>
-<li><a class="nav-link" href="#transformations-transformations-everywhere"><span class="header-section-number">5.2</span> Transformations, Transformations Everywhere</a></li>
+<li><a class="nav-link" href="#chapter-5-scrubbing-data"><span class="header-section-number">5</span> 데이터 정제하기</a></li>
+<li><a class="nav-link" href="#%EA%B0%9C%EC%9A%94-2"><span class="header-section-number">5.1</span> 개요</a></li>
+<li><a class="nav-link" href="#%EB%B3%80%ED%99%98-%EC%96%B4%EB%94%94%EC%97%90%EB%82%98-%EC%9E%88%EB%8A%94-%EB%B3%80%ED%99%98%EB%93%A4"><span class="header-section-number">5.2</span> 변환, 어디에나 있는 변환들</a></li>
 <li>
-<a class="nav-link" href="#plain-text"><span class="header-section-number">5.3</span> Plain Text</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#filtering-lines"><span class="header-section-number">5.3.1</span> Filtering Lines</a></li>
-<li><a class="nav-link" href="#extracting-values"><span class="header-section-number">5.3.2</span> Extracting Values</a></li>
-<li><a class="nav-link" href="#replacing-and-deleting-values"><span class="header-section-number">5.3.3</span> Replacing and Deleting Values</a></li>
+<a class="nav-link" href="#%EC%9D%BC%EB%B0%98-%ED%85%8D%EC%8A%A4%ED%8A%B8-plain-text"><span class="header-section-number">5.3</span> 일반 텍스트 (Plain Text)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%ED%96%89-%ED%95%84%ED%84%B0%EB%A7%81%ED%95%98%EA%B8%B0"><span class="header-section-number">5.3.1</span> 행 필터링하기</a></li>
+<li><a class="nav-link" href="#%EA%B0%92-%EC%B6%94%EC%B6%9C%ED%95%98%EA%B8%B0"><span class="header-section-number">5.3.2</span> 값 추출하기</a></li>
+<li><a class="nav-link" href="#%EA%B0%92-%EA%B5%90%EC%B2%B4-%EB%B0%8F-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0"><span class="header-section-number">5.3.3</span> 값 교체 및 삭제하기</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#csv"><span class="header-section-number">5.4</span> CSV</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#bodies-and-headers-and-columns-oh-my"><span class="header-section-number">5.4.1</span> Bodies and Headers and Columns, Oh My!</a></li>
-<li><a class="nav-link" href="#performing-sql-queries-on-csv"><span class="header-section-number">5.4.2</span> Performing SQL Queries on CSV</a></li>
-<li><a class="nav-link" href="#extracting-and-reordering-columns"><span class="header-section-number">5.4.3</span> Extracting and Reordering Columns</a></li>
-<li><a class="nav-link" href="#filtering-rows"><span class="header-section-number">5.4.4</span> Filtering Rows</a></li>
-<li><a class="nav-link" href="#merging-columns"><span class="header-section-number">5.4.5</span> Merging Columns</a></li>
-<li><a class="nav-link" href="#combining-multiple-csv-files"><span class="header-section-number">5.4.6</span> Combining Multiple CSV Files</a></li>
+<li><a class="nav-link" href="#%EB%B3%B8%EB%AC%B8bodies%EA%B3%BC-%ED%97%A4%EB%8D%94headers%EC%99%80-%EC%97%B4columns"><span class="header-section-number">5.4.1</span> 본문(Bodies)과 헤더(Headers)와 열(Columns)</a></li>
+<li><a class="nav-link" href="#csv%EC%97%90%EC%84%9C-sql-%EC%BF%BC%EB%A6%AC-%EC%88%98%ED%96%89%ED%95%98%EA%B8%B0"><span class="header-section-number">5.4.2</span> CSV에서 SQL 쿼리 수행하기</a></li>
+<li><a class="nav-link" href="#%EC%97%B4-%EC%B6%94%EC%B6%9C-%EB%B0%8F-%EC%9E%AC%EC%A0%95%EB%A0%AC%ED%95%98%EA%B8%B0"><span class="header-section-number">5.4.3</span> 열 추출 및 재정렬하기</a></li>
+<li><a class="nav-link" href="#%ED%96%89-%ED%95%84%ED%84%B0%EB%A7%81%ED%95%98%EA%B8%B0-1"><span class="header-section-number">5.4.4</span> 행 필터링하기</a></li>
+<li><a class="nav-link" href="#%EC%97%B4-%EB%B3%91%ED%95%A9%ED%95%98%EA%B8%B0"><span class="header-section-number">5.4.5</span> 열 병합하기</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#working-with-xmlhtml-and-json"><span class="header-section-number">5.5</span> Working with XML/HTML and JSON</a></li>
-<li><a class="nav-link" href="#summary-4"><span class="header-section-number">5.6</span> Summary</a></li>
-<li><a class="nav-link" href="#for-further-exploration-4"><span class="header-section-number">5.7</span> For Further Exploration</a></li>
+<li><a class="nav-link" href="#xmlhtml-%EB%B0%8F-json-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0"><span class="header-section-number">5.5</span> XML/HTML 및 JSON 작업하기</a></li>
+<li><a class="nav-link" href="#%EC%9A%94%EC%95%BD-4"><span class="header-section-number">5.6</span> 요약</a></li>
+<li><a class="nav-link" href="#%EB%8D%94-%EC%9D%BD%EC%96%B4%EB%B3%B4%EA%B8%B0"><span class="header-section-number">5.7</span> 더 읽어보기</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1287,7 +712,7 @@ You’re free to skip this chapter if you can’t wait to start exploring and vi
     <div class="row">
       <div class="d-none d-lg-block col-lg-2 sidebar"></div>
       <div class="col-sm-12 col-md-9 col-lg-7 mt-3" style="max-width: 45rem;">
-        <p><strong>Data Science at the Command Line, 2e</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on December 14, 2021. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on January 29, 2026. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
       </div>
       <div class="col-md-3 col-lg-3 d-none d-md-block sidebar"></div>
     </div>

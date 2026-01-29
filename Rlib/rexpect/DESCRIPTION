@@ -1,0 +1,37 @@
+Package: rexpect
+Title: Automate Interactions with Textual Interfaces
+Version: 0.0.1.9000
+Authors@R: c(
+    person("Jeroen", "Janssens", email = "jeroen@jeroenjanssens.com",
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5878-8924"))
+    )  
+Description: rexpect allows you to automate interactions with programs that
+    expose a text terminal interface. The API is inspired by the original
+    Expect tool by Don Libes.
+Depends: R (>= 3.3.0)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/jeroenjanssens/rexpect
+BugReports: https://github.com/jeroenjanssens/rexpect/issues
+Imports: tmuxr (>= 0.2.5)
+RoxygenNote: 7.3.1
+Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace",
+        "collate"))
+Suggests: covr, testthat, knitr, rmarkdown, processx
+VignetteBuilder: knitr
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: rexpect
+RemoteUsername: jeroenjanssens
+RemoteRef: HEAD
+RemoteSha: d2eac72ac05c1b06697bb215a4ef4d4de20e7558
+GithubRepo: rexpect
+GithubUsername: jeroenjanssens
+GithubRef: HEAD
+GithubSHA1: d2eac72ac05c1b06697bb215a4ef4d4de20e7558
+NeedsCompilation: no
+Packaged: 2026-01-29 01:14:06 UTC; dst
+Author: Jeroen Janssens [aut, cre] (<https://orcid.org/0000-0002-5878-8924>)
+Maintainer: Jeroen Janssens <jeroen@jeroenjanssens.com>
+Built: R 4.0.4; ; 2026-01-29 01:14:06 UTC; unix

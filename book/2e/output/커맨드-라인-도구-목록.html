@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>커맨드 라인 도구 목록 | 커맨드 라인에서 시작하는 데이터 과학, 2판</title>
+<meta name="author" content="Jeroen Janssens">
+<meta name="description" content="이 장은 이 책에서 논의된 모든 커맨드 라인 도구들에 대한 개요입니다. 여기에는 바이너리 실행 파일, 인터프리터 스크립트, 그리고 Z Shell 빌트인(builtins) 및 키워드가 포함됩니다. 각 커맨드 라인 도구에 대해 가능한 경우 그리고 적절한 경우 다음과 같은 정보가 제공됩니다. 커맨드 라인에 입력할 실제 명령어 설명 책에서 사용된 버전 해당...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="커맨드 라인 도구 목록 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://datascienceatthecommandline.com/커맨드-라인-도구-목록.html">
+<meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
+<meta property="og:description" content="이 장은 이 책에서 논의된 모든 커맨드 라인 도구들에 대한 개요입니다. 여기에는 바이너리 실행 파일, 인터프리터 스크립트, 그리고 Z Shell 빌트인(builtins) 및 키워드가 포함됩니다. 각 커맨드 라인 도구에 대해 가능한 경우 그리고 적절한 경우 다음과 같은 정보가 제공됩니다. 커맨드 라인에 입력할 실제 명령어 설명 책에서 사용된 버전 해당...">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="커맨드 라인 도구 목록 | 커맨드 라인에서 시작하는 데이터 과학, 2판">
+<meta name="twitter:description" content="이 장은 이 책에서 논의된 모든 커맨드 라인 도구들에 대한 개요입니다. 여기에는 바이너리 실행 파일, 인터프리터 스크립트, 그리고 Z Shell 빌트인(builtins) 및 키워드가 포함됩니다. 각 커맨드 라인 도구에 대해 가능한 경우 그리고 적절한 경우 다음과 같은 정보가 제공됩니다. 커맨드 라인에 입력할 실제 명령어 설명 책에서 사용된 버전 해당...">
+<meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira%20Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d42d2d">
+<meta name="apple-mobile-web-app-title" content="Data Science at the Command Line">
+<meta name="application-name" content="Data Science at the Command Line">
+<meta name="msapplication-TileColor" content="#b91d47">
+<meta name="theme-color" content="#ffffff">
+<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-43246574-3', 'auto');
+      ga('send', 'pageview');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="dsatcl2e.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-2 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <img id="cover" class="d-none d-lg-block" src="images/cover-small.png"><h1 class="d-lg-none">
+        <a href="index.html" title="">커맨드 라인에서 시작하는 데이터 과학, 2판</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">환영합니다</a></li>
+<li><a class="" href="%EC%B6%94%EC%B2%9C%EC%9D%98-%EA%B8%80.html">추천의 글</a></li>
+<li><a class="" href="%EC%84%9C%EB%AC%B8.html">서문</a></li>
+<li><a class="" href="chapter-1-introduction.html"><span class="header-section-number">1</span> 서론</a></li>
+<li><a class="" href="chapter-2-getting-started.html"><span class="header-section-number">2</span> 시작하기</a></li>
+<li><a class="" href="chapter-3-obtaining-data.html"><span class="header-section-number">3</span> 데이터 획득하기</a></li>
+<li><a class="" href="chapter-4-creating-command-line-tools.html"><span class="header-section-number">4</span> 커맨드 라인 도구 만들기</a></li>
+<li><a class="" href="chapter-5-scrubbing-data.html"><span class="header-section-number">5</span> 데이터 정제하기</a></li>
+<li><a class="" href="chapter-6-project-management-with-make.html"><span class="header-section-number">6</span> Make으로 프로젝트 관리하기</a></li>
+<li><a class="" href="chapter-7-exploring-data.html"><span class="header-section-number">7</span> 데이터 탐색하기</a></li>
+<li><a class="" href="chapter-8-parallel-pipelines.html"><span class="header-section-number">8</span> 병렬 파이프라인</a></li>
+<li><a class="" href="chapter-9-modeling-data.html"><span class="header-section-number">9</span> 데이터 모델링</a></li>
+<li><a class="" href="chapter-10-polyglot-data-science.html"><span class="header-section-number">10</span> 다국어 데이터 과학</a></li>
+<li><a class="" href="chapter-11-conclusion.html"><span class="header-section-number">11</span> 결론</a></li>
+<li><a class="active" href="%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%8F%84%EA%B5%AC-%EB%AA%A9%EB%A1%9D.html">커맨드 라인 도구 목록</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/jeroenjanssens/data-science-at-the-command-line">View book repository <i class=""></i></a></p>
+        </div>
+
+        <div>
+          <a id="course-signup" href="/#course">Embrace the Command Line</a>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="커맨드-라인-도구-목록" class="section level1 unnumbered" number="">
+<h1>커맨드 라인 도구 목록<a class="anchor" aria-label="anchor" href="#%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%8F%84%EA%B5%AC-%EB%AA%A9%EB%A1%9D"><i class="fas fa-link"></i></a>
+</h1>
+<p>이 장은 이 책에서 논의된 모든 커맨드 라인 도구들에 대한 개요입니다.
+여기에는 바이너리 실행 파일, 인터프리터 스크립트, 그리고 Z Shell 빌트인(builtins) 및 키워드가 포함됩니다.
+각 커맨드 라인 도구에 대해 가능한 경우 그리고 적절한 경우 다음과 같은 정보가 제공됩니다.</p>
+<ul>
+<li>커맨드 라인에 입력할 실제 명령어</li>
+<li>설명</li>
+<li>책에서 사용된 버전</li>
+<li>해당 버전이 출시된 연도</li>
+<li>주요 저자</li>
+<li>더 많은 정보를 찾을 수 있는 웹사이트</li>
+<li>도움말을 얻는 방법</li>
+<li>사용 예시</li>
+</ul>
+<p>여기에 나열된 모든 커맨드 라인 도구는 Docker 이미지에 포함되어 있습니다.
+설정 방법은 <a href="chapter-2-getting-started.html#chapter-2-getting-started">2장</a>을 참조하십시오.
+오픈 소스 소프트웨어를 인용하는 것은 간단하지 않으며, 일부 정보가 누락되었거나 정확하지 않을 수 있음에 유의하십시오.</p>
+<div id="alias" class="section level2 unnumbered" number="">
+<h2>alias<a class="anchor" aria-label="anchor" href="#alias"><i class="fas fa-link"></i></a>
+</h2>
+<p>별칭을 정의하거나 표시합니다.
+<code>alias</code>는 Z shell 빌트인입니다.</p>
+<pre>type alias
+man zshbuiltins | grep -A 10 alias#!enter=FALSE
+C-C#!literal=FALSE
+alias l
+alias python=python3</pre>
+</div>
+<div id="awk" class="section level2 unnumbered" number="">
+<h2>awk<a class="anchor" aria-label="anchor" href="#awk"><i class="fas fa-link"></i></a>
+</h2>
+<p>패턴 스캐닝 및 텍스트 처리 언어입니다.
+<code>awk</code> (버전 1.3.4), Mike D. Brennan 및 Thomas E. Dickey 제작 (2019).
+더 많은 정보: <a href="https://invisible-island.net/mawk" class="uri">https://invisible-island.net/mawk</a>.</p>
+<pre>type awk
+man awk#!enter=FALSE
+C-C#!literal=FALSE
+seq 5 | awk '{sum+=$1} END {print sum}'</pre>
+</div>
+<div id="aws" class="section level2 unnumbered" number="">
+<h2>aws<a class="anchor" aria-label="anchor" href="#aws"><i class="fas fa-link"></i></a>
+</h2>
+<p>AWS 서비스를 관리하기 위한 통합 도구입니다.
+<code>aws</code> (버전 2.1.32), Amazon Web Services 제작 (2021).
+더 많은 정보: <a href="https://aws.amazon.com/cli" class="uri">https://aws.amazon.com/cli</a>.</p>
+<pre>type aws
+aws --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="bash" class="section level2 unnumbered" number="">
+<h2>bash<a class="anchor" aria-label="anchor" href="#bash"><i class="fas fa-link"></i></a>
+</h2>
+<p>GNU Bourne-Again SHell입니다.
+<code>bash</code> (버전 5.0.17), Brian Fox 및 Chet Ramey 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/bash" class="uri">https://www.gnu.org/software/bash</a>.</p>
+<pre>type bash
+man bash#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="bat" class="section level2 unnumbered" number="">
+<h2>bat<a class="anchor" aria-label="anchor" href="#bat"><i class="fas fa-link"></i></a>
+</h2>
+<p>구문 강조 및 Git 연동 기능이 있는 cat 클론입니다.
+<code>bat</code> (버전 0.18.0), David Peter 제작 (2021).
+더 많은 정보: <a href="https://github.com/sharkdp/bat" class="uri">https://github.com/sharkdp/bat</a>.</p>
+<pre>type bat
+man bat#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="bc" class="section level2 unnumbered" number="">
+<h2>bc<a class="anchor" aria-label="anchor" href="#bc"><i class="fas fa-link"></i></a>
+</h2>
+<p>임의 정밀도 계산기 언어입니다.
+<code>bc</code> (버전 1.07.1), Philip A. Nelson 제작 (2017).
+더 많은 정보: <a href="https://www.gnu.org/software/bc" class="uri">https://www.gnu.org/software/bc</a>.</p>
+<pre>type bc
+man bc#!enter=FALSE
+C-C#!literal=FALSE
+bc -l &lt;&lt;&lt; 'e(1)'</pre>
+</div>
+<div id="body" class="section level2 unnumbered" number="">
+<h2>body<a class="anchor" aria-label="anchor" href="#body"><i class="fas fa-link"></i></a>
+</h2>
+<p>첫 번째 줄을 제외한 모든 줄에 명령을 적용합니다.
+<code>body</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type body
+seq 10 | header -a 'values' | body shuf</pre>
+</div>
+<div id="cat" class="section level2 unnumbered" number="">
+<h2>cat<a class="anchor" aria-label="anchor" href="#cat"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일들을 연결하여 표준 출력으로 인쇄합니다.
+<code>cat</code> (버전 8.30), Torbjorn Granlund 및 Richard M. Stallman 제작 (2018).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type cat
+man cat#!enter=FALSE
+C-C#!literal=FALSE
+cat *.log &gt; all.log#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="cd" class="section level2 unnumbered" number="">
+<h2>cd<a class="anchor" aria-label="anchor" href="#cd"><i class="fas fa-link"></i></a>
+</h2>
+<p>쉘 작업 디렉토리를 변경합니다.
+<code>cd</code>는 Z shell 빌트인입니다.</p>
+<pre>type cd
+man zshbuiltins | grep -A 10 cd#!enter=FALSE
+C-C#!literal=FALSE
+cd ~
+pwd
+cd ..
+pwd
+cd /data/ch01</pre>
+</div>
+<div id="chmod" class="section level2 unnumbered" number="">
+<h2>chmod<a class="anchor" aria-label="anchor" href="#chmod"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일 모드 비트를 변경합니다.
+<code>chmod</code> (버전 8.30), David MacKenzie 및 Jim Meyering 제작 (2018).
+저는 <a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">4장</a>에서 도구를 실행 가능하게 만들기 위해 <code>chmod</code>를 사용했습니다.
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type chmod
+man chmod#!enter=FALSE
+C-C#!literal=FALSE
+chmod u+x script.sh#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="cols" class="section level2 unnumbered" number="">
+<h2>cols<a class="anchor" aria-label="anchor" href="#cols"><i class="fas fa-link"></i></a>
+</h2>
+<p>일부 열에 명령을 적용합니다.
+<code>cols</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type cols</pre>
+</div>
+<div id="column" class="section level2 unnumbered" number="">
+<h2>column<a class="anchor" aria-label="anchor" href="#column"><i class="fas fa-link"></i></a>
+</h2>
+<p>목록을 여러 열로 나열합니다.
+<code>column</code> (버전 2.36.1), Karel Zak 제작 (2021).
+더 많은 정보: <a href="https://www.kernel.org/pub/linux/utils/util-linux" class="uri">https://www.kernel.org/pub/linux/utils/util-linux</a>.</p>
+<pre>type column</pre>
+</div>
+<div id="cowsay" class="section level2 unnumbered" number="">
+<h2>cowsay<a class="anchor" aria-label="anchor" href="#cowsay"><i class="fas fa-link"></i></a>
+</h2>
+<p>말하는 소를 출력합니다. (설정 가능)
+<code>cowsay</code> (버전 3.0.3), Tony Monroe 제작 (1999).
+더 많은 정보: <a href="https://github.com/tnalpgge/rank-amateur-cowsay" class="uri">https://github.com/tnalpgge/rank-amateur-cowsay</a>.</p>
+<pre>type cowsay
+man cowsay#!enter=FALSE
+C-C#!literal=FALSE
+echo 'The command line is awesome!' | cowsay</pre>
+</div>
+<div id="cp" class="section level2 unnumbered" number="">
+<h2>cp<a class="anchor" aria-label="anchor" href="#cp"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일 및 디렉토리를 복사합니다.
+<code>cp</code> (버전 8.30), Torbjorn Granlund, David MacKenzie 및 Jim Meyering 제작 (2018).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type cp
+man cp#!enter=FALSE
+C-C#!literal=FALSE
+cp -r ~/Downloads/*.xlsx /data#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csv2vw" class="section level2 unnumbered" number="">
+<h2>csv2vw<a class="anchor" aria-label="anchor" href="#csv2vw"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV를 Vowpal Wabbit 형식으로 변환합니다.
+<code>csv2vw</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type csv2vw</pre>
+</div>
+<div id="csvcut" class="section level2 unnumbered" number="">
+<h2>csvcut<a class="anchor" aria-label="anchor" href="#csvcut"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV 파일을 필터링하고 자릅니다.
+<code>csvcut</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvcut
+csvcut --help#!enter=FALSE
+C-C#!literal=FALSE
+csvcut -c bill,tip /data/ch05/tips.csv | trim</pre>
+</div>
+<div id="csvgrep" class="section level2 unnumbered" number="">
+<h2>csvgrep<a class="anchor" aria-label="anchor" href="#csvgrep"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV 파일을 검색합니다.
+<code>csvgrep</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvgrep
+csvgrep --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csvjoin" class="section level2 unnumbered" number="">
+<h2>csvjoin<a class="anchor" aria-label="anchor" href="#csvjoin"><i class="fas fa-link"></i></a>
+</h2>
+<p>지정된 열을 기준으로 CSV 파일을 병합합니다. (SQL 스타일 조인)
+<code>csvjoin</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvjoin
+csvjoin --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csvlook" class="section level2 unnumbered" number="">
+<h2>csvlook<a class="anchor" aria-label="anchor" href="#csvlook"><i class="fas fa-link"></i></a>
+</h2>
+<p>콘솔에서 CSV 파일을 Markdown 호환 고정폭 표로 렌더링합니다.
+<code>csvlook</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvlook
+csvlook --help#!enter=FALSE
+C-C#!literal=FALSE
+csvlook /data/ch05/tips.csv</pre>
+</div>
+<div id="csvquote" class="section level2 unnumbered" number="">
+<h2>csvquote<a class="anchor" aria-label="anchor" href="#csvquote"><i class="fas fa-link"></i></a>
+</h2>
+<p>일반 유닉스 유틸리티가 CSV 데이터와 올바르게 작동하도록 설정합니다.
+<code>csvquote</code> (버전 0.1), Dan Brown 제작 (2018).
+더 많은 정보: <a href="https://github.com/dbro/csvquote" class="uri">https://github.com/dbro/csvquote</a>.</p>
+<pre>type csvquote</pre>
+</div>
+<div id="csvsort" class="section level2 unnumbered" number="">
+<h2>csvsort<a class="anchor" aria-label="anchor" href="#csvsort"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV 파일을 정렬합니다.
+<code>csvsort</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvsort
+csvsort --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csvsql" class="section level2 unnumbered" number="">
+<h2>csvsql<a class="anchor" aria-label="anchor" href="#csvsql"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV 파일에 대해 SQL 문을 실행합니다.
+<code>csvsql</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvsql
+csvsql --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csvstack" class="section level2 unnumbered" number="">
+<h2>csvstack<a class="anchor" aria-label="anchor" href="#csvstack"><i class="fas fa-link"></i></a>
+</h2>
+<p>여러 CSV 파일의 행을 쌓아 올립니다.
+<code>csvstack</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvstack
+csvstack --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="csvstat" class="section level2 unnumbered" number="">
+<h2>csvstat<a class="anchor" aria-label="anchor" href="#csvstat"><i class="fas fa-link"></i></a>
+</h2>
+<p>CSV 파일의 각 열에 대한 기술 통계를 인쇄합니다.
+<code>csvstat</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type csvstat
+csvstat --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="curl" class="section level2 unnumbered" number="">
+<h2>curl<a class="anchor" aria-label="anchor" href="#curl"><i class="fas fa-link"></i></a>
+</h2>
+<p>URL을 전송합니다.
+<code>curl</code> (버전 7.68.0), Daniel Stenberg 제작 (2016).
+더 많은 정보: <a href="https://curl.haxx.se" class="uri">https://curl.haxx.se</a>.</p>
+<pre>type curl
+man curl#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="cut" class="section level2 unnumbered" number="">
+<h2>cut<a class="anchor" aria-label="anchor" href="#cut"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 각 줄에서 섹션을 제거합니다.
+<code>cut</code> (버전 8.30), David M. Ihnat, David MacKenzie 및 Jim Meyering 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type cut
+man cut#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="display" class="section level2 unnumbered" number="">
+<h2>display<a class="anchor" aria-label="anchor" href="#display"><i class="fas fa-link"></i></a>
+</h2>
+<p>X 서버에 이미지 또는 이미지 시퀀스를 표시합니다.
+<code>display</code> (버전 6.9.10-23), ImageMagick Studio LLC 제작 (2019).
+더 많은 정보: <a href="https://imagemagick.org" class="uri">https://imagemagick.org</a>.</p>
+<pre>type display</pre>
+</div>
+<div id="dseq" class="section level2 unnumbered" number="">
+<h2>dseq<a class="anchor" aria-label="anchor" href="#dseq"><i class="fas fa-link"></i></a>
+</h2>
+<p>날짜 시퀀스를 생성합니다.
+<code>dseq</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type dseq
+dseq 3</pre>
+</div>
+<div id="echo" class="section level2 unnumbered" number="">
+<h2>echo<a class="anchor" aria-label="anchor" href="#echo"><i class="fas fa-link"></i></a>
+</h2>
+<p>텍스트 한 줄을 표시합니다.
+<code>echo</code> (버전 8.30), Brian Fox 및 Chet Ramey 제작 (2019).
+리터럴 텍스트를 다음 도구의 표준 입력으로 사용하는 데 유용합니다.
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type echo
+man echo#!enter=FALSE
+C-C#!literal=FALSE
+echo Hippopotomonstrosesquippedaliophobia | cowsay
+echo -n Hippopotomonstrosesquippedaliophobia | wc -c</pre>
+</div>
+<div id="env" class="section level2 unnumbered" number="">
+<h2>env<a class="anchor" aria-label="anchor" href="#env"><i class="fas fa-link"></i></a>
+</h2>
+<p>수정된 환경에서 프로그램을 실행합니다.
+<code>env</code> (버전 8.30), Richard Mlynarik, David MacKenzie 및 Assaf Gordon 제작 (2018).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type env
+man env#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="export" class="section level2 unnumbered" number="">
+<h2>export<a class="anchor" aria-label="anchor" href="#export"><i class="fas fa-link"></i></a>
+</h2>
+<p>쉘 변수에 대해 내보내기(export) 속성을 설정합니다. 쉘 변수를 다른 커맨드 라인 도구에서 사용할 수 있게 만드는 데 유용합니다.
+<code>export</code>는 Z shell 빌트인입니다.</p>
+<pre>type export
+man zshbuiltins | grep -A 10 export#!enter=FALSE
+C-C#!literal=FALSE
+export PATH="$PATH:$HOME/bin"</pre>
+</div>
+<div id="fc" class="section level2 unnumbered" number="">
+<h2>fc<a class="anchor" aria-label="anchor" href="#fc"><i class="fas fa-link"></i></a>
+</h2>
+<p>대화형 기록 메커니즘을 제어합니다.
+<code>fc</code>는 Z shell 빌트인입니다.
+저는 <a href="chapter-4-creating-command-line-tools.html#chapter-4-creating-command-line-tools">4장</a>에서 명령어를 <code>nano</code>에서 편집하기 위해 <code>fc</code>를 사용했습니다.</p>
+<pre>type fc
+man zshbuiltins | grep -A 10 '^ *fc '#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="find" class="section level2 unnumbered" number="">
+<h2>find<a class="anchor" aria-label="anchor" href="#find"><i class="fas fa-link"></i></a>
+</h2>
+<p>디렉토리 계층 구조에서 파일을 검색합니다.
+<code>find</code> (버전 4.7.0), Eric B. Decker, James Youngman 및 Kevin Dalley 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/findutils" class="uri">https://www.gnu.org/software/findutils</a>.</p>
+<pre>type find
+man find#!enter=FALSE
+C-C#!literal=FALSE
+find /data -type f -name '*.csv' -size -3</pre>
+</div>
+<div id="fold" class="section level2 unnumbered" number="">
+<h2>fold<a class="anchor" aria-label="anchor" href="#fold"><i class="fas fa-link"></i></a>
+</h2>
+<p>지정된 너비에 맞춰 각 입력 줄을 감쌉니다(wrap).
+<code>fold</code> (버전 8.30), David MacKenzie 제작 (2020).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type fold
+man fold#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="for" class="section level2 unnumbered" number="">
+<h2>for<a class="anchor" aria-label="anchor" href="#for"><i class="fas fa-link"></i></a>
+</h2>
+<p>목록의 각 멤버에 대해 명령을 실행합니다.
+<code>for</code>는 Z shell 빌트인입니다.
+<a href="chapter-8-parallel-pipelines.html#chapter-8-parallel-pipelines">8장</a>에서 저는 <code>for</code> 대신 <code>parallel</code>을 사용할 때의 이점에 대해 논의합니다.</p>
+<pre>type for
+man zshmisc | grep -EA 10 '^ *for '#!enter=FALSE
+C-C#!literal=FALSE
+for i in {A..C} "It's easy as" {1..3}; do echo $i; done</pre>
+</div>
+<div id="fx" class="section level2 unnumbered" number="">
+<h2>fx<a class="anchor" aria-label="anchor" href="#fx"><i class="fas fa-link"></i></a>
+</h2>
+<p>대화형 JSON 뷰어입니다.
+<code>fx</code> (버전 20.0.2), Anton Medvedev 제작 (2020).
+더 많은 정보: <a href="https://github.com/antonmedv/fx" class="uri">https://github.com/antonmedv/fx</a>.</p>
+<pre>type fx
+fx --help#!enter=FALSE
+C-C#!literal=FALSE
+echo '[1,2,3]' | fx 'this.map(x =&gt; x * 2)'</pre>
+</div>
+<div id="git" class="section level2 unnumbered" number="">
+<h2>git<a class="anchor" aria-label="anchor" href="#git"><i class="fas fa-link"></i></a>
+</h2>
+<p>분산 버전 관리 시스템입니다.
+<code>git</code> (버전 2.25.1), Linus Torvalds 및 Junio C. Hamano 제작 (2021).
+더 많은 정보: <a href="https://git-scm.com" class="uri">https://git-scm.com</a>.</p>
+<pre>type git
+man git#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="grep" class="section level2 unnumbered" number="">
+<h2>grep<a class="anchor" aria-label="anchor" href="#grep"><i class="fas fa-link"></i></a>
+</h2>
+<p>패턴과 일치하는 줄을 출력합니다.
+<code>grep</code> (버전 3.4), Jim Meyering 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/grep" class="uri">https://www.gnu.org/software/grep</a>.</p>
+<pre>type grep
+man grep#!enter=FALSE
+C-C#!literal=FALSE
+seq 100 | grep 3 | wc -l</pre>
+</div>
+<div id="gron" class="section level2 unnumbered" number="">
+<h2>gron<a class="anchor" aria-label="anchor" href="#gron"><i class="fas fa-link"></i></a>
+</h2>
+<p>JSON을 검색(grep) 가능하게 만듭니다.
+<code>gron</code> (버전 0.6.1), Tom Hudson 제작 (2021).
+더 많은 정보: <a href="https://github.com/TomNomNom/gron" class="uri">https://github.com/TomNomNom/gron</a>.</p>
+<pre>type gron
+man gron#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="head" class="section level2 unnumbered" number="">
+<h2>head<a class="anchor" aria-label="anchor" href="#head"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 앞부분을 출력합니다.
+<code>head</code> (버전 8.30), David MacKenzie 및 Jim Meyering 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type head
+man head#!enter=FALSE
+C-C#!literal=FALSE
+seq 100 | head -n 5</pre>
+</div>
+<div id="header" class="section level2 unnumbered" number="">
+<h2>header<a class="anchor" aria-label="anchor" href="#header"><i class="fas fa-link"></i></a>
+</h2>
+<p>헤더 라인을 추가, 교체 및 삭제합니다.
+<code>header</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type header</pre>
+</div>
+<div id="history" class="section level2 unnumbered" number="">
+<h2>history<a class="anchor" aria-label="anchor" href="#history"><i class="fas fa-link"></i></a>
+</h2>
+<p>GNU History 라이브러리입니다.
+<code>history</code> (버전 8.1), Brian Fox 및 Chet Ramey 제작 (2020).
+더 많은 정보: <a href="https://www.gnu.org/software/bash" class="uri">https://www.gnu.org/software/bash</a>.</p>
+<pre>type history</pre>
+</div>
+<div id="hostname" class="section level2 unnumbered" number="">
+<h2>hostname<a class="anchor" aria-label="anchor" href="#hostname"><i class="fas fa-link"></i></a>
+</h2>
+<p>시스템의 호스트 이름을 표시하거나 설정합니다.
+<code>hostname</code> (버전 3.23), Peter Tobias, Bernd Eckenfels 및 Michael Meskes 제작 (2021).
+더 많은 정보: <a href="https://sourceforge.net/projects/net-tools/" class="uri">https://sourceforge.net/projects/net-tools/</a>.</p>
+<pre>type hostname
+man hostname#!enter=FALSE
+C-C#!literal=FALSE
+hostname
+hostname -i</pre>
+</div>
+<div id="in2csv" class="section level2 unnumbered" number="">
+<h2>in2csv<a class="anchor" aria-label="anchor" href="#in2csv"><i class="fas fa-link"></i></a>
+</h2>
+<p>일반적이지만 덜 멋진 테이블 데이터 형식을 CSV로 변환합니다.
+<code>in2csv</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type in2csv
+in2csv --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="jq" class="section level2 unnumbered" number="">
+<h2>jq<a class="anchor" aria-label="anchor" href="#jq"><i class="fas fa-link"></i></a>
+</h2>
+<p>커맨드 라인용 JSON 프로세서입니다.
+<code>jq</code> (버전 1.6), Stephen Dolan 제작 (2021).
+더 많은 정보: <a href="https://stedolan.github.com/jq" class="uri">https://stedolan.github.com/jq</a>.</p>
+<pre>type jq
+man jq#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="json2csv" class="section level2 unnumbered" number="">
+<h2>json2csv<a class="anchor" aria-label="anchor" href="#json2csv"><i class="fas fa-link"></i></a>
+</h2>
+<p>JSON을 CSV로 변환합니다.
+<code>json2csv</code> (버전 1.2.1), Jehiah Czebotar 제작 (2019).
+더 많은 정보: <a href="https://github.com/jehiah/json2csv" class="uri">https://github.com/jehiah/json2csv</a>.</p>
+<pre>type json2csv
+json2csv --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="l" class="section level2 unnumbered" number="">
+<h2>l<a class="anchor" aria-label="anchor" href="#l"><i class="fas fa-link"></i></a>
+</h2>
+<p>디렉토리 내용을 긴 형식(long format)으로 나열합니다. 디렉토리는 파일보다 먼저 그룹화되고, 파일 크기는 읽기 쉬운 단위로 표시되며, 접근 권한도 포함됩니다.
+<code>l</code> 제작자 미상 (1999).</p>
+<pre>type l
+cd /data/ch03
+ls
+l</pre>
+</div>
+<div id="less" class="section level2 unnumbered" number="">
+<h2>less<a class="anchor" aria-label="anchor" href="#less"><i class="fas fa-link"></i></a>
+</h2>
+<p>more의 반대입니다. (파일 내용을 페이지 단위로 보여주는 유틸리티)
+<code>less</code> (버전 551), Mark Nudelman 제작 (2019).
+더 많은 정보: <a href="https://www.greenwoodsoftware.com/less" class="uri">https://www.greenwoodsoftware.com/less</a>.</p>
+<pre>type less
+man less#!enter=FALSE
+C-C#!literal=FALSE
+less README#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="ls" class="section level2 unnumbered" number="">
+<h2>ls<a class="anchor" aria-label="anchor" href="#ls"><i class="fas fa-link"></i></a>
+</h2>
+<p>디렉토리 내용을 나열합니다.
+<code>ls</code> (버전 8.30), Richard M. Stallman 및 David MacKenzie 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type ls
+man ls#!enter=FALSE
+C-C#!literal=FALSE
+ls /data</pre>
+</div>
+<div id="make" class="section level2 unnumbered" number="">
+<h2>make<a class="anchor" aria-label="anchor" href="#make"><i class="fas fa-link"></i></a>
+</h2>
+<p>컴퓨터 프로그램을 유지 관리하기 위한 프로그램입니다.
+<code>make</code> (버전 4.3), Stuart I. Feldman 제작 (2020).
+더 많은 정보: <a href="https://www.gnu.org/software/make" class="uri">https://www.gnu.org/software/make</a>.</p>
+<pre>type make
+man make#!enter=FALSE
+C-C#!literal=FALSE
+make sandwich#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="man" class="section level2 unnumbered" number="">
+<h2>man<a class="anchor" aria-label="anchor" href="#man"><i class="fas fa-link"></i></a>
+</h2>
+<p>시스템 참조 매뉴얼에 대한 인터페이스입니다. (도움말 시스템)
+<code>man</code> (버전 2.9.1), John W. Eaton 및 Colin Watson 제작 (2020).
+더 많은 정보: <a href="https://nongnu.org/man-db" class="uri">https://nongnu.org/man-db</a>.</p>
+<pre>type man
+man man#!enter=FALSE
+C-C#!literal=FALSE
+man excel</pre>
+</div>
+<div id="mkdir" class="section level2 unnumbered" number="">
+<h2>mkdir<a class="anchor" aria-label="anchor" href="#mkdir"><i class="fas fa-link"></i></a>
+</h2>
+<p>디렉토리를 생성합니다.
+<code>mkdir</code> (버전 8.30), David MacKenzie 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type mkdir
+man mkdir#!enter=FALSE
+C-C#!literal=FALSE
+mkdir -p /data/ch{01..10}#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="mv" class="section level2 unnumbered" number="">
+<h2>mv<a class="anchor" aria-label="anchor" href="#mv"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일을 이동하거나 이름을 변경합니다.
+<code>mv</code> (버전 8.30), Mike Parker, David MacKenzie 및 Jim Meyering 제작 (2020).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type mv
+man mv#!enter=FALSE
+C-C#!literal=FALSE
+mv results{,.bak}#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="nano" class="section level2 unnumbered" number="">
+<h2>nano<a class="anchor" aria-label="anchor" href="#nano"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pico에서 영감을 받은 Nano’s ANOther 에디터입니다.
+<code>nano</code> (버전 5.4), Benno Schulenberg 외 다수 제작 (2020).
+더 많은 정보: <a href="https://nano-editor.org" class="uri">https://nano-editor.org</a>.</p>
+<pre>type nano</pre>
+</div>
+<div id="nl" class="section level2 unnumbered" number="">
+<h2>nl<a class="anchor" aria-label="anchor" href="#nl"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 줄에 번호를 매깁니다.
+<code>nl</code> (버전 8.30), Scott Bartram 및 David MacKenzie 제작 (2020).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type nl
+man nl#!enter=FALSE
+C-C#!literal=FALSE
+nl /data/ch05/alice.txt | head</pre>
+</div>
+<div id="parallel" class="section level2 unnumbered" number="">
+<h2>parallel<a class="anchor" aria-label="anchor" href="#parallel"><i class="fas fa-link"></i></a>
+</h2>
+<p>동일 노드 또는 원격 노드에서 병렬로 작업을 빌드하고 실행합니다.
+<code>parallel</code> (버전 20161222), Ole Tange 제작 (2016).
+더 많은 정보: <a href="https://www.gnu.org/software/parallel" class="uri">https://www.gnu.org/software/parallel</a>.</p>
+<pre>type parallel
+man parallel#!enter=FALSE
+C-C#!literal=FALSE
+seq 3 | parallel "echo Processing file {}.csv"</pre>
+</div>
+<div id="paste" class="section level2 unnumbered" number="">
+<h2>paste<a class="anchor" aria-label="anchor" href="#paste"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 줄을 병합합니다.
+<code>paste</code> (버전 8.30), David M. Ihnat 및 David MacKenzie 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type paste
+man paste#!enter=FALSE
+C-C#!literal=FALSE
+paste -d, &lt;(seq 5) &lt;(dseq 5)
+seq 5 | paste -sd+</pre>
+</div>
+<div id="pbc" class="section level2 unnumbered" number="">
+<h2>pbc<a class="anchor" aria-label="anchor" href="#pbc"><i class="fas fa-link"></i></a>
+</h2>
+<p>병렬 bc(병렬 계산기)입니다.
+<code>pbc</code> Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type pbc
+seq 3 | pbc '{1}^2'</pre>
+</div>
+<div id="pip" class="section level2 unnumbered" number="">
+<h2>pip<a class="anchor" aria-label="anchor" href="#pip"><i class="fas fa-link"></i></a>
+</h2>
+<p>Python 패키지를 설치하고 관리하기 위한 도구입니다.
+<code>pip</code> (버전 20.0.2), PyPA 제작 (2020).
+더 많은 정보: <a href="https://pip.pypa.io" class="uri">https://pip.pypa.io</a>.</p>
+<pre>type pip
+man pip#!enter=FALSE
+C-C#!literal=FALSE
+pip install pandas#!enter=FALSE
+C-C#!literal=FALSE
+pip freeze | grep sci</pre>
+</div>
+<div id="pup" class="section level2 unnumbered" number="">
+<h2>pup<a class="anchor" aria-label="anchor" href="#pup"><i class="fas fa-link"></i></a>
+</h2>
+<p>커맨드 라인에서 HTML을 파싱합니다.
+<code>pup</code> (버전 0.4.0), Eric Chiang 제작 (2016).
+더 많은 정보: <a href="https://github.com/EricChiang/pup" class="uri">https://github.com/EricChiang/pup</a>.</p>
+<pre>type pup
+pup --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="pwd" class="section level2 unnumbered" number="">
+<h2>pwd<a class="anchor" aria-label="anchor" href="#pwd"><i class="fas fa-link"></i></a>
+</h2>
+<p>작업 디렉토리의 이름을 인쇄합니다.
+<code>pwd</code> (버전 8.30), Jim Meyering 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type pwd
+man pwd#!enter=FALSE
+C-C#!literal=FALSE
+cd ~
+pwd</pre>
+</div>
+<div id="python-1" class="section level2 unnumbered" number="">
+<h2>python<a class="anchor" aria-label="anchor" href="#python-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>인터프리터 방식의 대화형 객체 지향 프로그래밍 언어입니다.
+<code>python</code> (버전 3.8.5), The Python Software Foundation 제작 (2021).
+더 많은 정보: <a href="https://www.python.org" class="uri">https://www.python.org</a>.</p>
+<pre>type python
+man python#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="r-1" class="section level2 unnumbered" number="">
+<h2>R<a class="anchor" aria-label="anchor" href="#r-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>통계 컴퓨팅을 위한 언어 및 환경입니다.
+<code>R</code> (버전 4.0.4), The R Foundation for Statistical Computing 제작 (2021).
+더 많은 정보: <a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>.</p>
+<pre>type R
+man R#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="rev" class="section level2 unnumbered" number="">
+<h2>rev<a class="anchor" aria-label="anchor" href="#rev"><i class="fas fa-link"></i></a>
+</h2>
+<p>각 줄의 문자 순서를 반대로 바꿉니다.
+<code>rev</code> (버전 2.36.1), Karel Zak 제작 (2021).
+더 많은 정보: <a href="https://www.kernel.org/pub/linux/utils/util-linux" class="uri">https://www.kernel.org/pub/linux/utils/util-linux</a>.</p>
+<pre>type rev
+echo 'Satire: Veritas' | rev
+echo 'Ça va?' | rev | cut -c 2- | rev</pre>
+</div>
+<div id="rm" class="section level2 unnumbered" number="">
+<h2>rm<a class="anchor" aria-label="anchor" href="#rm"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일이나 디렉토리를 제거합니다.
+<code>rm</code> (버전 8.30), Paul Rubin 외 다수 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type rm
+man rm#!enter=FALSE
+C-C#!literal=FALSE
+rm *.old#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="rush" class="section level2 unnumbered" number="">
+<h2>rush<a class="anchor" aria-label="anchor" href="#rush"><i class="fas fa-link"></i></a>
+</h2>
+<p>쉘에서 실행하는 R 한 줄짜리 명령어 도구입니다.
+<code>rush</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/rush" class="uri">https://github.com/jeroenjanssens/rush</a>.</p>
+<pre>type rush
+rush --help#!enter=FALSE
+C-C#!literal=FALSE
+rush run '6*7'
+rush run --tidyverse 'filter(starwars, species == "Human") %&gt;% select(name)'</pre>
+</div>
+<div id="sample" class="section level2 unnumbered" number="">
+<h2>sample<a class="anchor" aria-label="anchor" href="#sample"><i class="fas fa-link"></i></a>
+</h2>
+<p>특정 확률, 지정된 지연 시간 또는 특정 지속 시간 동안 표준 입력의 줄을 필터링합니다.
+<code>sample</code> (버전 0.2.4), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/sample" class="uri">https://github.com/jeroenjanssens/sample</a>.</p>
+<pre>type sample
+sample --help#!enter=FALSE
+C-C#!literal=FALSE
+seq 1000 | sample -r 0.01 | trim 5</pre>
+</div>
+<div id="scp" class="section level2 unnumbered" number="">
+<h2>scp<a class="anchor" aria-label="anchor" href="#scp"><i class="fas fa-link"></i></a>
+</h2>
+<p>OpenSSH 보안 파일 복사 도구입니다.
+<code>scp</code> (버전 1:8.2p1-4ubuntu0.2), Timo Rinne 및 Tatu Ylonen 제작 (2019).
+더 많은 정보: <a href="https://www.openssh.com" class="uri">https://www.openssh.com</a>.</p>
+<pre>type scp
+man scp#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="sed" class="section level2 unnumbered" number="">
+<h2>sed<a class="anchor" aria-label="anchor" href="#sed"><i class="fas fa-link"></i></a>
+</h2>
+<p>텍스트를 필터링하고 변환하기 위한 스트림 에디터입니다.
+<code>sed</code> (버전 4.7), Jay Fenlason 외 다수 제작 (2018).
+더 많은 정보: <a href="https://www.gnu.org/software/sed" class="uri">https://www.gnu.org/software/sed</a>.</p>
+<pre>type sed
+man sed#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="seq" class="section level2 unnumbered" number="">
+<h2>seq<a class="anchor" aria-label="anchor" href="#seq"><i class="fas fa-link"></i></a>
+</h2>
+<p>숫자 시퀀스를 인쇄합니다.
+<code>seq</code> (버전 8.30), Ulrich Drepper 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type seq
+man seq#!enter=FALSE
+C-C#!literal=FALSE
+seq 3
+seq 10 5 20</pre>
+</div>
+<div id="servewd" class="section level2 unnumbered" number="">
+<h2>servewd<a class="anchor" aria-label="anchor" href="#servewd"><i class="fas fa-link"></i></a>
+</h2>
+<p>간단한 HTTP 서버를 사용하여 현재 작업 디렉토리를 서비스합니다.
+<code>servewd</code> (버전 0.1), Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type servewd
+servewd --help#!enter=FALSE
+C-C#!literal=FALSE
+cd /data &amp;&amp; servewd 8000#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="shuf" class="section level2 unnumbered" number="">
+<h2>shuf<a class="anchor" aria-label="anchor" href="#shuf"><i class="fas fa-link"></i></a>
+</h2>
+<p>무작위 순열을 생성합니다.
+<code>shuf</code> (버전 8.30), Paul Eggert 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type shuf
+man shuf#!enter=FALSE
+C-C#!literal=FALSE
+echo {a..z} | tr ' ' '\n' | shuf | trim 5
+shuf -i 1-100 | trim 5</pre>
+</div>
+<div id="skll" class="section level2 unnumbered" number="">
+<h2>skll<a class="anchor" aria-label="anchor" href="#skll"><i class="fas fa-link"></i></a>
+</h2>
+<p>SciKit-Learn Laboratory입니다.
+<code>skll</code> (버전 2.5.0), Educational Testing Service 제작 (2021).
+실제 도구는 <code>run_experiment</code>입니다. 저는 기억하기 더 쉽기 때문에 별칭 <code>skll</code>을 사용합니다.
+더 많은 정보: <a href="https://skll.readthedocs.org" class="uri">https://skll.readthedocs.org</a>.</p>
+<pre>type skll
+skll --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="sort" class="section level2 unnumbered" number="">
+<h2>sort<a class="anchor" aria-label="anchor" href="#sort"><i class="fas fa-link"></i></a>
+</h2>
+<p>텍스트 파일의 줄을 정렬합니다.
+<code>sort</code> (버전 8.30), Mike Haertel 및 Paul Eggert 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type sort
+man sort#!enter=FALSE
+C-C#!literal=FALSE
+echo '3\n7\n1\n3' | sort</pre>
+</div>
+<div id="split" class="section level2 unnumbered" number="">
+<h2>split<a class="anchor" aria-label="anchor" href="#split"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일을 여러 조각으로 나눕니다.
+<code>split</code> (버전 8.30), Torbjorn Granlund 및 Richard M. Stallman 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type split
+man split#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="sponge" class="section level2 unnumbered" number="">
+<h2>sponge<a class="anchor" aria-label="anchor" href="#sponge"><i class="fas fa-link"></i></a>
+</h2>
+<p>표준 입력을 흡수하여 파일에 씁니다.
+<code>sponge</code> (버전 0.65), Colin Watson 및 Tollef Fog Heen 제작 (2021).
+단일 파이프라인에서 동일한 파일을 읽고 쓰고 싶을 때 유용합니다.
+더 많은 정보: <a href="https://joeyh.name/code/moreutils" class="uri">https://joeyh.name/code/moreutils</a>.</p>
+<pre>type sponge</pre>
+</div>
+<div id="sql2csv" class="section level2 unnumbered" number="">
+<h2>sql2csv<a class="anchor" aria-label="anchor" href="#sql2csv"><i class="fas fa-link"></i></a>
+</h2>
+<p>데이터베이스에서 SQL 쿼리를 실행하고 결과를 CSV 파일로 출력합니다.
+<code>sql2csv</code> (버전 1.0.5), Christopher Groskopf 제작 (2020).
+더 많은 정보: <a href="https://csvkit.rtfd.org" class="uri">https://csvkit.rtfd.org</a>.</p>
+<pre>type sql2csv
+sql2csv --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="ssh" class="section level2 unnumbered" number="">
+<h2>ssh<a class="anchor" aria-label="anchor" href="#ssh"><i class="fas fa-link"></i></a>
+</h2>
+<p>OpenSSH 원격 로그인 클라이언트입니다.
+<code>ssh</code> (버전 1:8.2p1-4ubuntu0.2), Tatu Ylonen 외 다수 제작 (2020).
+더 많은 정보: <a href="https://www.openssh.com" class="uri">https://www.openssh.com</a>.</p>
+<pre>type ssh
+man ssh#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="sudo" class="section level2 unnumbered" number="">
+<h2>sudo<a class="anchor" aria-label="anchor" href="#sudo"><i class="fas fa-link"></i></a>
+</h2>
+<p>다른 사용자로 명령을 실행합니다.
+<code>sudo</code> (버전 1.8.31), Todd C. Miller 제작 (2019).
+더 많은 정보: <a href="https://www.sudo.ws" class="uri">https://www.sudo.ws</a>.</p>
+<pre>type sudo
+man sudo#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="tail" class="section level2 unnumbered" number="">
+<h2>tail<a class="anchor" aria-label="anchor" href="#tail"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 마지막 부분을 출력합니다.
+<code>tail</code> (버전 8.30), Paul Rubin 외 다수 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type tail
+man tail#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="tapkee" class="section level2 unnumbered" number="">
+<h2>tapkee<a class="anchor" aria-label="anchor" href="#tapkee"><i class="fas fa-link"></i></a>
+</h2>
+<p>효율적인 차원 축소 라이브러리입니다.
+<code>tapkee</code> (버전 1.2), Sergey Lisitsyn 외 다수 제작 (2013).
+더 많은 정보: <a href="http://tapkee.lisitsyn.me" class="uri">http://tapkee.lisitsyn.me</a>.</p>
+<pre>type tapkee
+tapkee --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="tar" class="section level2 unnumbered" number="">
+<h2>tar<a class="anchor" aria-label="anchor" href="#tar"><i class="fas fa-link"></i></a>
+</h2>
+<p>아카이빙 유틸리티입니다.
+<code>tar</code> (버전 1.30), John Gilmore 및 Jay Fenlason 제작 (2014).
+더 많은 정보: <a href="https://www.gnu.org/software/tar" class="uri">https://www.gnu.org/software/tar</a>.</p>
+<pre>type tar
+man tar#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="tee" class="section level2 unnumbered" number="">
+<h2>tee<a class="anchor" aria-label="anchor" href="#tee"><i class="fas fa-link"></i></a>
+</h2>
+<p>표준 입력에서 읽어 표준 출력과 파일에 씁니다.
+<code>tee</code> (버전 8.30), Mike Parker 외 다수 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type tee
+man tee#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="telnet" class="section level2 unnumbered" number="">
+<h2>telnet<a class="anchor" aria-label="anchor" href="#telnet"><i class="fas fa-link"></i></a>
+</h2>
+<p>TELNET 프로토콜에 대한 사용자 인터페이스입니다.
+<code>telnet</code> (버전 0.17), Mats Erik Andersson 외 다수 제작 (1999).
+더 많은 정보: <a href="http://www.hcs.harvard.edu/~dholland/computers/netkit.html" class="uri">http://www.hcs.harvard.edu/~dholland/computers/netkit.html</a>.</p>
+<pre>type telnet</pre>
+</div>
+<div id="tldr" class="section level2 unnumbered" number="">
+<h2>tldr<a class="anchor" aria-label="anchor" href="#tldr"><i class="fas fa-link"></i></a>
+</h2>
+<p>콘솔 명령에 대한 협업 치트 시트입니다.
+<code>tldr</code> (버전 3.3.7), Owen Voke 제작 (2021).
+더 많은 정보: <a href="https://tldr.sh" class="uri">https://tldr.sh</a>.</p>
+<pre>type tldr
+tldr --help#!enter=FALSE
+C-C#!literal=FALSE
+tldr tar | trim</pre>
+</div>
+<div id="tr" class="section level2 unnumbered" number="">
+<h2>tr<a class="anchor" aria-label="anchor" href="#tr"><i class="fas fa-link"></i></a>
+</h2>
+<p>문자를 변환하거나 삭제합니다.
+<code>tr</code> (버전 8.30), Jim Meyering 제작 (2018).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type tr
+man tr#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="tree" class="section level2 unnumbered" number="">
+<h2>tree<a class="anchor" aria-label="anchor" href="#tree"><i class="fas fa-link"></i></a>
+</h2>
+<p>디렉토리 내용을 트리 형식으로 나열합니다.
+<code>tree</code> (버전 1.8.0), Steve Baker 제작 (2018).
+더 많은 정보: <a href="https://launchpad.net/ubuntu/+source/tree" class="uri">https://launchpad.net/ubuntu/+source/tree</a>.</p>
+<pre>type tree
+man tree#!enter=FALSE
+C-C#!literal=FALSE
+tree / | trim</pre>
+</div>
+<div id="trim" class="section level2 unnumbered" number="">
+<h2>trim<a class="anchor" aria-label="anchor" href="#trim"><i class="fas fa-link"></i></a>
+</h2>
+<p>출력을 지정된 높이와 너비로 자릅니다.
+<code>trim</code> Jeroen Janssens 제작 (2021).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type trim
+echo {a..z}-{0..9} | fold | trim 5 60</pre>
+</div>
+<div id="ts" class="section level2 unnumbered" number="">
+<h2>ts<a class="anchor" aria-label="anchor" href="#ts"><i class="fas fa-link"></i></a>
+</h2>
+<p>입력에 타임스탬프를 추가합니다.
+<code>ts</code> (버전 0.65), Joey Hess 제작 (2021).
+더 많은 정보: <a href="https://joeyh.name/code/moreutils" class="uri">https://joeyh.name/code/moreutils</a>.</p>
+<pre>type ts
+echo seq 5 | sample -d 500 | ts</pre>
+</div>
+<div id="type" class="section level2 unnumbered" number="">
+<h2>type<a class="anchor" aria-label="anchor" href="#type"><i class="fas fa-link"></i></a>
+</h2>
+<p>커맨드 라인 도구의 유형과 위치를 표시합니다.
+<code>type</code>은 Z shell 빌트인입니다.</p>
+<pre>type type
+man zshbuiltins | grep -A 10 '^ *type '#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="uniq" class="section level2 unnumbered" number="">
+<h2>uniq<a class="anchor" aria-label="anchor" href="#uniq"><i class="fas fa-link"></i></a>
+</h2>
+<p>중복된 줄을 보고하거나 누락시킵니다.
+<code>uniq</code> (버전 8.30), Richard M. Stallman 및 David MacKenzie 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type uniq
+man uniq#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="unpack" class="section level2 unnumbered" number="">
+<h2>unpack<a class="anchor" aria-label="anchor" href="#unpack"><i class="fas fa-link"></i></a>
+</h2>
+<p>일반적인 파일 형식의 압축을 해제합니다.
+<code>unpack</code> (버전 0.1), Patrick Brisbin 제작 (2013).
+더 많은 정보: <a href="https://github.com/jeroenjanssens/dsutils" class="uri">https://github.com/jeroenjanssens/dsutils</a>.</p>
+<pre>type unpack</pre>
+</div>
+<div id="unrar" class="section level2 unnumbered" number="">
+<h2>unrar<a class="anchor" aria-label="anchor" href="#unrar"><i class="fas fa-link"></i></a>
+</h2>
+<p>rar 아카이브에서 파일을 추출합니다.
+<code>unrar</code> (버전 0.0.1), Ben Asselstine 외 다수 제작 (2014).
+더 많은 정보: <a href="http://home.gna.org/unrar" class="uri">http://home.gna.org/unrar</a>.</p>
+<pre>type unrar
+man unrar#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="unzip" class="section level2 unnumbered" number="">
+<h2>unzip<a class="anchor" aria-label="anchor" href="#unzip"><i class="fas fa-link"></i></a>
+</h2>
+<p>ZIP 아카이브의 압축 파일을 나열, 테스트 및 추출합니다.
+<code>unzip</code> (버전 6.0), Samuel H. Smith 외 다수 제작 (2009).
+더 많은 정보: <a href="http://www.info-zip.org/pub/infozip" class="uri">http://www.info-zip.org/pub/infozip</a>.</p>
+<pre>type unzip
+man unzip#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="vw" class="section level2 unnumbered" number="">
+<h2>vw<a class="anchor" aria-label="anchor" href="#vw"><i class="fas fa-link"></i></a>
+</h2>
+<p>온라인 학습을 위한 빠른 머신러닝 라이브러리입니다.
+<code>vw</code> (버전 8.10.1), John Langford 제작 (2021).
+더 많은 정보: <a href="https://vowpalwabbit.org" class="uri">https://vowpalwabbit.org</a>.</p>
+<pre>type vw
+vw --help --quiet#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="wc" class="section level2 unnumbered" number="">
+<h2>wc<a class="anchor" aria-label="anchor" href="#wc"><i class="fas fa-link"></i></a>
+</h2>
+<p>각 파일의 줄 바꿈, 단어 및 바이트 수를 인쇄합니다.
+<code>wc</code> (버전 8.30), Paul Rubin 및 David MacKenzie 제작 (2019).
+더 많은 정보: <a href="https://www.gnu.org/software/coreutils" class="uri">https://www.gnu.org/software/coreutils</a>.</p>
+<pre>type wc
+man wc#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="which" class="section level2 unnumbered" number="">
+<h2>which<a class="anchor" aria-label="anchor" href="#which"><i class="fas fa-link"></i></a>
+</h2>
+<p>명령어의 위치를 찾습니다.
+<code>which</code> (버전 0.1) 제작자 미상 (2016).
+더 많은 정보: .</p>
+<pre>type which
+man which#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="xml2json" class="section level2 unnumbered" number="">
+<h2>xml2json<a class="anchor" aria-label="anchor" href="#xml2json"><i class="fas fa-link"></i></a>
+</h2>
+<p>xml-mapping을 사용하여 XML 입력을 JSON 출력으로 변환합니다.
+<code>xml2json</code> (버전 0.0.3), François Parmentier 제작 (2016).
+더 많은 정보: <a href="https://github.com/parmentf/xml2json" class="uri">https://github.com/parmentf/xml2json</a>.</p>
+<pre>type xml2json</pre>
+</div>
+<div id="xmlstarlet" class="section level2 unnumbered" number="">
+<h2>xmlstarlet<a class="anchor" aria-label="anchor" href="#xmlstarlet"><i class="fas fa-link"></i></a>
+</h2>
+<p>커맨드 라인용 XML/XSLT 툴킷입니다.
+<code>xmlstarlet</code> (버전 1.6.1), Dagobert Michelsen 외 다수 제작 (2019).
+더 많은 정보: <a href="https://sourceforge.net/projects/xmlstar" class="uri">https://sourceforge.net/projects/xmlstar</a>.</p>
+<pre>type xmlstarlet
+man xmlstarlet#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="xsv" class="section level2 unnumbered" number="">
+<h2>xsv<a class="anchor" aria-label="anchor" href="#xsv"><i class="fas fa-link"></i></a>
+</h2>
+<p>Rust로 작성된 빠른 CSV 커맨드 라인 툴킷입니다.
+<code>xsv</code> (버전 0.13.0), Andrew Gallant 제작 (2018).
+더 많은 정보: <a href="https://github.com/BurntSushi/xsv" class="uri">https://github.com/BurntSushi/xsv</a>.</p>
+<pre>type xsv
+xsv --help#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="zcat" class="section level2 unnumbered" number="">
+<h2>zcat<a class="anchor" aria-label="anchor" href="#zcat"><i class="fas fa-link"></i></a>
+</h2>
+<p>파일의 압축을 해제하여 표준 출력으로 연결합니다.
+<code>zcat</code> (버전 1.10), Paul Eggert 제작 (2021).
+더 많은 정보: <a href="https://www.nongnu.org/zutils/zutils.html" class="uri">https://www.nongnu.org/zutils/zutils.html</a>.</p>
+<pre>type zcat
+man zcat#!enter=FALSE
+C-C#!literal=FALSE</pre>
+</div>
+<div id="zsh" class="section level2 unnumbered" number="">
+<h2>zsh<a class="anchor" aria-label="anchor" href="#zsh"><i class="fas fa-link"></i></a>
+</h2>
+<p>Z 쉘입니다.
+<code>zsh</code> (버전 5.8), Paul Falstad 및 Peter Stephenson 제작 (2020).
+더 많은 정보: <a href="https://www.zsh.org" class="uri">https://www.zsh.org</a>.</p>
+<pre>type zsh
+man zsh#!enter=FALSE
+C-C#!literal=FALSE</pre>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="chapter-11-conclusion.html"><span class="header-section-number">11</span> 결론</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-3 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%8F%84%EA%B5%AC-%EB%AA%A9%EB%A1%9D">커맨드 라인 도구 목록</a></li>
+<li><a class="nav-link" href="#alias">alias</a></li>
+<li><a class="nav-link" href="#awk">awk</a></li>
+<li><a class="nav-link" href="#aws">aws</a></li>
+<li><a class="nav-link" href="#bash">bash</a></li>
+<li><a class="nav-link" href="#bat">bat</a></li>
+<li><a class="nav-link" href="#bc">bc</a></li>
+<li><a class="nav-link" href="#body">body</a></li>
+<li><a class="nav-link" href="#cat">cat</a></li>
+<li><a class="nav-link" href="#cd">cd</a></li>
+<li><a class="nav-link" href="#chmod">chmod</a></li>
+<li><a class="nav-link" href="#cols">cols</a></li>
+<li><a class="nav-link" href="#column">column</a></li>
+<li><a class="nav-link" href="#cowsay">cowsay</a></li>
+<li><a class="nav-link" href="#cp">cp</a></li>
+<li><a class="nav-link" href="#csv2vw">csv2vw</a></li>
+<li><a class="nav-link" href="#csvcut">csvcut</a></li>
+<li><a class="nav-link" href="#csvgrep">csvgrep</a></li>
+<li><a class="nav-link" href="#csvjoin">csvjoin</a></li>
+<li><a class="nav-link" href="#csvlook">csvlook</a></li>
+<li><a class="nav-link" href="#csvquote">csvquote</a></li>
+<li><a class="nav-link" href="#csvsort">csvsort</a></li>
+<li><a class="nav-link" href="#csvsql">csvsql</a></li>
+<li><a class="nav-link" href="#csvstack">csvstack</a></li>
+<li><a class="nav-link" href="#csvstat">csvstat</a></li>
+<li><a class="nav-link" href="#curl">curl</a></li>
+<li><a class="nav-link" href="#cut">cut</a></li>
+<li><a class="nav-link" href="#display">display</a></li>
+<li><a class="nav-link" href="#dseq">dseq</a></li>
+<li><a class="nav-link" href="#echo">echo</a></li>
+<li><a class="nav-link" href="#env">env</a></li>
+<li><a class="nav-link" href="#export">export</a></li>
+<li><a class="nav-link" href="#fc">fc</a></li>
+<li><a class="nav-link" href="#find">find</a></li>
+<li><a class="nav-link" href="#fold">fold</a></li>
+<li><a class="nav-link" href="#for">for</a></li>
+<li><a class="nav-link" href="#fx">fx</a></li>
+<li><a class="nav-link" href="#git">git</a></li>
+<li><a class="nav-link" href="#grep">grep</a></li>
+<li><a class="nav-link" href="#gron">gron</a></li>
+<li><a class="nav-link" href="#head">head</a></li>
+<li><a class="nav-link" href="#header">header</a></li>
+<li><a class="nav-link" href="#history">history</a></li>
+<li><a class="nav-link" href="#hostname">hostname</a></li>
+<li><a class="nav-link" href="#in2csv">in2csv</a></li>
+<li><a class="nav-link" href="#jq">jq</a></li>
+<li><a class="nav-link" href="#json2csv">json2csv</a></li>
+<li><a class="nav-link" href="#l">l</a></li>
+<li><a class="nav-link" href="#less">less</a></li>
+<li><a class="nav-link" href="#ls">ls</a></li>
+<li><a class="nav-link" href="#make">make</a></li>
+<li><a class="nav-link" href="#man">man</a></li>
+<li><a class="nav-link" href="#mkdir">mkdir</a></li>
+<li><a class="nav-link" href="#mv">mv</a></li>
+<li><a class="nav-link" href="#nano">nano</a></li>
+<li><a class="nav-link" href="#nl">nl</a></li>
+<li><a class="nav-link" href="#parallel">parallel</a></li>
+<li><a class="nav-link" href="#paste">paste</a></li>
+<li><a class="nav-link" href="#pbc">pbc</a></li>
+<li><a class="nav-link" href="#pip">pip</a></li>
+<li><a class="nav-link" href="#pup">pup</a></li>
+<li><a class="nav-link" href="#pwd">pwd</a></li>
+<li><a class="nav-link" href="#python-1">python</a></li>
+<li><a class="nav-link" href="#r-1">R</a></li>
+<li><a class="nav-link" href="#rev">rev</a></li>
+<li><a class="nav-link" href="#rm">rm</a></li>
+<li><a class="nav-link" href="#rush">rush</a></li>
+<li><a class="nav-link" href="#sample">sample</a></li>
+<li><a class="nav-link" href="#scp">scp</a></li>
+<li><a class="nav-link" href="#sed">sed</a></li>
+<li><a class="nav-link" href="#seq">seq</a></li>
+<li><a class="nav-link" href="#servewd">servewd</a></li>
+<li><a class="nav-link" href="#shuf">shuf</a></li>
+<li><a class="nav-link" href="#skll">skll</a></li>
+<li><a class="nav-link" href="#sort">sort</a></li>
+<li><a class="nav-link" href="#split">split</a></li>
+<li><a class="nav-link" href="#sponge">sponge</a></li>
+<li><a class="nav-link" href="#sql2csv">sql2csv</a></li>
+<li><a class="nav-link" href="#ssh">ssh</a></li>
+<li><a class="nav-link" href="#sudo">sudo</a></li>
+<li><a class="nav-link" href="#tail">tail</a></li>
+<li><a class="nav-link" href="#tapkee">tapkee</a></li>
+<li><a class="nav-link" href="#tar">tar</a></li>
+<li><a class="nav-link" href="#tee">tee</a></li>
+<li><a class="nav-link" href="#telnet">telnet</a></li>
+<li><a class="nav-link" href="#tldr">tldr</a></li>
+<li><a class="nav-link" href="#tr">tr</a></li>
+<li><a class="nav-link" href="#tree">tree</a></li>
+<li><a class="nav-link" href="#trim">trim</a></li>
+<li><a class="nav-link" href="#ts">ts</a></li>
+<li><a class="nav-link" href="#type">type</a></li>
+<li><a class="nav-link" href="#uniq">uniq</a></li>
+<li><a class="nav-link" href="#unpack">unpack</a></li>
+<li><a class="nav-link" href="#unrar">unrar</a></li>
+<li><a class="nav-link" href="#unzip">unzip</a></li>
+<li><a class="nav-link" href="#vw">vw</a></li>
+<li><a class="nav-link" href="#wc">wc</a></li>
+<li><a class="nav-link" href="#which">which</a></li>
+<li><a class="nav-link" href="#xml2json">xml2json</a></li>
+<li><a class="nav-link" href="#xmlstarlet">xmlstarlet</a></li>
+<li><a class="nav-link" href="#xsv">xsv</a></li>
+<li><a class="nav-link" href="#zcat">zcat</a></li>
+<li><a class="nav-link" href="#zsh">zsh</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/jeroenjanssens/data-science-at-the-command-line/blob/master/book/2e/tools.Rmd">View source <i class=""></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jeroenjanssens/data-science-at-the-command-line/edit/master/book/2e/tools.Rmd">Edit this page <i class=""></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container-fluid">
+    <div class="row">
+      <div class="d-none d-lg-block col-lg-2 sidebar"></div>
+      <div class="col-sm-12 col-md-9 col-lg-7 mt-3" style="max-width: 45rem;">
+        <p><strong>커맨드 라인에서 시작하는 데이터 과학, 2판</strong> by <a href="https://twitter.com/jeroenhjanssens" class="text-light">Jeroen Janssens</a>. Updated on January 29, 2026. This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+      </div>
+      <div class="col-md-3 col-lg-3 d-none d-md-block sidebar"></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

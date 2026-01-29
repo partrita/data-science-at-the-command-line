@@ -2,11 +2,15 @@
 .SUFFIXES:
 
 .ONESHELL:
-SHELL = /usr/bin/env bash -o pipefail
-.SHELLFLAGS = -e
+SHELL = /usr/bin/bash
+.SHELLFLAGS = -o pipefail -e -c
 
 clean:
 	rm -f book/2e/book.md
+
+
+2e-docker:
+	docker run --rm -v $$(pwd):/app -w /app/book/2e datasciencetoolbox/dsatcl2e:latest -c "bash build_book.sh"
 
 2e: book/2e/*.Rmd
 	cd book/2e &&\
