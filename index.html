@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preload" href="/static/fonts/source-sans-pro-v14-latin-600.woff2" as="font" crossorigin />
+    <link rel="preload" href="/static/fonts/source-sans-pro-v14-latin-regular.woff2" as="font" crossorigin />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Home | Data Science at the Command Line</title>
+    <meta name="author" content="Jeroen Janssens">
+    <link rel="icon" type="image/png" href="https://datascienceatthecommandline.com/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="https://datascienceatthecommandline.com/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="https://datascienceatthecommandline.com/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://datascienceatthecommandline.com/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="https://datascienceatthecommandline.com/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Data Science at the Command Line"/>
+    <meta name="description" content="This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You’ll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux.">
+    <meta itemprop="description" content="This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You’ll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux.">
+    <meta property="og:title" content="Home | Data Science at the Command Line">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:url" content="https://datascienceatthecommandline.com">
+    <meta property="og:image" content="https://datascienceatthecommandline.com/og.png">
+    <meta property="og:description" content="This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You’ll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux.">
+    <meta property="og:site_name" content="Data Science at the Command Line" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Home | Data Science at the Command Line">
+    <meta name="twitter:description" content="This thoroughly revised guide demonstrates how the flexibility of the command line can help you become a more efficient and productive data scientist. You’ll learn how to combine small yet powerful command-line tools to quickly obtain, scrub, explore, and model your data. To get you started, author Jeroen Janssens provides a Docker image packed with over 100 Unix power tools—useful whether you work with Windows, macOS, or Linux.">
+    <meta name="twitter:image" content="https://datascienceatthecommandline.com/twitter.png">
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-43246574-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body class="-debug-screens">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:min-h-screen overflow-hidden">
+      <div class="col-span-full row-span-full lg:col-auto lg:row-auto lg:bg-white order-2 lg:order-1 z-30">
+        <div class="flex items-center h-full py-8 lg:py-8">
+          <div class="relative w-5/6 sm:w-2/3 bg-[#ffffffcc] drop-shadow mx-auto lg:drop-shadow-none md:w-2/3 lg:w-5/6  xl:w-2/3 2xl:w-10/12 2xl:max-w-2xl p-4 sm:p-6 md:p-8 2xl:px-0">
+            <!-- <div  id="intro" class="my-6 md:my-8 lg:my-12 text 2xl:prose-2xl !max-w-none">
+                 <h2>Hi there! I’m <a href="#about">Jeroen</a>.</h2>
+                 <p>I wrote <strong>the book</strong> <em>Data Science at the Command Line</em>. The second edition was published by O’Reilly in October. You can read the book entirely for free.</p>
+<p>At the moment I’m working on a brand <strong>new course</strong>, tentatively titled <em>Embrace the Command Line</em>. You can learn more about this course and let me know what you think below.</p>
+                 </div> -->
+
+
+            <div id="intro" class="my-6 md:my-8 lg:my-12 text 2xl:prose-2xl !max-w-none">
+              <h2>👋 Hi there! I&rsquo;m <a href="#about" class="!font-bold !text-gray-800" style="text-decoration-color: #0369a1; ">Jeroen</a>.</h2>
+              <p>
+                I recently wrote the second edition of <em>Data Science at the Command Line</em>, which you can read entirely for free here. Since 2014, I regularly give workshops about this exciting topic and I&rsquo;m currently working on a brand new course titled <em>Embrace the Command Line</em>. Below you can learn more about this course and tell me if you&rsquo;re interested in joining the beta cohort.
+              </p>
+
+              <ul class="">
+                <li><a href="/2e/">Read <em>Data Science at the Command Line</em> for free</a></li>
+                <li> <a href="https://datascienceworkshops.gumroad.com/l/data-science-at-the-command-line">Sign up for the next workshop on March 10&ndash;11, 2022</a></li>
+                <li><a href="#course">Learn about the new course <em>Embrace the Command Line</em></a></li>
+              </ul>
+              <p>
+                Be sure to <a href="https://datascienceworkshops.com/#contact">let me know</a> if you have questions.
+              </p>
+              <p>
+                Cheers, Jeroen
+              </p>
+            </div>
+
+
+            <!-- <div class="flex flex-wrap -m-2 md:-m-3 lg:-m-4">
+                 <div class="p-2 md:p-3 lg:p-4">
+                 <a href="/2e/" class="button inline-block !text-white text bg-blue-700 hover:bg-blue-500 drop-shadow hover:drop-shadow-none">Read the book</a>
+                 </div>
+                 <div class="p-2 md:p-3 lg:p-4">
+                 <a href="#course" class="button inline-block !text-white text bg-orange-700 hover:bg-orange-500 drop-shadow hover:drop-shadow-none">Learn about the course</a>
+                 </div>
+                 </div> -->
+
+          </div>
+        </div>
+      </div>
+      <div class="col-span-full row-span-full lg:col-auto lg:row-auto order-1 lg:order-2 relative z-0 overflow-hidden -m-8">
+        <picture>
+      <source type="image/webp" sizes="max(50vw, 100vh)" media="(min-width: 1024px)" srcset="/img/poster.600w.webp 600w, /img/poster.800w.webp 800w, /img/poster.1000w.webp 1000w, /img/poster.1200w.webp 1200w, /img/poster.1400w.webp 1400w, /img/poster.1600w.webp 1600w, /img/poster.1800w.webp 1800w">
+  <source type="image/jpeg" sizes="max(50vw, 100vh)" media="(min-width: 1024px)" srcset="/img/poster.600w.jpeg 600w, /img/poster.800w.jpeg 800w, /img/poster.1000w.jpeg 1000w, /img/poster.1200w.jpeg 1200w, /img/poster.1400w.jpeg 1400w, /img/poster.1600w.jpeg 1600w, /img/poster.1800w.jpeg 1800w">
+      <source type="image/webp" sizes="100vmax" srcset="/img/poster.600w.webp 600w, /img/poster.800w.webp 800w, /img/poster.1000w.webp 1000w, /img/poster.1200w.webp 1200w, /img/poster.1400w.webp 1400w, /img/poster.1600w.webp 1600w, /img/poster.1800w.webp 1800w">
+  <source type="image/jpeg" sizes="100vmax" srcset="/img/poster.600w.jpeg 600w, /img/poster.800w.jpeg 800w, /img/poster.1000w.jpeg 1000w, /img/poster.1200w.jpeg 1200w, /img/poster.1400w.jpeg 1400w, /img/poster.1600w.jpeg 1600w, /img/poster.1800w.jpeg 1800w">
+      <img
+        class="poster"
+        src="/img/poster.600w.jpeg"
+        alt=""
+        style="object-position: 50% 50%;"
+        loading="lazy"
+        decoding="async">
+    </picture>
+      </div>
+    </div>
+
+
+    <article id="course" class="bg-orange-200">
+      <div class="container">
+        <section class="mx-auto text !max-w-prose bg-white p-4 lg:p-8 drop-shadow">
+          <h2>Embrace the Command Line</h2>
+          <p>
+            The Unix or Linux command line, sometimes referred to as the shell or the terminal, is as powerful as it is intimidating. By typing commands, you can rename thousands of files, process large amounts of data, and work on remote machines with ease. But make one mistake and everything will explode!</p>
+<p>At least, that’s what many think when they first encounter this stark and unforgiving environment. I can’t blame them, the command line just doesn’t look very inviting. But still, the fact remains that the command line successfully enables thousands of developers, researchers, system administrators, and data analysts to be more efficient and productive at work. But how did they acquire this power?</p>
+<p>I know how, because I’ve been there. Around 15 years ago, I did everything on Windows through clicking and dragging. I knew there was a better way, but I was afraid to try it. At first. It took me well over a year of switching back and forth between Windows and Linux to embrace the command line. These days I mainly use macOS, which has a command line baked in because it’s a form of Unix. And guess what, you can nowadays also use a Linux command line on Windows thanks to an extension called WSL. But I’m getting ahead of myself.</p>
+<p>I want to help you embrace the command line. Why? Well, two reasons.</p>
+<p>First and foremost, I truly believe that the command line can make you more efficient and productive when you work with large amounts of files, data, or machines. It’s been around for fifty years, and it’s not going anywhere, so learning to use the command line is a good investment for the rest of your career.</p>
+<p>Second, I love teaching. In 2014 I wrote the book Data Science at the Command Line (O’Reilly Media) which explains how the command line can be used to work with data. Thanks to this book I started giving workshops which eventually led to my own company <a href="https://datascienceworkshops.com">Data Science Workshops</a> through which I regulary give in-company workshops on a variety of topics related to data science. By the way, the second edition just came out and can be read entirely for free (see top of this page).</p>
+<p>There are plenty of resources available to learn the command line, but I don’t want you to take such a long time (like me) to fully embrace it. That’s why I’m going to organize a cohort based course titled Embrace the Command Line. The program is still under development, but it’s going to be a four-week program filled with live sessions with me, plenty of exercises, and a valuable and inclusive community. By the end of this course, you’ll be able to use the command line comfortably and you’ll have a solid foundation to expand your toolbox with tools and techniques that are relevent to your daily work.</p>
+<p>The first cohort is expected to start in Q1 2022. Since this will be a beta cohort, the price will be $500. Subsequent cohorts will most likely be priced between $1000 and $1500. I want to start with a small group of people that are willing to invest time and effort into learning all about the command line.</p>
+<p>If you’re interested, please fill out the form below. I’ll only use your email address to give you updates about the course. Your location will be used to determine the schedule of the live sessions. I would love to hear why you’re interested, but that field is optional.</p>
+<p>By submitting this form, you’re just indicating that you might be interested in the course. You’re not committing yourself to anything. I will only use your information in relation to this course and nothing else. If you have any questions, please don’t hesitate to reach out (contact details below).</p>
+<p>Cheers,</p>
+<p>Jeroen
+          </p>
+
+          <div x-data="signupForm()" x-on:submit.prevent="submitData">
+            <form name="signup" method="POST" action="/" data-netlify="true">
+              <div class="grid grid-cols-1 gap-6">
+                <label class="block">
+                  <span class="text">Name<strong class="ml-1 !text-orange-600">*</strong></span>
+                  <input @keydown.stop x-model="formData.name" name="name" type="text" class="text mt-1 block w-full rounded bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0 lg:shadow-inner" placeholder="" required="true" />
+                </label>
+                <label class="block">
+                  <span class="text">Email address<strong class="ml-1 !text-orange-600">*</strong></span>
+                  <input @keydown.stop x-model="formData.email" name="email" type="email" class="text mt-1 block w-full rounded bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0 lg:shadow-inner" placeholder="" required="true" />
+                </label>
+                <label class="block">
+                  <span class="text">Country<strong class="ml-1 !text-orange-600">*</strong></span>
+                  <input @keydown.stop x-model="formData.location" name="location" type="text" class="text mt-1 block w-full rounded bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0 lg:shadow-inner" placeholder="" required="true" />
+                </label>
+                <label class="block">
+                  <span class="text">I’m interested because…</span>
+                  <textarea @keydown.stop x-model="formData.message" name="message" class="text mt-1 block w-full rounded bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0 lg:shadow-inner" rows="3"></textarea>
+                </label>
+                <div class="flex items-center">
+                  <button x-text="buttonLabel" :disabled="loading" type="submit" class="button block !text-white text bg-blue-500 hover:bg-blue-600 shadow">Send</button>
+                  <div class="px-4"><em class="text" x-text="feedback"></em></div>
+                </div>
+              </div>
+              <input name="url" type="hidden" value="/">
+            </form>
+          </div>
+
+
+        </section>
+
+
+
+
+      </div>
+    </article>
+
+
+
+
+    <article class="bg-gray-200">
+      <div id="about" class="container">
+        <section class="mx-auto text !max-w-prose bg-white p-4 lg:p-8 drop-shadow">
+          <h2>About Jeroen</h2>
+
+          <img class="w-2/5 sm:w-1/3 float-right !mt-2 !mb-2 !ml-4 rounded-full" src="/static/img/jeroen-janssens.png">
+          <p>
+            Jeroen Janssens, PhD, is a data science consultant and certified instructor. His expertise lies in visualizing data, implementing machine learning models, and building solutions using Python, R, JavaScript, and Bash. He’s passionate about helping and teaching others to do such things.</p>
+<p>Since 2013, Jeroen runs <a href="https://datascienceworkshops.com">Data Science Workshops</a>, a training and coaching firm that organizes open enrollment workshops, in-company courses, inspiration sessions, hackathons, and meetups. Clients include Amazon, eHealth Africa, Schiphol Airport, The New York Times, and T-Mobile.</p>
+<p>Previously, he was an assistant professor at Jheronimus Academy of Data Science and a data scientist at Elsevier in Amsterdam and various startups in New York City. He is the author of Data Science at the Command Line (O’Reilly Media, 2021). Jeroen holds a PhD in machine learning from Tilburg University and an MSc in artificial intelligence from Maastricht University.</p>
+<p>He lives with his wife and two kids in Rotterdam, the Netherlands.<br>
+If you would like to know more about his services, fees, and availability, then please <a href="mailto:jeroen@datascienceworkshops.com">email Jeroen</a>. You can also find him on <a href="https://twitter.com/jeroenhjanssens">Twitter</a>, <a href="https://github.com/jeroenjanssens">GitHub</a>, and <a href="https://www.linkedin.com/in/jeroenjanssens/">LinkedIn</a>.
+          </p>
+        </section>
+      </div>
+    </article>
+
+
+<script>
+    function encode(data) {
+        return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&")
+    }
+
+    function signupForm() {
+        return {
+            formData: {
+                'form-name': 'signup',
+                'name': '',
+                'email': '',
+                'location': '',
+                'message': '',
+                'url': '/'
+            },
+            feedback: '',
+            loading: false,
+            buttonLabel: 'Send',
+
+            submitData() {
+                this.loading = true;
+                this.feedback = ''
+
+                fetch('/', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: encode(this.formData)
+                })
+                .then(() => {
+                    this.feedback = 'Thank you very much! I’ll be in touch.'
+                    this.formData.name = ''
+                    this.formData.email = ''
+                    this.formData.location = ''
+                    this.formData.message = ''
+                })
+                .catch(() => {
+                    this.feedback = 'Something went wrong.'
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
+            }
+        }
+    }
+</script>
+
+  </body>
+</html>
