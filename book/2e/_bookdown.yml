@@ -1,13 +1,19 @@
 book_filename: "book"
-repo: https://github.com/jeroenjanssens/data-science-at-the-command-line
+repo: https://github.com/partrita/data-science-at-the-command-line
 output_dir: "output"
 link-citations: true
 language:
   ui:
-    chapter_name: "제 "
+    chapter_name: "장"
     edit: "편집"
-view: https://github.com/jeroenjanssens/data-science-at-the-command-line/blob/master/book/2e/%s
-edit: https://github.com/jeroenjanssens/data-science-at-the-command-line/edit/master/book/2e/%s
+    toc: "목차"
+    search: "검색"
+    view: "보기"
+    info: "정보"
+    history: "이력"
+    download: "다운로드"
+view: https://github.com/partrita/data-science-at-the-command-line/blob/master/book/2e/%s
+edit: https://github.com/partrita/data-science-at-the-command-line/edit/master/book/2e/%s
 new_session: true
 before_chapter_script: "_console_start.R"
 after_chapter_script: "_console_exit.R"

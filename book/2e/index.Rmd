@@ -12,7 +12,7 @@ nocite: |
 link-citations: yes
 description: "이 개정판 가이드는 커맨드 라인의 유연성이 어떻게 여러분을 더 효율적이고 생산적인 데이터 과학자로 만들어 줄 수 있는지 보여줍니다. 작지만 강력한 커맨드 라인 도구들을 결합하여 데이터를 빠르게 획득, 정제, 탐색 및 모델링하는 방법을 배우게 됩니다. 시작을 돕기 위해 저자 Jeroen Janssens는 Windows, macOS, Linux 어디서든 유용한 100개 이상의 유닉스 파워 도구가 포함된 Docker 이미지를 제공합니다."
 cover-image: "images/cover.png"
-github-repo: "jeroenjanssens/data-science-at-the-command-line"
+github-repo: "partrita/data-science-at-the-command-line"
 ---
 
 # 환영합니다 {-}

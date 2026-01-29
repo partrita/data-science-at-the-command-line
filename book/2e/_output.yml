@@ -12,7 +12,7 @@ bookdown::bs4_book:
     - --csl
     - chicago-fullnote-bibliography.csl
   repo:
-    base: https://github.com/jeroenjanssens/data-science-at-the-command-line
+    base: https://github.com/partrita/data-science-at-the-command-line
     branch: master
     subdir: book/2e
     icon: ""
