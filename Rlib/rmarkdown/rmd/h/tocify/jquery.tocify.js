@@ -675,8 +675,11 @@
 
                 anchorText = $(anchors[closestAnchorIdx]).attr("data-unique");
 
+                var safeAnchorSelectorText = $.escapeSelector ? $.escapeSelector(anchorText) : String(anchorText).replace(/([\\ #;?%&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1'),
+                  safeAnchorHashText = encodeURIComponent(anchorText);
+
                 // Stores the list item HTML element that corresponds to the currently traversed anchor tag
-                elem = $('li[data-unique="' + anchorText + '"]');
+                elem = $('li[data-unique="' + safeAnchorSelectorText + '"]');
 
                 // If the `highlightOnScroll` option is true and a next element is found
                 if (self.options.highlightOnScroll && elem.length) {
@@ -691,9 +694,9 @@
 
                 if (self.options.scrollHistory) {
 
-                  if (window.location.hash !== "#" + anchorText) {
+                  if (window.location.hash !== "#" + safeAnchorHashText) {
 
-                    window.location.replace("#" + anchorText);
+                    window.location.replace("#" + safeAnchorHashText);
 
                   }
                 }
