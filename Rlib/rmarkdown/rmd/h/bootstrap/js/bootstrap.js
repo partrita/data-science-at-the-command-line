@@ -1554,7 +1554,11 @@ if (typeof jQuery === 'undefined') {
     var $tip  = this.tip()
     var title = this.getTitle()
 
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    if (this.options.html) {
+      $tip.find('.tooltip-inner').html($('<div/>').text(title).html())
+    } else {
+      $tip.find('.tooltip-inner').text(title)
+    }
     $tip.removeClass('fade in top bottom left right')
   }
 
