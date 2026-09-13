@@ -675,7 +675,7 @@
 
                 anchorText = $(anchors[closestAnchorIdx]).attr("data-unique");
 
-                var safeAnchorSelectorText = $.escapeSelector ? $.escapeSelector(anchorText) : String(anchorText).replace(/([ #;?%&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1'),
+                var safeAnchorSelectorText = $.escapeSelector ? $.escapeSelector(anchorText) : String(anchorText).replace(/([\\ #;?%&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1'),
                   safeAnchorHashText = encodeURIComponent(anchorText);
 
                 // Stores the list item HTML element that corresponds to the currently traversed anchor tag
