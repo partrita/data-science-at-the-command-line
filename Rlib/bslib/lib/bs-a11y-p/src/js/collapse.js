@@ -5,9 +5,10 @@
      var $colltabs =  $('[data-toggle="collapse"]')
       $colltabs.each(function( index ) {
         var colltab = $(this)
-        , collpanel = (colltab.attr('data-target')) ? $(colltab.attr('data-target')) : $(colltab.attr('href'))
+        , targetSelector = colltab.attr('data-target') || colltab.attr('href')
+        , collpanel = targetSelector ? $( $.find(targetSelector) ) : $()
         , parent  = colltab.attr('data-parent')
-        , collparent = parent && $(parent)
+        , collparent = parent ? $( $.find(parent) ) : null
         , collid = colltab.attr('id') || uniqueId('ui-collapse')
         , parentpanel = collpanel.parent() // panel containing title and panel body
         , parentfirstchild = (collparent) ? collparent.find('.panel.panel-default:first-child') : null // first child of containing accordion
@@ -40,7 +41,7 @@
 
         if(prevTab){
           var prevPanel = prevTab.attr('data-target') || (href = prevTab.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')
-          , $prevPanel = $(prevPanel)
+          , $prevPanel = $( $.find(prevPanel) )
           , $curPanel = this.$element
           , par = this.$parent
           , curTab

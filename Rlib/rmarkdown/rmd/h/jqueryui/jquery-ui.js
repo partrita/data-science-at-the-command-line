@@ -908,8 +908,8 @@ $.fn.position = function( options ) {
 
 		// Make sure string options are treated as CSS selectors
 		target = typeof options.of === "string" ?
-			$( document ).find( options.of ) :
-			$( options.of ),
+			$( $.find( options.of ) ) :
+			options.of && options.of.jquery ? options.of : $([ options.of ]),
 
 		within = $.position.getWithinInfo( options.within ),
 		scrollInfo = $.position.getScrollInfo( within ),
@@ -17942,7 +17942,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_sanitizeSelector: function( hash ) {
-		return hash ? hash.replace( /[!"$%&'()*+,.\/:;<=>?@\[\]\^`{|}~]/g, "\\$&" ) : "";
+		return hash ? hash.replace( /[!"$%&'()*+,.\/:;<=>?@\[\]\^`{|}~\\]/g, "\\$&" ) : "";
 	},
 
 	refresh: function() {

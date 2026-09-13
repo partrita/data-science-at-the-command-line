@@ -2265,7 +2265,7 @@ var w3c_slidy = {
     if (element.nodeType != 1)
       return false;
 
-    var regexp = new RegExp("(^| )" + name + "\W*");
+    var regexp = new RegExp("(^| )" + name + "\\W*");
 
     if (typeof element.className != 'undefined')
       return regexp.test(element.className);
@@ -2274,7 +2274,7 @@ var w3c_slidy = {
   },
 
   remove_class: function (element, name) {
-    var regexp = new RegExp("(^| )" + name + "\W*");
+    var regexp = new RegExp("(^| )" + name + "\\W*");
     var clsval = "";
 
     if (typeof element.className != 'undefined')

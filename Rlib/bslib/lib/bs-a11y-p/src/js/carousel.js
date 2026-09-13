@@ -133,8 +133,8 @@
 
           var tabName = document.createElement('span')
           tabName.setAttribute('class', 'sr-only')
-          tabName.innerHTML='Slide ' + (i+1)
-          if (caption) tabName.innerHTML += ": " +  caption
+          tabName.textContent = 'Slide ' + (i + 1)
+          if (caption) tabName.textContent += ': ' + caption
           $tab.appendChild(tabName)
 
          }

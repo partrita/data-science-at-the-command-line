@@ -109,7 +109,7 @@ if (typeof jQuery === 'undefined') {
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = $(selector)
+    var $parent = selector ? $( $.find(selector) ) : $()
 
     if (e) e.preventDefault()
 
@@ -502,7 +502,8 @@ if (typeof jQuery === 'undefined') {
   var clickHandler = function (e) {
     var href
     var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    var targetSelector = $this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+    var $target = targetSelector ? $( $.find(targetSelector) ) : $()
     if (!$target.hasClass('carousel')) return
     var options = $.extend({}, $target.data(), $this.data())
     var slideIndex = $this.attr('data-slide-to')
@@ -668,7 +669,11 @@ if (typeof jQuery === 'undefined') {
   }
 
   Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
+    return (
+      typeof this.options.parent == 'string'
+        ? $( $.find(this.options.parent) )
+        : this.options.parent && this.options.parent.jquery ? this.options.parent : this.options.parent ? $([this.options.parent]) : $()
+    )
       .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
       .each($.proxy(function (i, element) {
         var $element = $(element)
@@ -691,7 +696,7 @@ if (typeof jQuery === 'undefined') {
     var target = $trigger.attr('data-target')
       || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
 
-    return $(target)
+    return target ? $( $.find(target) ) : $()
   }
 
 
@@ -773,7 +778,7 @@ if (typeof jQuery === 'undefined') {
       selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = selector && $(selector)
+    var $parent = selector ? $( $.find(selector) ) : null
 
     return $parent && $parent.length ? $parent : $this.parent()
   }
@@ -1228,11 +1233,19 @@ if (typeof jQuery === 'undefined') {
   // ==============
 
   $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+<<<<<<< HEAD
     var $this          = $(this)
     var href           = $this.attr('href')
     var targetSelector = $this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
     var $target        = $(targetSelector ? $.find(targetSelector) : [])
     var option         = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+=======
+    var $this   = $(this)
+    var href    = $this.attr('href')
+    var targetSelector = $this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    var $target = targetSelector ? $( $.find(targetSelector) ) : $()
+    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+>>>>>>> 1c32b45 (커밋 메시지 작성)
 
     if ($this.is('a')) e.preventDefault()
 
@@ -1300,7 +1313,12 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    var viewport = this.options.viewport
+    if (viewport && $.isFunction(viewport)) viewport = viewport.call(this, this.$element)
+    if (viewport && viewport.selector) viewport = viewport.selector
+    this.$viewport = typeof viewport == 'string'
+      ? $( $.find(viewport) )
+      : viewport && viewport.jquery ? viewport : viewport ? $([viewport]) : $()
     this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
@@ -1555,11 +1573,15 @@ if (typeof jQuery === 'undefined') {
     var $tip  = this.tip()
     var title = this.getTitle()
 
+<<<<<<< HEAD
     if (this.options.html) {
       $tip.find('.tooltip-inner').html($('<div/>').text(title).html())
     } else {
       $tip.find('.tooltip-inner').text(title)
     }
+=======
+    $tip.find('.tooltip-inner').text(title)
+>>>>>>> 1c32b45 (커밋 메시지 작성)
     $tip.removeClass('fade in top bottom left right')
   }
 
@@ -1813,10 +1835,8 @@ if (typeof jQuery === 'undefined') {
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
-      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
-    ](content)
+    $tip.find('.popover-title').text(title)
+    $tip.find('.popover-content').text(content)
 
     $tip.removeClass('fade top bottom left right in')
 
@@ -2222,7 +2242,11 @@ if (typeof jQuery === 'undefined') {
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 
-    this.$target = $(this.options.target)
+    var target = this.options.target
+    this.$target = typeof target == 'string'
+      ? $( $.find(target) )
+      : target && target.jquery ? target : target ? $([target]) : $()
+    this.$target
       .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 

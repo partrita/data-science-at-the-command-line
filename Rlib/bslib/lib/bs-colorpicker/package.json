@@ -15,9 +15,9 @@
   "author": "Javi Aguilar",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": ">=4.0",
-    "jquery": ">=2.2",
-    "popper.js": ">=1.10"
+    "bootstrap": "^4.6.2",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1"
   },
   "scripts": {
     "test": "npm run lint && ava --color --verbose",
